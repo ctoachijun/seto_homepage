@@ -1,0 +1,17 @@
+{
+    "host": "setoworks.cafe24.com",
+    "username": "setoworks",
+    "password": "tpxhdnjrtm2@",
+    "remotePath": "/",
+    "protocol": "ftp",
+    "port": 0,
+    "fileNameEncoding": "utf8",
+    "autoUpload": true,
+    "autoDelete": false,
+    "autoDownload": false,
+    "ignore": [
+        ".git",
+        "/.vscode"
+    ],
+    "ignoreWrongFileEncoding": true
+}

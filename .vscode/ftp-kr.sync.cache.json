@@ -1,0 +1,55 @@
+{
+  "ftp://setoworks@setoworks.cafe24.com": {
+    ".bash_history": {
+      "type": "-",
+      "size": 131,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".bash_profile": {
+      "type": "-",
+      "size": 366,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".ftpaccess": {
+      "type": "-",
+      "size": 38583,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".ftpaccess2": {
+      "type": "-",
+      "size": 53873,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".htaccess": {
+      "type": "-",
+      "size": 66,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".lastlogin": {
+      "type": "-",
+      "size": 11,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".logincount": {
+      "type": "-",
+      "size": 6,
+      "lmtime": 0,
+      "modified": false
+    },
+    "www": {
+      "index.php": {
+        "type": "-",
+        "size": 65,
+        "lmtime": 1688624774295.6873,
+        "modified": false
+      }
+    }
+  },
+  "$version": 1
+}
