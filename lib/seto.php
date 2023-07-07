@@ -59,6 +59,7 @@ for ($i = 0; $i < $ext_cnt; $i++) {
 
 
 
+
 /*
   공통 함수
 */
@@ -92,6 +93,12 @@ function alert($txt){
 }
 function alert_back($txt){
   echo "<script>alert('{$txt}');history.go(-1);</script>";
+}
+function alert_href($txt,$page){
+  echo "<script>alert('{$txt}');location.href='{$page}'</script>";
+}
+function page_back(){
+  echo "<script>pageBack();</script>";
 }
 
 function qsChgForminput($qs,$nopt){
@@ -322,3 +329,51 @@ function getPaging($tbl, $qs, $where){
   echo "<li class='page-item {$end_class}'><a {$li_href2}>»</a></li>";
   echo "</ul>";
 }
+function getLog($sql,$exec,$name){
+  $sql = addslashes($sql);
+  $lsql = "INSERT INTO sthp_admin_log SET al_name = '{$name}', al_exec = '{$exec}', al_sql = '{$sql}' al_wdate = now() ";
+
+  sql_exec($lsql);
+}
+
+
+function chkTopAdmin($idx){
+  $admin = getAdminInfo($idx);
+  $grade = $admin['a_grade'];
+  
+  if($grade == "A"){
+    return true;
+  }else{
+    return false;
+  }
+}
+function getAdminInfo($idx){
+  $sql = "SELECT * FROM sthp_admin WHERE a_idx = {$idx}";
+  return sql_fetch($sql);
+}
+function getAdminList($type,$sw){
+  if($sw){
+    $where = "AND a_{$type} like '%{$sw}%'";
+  }
+  $sql = "SELECT * FROM sthp_admin WHERE 1 {$where} ORDER BY a_idx DESC";
+
+  return sql_query($sql);
+}
+function chkPermission($idx,$num){
+  if($num == 1){
+    $admin = getAdminInfo($idx);
+    $first = $admin['a_first'];
+    
+    if($first == "N"){
+      alert_back("접근 권한이 없습니다");
+    }
+  }
+}
+function chkLogin(){
+  if( empty($_SESSION['aidx']) || empty($_SESSION['aid']) ){
+    alert_href("관리자 전용 페이지입니다.","./");    
+  }
+}
+
+
+
