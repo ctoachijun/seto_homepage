@@ -4,7 +4,7 @@ include "../lib/seto.php";
 // 로그인 체크
 chkLogin();
 
-// 세션값 세팅
+// 세션값 세팅. 이후 접속한 모든 동작은 아래 변수가 이용된다.
 $aidx = $_SESSION['aidx'];
 $aid = $_SESSION['aid'];
 $aname = $_SESSION['aname'];
@@ -20,3 +20,27 @@ if($current != "firstConnect.php"){
     header("Location: firstConnect.php");
   }
 }
+?>
+
+
+
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>관리자</title>
+  <link href="./css/admin.css" rel="stylesheet">
+</head>
+
+<body>
+
+
+<? if($current != "firstConnect.php"){ ?>
+<div class="row">
+  <input type="button" value="로그아웃" onclick="logOut()"/>
+</div>
+<? } ?>
+
+

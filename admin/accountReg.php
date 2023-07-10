@@ -14,7 +14,7 @@ $reg_type == "E" ? $rtxt = "수정": $rtxt = "등록";
 
 
 if($reg_type == "E"){
-  $admin = getAdminInfo($aidx);
+  $admin = getAdminInfo($admin_idx);
   $uid = $admin['a_id'];
   $name = $admin['a_name'];
   $tel = $admin['a_tel'];
@@ -36,17 +36,6 @@ if($reg_type == "E"){
 
 ?>
 
-<!DOCTYPE html>
-<html lang="ko">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>관리자</title>
-  <link href="./css/admin.css" rel="stylesheet">
-</head>
-
-<body>
 
 
   <div id="accountReg">
@@ -92,8 +81,10 @@ if($reg_type == "E"){
           </div>
 
           <div class="row">
+            
+            <? if($reg_type == "E"){ ?><input type="button" class="btn btn-no" value="삭제" onclick="delAdmin(<?=$admin_idx?>)" /><? } ?>
             <input type="button" class="btn btn-ok" value="<?=$rtxt?>" onclick="regAccount()" />
-            <input type="button" class="btn btn-no" value="취소" onclick="pageBack()" />
+            <input type="button" class="btn" value="취소" onclick="pageBack()" />
           </div>
         </div>
     </form>

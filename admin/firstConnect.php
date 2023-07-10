@@ -5,6 +5,8 @@
 
   chkPermission($aidx,1);
   
+  
+  
 ?>
 
 <!DOCTYPE html>

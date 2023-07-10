@@ -41,6 +41,8 @@ function pageBack(){
   history.go(-1);
 }
 
+
+
 function chkEmailType(email) {
   console.log(email);
   let re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
@@ -179,7 +181,7 @@ function goReg(){
 function goDetail(idx){
   $("form").attr("action","accountReg.php");
   $("input[name=reg_type").val("E");
-  $("form").prepend("<input type='hidden' name='aidx' value='"+idx+"'>");
+  $("form").prepend("<input type='hidden' name='admin_idx' value='"+idx+"'>");
   $("form").submit();
 }
 function delAdmin(idx){
@@ -237,6 +239,19 @@ function chgPw(){
   
 }
 
+function logOut(){
+  $.ajax({
+    url : "ajax_admin.php",
+    type: "post",
+    data: {"w_mode":"logOut"},
+    success: function(result){
+      let json = JSON.parse(result);
+      if(json.state == "Y"){
+        location.href="./";
+      }
+    }
+  })
+}
 
 
 

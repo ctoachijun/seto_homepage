@@ -20,6 +20,14 @@
           $_SESSION['aid'] = $re['a_id'];
           $_SESSION['aname'] = $re['a_name'];
           
+          // 로그인 일시 입력처리
+          $sql1 = "UPDATE sthp_admin SET a_login = now() WHERE a_idx = ".$re['a_idx'];
+          $re1 = sql_exec($sql1);
+          // 중복이라도 로그 체크
+          $exec = "[ ".$re['a_name']." ] 로그인";
+          getLog($sql1,$exec,$re['a_name']);
+          
+          
         }else{
           $output['state'] = "W";
         }
@@ -60,7 +68,7 @@
           $passwd = password_hash($upw,PASSWORD_DEFAULT);
           $output['upw'] = $upw;
           $output['passwd'] = $passwd;
-          $pw_col = "a_passwd = '{$passwd }', ";
+          $pw_col = "a_passwd = '{$passwd }', a_first = 'Y', ";
         }else{
           $pw_col = "";
         }
@@ -77,9 +85,9 @@
         //로그
         $reg_type == "I" ? $ratype = 1 : $ratype = 2;
         $ratype == 1 ? $type_txt = "추가" : $type_txt = "수정";
-        $exec = "관리자 계정 {$name} {$type_txt}";
-        
-        // getLog($sql,$exec,$aname);
+        $exec = "관리자 계정 [ {$name} ] {$type_txt}";
+        $res = getLog($sql,$exec,$aname);
+        $output['res'] = $res;
       }else{
         $output['state'] = "N";
       }
@@ -98,12 +106,13 @@
         $output['state'] = "Y";
         
         // 로그
-        $exec = "관리자 계정 {$name} 삭제";
-        // getLog($sql,$exec,$aname);
+        $exec = "관리자 계정 [ {$name} ] 삭제";
+        getLog($sql,$exec,$aname);
         
       }else{
         $output['state'] = "N";
       }
+      echo json_encode($output);
     break;
   
     case "chkPw" :
@@ -133,8 +142,8 @@
         $output['state'] = "Y";
         
         //로그
-        $exec = "첫접속 비밀번호 변경";
-        // getLog($sql,$exec,$aname);
+        $exec = "[ {$aname} ] 첫 접속 비밀번호 변경";
+        getLog($sql,$exec,$aname);
         
       }else{
         $output['state'] = "N";
@@ -144,7 +153,15 @@
     break;
     
     case "logOut" :
+      
+      //로그
+      $exec = "[ {$aname} ] 로그아웃";
+      getLog("버튼 클릭으로 로그아웃",$exec,$aname);
+      
       session_destroy();
+      $output['state'] = "Y";
+      
+      echo json_encode($output);
     break;
     
     

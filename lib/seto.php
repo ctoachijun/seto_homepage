@@ -100,6 +100,9 @@ function alert_href($txt,$page){
 function page_back(){
   echo "<script>pageBack();</script>";
 }
+function page_move($page){
+  echo "<script>location.href='{$page}'</script>";
+}
 
 function qsChgForminput($qs,$nopt){
   $box = explode("&",$qs);
@@ -331,9 +334,9 @@ function getPaging($tbl, $qs, $where){
 }
 function getLog($sql,$exec,$name){
   $sql = addslashes($sql);
-  $lsql = "INSERT INTO sthp_admin_log SET al_name = '{$name}', al_exec = '{$exec}', al_sql = '{$sql}' al_wdate = now() ";
-
+  $lsql = "INSERT INTO sthp_admin_log SET al_name = '{$name}', al_exec = '{$exec}', al_sql = '{$sql}', al_wdate = now() ";
   sql_exec($lsql);
+  return $lsql;
 }
 
 
@@ -374,6 +377,5 @@ function chkLogin(){
     alert_href("관리자 전용 페이지입니다.","./");    
   }
 }
-
 
 
