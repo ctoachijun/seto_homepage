@@ -127,8 +127,8 @@ function getPaging($tbl, $qs, $where){
 
   if($tbl == "setohp_log"){
     $tbl_name = "sthp_admin_log";
-  }else if($tbl == ""){
-    $tbl_name = "";
+  }else if($tbl == "setohp_moon"){
+    $tbl_name = "sthp_inquiry";
   }else if($tbl == ""){
     $tbl_name = "";
   }
@@ -377,4 +377,7 @@ function chkLogin(){
     alert_href("관리자 전용 페이지입니다.","./");    
   }
 }
-
+function getMooniInfo($idx){
+  $sql = "SELECT * FROM sthp_inquiry WHERE i_idx = {$idx}";
+  return sql_fetch($sql);
+}

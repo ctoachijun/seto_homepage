@@ -260,3 +260,112 @@ function chgCurPage(){
   return true;
 }  
 
+function openModal(){
+  $(".backblack").show();
+  $(".modal").show();
+  $("body").css("overflow","hidden");
+}
+
+function closeModal(){
+  $(".modal").hide();
+  $(".backblack").hide();
+  $("body").css("overflow","auto");
+  
+}
+
+function setModal(idx){
+  $("input[name=seldata").val(idx);
+  $.ajax({
+    url : "ajax_admin.php",
+    type: "post",
+    data: {"w_mode":"setModal","idx":idx},
+    success: function(result){
+      let json = JSON.parse(result);
+      // console.log(json);
+      
+      $(".modal_comp").html(json.comp);
+      $(".modal_name").html(json.name);
+      $(".modal_tel").html(json.tel);
+      $(".modal_email").html(json.email);
+      $(".modal_subject").html(json.subject);
+      $(".modal_wdate").html(json.wdate);
+      $(".modal_content").html(json.content);
+      if(json.admin){
+        $(".modal_admin").html(json.admin);
+        $(".modal_adate").html(json.adate);
+        $(".modal_anstitle").html("답변 작성일 : ");
+        $("#answerCont").html(json.answer);
+        $("#answerCont").attr("readonly",true);
+        $(".btn-ok").hide();
+        $(".btn-no").show();
+      }else{
+        $(".modal_admin").html(json.curadmin);
+        $(".modal_adate").html("");
+        $(".modal_anstitle").html("답변");
+        $("#answerCont").html("");
+        $("#answerCont").attr("readonly",false);
+        $(".btn-ok").show();
+        $(".btn-no").hide();
+      }
+      openModal();
+      
+    }
+  })
+}
+
+function regAnswer(){
+  let ans = $("#answerCont").val();
+  let idx = $("input[name=seldata]").val();
+  if( !ans ){
+    alert("답변 내용을 입력 해 주세요.");
+    $("#answerCont").focus();
+    return false;
+  }
+  if( confirm("답변을 등록 하시겠습니까?") ){
+    
+    $.ajax({
+      url : "ajax_admin.php",
+      type: "post",
+      data: {"w_mode":"regAnswer","cont":ans,"idx":idx},
+      success: function(result){
+        let json = JSON.parse(result);
+        console.log(json);
+        
+        if(json.state == "Y"){
+          alert("등록되었습니다.");
+          history.go(0);
+        }else{
+          errorAlert();
+        }
+      }
+    })
+  }
+}
+
+function delAnswer(){
+  let idx = $("input[name=seldata]").val();
+  if( confirm("답변을 삭제 하시겠습니까?") ){
+    $.ajax({
+      url : "ajax_admin.php",
+      type: "post",
+      data: {"w_mode":"delAnswer","idx":idx},
+      success: function(result){
+        let json = JSON.parse(result);
+        console.log(json);
+        
+        if(json.state == "N"){
+          errorAlert();
+        }else{
+          history.go(0);
+        }
+      }
+    })
+  }
+  
+}
+
+function sortAnswer(){
+  $("form").submit();
+}
+
+

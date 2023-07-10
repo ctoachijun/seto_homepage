@@ -24,7 +24,7 @@
           $sql1 = "UPDATE sthp_admin SET a_login = now() WHERE a_idx = ".$re['a_idx'];
           $re1 = sql_exec($sql1);
           // 중복이라도 로그 체크
-          $exec = "[ ".$re['a_name']." ] 로그인";
+          $exec = "관리자 로그인";
           getLog($sql1,$exec,$re['a_name']);
           
           
@@ -142,7 +142,7 @@
         $output['state'] = "Y";
         
         //로그
-        $exec = "[ {$aname} ] 첫 접속 비밀번호 변경";
+        $exec = "첫 접속 비밀번호 변경";
         getLog($sql,$exec,$aname);
         
       }else{
@@ -163,6 +163,64 @@
       
       echo json_encode($output);
     break;
+    
+    case "setModal" :
+      $mooni = getMooniInfo($idx);
+      
+      $output['comp'] = $mooni['i_company'];
+      $output['name'] = $mooni['i_name'];
+      $output['tel'] = $mooni['i_tel'];
+      $output['email'] = $mooni['i_email'];
+      $output['wdate'] = $mooni['i_wdate'];
+      $output['subject'] = $mooni['i_subject'];
+      $output['content'] = $mooni['i_content'];
+      $output['admin'] = $mooni['i_admin'];
+      $output['answer'] = $mooni['i_answer'];
+      $output['adate'] = $mooni['i_adate'];
+      
+      $output['curadmin'] = $aname;
+      
+      echo json_encode($output,JSON_UNESCAPED_UNICODE);
+    break;
+    
+    case "regAnswer" :
+      $sql = "UPDATE sthp_inquiry SET i_admin = '{$aname}', i_answer = '{$cont}', i_adate = now() WHERE i_idx = {$idx}";
+      $re = sql_exec($sql);
+      
+      if($re){
+        $output['state'] = "Y";
+        
+        //로그
+        $exec = "문의에 답변 등록";
+        getLog($sql,$exec,$aname);
+        
+      }else{
+        $output['state'] = "N";
+      }
+      $output['sql'] = $sql;
+      
+      echo json_encode($output);      
+    break;
+    
+    case "delAnswer" :
+      $sql = "UPDATE sthp_inquiry SET i_admin = '', i_answer = '', i_adate = NULL WHERE i_idx = {$idx}";
+      $re = sql_exec($sql);
+      
+      if($re){
+        $output['state'] = "Y";
+        
+        //로그
+        $exec = "문의 답변 삭제";
+        getLog($sql,$exec,$aname);
+        
+      }else{
+        $output['state'] = "N";
+      }
+      
+      echo json_encode($output);
+    break;
+
+    
     
     
     

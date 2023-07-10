@@ -9,7 +9,6 @@ if(!chkTopAdmin($aidx)){
 }
 
 
-// 페이징을 위한 쿼리스트링
 
 if(!$cur_page) $cur_page = 1;
 if(!$end) $end = 10;
@@ -35,8 +34,10 @@ $log = sql_query($sql);
 $tsql = "SELECT * FROM sthp_admin_log {$where}";
 $total_cnt = sql_num_rows($tsql);
 // var_dump($total_cnt);
-
 if(!$number) $number = $total_cnt;
+
+
+// 페이징을 위한 쿼리스트링
 $pqs = $_SERVER['QUERY_STRING'];
 if(!$pqs){
   $pqs = "&end={$end}&cur_page={$cur_page}&total_cnt={$total_cnt}";

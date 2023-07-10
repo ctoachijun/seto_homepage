@@ -35,6 +35,7 @@ if($current != "firstConnect.php"){
 </head>
 
 <body>
+  <div class="backblack"></div>
 
 
 <? if($current != "firstConnect.php"){ ?>
