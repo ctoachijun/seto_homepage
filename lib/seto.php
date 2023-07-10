@@ -332,13 +332,22 @@ function getPaging($tbl, $qs, $where){
   echo "<li class='page-item {$end_class}'><a {$li_href2}>»</a></li>";
   echo "</ul>";
 }
+
+
+
+
+
+
+/*
+관리자 함수
+*/
+
 function getLog($sql,$exec,$name){
   $sql = addslashes($sql);
   $lsql = "INSERT INTO sthp_admin_log SET al_name = '{$name}', al_exec = '{$exec}', al_sql = '{$sql}', al_wdate = now() ";
   sql_exec($lsql);
   return $lsql;
 }
-
 
 function chkTopAdmin($idx){
   $admin = getAdminInfo($idx);
@@ -350,6 +359,13 @@ function chkTopAdmin($idx){
     return false;
   }
 }
+
+function chkLogin(){
+  if( empty($_SESSION['aidx']) || empty($_SESSION['aid']) ){
+    alert_href("관리자 전용 페이지입니다.","./");    
+  }
+}
+
 function getAdminInfo($idx){
   $sql = "SELECT * FROM sthp_admin WHERE a_idx = {$idx}";
   return sql_fetch($sql);
@@ -372,12 +388,8 @@ function chkPermission($idx,$num){
     }
   }
 }
-function chkLogin(){
-  if( empty($_SESSION['aidx']) || empty($_SESSION['aid']) ){
-    alert_href("관리자 전용 페이지입니다.","./");    
-  }
-}
 function getMooniInfo($idx){
   $sql = "SELECT * FROM sthp_inquiry WHERE i_idx = {$idx}";
   return sql_fetch($sql);
 }
+
