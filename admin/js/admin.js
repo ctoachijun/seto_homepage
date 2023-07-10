@@ -253,5 +253,10 @@ function logOut(){
   })
 }
 
-
+// 검색시 페이지는 무조건 1페이지
+function chgCurPage(){
+  $("input[name=cur_page]").val(1);
+  // $("form").submit();
+  return true;
+}  
 

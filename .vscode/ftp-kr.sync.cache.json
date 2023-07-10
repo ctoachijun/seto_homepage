@@ -2,13 +2,13 @@
   "ftp://setoworks@setoworks.cafe24.com": {
     ".bash_history": {
       "type": "-",
-      "size": 706,
+      "size": 1180,
       "lmtime": 0,
       "modified": false
     },
     ".bash_profile": {
       "type": "-",
-      "size": 366,
+      "size": 388,
       "lmtime": 0,
       "modified": false
     },
@@ -38,7 +38,7 @@
     },
     ".logincount": {
       "type": "-",
-      "size": 13,
+      "size": 14,
       "lmtime": 0,
       "modified": false
     },
@@ -52,53 +52,59 @@
       "admin": {
         "accountList.php": {
           "type": "-",
-          "size": 3100,
-          "lmtime": 1688720654345.9849,
+          "size": 2856,
+          "lmtime": 1688952263568.3823,
           "modified": false
         },
         "accountReg.php": {
           "type": "-",
-          "size": 6224,
-          "lmtime": 1688720623205.081,
+          "size": 6135,
+          "lmtime": 1688952673081.501,
+          "modified": false
+        },
+        "adminLog.php": {
+          "type": "-",
+          "size": 3515,
+          "lmtime": 1688957927044.163,
           "modified": false
         },
         "ajax_admin.php": {
           "type": "-",
-          "size": 4087,
-          "lmtime": 1688720321827.7888,
+          "size": 4726,
+          "lmtime": 1688954487072.3208,
           "modified": false
         },
         "css": {
           "admin.css": {
             "type": "-",
-            "size": 2737,
-            "lmtime": 1688710544977.467,
+            "size": 3263,
+            "lmtime": 1688956906568.407,
             "modified": false
           }
         },
         "firstConnect.php": {
           "type": "-",
-          "size": 3189,
-          "lmtime": 1688720746187.1514,
+          "size": 3197,
+          "lmtime": 1688954105785.694,
           "modified": false
         },
         "header.php": {
           "type": "-",
-          "size": 548,
-          "lmtime": 1688721064607.8333,
+          "size": 1019,
+          "lmtime": 1688954421881.8438,
           "modified": false
         },
         "index.php": {
           "type": "-",
-          "size": 1130,
-          "lmtime": 1688721316516.7656,
+          "size": 1237,
+          "lmtime": 1688954091393.1365,
           "modified": false
         },
         "js": {
           "admin.js": {
             "type": "-",
-            "size": 5293,
-            "lmtime": 1688719217784.6533,
+            "size": 5722,
+            "lmtime": 1688957910537.0579,
             "modified": false
           }
         },
@@ -115,6 +121,20 @@
           "modified": false
         }
       },
+      "backup": {
+        "230710_AM.tar.gz": {
+          "type": "-",
+          "size": 13304886,
+          "lmtime": 1688954775041.4382,
+          "modified": false
+        },
+        "backup.php": {
+          "type": "-",
+          "size": 1271,
+          "lmtime": 1688950475433.9314,
+          "modified": false
+        }
+      },
       "css": {
         "seto.css": {
           "type": "-",
@@ -123,11 +143,18 @@
           "modified": false
         }
       },
-      "img": {},
+      "img": {
+        "Frieza.webp": {
+          "type": "-",
+          "size": 40966,
+          "lmtime": 1688958214894.803,
+          "modified": false
+        }
+      },
       "index.php": {
         "type": "-",
-        "size": 65,
-        "lmtime": 1688625898200.0112,
+        "size": 275,
+        "lmtime": 1688950757223.9834,
         "modified": false
       },
       "js": {
@@ -147,8 +174,8 @@
         },
         "seto.php": {
           "type": "-",
-          "size": 11288,
-          "lmtime": 1688718480805.4724,
+          "size": 11350,
+          "lmtime": 1688957094314.1045,
           "modified": false
         }
       },

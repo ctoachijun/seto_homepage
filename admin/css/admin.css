@@ -19,6 +19,18 @@ form{width:100%;}
 .redcircle{background:red;width:10px;height:10px;border-radius:50%;}
 /* #accountList table td{} */
 
+/*
+  관리자 로그
+*/
+#logList table{width:100%;text-align:center;border-collapse: collapse;}
+#logList table th{height:20px;padding:.5rem;border-bottom:2px solid #ACACAC;}
+#logList table td{height:30px;padding:.5rem;border-bottom:1px solid #CECECE;}
+#logList table td:first-child{width:3%;}
+#logList table td:nth-child(2){width:6%}
+#logList table td:nth-child(3){width:15%}
+#logList table td:nth-child(4){width:50%}
+#logList table td:last-child{width:8%}
+#logList table .pagin{border:0;padding-top:20px;}
 
 
 

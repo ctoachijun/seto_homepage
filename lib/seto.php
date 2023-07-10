@@ -125,12 +125,12 @@ function qsChgForminput($qs,$nopt){
 }
 function getPaging($tbl, $qs, $where){
 
-  if($tbl == "seto_mailing"){
-    $tbl_name = "st_smail";
-  }else if($tbl == "seto_product"){
-    $tbl_name = "st_item";
-  }else if($tbl == "seto_order"){
-    $tbl_name = "st_order";
+  if($tbl == "setohp_log"){
+    $tbl_name = "sthp_admin_log";
+  }else if($tbl == ""){
+    $tbl_name = "";
+  }else if($tbl == ""){
+    $tbl_name = "";
   }
   
   // 쿼리스트링에서 변수 및 값 대입
@@ -377,5 +377,4 @@ function chkLogin(){
     alert_href("관리자 전용 페이지입니다.","./");    
   }
 }
-
 
