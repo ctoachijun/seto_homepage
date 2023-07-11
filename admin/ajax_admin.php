@@ -165,62 +165,50 @@
     break;
     
     case "setModal" :
-      $mooni = getMooniInfo($idx);
+      $sql = "UPDATE sthp_inquiry SET i_read = 'Y' WHERE i_idx = {$idx}";
+      $re = sql_exec($sql);
       
-      $output['comp'] = $mooni['i_company'];
-      $output['name'] = $mooni['i_name'];
-      $output['tel'] = $mooni['i_tel'];
-      $output['email'] = $mooni['i_email'];
-      $output['wdate'] = $mooni['i_wdate'];
-      $output['subject'] = $mooni['i_subject'];
-      $output['content'] = $mooni['i_content'];
-      $output['admin'] = $mooni['i_admin'];
-      $output['answer'] = $mooni['i_answer'];
-      $output['adate'] = $mooni['i_adate'];
-      
-      $output['curadmin'] = $aname;
+      if($re){
+        $mooni = getMooniInfo($idx);
+        
+        $output['comp'] = $mooni['i_company'];
+        $output['name'] = $mooni['i_name'];
+        $output['tel'] = $mooni['i_tel'];
+        $output['email'] = $mooni['i_email'];
+        $output['wdate'] = $mooni['i_wdate'];
+        $output['subject'] = $mooni['i_subject'];
+        $output['content'] = $mooni['i_content'];
+        $output['read'] = $mooni['i_read'];
+        $output['mtype'] = $mooni['it_type'];
+        
+        //로그
+        $exec = $mooni['i_company']." (".$output['name'] = $mooni['i_name'].") 문의 확인";
+        getLog($sql,$exec,$aname);
+        
+        $output['state'] = "Y";
+      }else{
+        $output['state'] = "N";
+      }
       
       echo json_encode($output,JSON_UNESCAPED_UNICODE);
     break;
     
-    case "regAnswer" :
-      $sql = "UPDATE sthp_inquiry SET i_admin = '{$aname}', i_answer = '{$cont}', i_adate = now() WHERE i_idx = {$idx}";
-      $re = sql_exec($sql);
-      
-      if($re){
-        $output['state'] = "Y";
-        
-        //로그
-        $exec = "문의에 답변 등록";
-        getLog($sql,$exec,$aname);
-        
-      }else{
-        $output['state'] = "N";
-      }
-      $output['sql'] = $sql;
-      
-      echo json_encode($output);      
-    break;
-    
-    case "delAnswer" :
-      $sql = "UPDATE sthp_inquiry SET i_admin = '', i_answer = '', i_adate = NULL WHERE i_idx = {$idx}";
-      $re = sql_exec($sql);
-      
-      if($re){
-        $output['state'] = "Y";
-        
-        //로그
-        $exec = "문의 답변 삭제";
-        getLog($sql,$exec,$aname);
-        
-      }else{
-        $output['state'] = "N";
-      }
-      
-      echo json_encode($output);
-    break;
 
-    
+    case "showMtype" :
+      $box = getMooniTypeList();
+      foreach($box as $v){
+        $idx = $v['it_idx'];
+        $type = $v['it_type'];
+        $html .= "
+          <div class='mtype_row mtr{$idx}'>
+            <span class='mtype mt{$idx}' onclick='setMtype({$idx})'>{$type}</span><span class='mticon' onclick='delMtype({$idx})' >X</span>
+          </div>
+        ";
+      }
+      $output['html'] = $html;
+      
+      echo json_encode($output,JSON_UNESCAPED_UNICODE);
+    break;
     
     
     

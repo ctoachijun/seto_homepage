@@ -50,22 +50,20 @@ form{width:100%;}
 #mooniList table td:nth-child(3){width:6%}
 #mooniList table td:nth-child(4){width:8%}
 #mooniList table td:nth-child(5){width:10%}
-#mooniList table td:nth-child(6){width:10%}
+#mooniList table td:nth-child(6){width:6%}
 #mooniList table td:nth-child(7){width:20%;}
 #mooniList table td:nth-child(8){width:10%;}
 #mooniList table td:last-child{width:4%}
 #mooniList table .pagin{border:0;padding-top:20px;}
-#mooniList .modal{width:500px;height:600px;background:#fff;position:fixed;z-index:510;top:50%;left:50%;transform:translate(-50%,-50%);padding:2rem;display:none;}
+#mooniList .modal{width:500px;min-height:200px;max-height:800px; background:#fff;position:fixed;z-index:510;top:50%;left:50%;transform:translate(-50%,-50%);padding:2rem;display:none;}
+#mooniList .modal_mtype{displa:block;border:1px solid #CECECE;width:}
+#mooniList .modal_mtype .mtype_row{display:flex;justify-content: space-between;}
+#mooniList .modal_mtype .mtype{cursor:pointer}
+#mooniList .modal_mtype .mticon{cursor:pointer}
 #mooniList .modal_answer .modal_row{display:flex;margin-bottom:20px;width:100%;justify-content: space-between;}
 #mooniList .modal_answer .modal_row div{display:flex;width:100%;text-align:left;}
 #mooniList .modal_answer .row_1 .modal_comp{margin-right:100px;}
 #mooniList .modal_answer .row_2 .modal_email{margin-left:50px;margin-right:50px;}
-/* #mooniList .modal_anser .row_3{justify-content: space-between;} */
-#mooniList .modal_answer .row_6{flex-direction: column;}
-#mooniList .modal_answer textarea{width:80%;min-height:240px;overflow-y: auto;padding:1rem}
-#mooniList .modal_answer .modal_line{width:80% !important;border-top:2px solid #BBB;margin:10px auto;}
-#mooniList .modal_answer .adate_div{display:none;}
-#mooniList .modal_answer .btn-no{display:none}
 
 
 

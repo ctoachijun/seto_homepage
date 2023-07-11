@@ -38,7 +38,7 @@ include "header.php";
 
 
 if(!$cur_page) $cur_page = 1;
-if(!$end) $end = 50;
+if(!$end) $end = 5;
 if(!$cur_page) $cur_page = 1;
 if(!$sort) $sort = "all";
 
@@ -52,13 +52,17 @@ if($cur_page > 1){
 
 $order = "DESC";
 
-if($sort == "y"){
-  $where = "WHERE i_admin != '' ";
-}else if($sort == "n"){
-  $where = "WHERE i_admin = '' ";
+
+if($sort != "all"){
+  $where = "WHERE i_read = '{$sort}' ";
 }else{
   $where = "WHERE 1 ";
 }
+
+if($tsort != "all"){
+  $where .= "AND i_itidx = {$tsort} ";
+}
+
 
 if($sw){
   $where .= "AND i_{$type} like '%{$sw}%'";
@@ -80,6 +84,10 @@ if(!$pqs){
   $pqs = "&end={$end}&cur_page={$cur_page}&total_cnt={$total_cnt}";
 }
 
+// 문의 유형
+$mtype_box = getMooniTypeList();
+
+
 
 ?>
 
@@ -94,10 +102,20 @@ if(!$pqs){
           <div class="row">
             <select id='ssort' name='sort' onchange="sortAnswer()">
               <option value='all' <? if($sort == "all") echo "selected"; ?>>전체</option>
-              <option value='n' <? if($sort == "n") echo "selected"; ?>>미답변</option>
-              <option value='y' <? if($sort == "y") echo "selected"; ?>>답변</option>
+              <option value='N' <? if($sort == "N") echo "selected"; ?>>미확인</option>
+              <option value='Y' <? if($sort == "Y") echo "selected"; ?>>확인</option>
             </select>
-              
+
+            <select id='tsort' name='tsort' onchange="sortAnswer()">
+              <option value='all' <? if($sort == "all") echo "selected"; ?>>전체</option>
+              <? foreach($mtype_box as $v) :
+                  $mt_idx = $v['it_idx'];
+                  $mt_name = $v['it_type'];
+              ?>
+              <option value='<?=$mt_idx?>' <? if($tsort == $mt_idx) echo "selected"; ?>><?=$mt_name?></option>
+              <? endforeach; ?>
+            </select>
+
             <select id='stype' name='type'>
               <option value='company' <? if($type == "company") echo "selected"; ?>>회사명</option>            
               <option value='name' <? if($type == "name") echo "selected"; ?>>이름</option>            
@@ -107,6 +125,7 @@ if(!$pqs){
             </select>
             <input type='text' class='txt-input' name="sw" value="<?=$sw?>"/>
             <input type="submit" class='btn' value="검색" />
+            <div class='add_div'><input type='button' class='btn btn-ok' value='문의유형 추가' onclick='showMtype()' /></div>
           </div>
 
           <div class="row">
@@ -119,8 +138,8 @@ if(!$pqs){
                     <th>이름</th>
                     <th>연락처</th>
                     <th>이메일</th>
+                    <th>유형</th>
                     <th>제목</th>
-                    <th>내용</th>
                     <th>등록일</th>
                     <th></th>
                   </tr>
@@ -128,15 +147,17 @@ if(!$pqs){
                 <tbody>
                 <? foreach($mooni as $v) : 
                     $idx = $v['i_idx'];
+                    $itidx = $v['i_itidx'];
                     $comp = $v['i_company'];
                     $name = $v['i_name'];
                     $email = $v['i_email'];
                     $tel = $v['i_tel'];
                     $subj = $v['i_subject'];
-                    $cont = $v['i_content'];
+                    $read = $v['i_read'];
                     $wdate = $v['i_wdate'];
-                    $adate = $v['i_adate'];
-                    !$adate ? $ans_txt = "<span class='noans'>미답변</span>" : $ans_txt = "<span class='yans'>답변</span>";
+                    $rdate = $v['i_rdate'];
+                    $read == "N" ? $ans_txt = "<span class='noans'>미확인</span>" : $ans_txt = "<span class='yans'>확인</span>";
+                    $mtype = getMooniType($itidx);
                   
                     
                     $cont = mb_strimwidth($cont,0,60,"...");
@@ -147,10 +168,10 @@ if(!$pqs){
                     <td><?=$name?></td>
                     <td><?=$tel?></td>
                     <td><?=$email?></td>
+                    <td><?=$mtype?></td>
                     <td><?=$subj?></td>
-                    <td><?=$cont?></td>
                     <td><?=$wdate?></td>
-                    <td><?=$ans_txt?></td>
+                    <td class='ans_td<?=$idx?>'><?=$ans_txt?></td>
                   </tr>
                 <? 
                   $number--;
@@ -181,27 +202,32 @@ if(!$pqs){
         <div class="row_2"><span class="modal_tel"></span><span class="modal_email"></span></div>
       </div>      
       <div class="modal_row">
-        <div class="row_3">
+        <div class="row_3"><span class="modal_type"></span></div>
+      </div>      
+      <div class="modal_row">
+        <div class="row_4">
           <div>제목 : <span class="modal_subject"></span></div><div>작성일 : <span class="modal_wdate"></span></div>
         </div>
       </div>      
       <div class="modal_row">
-        <span class="modal_content">날 좀 보소~</span>
-      </div>      
-      <div class="modal_row"><div class="modal_line"></div></div>      
-      <div class="modal_row"><label class="modal_title">작성자 : </label><span class="modal_admin"><?=$aname?> (홈페이지에서는 담당자로 표시됩니다.)</span></div>      
-      <div class="modal_row">
-        <div class="row_6">
-          <div><label class="modal_anstitle">답변</label><span class="modal_adate"></span></div>
-          <textarea id="answerCont" onchange="chkSpaceFe(this)"></textarea>
-        </div>
+        <span class="modal_content"></span>
       </div>      
       <div class="modal_row">
-        <input type="button" class="btn btn-ok" value="등록" onclick="regAnswer()" />
-        <input type="button" class="btn btn-no" value="삭제" onclick="delAnswer()" />
-        <input type="button" class="btn" value="취소" onclick="closeModal()" />
+        <input type="button" class="btn" value="닫기" onclick="closeModal()" />
       </div>      
     </div>
+    
+    
+    <div class="modal modal_mtype">
+      <div class="top_div">
+        <input type="text" id="mtype" /><input type="button" class="btn btn-ok" value="추가" onclick="addMtype()" />
+      </div>
+      <div class="bottom_div">
+        <div class="mtype_div">
+        </div>
+      </div>
+    </div>
+    
 
   </div>
   

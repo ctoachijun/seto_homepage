@@ -260,10 +260,14 @@ function chgCurPage(){
   return true;
 }  
 
-function openModal(){
+function openModal(num){
   $(".backblack").show();
-  $(".modal").show();
   $("body").css("overflow","hidden");
+  if(num == 1){
+    $(".modal_answer").show();
+  }else{
+    $(".modal_mtype").show();
+  }
 }
 
 function closeModal(){
@@ -282,33 +286,23 @@ function setModal(idx){
     success: function(result){
       let json = JSON.parse(result);
       // console.log(json);
-      
-      $(".modal_comp").html(json.comp);
-      $(".modal_name").html(json.name);
-      $(".modal_tel").html(json.tel);
-      $(".modal_email").html(json.email);
-      $(".modal_subject").html(json.subject);
-      $(".modal_wdate").html(json.wdate);
-      $(".modal_content").html(json.content);
-      if(json.admin){
-        $(".modal_admin").html(json.admin);
-        $(".modal_adate").html(json.adate);
-        $(".modal_anstitle").html("답변 작성일 : ");
-        $("#answerCont").html(json.answer);
-        $("#answerCont").attr("readonly",true);
-        $(".btn-ok").hide();
-        $(".btn-no").show();
+
+      if(json.state == "N"){
+        errorAlert();
       }else{
-        $(".modal_admin").html(json.curadmin);
-        $(".modal_adate").html("");
-        $(".modal_anstitle").html("답변");
-        $("#answerCont").html("");
-        $("#answerCont").attr("readonly",false);
-        $(".btn-ok").show();
-        $(".btn-no").hide();
+        $(".modal_comp").html(json.comp);
+        $(".modal_name").html(json.name);
+        $(".modal_tel").html(json.tel);
+        $(".modal_email").html(json.email);
+        $(".modal_subject").html(json.subject);
+        $(".modal_wdate").html(json.wdate);
+        $(".modal_content").html(json.content);
+        $(".modal_type").html(json.mtype);
+        if(json.read=="Y"){
+          $(".ans_td"+idx).html("<span class='yans'>확인</span>");
+        }
       }
-      openModal();
-      
+      openModal(1);
     }
   })
 }
@@ -368,4 +362,27 @@ function sortAnswer(){
   $("form").submit();
 }
 
+function showMtype(){
+  $.ajax({
+    url : "ajax_admin.php",
+    type: "post",
+    data: {"w_mode":"showMtype"},
+    success: function(result){
+      let json = JSON.parse(result);
+      console.log(json);
+      
+      $(".mtype_div").html(json.html);
+      openModal(2);
+    }
+  })
+}
+
+function setMtype(idx){
+  let setv = $(".mt"+idx).html();
+  $("#mtype").val(setv);
+  $(".top_div .btn-ok").val("변경");
+}
+
+function addMtype(){
+}
 

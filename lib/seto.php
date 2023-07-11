@@ -333,6 +333,26 @@ function getPaging($tbl, $qs, $where){
   echo "</ul>";
 }
 
+function getFundingAmount($type,$id){
+  if($type == 1){
+    $url = "https://www.wadiz.kr/web/apip/funding/campaigns/{$id}/detail";
+  }
+  
+  $ch = curl_init();                                 //curl 초기화
+  curl_setopt($ch, CURLOPT_URL, $url);               //URL 지정하기
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);    //요청 결과를 문자열로 반환 
+  curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);      //connection timeout 10초 
+  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);   //원격 서버의 인증서가 유효한지 검사 안함
+
+  $response = curl_exec($ch);
+  curl_close($ch);
+
+  $arr = json_decode($response,true);
+  $amount = $arr["data"]['totalFundingAmount'];
+  
+  
+  return $amount;  
+}
 
 
 
@@ -389,7 +409,15 @@ function chkPermission($idx,$num){
   }
 }
 function getMooniInfo($idx){
-  $sql = "SELECT * FROM sthp_inquiry WHERE i_idx = {$idx}";
+  $sql = "SELECT * FROM sthp_inquiry as i INNER JOIN sthp_inquiry_type as it ON i.i_itidx = it.it_idx WHERE i.i_idx = {$idx}";
   return sql_fetch($sql);
 }
-
+function getMooniType($idx){
+  $sql = "SELECT * FROM sthp_inquiry_type WHERE it_idx = {$idx}";
+  $re = sql_fetch($sql);
+  return $re['it_type'];
+}
+function getMooniTypeList(){
+  $sql = "SELECT * FROM sthp_inquiry_type";
+  return sql_query($sql);
+}
