@@ -66,7 +66,7 @@ for ($i = 0; $i < $ext_cnt; $i++) {
 
 // 파일 이름 중복피하기
 function getFilename($fname,$dir){
-  for($d=1; $d<21; $d++){
+  for($d=1; $d<100; $d++){
     $fjud = file_exists($dir."/".$fname);
     if($fjud){
       $box = explode(".",$fname);
@@ -420,4 +420,8 @@ function getMooniType($idx){
 function getMooniTypeList(){
   $sql = "SELECT * FROM sthp_inquiry_type";
   return sql_query($sql);
+}
+function getPortpolioInfo($idx){
+  $sql = "SELECT * FROM sthp_portpolio WHERE p_idx = {$idx}";
+  return sql_fetch($sql);
 }

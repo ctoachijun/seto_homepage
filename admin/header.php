@@ -20,6 +20,9 @@ if($current != "firstConnect.php"){
     header("Location: firstConnect.php");
   }
 }
+
+$noimg = "/img/no_img1.jpg";
+
 ?>
 
 

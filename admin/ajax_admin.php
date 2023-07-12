@@ -254,6 +254,95 @@
       echo json_encode($output);
     break;
     
+    case "regPortpolio" :
+      
+      
+      $file = $_FILES['thumbimg'];
+      $tmp = $file['tmp_name'];
+      $name = $file['name'];
+      
+      if($name){
+        // 파일이름 중복 체크
+        $dir = "../img/portpolio/";
+        $fname = getFilename($name,$dir);
+        
+        $res = move_uploaded_file($tmp, $dir.$fname);
+        // $output['path'] = $dir.$fname; 
+        if(!$res){
+          $output['error'] = "파일업로드 실패";
+        }
+      }
+      
+      if($reg_type == "E"){
+        $rt = "수정";
+        if(!$fname){
+          $img_col = "";
+        }else{
+          $img_col = "p_img = '{$fname}',";
+        }
+        
+        $sql = "UPDATE sthp_portpolio SET
+                  p_title = '{$title}',
+                  p_sub_title = '{$shotd}',
+                  {$img_col}
+                  p_country = '{$country}',
+                  p_funding = '{$platform}',
+                  p_amount = '{$amount}',
+                  p_currency = '{$currency}',
+                  P_rate = '{$rate}',
+                  p_desc = '{$desc}'
+                WHERE
+                  p_idx = {$pidx};
+        ";
+      }else{
+        $rt = "등록";
+        $sql = "INSERT INTO sthp_portpolio SET
+                  p_title = '{$title}',
+                  p_sub_title = '{$shotd}',
+                  p_img = '{$fname}',
+                  p_country = '{$country}',
+                  p_funding = '{$platform}',
+                  p_amount = '{$amount}',
+                  p_currency = '{$currency}',
+                  P_rate = '{$rate}',
+                  p_desc = '{$desc}',
+                  p_wdate = now();
+        ";
+      }
+      $re = sql_exec($sql);
+      
+      if($re){
+        $output['state'] = "Y";
+        
+        //로그
+        $exec = "포트폴리오 {$rt} - {$title}";
+        getLog($sql,$exec,$aname);
+      }else{
+        $output['state'] = "N";
+      }
+      
+      echo json_encode($output,JSON_UNESCAPED_UNICODE);
+    break;
+    
+    case "delPortpolio" :
+      $sql = "UPDATE sthp_portpolio SET p_open = 'N' WHERE p_idx = {$idx}";
+      $re = sql_exec($sql);
+      
+      if($re){
+        $output['state'] = "Y";
+        
+        //로그
+        $exec = "포트폴리오 삭제";
+        getLog($sql,$exec,$aname);
+      }else{
+        $output['state'] = "N";
+      }
+      
+      echo json_encode($output);
+    break;
+    
+    
+    
     
     
     

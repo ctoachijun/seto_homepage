@@ -7,23 +7,56 @@
 // 이미지 업로드시 파일 업로드 없이 바로 미리보기
 function setThumbnail(event,did) {
   let file = event.target.files[0];
-  
-  if(chkFileType(file,2)){
-    var reader = new FileReader();
-  
-      reader.onload = function(e) {
-        // $('#'+did).html("");
-        $('#'+did).css({"background": "url('"+e.target.result+"') 50% 50%"});
-        $('#'+did).css({'background-repeat': 'no-repeat'});
-        $('#'+did).css({'background-size': 'contain'});
-      };
-  
-      reader.readAsDataURL(file);
-  }else{
-    alert("이미지 파일만 업로드 가능합니다.");
-    return false;
+
+  if(file){
+    if(chkFileType(file,2)){
+      var reader = new FileReader();
+    
+        reader.onload = function(e) {
+          // $('#'+did).html("");
+          $('.'+did).css({"background": "url('"+e.target.result+"') 50% 50%"});
+          $('.'+did).css({'background-repeat': 'no-repeat'});
+          $('.'+did).css({'background-size': 'contain'});
+        };
+    
+        reader.readAsDataURL(file);
+    }
   }
 }
+// 파일 종류 체크
+// 1 : 엑셀   2: 이미지
+function chkFileType(file,type){
+  let whak,csize,msize,whak_box;
+  
+  whak_box = file.name.split(".");
+  whak = whak_box[1];
+  csize = file.size / 1024 / 1024;
+  
+  if(type == 1){
+    msize = 20;
+    if(whak != "xlsx" && whak != "xls"){
+      alert("엑셀 파일만 가능합니다.");
+      return false;
+    }else if(csize > msize){
+      alert("용량은 "+msize+"MB 미만으로 올려주세요");  
+      return false;
+    }else{
+      return true;
+    }
+  }else if(type == 2){
+    msize = 2;
+    if($.inArray(whak, ['jpg', 'bmp', 'png', 'jpeg', 'tif', 'gif', 'webp', 'svg']) < 0){  
+      alert("이미지 파일만 업로드 가능합니다.");
+      return false;
+    }else if(csize > msize){
+      alert("용량은 "+msize+"MB 미만으로 올려주세요");  
+      return false;
+    }else{
+      return true;
+    }
+  }
+}
+
 
 function errorAlert(){
   alert("시스템 오류입니다.\n반복 될 경우 고객센터로 문의 주세요.");
@@ -41,8 +74,6 @@ function pageBack(){
   history.go(-1);
 }
 
-
-
 function chkEmailType(email) {
   console.log(email);
   let re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
@@ -56,6 +87,12 @@ function onlyNum(obj){
   obj.value = val1;
 }
 
+function chkStrLength(obj,num){
+  if(obj.value.length > num){
+    alert(num+"글자까지 가능합니다.");
+    obj.value = obj.value.substring(0,num);
+  }    
+}
 
 
 
@@ -388,3 +425,105 @@ function delMtype(idx){
   }
 }
 
+function regPortpolio(){
+  let rt = $("input[name=reg_type]").val();
+  let rt_txt,rt_wmod;
+  
+  if(rt == "I"){
+    if( $("#thumbimg")[0].files.length === 0 ){
+      alert("썸네일을 등록 해 주세요.");
+      $("#thumbimg").click();
+      return false;
+    }
+  }
+
+  if( !$("#title").val() ){
+    alert("제목을 입력 해 주세요.");
+    $("#title").focus();
+    return false;
+  }
+  if( $("#country").val() == "N" ){
+    alert("국가를 선택 해 주세요.");
+    return false;
+  }
+  if( $("#platform").val() == "N" ){
+    alert("플랫폼을 선택 해 주세요.");
+    return false;
+  }
+  if( !$("#amount").val() ){
+    alert("펀딩금액을 입력 해 주세요.");
+    $("#amount").focus();
+    return false;
+  }
+  if( !$("#rate").val() ){
+    alert("달성률을 입력 해 주세요.");
+    $("#rate").focus();
+    return false;
+  }
+
+  if(rt=="E"){
+    rt_txt = "수정";
+  }else{
+    rt_txt = "등록";
+  }
+  
+  if( confirm(rt_txt+"하시겠습니까?") ){
+    let f = new FormData($("#regForm")[0]);
+    f.append("w_mode","regPortpolio");
+    $.ajax({
+      url : "ajax_admin.php",
+      type: "post",
+      data: f,
+      processData: false,
+      contentType: false,
+      success: function(result){
+        let json = JSON.parse(result);
+        console.log(json);
+        
+        if(json.state == "Y"){
+          alert(rt_txt+" 되었습니다.");
+          pageBack();
+        }else{
+          errorAlert();
+        }
+      }
+      
+    })
+  }
+}
+
+function goRegPortp(){
+  $("#regForm").attr("action","portpolReg.php");
+  $("input[name=reg_type]").val("");
+  $("#regForm").submit();
+}
+
+function goEditPortp(obj){
+  let cname = obj.className;
+  let pidx = cname.replace(/[^0-9]/g,"");
+  $("input[name=reg_type]").val("E");
+  $("#regForm").attr("action","portpolReg.php");
+  $("#regForm").prepend("<input type='hidden' name='pidx' value='"+pidx+"'>");
+  $("#regForm").submit();
+  
+}
+
+function delPortpolio(idx){
+  if( confirm("삭제 하시겠습니까?") ){
+    $.ajax({
+      url : "ajax_admin.php",
+      type: "post",
+      data: {"w_mode":"delPortpolio","idx":idx},
+      success: function(result){
+        let json = JSON.parse(result);
+        
+        if(json.state == "N"){
+          errorAlert();
+        }else{
+          alert("삭제 되었습니다.");
+          pageBack();
+        }
+      }
+    })
+  }
+}
