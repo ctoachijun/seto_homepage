@@ -307,58 +307,7 @@ function setModal(idx){
   })
 }
 
-function regAnswer(){
-  let ans = $("#answerCont").val();
-  let idx = $("input[name=seldata]").val();
-  if( !ans ){
-    alert("답변 내용을 입력 해 주세요.");
-    $("#answerCont").focus();
-    return false;
-  }
-  if( confirm("답변을 등록 하시겠습니까?") ){
-    
-    $.ajax({
-      url : "ajax_admin.php",
-      type: "post",
-      data: {"w_mode":"regAnswer","cont":ans,"idx":idx},
-      success: function(result){
-        let json = JSON.parse(result);
-        console.log(json);
-        
-        if(json.state == "Y"){
-          alert("등록되었습니다.");
-          history.go(0);
-        }else{
-          errorAlert();
-        }
-      }
-    })
-  }
-}
-
-function delAnswer(){
-  let idx = $("input[name=seldata]").val();
-  if( confirm("답변을 삭제 하시겠습니까?") ){
-    $.ajax({
-      url : "ajax_admin.php",
-      type: "post",
-      data: {"w_mode":"delAnswer","idx":idx},
-      success: function(result){
-        let json = JSON.parse(result);
-        console.log(json);
-        
-        if(json.state == "N"){
-          errorAlert();
-        }else{
-          history.go(0);
-        }
-      }
-    })
-  }
-  
-}
-
-function sortAnswer(){
+function sortColumn(){
   $("form").submit();
 }
 
@@ -369,7 +318,7 @@ function showMtype(){
     data: {"w_mode":"showMtype"},
     success: function(result){
       let json = JSON.parse(result);
-      console.log(json);
+      // console.log(json);
       
       $(".mtype_div").html(json.html);
       openModal(2);
@@ -380,9 +329,62 @@ function showMtype(){
 function setMtype(idx){
   let setv = $(".mt"+idx).html();
   $("#mtype").val(setv);
+  $("input[name=aejud]").val("E");
+  $("input[name=nowclass]").val("mt"+idx);
   $(".top_div .btn-ok").val("변경");
 }
 
 function addMtype(){
+  let jud = $("input[name=aejud]").val();
+  let value = $("#mtype").val();
+  let mttxt = $("input[name=nowclass").val();
+  let idx = mttxt.replace(/[^0-9]/g,"");
+  let jtxt;
+
+  if(jud == "E"){
+    jtxt = "변경";
+  }else{
+    jtxt = "추가";
+    jud = "I";
+  }
+  
+  if( confirm(jtxt+" 하시겠습니까?") ){
+    $.ajax({
+      url : "ajax_admin.php",
+      type: "post",
+      data: {"w_mode":"addMtype","idx":idx,"value":value,"jud":jud},
+      success: function(result){
+        let json = JSON.parse(result);
+        // console.log(json);
+        
+        if(json.state=="Y"){
+          alert(jtxt+" 되었습니다.");
+          history.go(0);
+        }else{
+          errorAlert();
+        }
+      }
+    })
+  }
+}
+
+function delMtype(idx){
+  if( confirm("연계 된 문의의 문의 유형이 없어집니다.\n다시 한번 확인 해 주세요.\n삭제 하시겠습니까?") ){
+    $.ajax({
+      url : "ajax_admin.php",
+      type: "post",
+      data: {"w_mode":"delMtype","idx":idx},
+      success: function(result){
+        let json = JSON.parse(result);
+        
+        if(json.state == "Y"){
+          alert("삭제 되었습니다.");
+          history.go(0);
+        }else{
+          errorAlert();
+        }
+      }
+    })
+  }
 }
 

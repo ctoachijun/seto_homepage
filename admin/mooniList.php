@@ -38,9 +38,10 @@ include "header.php";
 
 
 if(!$cur_page) $cur_page = 1;
-if(!$end) $end = 5;
+if(!$end) $end = 50;
 if(!$cur_page) $cur_page = 1;
 if(!$sort) $sort = "all";
+if(!$tsort) $tsort = "all";
 
 
 if($cur_page > 1){
@@ -88,7 +89,6 @@ if(!$pqs){
 $mtype_box = getMooniTypeList();
 
 
-
 ?>
 
 
@@ -100,13 +100,13 @@ $mtype_box = getMooniTypeList();
           <input type="hidden" name="end" value="<?=$end?>" />
 
           <div class="row">
-            <select id='ssort' name='sort' onchange="sortAnswer()">
+            <select id='ssort' name='sort' onchange="sortColumn()">
               <option value='all' <? if($sort == "all") echo "selected"; ?>>전체</option>
               <option value='N' <? if($sort == "N") echo "selected"; ?>>미확인</option>
               <option value='Y' <? if($sort == "Y") echo "selected"; ?>>확인</option>
             </select>
 
-            <select id='tsort' name='tsort' onchange="sortAnswer()">
+            <select id='tsort' name='tsort' onchange="sortColumn()">
               <option value='all' <? if($sort == "all") echo "selected"; ?>>전체</option>
               <? foreach($mtype_box as $v) :
                   $mt_idx = $v['it_idx'];
@@ -220,17 +220,30 @@ $mtype_box = getMooniTypeList();
     
     <div class="modal modal_mtype">
       <div class="top_div">
+        <input type='hidden' name='aejud' />
+        <input type='hidden' name='nowclass' />
         <input type="text" id="mtype" /><input type="button" class="btn btn-ok" value="추가" onclick="addMtype()" />
       </div>
       <div class="bottom_div">
         <div class="mtype_div">
         </div>
       </div>
+      <div class="btn_div">
+        <input type="button" id="closeBtn" class="btn" value="닫기" />
+      </div>
     </div>
     
 
   </div>
   
-  
   <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
   <script src="./js/admin.js"></script>
+
+  
+  <script>
+    $("#closeBtn").click( function(){
+      closeModal();
+    });
+  </script>
+  
+  

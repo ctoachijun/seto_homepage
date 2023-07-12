@@ -210,6 +210,51 @@
       echo json_encode($output,JSON_UNESCAPED_UNICODE);
     break;
     
+    case "addMtype" :
+      
+      if($jud == "E"){
+        $sql = "UPDATE sthp_inquiry_type SET it_type = '{$value}' WHERE it_idx = {$idx}";
+        $jud_txt = "수정";
+      }else{
+        $sql = "INSERT INTO sthp_inquiry_type SET it_type = '{$value}'";
+        $jud_txt = "등록";
+      }
+      
+      $re = sql_exec($sql);
+      $output['sql'] = $sql;
+      
+      if($re){
+        $output['state'] = "Y";
+        
+        //로그
+        $exec = "문의 유형 {$jud_txt}";
+        getLog($sql,$exec,$aname);
+        
+      }else{
+        $output['state'] = "N";
+      }
+      
+      echo json_encode($output);  
+    break;
+    
+    case "delMtype" :
+      $sql = "DELETE FROM sthp_inquiry_type WHERE it_idx = {$idx}";
+      $re = sql_exec($sql);
+      
+      if($re){
+        $output['state'] = "Y";
+        
+        //로그
+        $exec = "문의 유형 삭제";
+        getLog($sql,$exec,$aname);
+      }else{
+        $output['state'] = "N";
+      }
+      
+      echo json_encode($output);
+    break;
+    
+    
     
     
     
