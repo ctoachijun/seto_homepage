@@ -425,3 +425,7 @@ function getPortpolioInfo($idx){
   $sql = "SELECT * FROM sthp_portpolio WHERE p_idx = {$idx}";
   return sql_fetch($sql);
 }
+function getNewsLetterInfo($idx){
+  $sql = "SELECT * FROM sthp_sendmail WHERE s_idx = {$idx}";
+  return sql_fetch($sql);
+}

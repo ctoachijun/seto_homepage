@@ -402,9 +402,200 @@
       echo $res;
       echo json_encode($output,JSON_UNESCAPED_UNICODE);
     break;
+  
+    case "addEmailTarget" :
+      empty($rnames) ? $rnames = $name : $rnames .= "|{$name}";
+      empty($remails) ? $remails = $email : $remails .= "|{$email}";
+      
+      $arr_name = explode("|",$rnames);
+      $arr_email = explode("|",$remails);
+      
+      for($i=0; $i<count($arr_name); $i++){
+        $rname = $arr_name[$i];
+        $remail = $arr_email[$i];
+        $html .= "
+          <div class='line_div ld{$i}'><p class='pname'>{$rname}</p><p class='pmail'>{$remail}</p><p class='exicon pcursor' onclick='removeLine({$i})'>X</p></div>
+        ";
+      }
+      
+      $output['html'] = $html;     
+      $output['rnames'] = implode("|",$arr_name); 
+      $output['remails'] = implode("|",$arr_email); 
+      
+      echo json_encode($output,JSON_UNESCAPED_UNICODE);
+    break;
     
+    case "delEmailTarget" :
+      $arr_name = explode("|",$rnames);
+      $arr_email = explode("|",$remails);
+      
+      unset($arr_name[$num]);
+      unset($arr_email[$num]);
+      
+      $arr_name = array_values($arr_name);
+      $arr_email = array_values($arr_email);
+      
+      for($i=0; $i<count($arr_name); $i++){
+        $rname = $arr_name[$i];
+        $remail = $arr_email[$i];
+        $html .= "
+          <div class='line_div ld{$i}'><p class='pname'>{$rname}</p><p class='pmail'>{$remail}</p><p class='exicon pcursor' onclick='removeLine({$i})'>X</p></div>
+        ";
+      }
+      
+      $output['html'] = $html;     
+      $output['rnames'] = implode("|",$arr_name); 
+      $output['remails'] = implode("|",$arr_email); 
+      
+      echo json_encode($output,JSON_UNESCAPED_UNICODE);
+    break;
     
+    case "sendSetoMail":
+      
+      // 폴더 체크후 생성
+      $img_root = "../img/nsletter/";
+      $tyear = date("Y");
+      $img_path = $img_root.$tyear;
+      
+      // 년단위로 디렉토리 생성
+      if( !is_dir($img_path) ){
+        mkdir($img_path,0777);
+      }
+      
+      // 파일 업로드
+      // 메인이미지
+      $mfile = $_FILES['mainimg'];
+      $mtmp = $mfile['tmp_name'];
+      $mname = $mfile['name'];
+            
+      $mainname = getFilename($mname,$img_path);
+      move_uploaded_file($mtmp,$img_path."/".$mainname);
+      $_POST['mainimg'] = $mainname;
+
+      // 사진1
+      $i1file = $_FILES['img1'];
+      $i1tmp = $i1file['tmp_name'];
+      $i1name = $i1file['name'];
+            
+      $img1name = getFilename($i1name,$img_path);
+      move_uploaded_file($i1tmp,$img_path."/".$img1name);
+      $_POST['img1'] = $i1name;
+      
+      
+      if($template == "temp3"){
+        // 사진2
+        $i2file = $_FILES['img2'];
+        $i2tmp = $i2file['tmp_name'];
+        $i2name = $i2file['name'];
+        
+        $img2name = getFilename($i2name,$img_path);
+        move_uploaded_file($i2tmp,$img_path."/".$img2name);
+        $_POST['img2'] = $i2name;
+        $i2col = "s_img2 = '{$i2name}',";
+
+        // 사진3
+        $i3file = $_FILES['img3'];
+        $i3tmp = $i3file['tmp_name'];
+        $i3name = $i3file['name'];
+        
+        $img3name = getFilename($i3name,$img_path);
+        move_uploaded_file($i3tmp,$img_path."/".$img3name);
+        $_POST['img3'] = $i3name;
+        $i3col = "s_img3 = '{$i3name}',";
+      }
+
+      /*
+        우선 DB에 입력. 그 후 idx를 이용해 템플릿에 데이터 적용된 HTML을 리턴받도록 한다.
+      */
+      $title_txt = $title1."|".$title2;
+      $cont_txt = $cont1."|".$cont2;
+      
+      $sql = "INSERT INTO sthp_sendmail SET
+                s_template = '{$template}',
+                s_subject = '{$subject}',
+                s_head = '{$head}',
+                s_title = '{$title_txt}',
+                s_cont = '{$cont_txt}',
+                s_mainimg = '{$mainname}',
+                s_img1 = '{$i1name}',
+                {$i2col}
+                {$i3col}
+                s_wdate = now();
+      ";
+      $sidx = sql_last_id($sql);
+      
+      /* 
+        POST 데이터를 템플릿에 적용시켜서 HTML 리턴 
+      */
+      
+      // 템플릿 HTML 코드 받아오기
+      if($template == "temp1"){
+        $url = "https://setoworks.cafe24.com/admin/template/template1.php?sidx={$sidx}";
+      }
+      
+      $ch = curl_init();                                 //curl 초기화
+      curl_setopt($ch, CURLOPT_URL, $url);               //URL 지정하기
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);    //요청 결과를 문자열로 반환 
+      curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);      //connection timeout 10초 
+      curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);   //원격 서버의 인증서가 유효한지 검사 안함
+      curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.7.5) Gecko/20041107 Firefox/1.0'); 
+
+      $response = curl_exec($ch);
+      curl_close($ch);
+
+      
+      // /*
+      //   데이터 준비해서 대망의 메일발송!  
+      // */
+      
+      include_once "../lib/directsend.php";
     
+      // 넘어온 대상을 배열로 만들어 발송함수에 넘김
+      $rtnames = explode("|",$rnames);
+      $rtemails = explode("|",$remails);
+
+      $res = sendMail($rtnames,$rtemails,$subject,$response);
+      
+      $res = preg_replace("/\\n/","",$res);
+      $jdbox = json_decode($res,true);
+      $status = $jdbox['status'];
+      $msg = $jdbox['msg'];
+      $detail = $jdbox['msg_detail'];
+      $mcount = count($rtemails);
+      
+      if($status == 0){
+        // 정상
+        $output['state'] = "Y";
+      }else{
+        // 비정상
+        $output['state'] = "N";
+        $output['stauts'] = $status;
+        $output['msg'] = $msg;
+      }
+      
+      $lsql = "INSERT INTO sthp_sendmail_log SET
+                sl_sidx = {$sidx},
+                sl_tname = '{$rnames}',
+                sl_tmail = '{$remails}',
+                sl_sdate = now(),
+                sl_status = '{$status}',
+                sl_msg = '{$msg}',
+                sl_msg_detail = '{$detail}',
+                sl_count = {$mcount}
+      ";
+      $lre = sql_exec($lsql);
+      
+        
+      // 로그
+      $exec = ("메일 발송");
+      $sql_txt = "{$sql}\n{$lsql}";
+      getLog($sql_txt,$exec,$aname);
+      
+      $output['sql'] = $sql;
+      $output['lsql'] = $lsql;
+      
+      echo json_encode($output,JSON_UNESCAPED_UNICODE);
+    break;
     
     
     

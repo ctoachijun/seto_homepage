@@ -26,6 +26,8 @@ form{width:100%;}
 .redcircle{background:red;width:10px;height:10px;border-radius:50%;}
 /* #accountList table td{} */
 
+
+
 /*
   관리자 로그
 */
@@ -92,7 +94,6 @@ form{width:100%;}
 
 
 
-
 /*
   포트폴리오 상세
 */
@@ -102,6 +103,23 @@ form{width:100%;}
 #portpolReg .row .row_wrap .row_cont{display:flex;width:100%;}
 #portpolReg .row .row_wrap .row_cont .thumb_div{width:500px;height:300px;border:1px solid #CCC;object-fit: contain;}
 
+
+
+/*
+  메일 발송
+*/
+#mailSend{}
+#mailSend .row{display:flex}
+#mailSend .input_file{display:none}
+#mailSend .img_div{display:none}
+#mailSend .row_cont #templ2{margin-left:50px;}
+#mailSend .row_cont #templ3{margin-left:50px;}
+#mailSend #preview1{width:600px;height:700px;display:none;position:fixed;top:20%;left:50%;transform:translate(-50%, -20%);z-index:510;background-size:contain}
+#mailSend #preview1 #temp1{width:auto;height:auto;max-width:100%;max-height:100%;}
+#mailSend .target_div{border:1px solid #AAA;margin-top:30px;min-height:200px;}
+#mailSend .target_div .line_div{display:flex;justify-content:space-between;padding:0 10px;height:35px;}
+#mailSend .target_div .line_div .pname{width:20%}
+#mailSend .target_div .line_div .pmail{width:70%}
 
 
 
