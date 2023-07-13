@@ -341,6 +341,69 @@
       echo json_encode($output);
     break;
     
+    case "viewmail" :
+      $post_string = http_build_query($_POST,'','&');
+      
+      $url = "https://setoworks.cafe24.com/test/template1.php";
+      
+      $ch = curl_init();                                 //curl 초기화
+      curl_setopt($ch, CURLOPT_URL, $url);               //URL 지정하기
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);    //요청 결과를 문자열로 반환 
+      curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);      //connection timeout 10초 
+      curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);   //원격 서버의 인증서가 유효한지 검사 안함
+      curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.7.5) Gecko/20041107 Firefox/1.0'); 
+
+      // post_data
+      // curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+      curl_setopt($ch, CURLOPT_POST, true);
+      curl_setopt($ch, CURLOPT_POSTFIELDS, $post_string);      
+      
+      $response = curl_exec($ch);
+      curl_close($ch);
+
+      $output['html'] = $response;      
+      $output['post'] = $post_string;
+      echo json_encode($output,JSON_UNESCAPED_UNICODE);
+    break;
+    
+    case "sendmail" :
+      // POST를 GET형태로 바꿔줌.
+      $post_string = http_build_query($_POST,'','&');
+      
+      // 템플릿 HTML 코드 받아오기
+      $url = "https://setoworks.cafe24.com/test/template1.php";
+      
+      $ch = curl_init();                                 //curl 초기화
+      curl_setopt($ch, CURLOPT_URL, $url);               //URL 지정하기
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);    //요청 결과를 문자열로 반환 
+      curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);      //connection timeout 10초 
+      curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);   //원격 서버의 인증서가 유효한지 검사 안함
+      curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.7.5) Gecko/20041107 Firefox/1.0'); 
+
+      // post_data
+      // curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+      curl_setopt($ch, CURLOPT_POST, true);
+      curl_setopt($ch, CURLOPT_POSTFIELDS, $post_string);      
+      
+      $response = curl_exec($ch);
+      curl_close($ch);
+
+      
+      // 메일 발송
+      include_once "../lib/directsend.php";
+      
+      // 넘어온 대상을 배열로 만들어 발송함수에 넘김
+      $rnames = explode("|",$arr_names);
+      $remails = explode("|",$arr_emails);
+      $output['target'] = $arr_names;
+      $res = sendMail($rnames,$remails,"3연속 가즈아!!!",$response);
+      $output['res'] = $res;
+      
+      echo $res;
+      echo json_encode($output,JSON_UNESCAPED_UNICODE);
+    break;
+    
+    
     
     
     
