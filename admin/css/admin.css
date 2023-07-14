@@ -24,7 +24,8 @@ form{width:100%;}
   관리자 목록
 */
 .redcircle{background:red;width:10px;height:10px;border-radius:50%;}
-/* #accountList table td{} */
+#accountList table{width:100%;}
+#accountList table td{text-align:center;}
 
 
 
@@ -105,6 +106,38 @@ form{width:100%;}
 
 
 
+
+/*
+  메일 발송 리스트
+*/
+#mailList{}
+#mailList table{width:100%;text-align:center;border-collapse:collapse;}
+#mailList table .nadding{text-align:center;}
+#mailList table th{border-bottom:1px solid #444;}
+#mailList table tr:hover{background:#fbeeee;}
+#mailList table td{padding:10px 0;border-bottom:1px solid #ccc;}
+#mailList table td:first-child{width:3%;}
+#mailList table td:nth-child(2){width:10%}
+#mailList table td:nth-child(3){width:30%}
+#mailList table td:nth-child(4){width:5%}
+#mailList table td:nth-child(5){width:10%}
+#mailList table td:nth-child(6){width:10%}
+#mailList table td:last-child{width:8%}
+#mailList .img_div{width:100px;height:100px;border:1px solid #000;margin:0 auto;}
+#mailList .img_div img{width:100%;height:100%;object-fit:cover;}
+
+#mailList .modal{
+  width:500px;min-height:200px;max-height:800px; background:#fff;position:fixed;z-index:510;top:50%;left:50%;
+  transform:translate(-50%,-50%);padding:1rem;border:1.5px solid #ddd; display:none;
+}
+#mailList .detail_row{width:100%;display:flex;flex-flow:row wrap;margin-bottom:20px;border-bottom:1px dotted;padding-bottom:10px;}
+#mailList .detail_row div:first-child{font-weight:700;width:20%;}
+#mailList .detail_row div:last-child{margin-left:50px;width:60%}
+#mailList .detail_row .detail_receiv,
+#mailList .detail_row .detail_receiv_mail{border:1px solid #ccc;padding:.6rem;overflow-y:scroll;min-height:100px;max-height:100px;display:flex;flex-flow:column nowrap}
+
+
+
 /*
   메일 발송
 */
@@ -114,15 +147,15 @@ form{width:100%;}
 #mailSend .img_div{display:none}
 #mailSend .row_cont #templ2{margin-left:50px;}
 #mailSend .row_cont #templ3{margin-left:50px;}
-#mailSend #preview1{width:600px;height:700px;display:none;position:fixed;top:20%;left:50%;transform:translate(-50%, -20%);z-index:510;background-size:contain}
-#mailSend #preview1 #temp1{width:auto;height:auto;max-width:100%;max-height:100%;}
 #mailSend .target_div{border:1px solid #AAA;margin-top:30px;min-height:200px;}
 #mailSend .target_div .line_div{display:flex;justify-content:space-between;padding:0 10px;height:35px;}
 #mailSend .target_div .line_div .pname{width:20%}
 #mailSend .target_div .line_div .pmail{width:70%}
 
-
-
+#mailSend #preview1{width:650px;min-height:700px;height:100%;display:none;position:absolute;top:25%;left:50%;transform:translate(-50%, -20%);z-index:510;background-size:contain}
+#mailSend #preview1 #temp1{width:auto;height:auto;max-width:100%;max-height:100%;}
+#mailSend #preview2{width:650px;min-height:700px;height:100%;display:none;position:absolute;top:25%;left:50%;transform:translate(-50%, -20%);z-index:510;background-size:contain}
+#mailSend #preview2 #temp2{width:auto;height:auto;max-width:100%;max-height:100%;}
 
 
 

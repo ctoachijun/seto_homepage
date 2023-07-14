@@ -68,7 +68,7 @@ $alist = getAdminList($type,$sw);
                 <? endforeach; ?>
                 </tbody>
                 <? else : ?>
-                  <tr><td colspan="7">검색결과가 없습니다.</td></tr>
+                  <tr><td colspan="7" class="nadding">검색결과가 없습니다.</td></tr>
                 <? endif; ?>
             </table>
             

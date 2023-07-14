@@ -129,6 +129,10 @@ function getPaging($tbl, $qs, $where){
     $tbl_name = "sthp_admin_log";
   }else if($tbl == "setohp_moon"){
     $tbl_name = "sthp_inquiry";
+  }else if($tbl == "setohp_mail_list"){
+    $join = "as s LEFT OUTER JOIN sthp_sendmail_log as sl ON s.s_idx = sl.sl_sidx";
+    $tbl_name = "sthp_sendmail {$join}";
+    
   }else if($tbl == ""){
     $tbl_name = "";
   }
@@ -167,7 +171,8 @@ function getPaging($tbl, $qs, $where){
   $page_rows = $end; // 한페이지에 표시할 데이터 수
   $total_page = ceil($tcnt / $page_rows); // 총 페이지수
 
- // echo "tcnt : $tcnt <br>";
+//  echo "tcnt : $tcnt <br>";
+// echo "page_rows = $page_rows";
 // echo "total_page : $total_page <br>";
 
   // 총페이지가 0이라면 1로 설정
@@ -427,5 +432,9 @@ function getPortpolioInfo($idx){
 }
 function getNewsLetterInfo($idx){
   $sql = "SELECT * FROM sthp_sendmail WHERE s_idx = {$idx}";
+  return sql_fetch($sql);
+}
+function getSendMailInfo($idx){
+  $sql = "SELECT * FROM sthp_sendmail as s LEFT OUTER JOIN sthp_sendmail_log as sl ON s.s_idx = sl.sl_sidx WHERE s.s_idx = {$idx}";
   return sql_fetch($sql);
 }

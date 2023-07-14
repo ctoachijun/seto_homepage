@@ -11,7 +11,8 @@
     "autoDownload": false,
     "ignore": [
         ".git",
-        "/.vscode"
+        "/.vscode",
+        "/backup"
     ],
     "ignoreWrongFileEncoding": true
 }

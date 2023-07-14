@@ -64,16 +64,16 @@ $key = "5uYGutBrtLVcNbx";           //필수입력
 //     .',{"name":"홍길동", "email":"수신자이메일", "mobile":"수신자번호", "note1":"다이렉트센드 1", "note2":"다이렉트센드 2", "note3":"다이렉트센드 3", "note4":"다이렉트센드 4", "note5":"다이렉트센드 5"}'
 // ;
 
-if(count($raddrs) == 1){
-  $receiver .= '{"name":"'.$rnames.'", "email":"'.$raddrs.'"}';
-}else{
+// if(count($raddrs) == 1){
+//   $receiver .= '{"name":"'.$rnames[0].'", "email":"'.$raddrs[0].'"}';
+// }else{
   for($i=0; $i<count($raddrs); $i++){
     $receiver .= '{"name":"'.$rnames[$i].'", "email":"'.$raddrs[$i].'"}';
     if($i < count($raddrs)-1){
       $receiver .= ",";
     }
   }
-}
+// }
 $receiver = '['.$receiver.']';      //JSON 데이터
 
 // var_dump($receiver);

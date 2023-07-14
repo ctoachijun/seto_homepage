@@ -1,8 +1,5 @@
 <?php
   include "lib/seto.php";
-
-
-  
 ?>
 
 <div style="width:100%; display:flex; justify-content:center;flex-direction:column;align-items:center;">

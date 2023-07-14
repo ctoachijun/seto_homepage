@@ -307,8 +307,11 @@ function openModal(num){
   $("body").css("overflow","hidden");
   if(num == 1){
     $(".modal_answer").show();
-  }else{
+  }else if(num == 2){
     $(".modal_mtype").show();
+  }else if(num == 3){
+    $(".detail_div").show();
+  }else{
   }
 }
 
@@ -552,10 +555,10 @@ function setTemp(num){
   $(".main_div").removeClass("img_div");
   $(".img1_div").removeClass("img_div");
   $(".img2_div").removeClass("img_div");
-  if(num == 3){
-    
-  }else{
+  if(num == 1){
     $(".img2_div").addClass("img_div");
+  }else if(num == 2){
+  }else{
   }
 }
 
@@ -574,8 +577,8 @@ function showTempl(){
   $(".pre_head").html(head);
   $(".pre_title1").html(title1);
   $(".pre_title2").html(title2);
-  $(".pre_cont1").html(cont1);
-  $(".pre_cont2").html(cont2);
+  $(".pre_cont1").html(cont1.replace(/(?:\r\n|\r|\n)/g, "<br />"));
+  $(".pre_cont2").html(cont2.replace(/(?:\r\n|\r|\n)/g, "<br />"));
   
   
   $(".backblack").show();
@@ -692,6 +695,26 @@ function sendSetoMail(){
     $("#cont2").focus();
     return false;
   }
+  if(!mainimg){
+    alert("메인이미지를 등록 해 주세요.");
+    $("#mainimg").click();
+    return false;
+  }
+  if(!img1){
+    alert("사진1을 등록 해 주세요.");
+    $("#img1").click();
+    return false;
+  }
+  if(temp == "temp2" && !img2){
+    alert("사진2를 등록 해 주세요.");
+    $("#img2").click();
+    return false;
+  }
+  if(temp == "temp3" && !img3){
+    alert("사진3를 등록 해 주세요.");
+    $("#img3").click();
+    return false;
+  }
   if(!rnames){
     alert("수신자 이름이 없습니다.");
     $("#name").focus();
@@ -703,26 +726,6 @@ function sendSetoMail(){
     return false;
   }
   
-  if(!mainimg){
-    alert("메인이미지를 등록 해 주세요.");
-    $("#mainimg").click();
-    return false;
-  }
-  if(!img1){
-    alert("사진1을 등록 해 주세요.");
-    $("#img1").click();
-    return false;
-  }
-  if(temp == "temp3" && !img2){
-    alert("사진2를 등록 해 주세요.");
-    $("#img2").click();
-    return false;
-  }
-  if(temp == "temp3" && !img3){
-    alert("사진3를 등록 해 주세요.");
-    $("#img3").click();
-    return false;
-  }
   
   if( confirm("내용과 수신대상을 확인 해 주세요.\n메일을 발송 하시겠습니까?") ){
     
@@ -740,18 +743,45 @@ function sendSetoMail(){
         
         if(json.state == "Y"){
           alert("발송했습니다.\n자세한 내역은 다이렉트센드 홈페이지에서 확인 해 주세요.");
-          // history.go(0);
+          pageBack();
         }else{
           errorAlert();
+          history.go(0);
           console.log(json);
         }
       }
     })
-    
   }
+}
   
+function showMlDetail(idx){
+  openModal(3);
   
-  
+  $.ajax({
+    url : "ajax_admin.php",
+    type: "post",
+    data: {"w_mode":"showMlDetail","idx":idx},
+    success: function(result){
+      let json = JSON.parse(result);
+      console.log(json);
+      
+      $(".temp_wdate").html(json.sdate);
+      $(".detail_temp_num").html(json.temp_num);
+      $(".detail_receiv").html(json.receiv);
+      $(".detail_receiv_mail").html(json.receiv_mail);
+      $(".detail_result").html(json.result);
+      $(".detail_code").html(json.code);
+      $(".detail_etc").html(json.etc);
+      $(".detail_count").html(json.count);
+      $(".detail_show").html(json.show);
+      
+    }
+  })
+}
+
+function goSend(){
+  $("form").attr("action","mailSend.php");
+  $("form").submit();
 }
 
 

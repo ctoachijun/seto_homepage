@@ -27,7 +27,6 @@
           $exec = "관리자 로그인";
           getLog($sql1,$exec,$re['a_name']);
           
-          
         }else{
           $output['state'] = "W";
         }
@@ -482,7 +481,7 @@
       $_POST['img1'] = $i1name;
       
       
-      if($template == "temp3"){
+      if($template == "temp2"){
         // 사진2
         $i2file = $_FILES['img2'];
         $i2tmp = $i2file['tmp_name'];
@@ -492,7 +491,8 @@
         move_uploaded_file($i2tmp,$img_path."/".$img2name);
         $_POST['img2'] = $i2name;
         $i2col = "s_img2 = '{$i2name}',";
-
+        
+      }else if($template == "temp3"){
         // 사진3
         $i3file = $_FILES['img3'];
         $i3tmp = $i3file['tmp_name'];
@@ -531,6 +531,8 @@
       // 템플릿 HTML 코드 받아오기
       if($template == "temp1"){
         $url = "https://setoworks.cafe24.com/admin/template/template1.php?sidx={$sidx}";
+      }else if($template == "temp2"){
+        $url = "https://setoworks.cafe24.com/admin/template/template2.php?sidx={$sidx}";
       }
       
       $ch = curl_init();                                 //curl 초기화
@@ -553,25 +555,27 @@
       // 넘어온 대상을 배열로 만들어 발송함수에 넘김
       $rtnames = explode("|",$rnames);
       $rtemails = explode("|",$remails);
+      $output['rtnames'] = $rtnames;
+      $output['rtemails'] = $rtemails;
 
-      $res = sendMail($rtnames,$rtemails,$subject,$response);
+      // $res = sendMail($rtnames,$rtemails,$subject,$response);
       
-      $res = preg_replace("/\\n/","",$res);
-      $jdbox = json_decode($res,true);
-      $status = $jdbox['status'];
-      $msg = $jdbox['msg'];
-      $detail = $jdbox['msg_detail'];
+      // $res = preg_replace("/\\n/","",$res);
+      // $jdbox = json_decode($res,true);
+      // $status = $jdbox['status'];
+      // $msg = $jdbox['msg'];
+      // $detail = $jdbox['msg_detail'];
       $mcount = count($rtemails);
       
-      if($status == 0){
+      if($status && $status == 0){
         // 정상
         $output['state'] = "Y";
       }else{
         // 비정상
         $output['state'] = "N";
-        $output['stauts'] = $status;
-        $output['msg'] = $msg;
       }
+      $output['stauts'] = $status;
+      $output['msg'] = $msg;
       
       $lsql = "INSERT INTO sthp_sendmail_log SET
                 sl_sidx = {$sidx},
@@ -596,6 +600,78 @@
       
       echo json_encode($output,JSON_UNESCAPED_UNICODE);
     break;
+    
+    case "showMlDetail" :
+      $info = getSendMailInfo($idx);
+      
+      // 템플릿 종류 텍스트 생성
+      $temp = $info['s_template'];
+      if($temp == "temp1"){
+        $temp_txt = "1번 템플릿";
+        $url = "https://setoworks.cafe24.com/admin/template/template1.php?sidx=".$info['s_idx'];
+      }else if($temp == "temp2"){
+        $temp_txt = "2번 템플릿";
+        $url = "https://setoworks.cafe24.com/admin/template/template2.php?sidx=".$info['s_idx'];
+      }else{
+        $temp_txt = "3번 템플릿";
+        $url = "https://setoworks.cafe24.com/admin/template/template3.php?sidx=".$info['s_idx'];
+      }
+      
+      // 수신자 span으로 개별 생성
+      $rbox = explode("|",$info['sl_tname']);
+      foreach($rbox as $v){
+        $r_txt .= "<span>{$v}</span>";
+      }
+      
+      // 수신메일 span으로 개별 생성
+      $rmbox = explode("|",$info['sl_tmail']);
+      foreach($rmbox as $v){
+        $rm_txt .= "<span>{$v}</span>";
+      }
+      
+      // 결과 텍스트 생성
+      if($info['sl_status'] === "0"){
+        $res_txt = "정상";
+      }else{
+        $res_txt = "<span class='detail_err'>오류<span>";
+      }
+      
+      // 코드 - 메세지 텍스트 생성
+      if(empty($info['sl_status'])){
+        $code_txt = "-";
+      }else{
+        $code_txt = $info['sl_status'];
+      }
+      
+      // 메세지가 있을때만 뒤에 [ - 메세지]를 붙임.
+      if($info['sl_msg']){
+       $code_txt .= " - ".$info['sl_msg']; 
+      }
+      
+      // 메세지 상세 텍스트 생성
+      if(empty($info['sl_msg_detail'])){
+        $etc_txt = "-";
+      }else{
+        $etc_txt = $info['sl_msg_detail'];
+      }
+      
+      // 새창으로 보기 템플릿 링크
+      $show = "<a href='{$url}' target='_blank'>새창으로 보기</a>";
+      
+      $output['sdate'] = $info['sl_sdate'];
+      $output['temp_num'] = $temp_txt;
+      $output['receiv'] = $r_txt;
+      $output['receiv_mail'] = $rm_txt;
+      $output['result'] = $res_txt;
+      $output['code'] = $code_txt;
+      $output['etc'] = $etc_txt;
+      $output['count'] = $info['sl_count'];
+      $output['show'] = $show;
+      
+      
+      echo json_encode($output,JSON_UNESCAPED_UNICODE);
+    break;
+    
     
     
     
