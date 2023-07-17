@@ -94,7 +94,11 @@ include "header.php";
           
           <div class="row">
             <div class="row_wrap wv-2">
-              <div class="show_div"></div>
+              <div class="excel_div">
+                <a href="../files/sample.xlsx"><input type="button" class="btn" value="샘플받기" /></a>
+                <input type="button" class="btn" value="리스트 업로드" onclick="listUp()" />
+                <input type="file" id="list" class="input_file" name="list"  onchange="setList(this)" />
+              </div>
             </div>
           </div>
    
@@ -123,7 +127,7 @@ include "header.php";
               </div>
             </div>
             <div class="row_wrap wv-4">
-              <input type="button" class="btn btn-ok" value="전송" onclick="sendSetoMail()" />
+              <input type="button" class="btn btn-ok sendbtn" value="전송" onclick="sendSetoMail()" />
             </div>
           </div>
           

@@ -784,4 +784,33 @@ function goSend(){
   $("form").submit();
 }
 
+function listUp(){
+  $("#list").click();
+}
+
+function setList(obj){
+  let file = obj.files[0];
+  if(chkFileType(file,1)){
+    
+    let f = new FormData($("#sendForm")[0]);
+    f.append("w_mode","setList");
+    
+    $.ajax({
+      url : "ajax_admin.php",
+      type: "post",
+      data: f,
+      processData: false,
+      contentType: false,
+      success : function(result){
+        let json = JSON.parse(result);
+        console.log(json);
+        
+        $("input[name=rnames").val(json.arr_name);
+        $("input[name=remails").val(json.arr_email);
+        $(".target_div").html(json.html);
+      }
+    })
+
+  }
+}
 

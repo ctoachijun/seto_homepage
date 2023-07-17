@@ -1,5 +1,6 @@
 <?
   include "../lib/seto.php";
+  include "../lib/PHPExcel/Classes/PHPExcel.php";
 
   $aidx = $_SESSION['aidx'];
   $aid = $_SESSION['aid'];
@@ -558,16 +559,16 @@
       $output['rtnames'] = $rtnames;
       $output['rtemails'] = $rtemails;
 
-      // $res = sendMail($rtnames,$rtemails,$subject,$response);
+      $res = sendMail($rtnames,$rtemails,$subject,$response);
       
-      // $res = preg_replace("/\\n/","",$res);
-      // $jdbox = json_decode($res,true);
-      // $status = $jdbox['status'];
-      // $msg = $jdbox['msg'];
-      // $detail = $jdbox['msg_detail'];
+      $res = preg_replace("/\\n/","",$res);
+      $jdbox = json_decode($res,true);
+      $status = $jdbox['status'];
+      $msg = $jdbox['msg'];
+      $detail = $jdbox['msg_detail'];
       $mcount = count($rtemails);
       
-      if($status && $status == 0){
+      if($status === "0"){
         // 정상
         $output['state'] = "Y";
       }else{
@@ -671,7 +672,69 @@
       
       echo json_encode($output,JSON_UNESCAPED_UNICODE);
     break;
+  
+    case "setList" :
+      
+      // 1. 파일업로드
+      // 2. 업로드 된 파일에서 데이터 추출
+      // 3. html 코드로 생성 후 파일 닫기.
+      // 4. 파일 삭제 후 html 코드 반환
+      
+      $file = $_FILES['list'];
+      $tmp = $file['tmp_name'];
+      $name = $file['name'];
+      
+      $path = "../files/tmp_{$name}";
+      $res = move_uploaded_file($tmp, $path);  
+        
+        
+      // 엑셀데이터 읽기.
+      $phpexcel = new PHPExcel();
+      $efiles = $path;
+      $output['efiles'] = $efiles;
+        
+      try{
+
+        $Exreader = PHPExcel_IOFactory::createReaderForFile($efiles);
+        $Exreader->setReadDataOnly(true);
+        $objExcel = $Exreader->load($efiles);
+
+        $objExcel->setActiveSheetIndex(0);
+        $sheet1 = $objExcel->getActiveSheet();
+        $garo = $sheet1->getRowIterator();
+        
+        foreach($garo as $row){
+          $cell = $row->getCellIterator();
+          $cell->setIterateOnlyExistingCells(false);
+        }
+
+        $sero = $sheet1->getHighestRow();
+        // $sero = 5;
+
+        for($i=4,$a=0; $i<=$sero; $i++,$a++){
+
+          $name = $sheet1->getCell('A'.$i)->getValue();
+          $email = $sheet1->getCell('B'.$i)->getValue();
     
+          $html .= "
+            <div class='line_div ld{$a}'><p class='pname'>{$name}</p><p class='pmail'>{$email}</p><p class='exicon pcursor' onclick='removeLine({$a})'>X</p></div>
+          ";
+          
+          $arr_name[$a] = $name;
+          $arr_email[$a] = $email;
+        }
+      }catch(exception $e){
+        $output['error'] = "엑셀파일 읽는도중 에러가 발생!!!!!";
+      }
+
+      $output['html'] = $html;
+      $output['arr_name'] = implode("|",$arr_name);      
+      $output['arr_email'] = implode("|",$arr_email);      
+      
+      unlink($path);
+      
+      echo json_encode($output,JSON_UNESCAPED_UNICODE);
+    break;
     
     
     
@@ -679,6 +742,8 @@
     
     default :
       $output['error'] = "ajax error";
+      echo json_encode($output);
+    
   }
   
   

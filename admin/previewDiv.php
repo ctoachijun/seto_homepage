@@ -104,6 +104,8 @@
                               <?= $title1 ?>
                             </p>
                           </td>
+                        </tr>
+                        <tr>
                           <td style='padding-left:15px; padding-right:15px; width:100%;text-align:center;'>
                             <p name='text_box' class='pre_cont1'
                               style='color:#fff; font-family:Helvetica,sans-serif; font-size:15px; font-weight:normal; line-height:1.4; margin-bottom:0; margin-left:0; margin-right:0; margin-top:0; word-break:break-all'>

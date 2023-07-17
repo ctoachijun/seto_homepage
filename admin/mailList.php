@@ -4,7 +4,7 @@ include "header.php";
 
 
 if(!$cur_page) $cur_page = 1;
-if(!$end) $end = 5;
+if(!$end) $end = 20;
 if(!$cur_page) $cur_page = 1;
 if(!$type) $type = "subject";
 if(!$tsort) $tsort = "all";
