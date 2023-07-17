@@ -94,38 +94,48 @@ $mtype_box = getMooniTypeList();
 
 <div id="mooniList">
     <div class="content">
+      <div class="page_title">
+        <div>문의 관리</div>
+      </div>
       <form method="get" id="regForm" onsubmit="return chgCurPage()">
           <input type="hidden" name="total_cnt" value="<?=$total_cnt?>" />
           <input type="hidden" name="cur_page" value="<?=$cur_page?>" />
           <input type="hidden" name="end" value="<?=$end?>" />
 
           <div class="row">
-            <select id='ssort' name='sort' onchange="sortColumn()">
-              <option value='all' <? if($sort == "all") echo "selected"; ?>>전체</option>
-              <option value='N' <? if($sort == "N") echo "selected"; ?>>미확인</option>
-              <option value='Y' <? if($sort == "Y") echo "selected"; ?>>확인</option>
-            </select>
+            <div class="row_sel">
+              <select id='ssort' class="sel-select" name='sort' onchange="sortColumn()">
+                <option value='all' <? if($sort == "all") echo "selected"; ?>>전체</option>
+                <option value='N' <? if($sort == "N") echo "selected"; ?>>미확인</option>
+                <option value='Y' <? if($sort == "Y") echo "selected"; ?>>확인</option>
+              </select>
 
-            <select id='tsort' name='tsort' onchange="sortColumn()">
-              <option value='all' <? if($sort == "all") echo "selected"; ?>>전체</option>
-              <? foreach($mtype_box as $v) :
-                  $mt_idx = $v['it_idx'];
-                  $mt_name = $v['it_type'];
-              ?>
-              <option value='<?=$mt_idx?>' <? if($tsort == $mt_idx) echo "selected"; ?>><?=$mt_name?></option>
-              <? endforeach; ?>
-            </select>
+              <select id='tsort' class="sel-select" name='tsort' onchange="sortColumn()">
+                <option value='all' <? if($sort == "all") echo "selected"; ?>>전체</option>
+                <? foreach($mtype_box as $v) :
+                    $mt_idx = $v['it_idx'];
+                    $mt_name = $v['it_type'];
+                ?>
+                <option value='<?=$mt_idx?>' <? if($tsort == $mt_idx) echo "selected"; ?>><?=$mt_name?></option>
+                <? endforeach; ?>
+              </select>
 
-            <select id='stype' name='type'>
-              <option value='company' <? if($type == "company") echo "selected"; ?>>회사명</option>            
-              <option value='name' <? if($type == "name") echo "selected"; ?>>이름</option>            
-              <option value='tel' <? if($type == "tel") echo "selected"; ?>>연락처</option>
-              <option value='email' <? if($type == "email") echo "selected"; ?>>이메일</option>
-              <option value='wdate' <? if($type == "wdate") echo "selected"; ?>>등록일</option>
-            </select>
-            <input type='text' class='txt-input' name="sw" value="<?=$sw?>"/>
-            <input type="submit" class='btn' value="검색" />
-            <div class='add_div'><input type='button' class='btn btn-ok' value='문의유형 추가' onclick='showMtype()' /></div>
+              <select id='stype' class="sel-select" name='type'>
+                <option value='company' <? if($type == "company") echo "selected"; ?>>회사명</option>            
+                <option value='name' <? if($type == "name") echo "selected"; ?>>이름</option>            
+                <option value='tel' <? if($type == "tel") echo "selected"; ?>>연락처</option>
+                <option value='email' <? if($type == "email") echo "selected"; ?>>이메일</option>
+                <option value='wdate' <? if($type == "wdate") echo "selected"; ?>>등록일</option>
+              </select>
+            </div>
+            <div class="row_btn">
+              <div class="txt_div">
+                <input type='text' class='txt-input' name="sw" value="<?=$sw?>"/>
+                <input type="submit" class='btn' value="검색" />
+              </div>
+              <div class='add_div'><input type='button' class='btn btn-ok' value='문의유형 추가' onclick='showMtype()' /></div>
+            </div>
+
           </div>
 
           <div class="row">
@@ -136,7 +146,7 @@ $mtype_box = getMooniTypeList();
                     <th>No.</th>
                     <th>회사명</th>
                     <th>이름</th>
-                    <th>연락처</th>
+                    <!-- <th>연락처</th> -->
                     <th>이메일</th>
                     <th>유형</th>
                     <th>제목</th>
@@ -166,7 +176,7 @@ $mtype_box = getMooniTypeList();
                     <td><?=$number?></td>
                     <td><?=$comp?></td>
                     <td><?=$name?></td>
-                    <td><?=$tel?></td>
+                    <!-- <td><?=$tel?></td> -->
                     <td><?=$email?></td>
                     <td><?=$mtype?></td>
                     <td><?=$subj?></td>
@@ -236,10 +246,7 @@ $mtype_box = getMooniTypeList();
 
   </div>
   
-  <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
-  <script src="./js/admin.js"></script>
-
-  
+  <? include "footer.php"; ?>  
   <script>
     $("#closeBtn").click( function(){
       closeModal();

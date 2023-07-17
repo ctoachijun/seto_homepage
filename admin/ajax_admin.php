@@ -20,6 +20,7 @@
           $_SESSION['aidx'] = $re['a_idx'];
           $_SESSION['aid'] = $re['a_id'];
           $_SESSION['aname'] = $re['a_name'];
+          $_SESSION['agrade'] = $re['a_grade'];
           
           // 로그인 일시 입력처리
           $sql1 = "UPDATE sthp_admin SET a_login = now() WHERE a_idx = ".$re['a_idx'];

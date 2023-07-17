@@ -814,3 +814,10 @@ function setList(obj){
   }
 }
 
+function accpageMove(num){
+  if(num == 1){
+    location.href="accountList.php";
+  }else{
+    location.href="adminLog.php";
+  }
+}

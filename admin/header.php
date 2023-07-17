@@ -8,8 +8,27 @@ chkLogin();
 $aidx = $_SESSION['aidx'];
 $aid = $_SESSION['aid'];
 $aname = $_SESSION['aname'];
+$agrade = $_SESSION['agrade'];
 
 $current = preg_replace("/\/admin\//","",$_SERVER['SCRIPT_NAME']);
+
+$port_act = $moon_act = $mail_act = $acc_act = "";
+$drop1_act = $drop2_act = "";
+if($current == "portpolList.php" || $current == "portpolReg.php"){
+  $port_act = "active";
+}else if($current == "mooniList.php"){
+  $moon_act = "active";
+}else if($current == "mailList.php" || $current == "mailSend.php"){
+  $mail_act = "active";
+}else if($current == "accountList.php" || $current == "accountReg.php" || $current == "adminLog.php"){
+  $acc_act = "active";
+  
+  $current == "adminLog.php" ? $drop2_act = "dactive" : $drop1_act = "dactive";
+  
+}
+
+
+
 
 // 첫 접속시 비밀번호 변경 페이지로 이동시킴.
 // 단, 비밀번호 변경 페이지인 경우에는 제외
@@ -39,12 +58,66 @@ $noimg = "/img/no_img1.jpg";
 
 <body>
   <div class="backblack"></div>
+  
+  <? if($current != "firstConnect.php"){ ?>
+  <nav class="notmobi d-flex">
+    <div class="logo_div">
+      <a href="/admin"><img src="../img/seto_logo.png" /></a>
+    </div>
+    <div class="nav_div d-flex">
+      <div class="menu1 <?=$port_act?>"><a href="portpolList.php">포트폴리오</a></div>
+      <div class="menu2 <?=$moon_act?>"><a href="mooniList.php">문의</a></div>
+      <div class="menu3 <?=$mail_act?>"><a href="mailList.php">뉴스레터</a></div>
+      <? if($agrade == "A"): ?>
+        <div class="menu4 <?=$acc_act?>">
+          계정관리
+          <div class="menu4_drop d-flex">
+            <div class="menu4_drop_line <?=$drop1_act?>" onclick="accpageMove(1)">관리자 계정관리</div>
+            <div class="menu4_drop_line <?=$drop2_act?>" onclick="accpageMove(2)">관리자 로그</div>
+          </div>
+        </div>
+      <? endif; ?>      
+    </div>
+    <div class="acc_div d-flex">
+      <span>반갑습니다.</span>
+      <span class="aname"><?=$aname?>님</span>
+      <span class="lout" onclick="logOut()">로그아웃</span>
+    </div>
+  </nav>
+  <? } ?>
+  
+  <nav class="mobi">
+    <div class="top_div">
+      <div class="logo_div">
+        <a href="/admin"><img src="../img/seto_logo.png" /></a>
+      </div>
+      <div class="acc_div">
+        <img src="../img/hamb.png" />
+      </div>
+    </div>
+    <div class="nav_div">
+      <div class="menu1"><a href="portpolList.php">포트폴리오</a></div>
+      <div class="menu2"><a href="mooniList.php">문의</a></div>
+      <div class="menu3"><a href="mailList.php">뉴스레터</a></div>
+      <? if($agrade == "A"): ?>
+        <div class="menu4">
+          계정관리
+          <div class="menu4_drop">
+            <div class="menu4_drop_line <?=$drop1_act?>" onclick="accpageMove(1)">관리자 계정관리</div>
+            <div class="menu4_drop_line <?=$drop2_act?>" onclick="accpageMove(2)">관리자 로그</div>
+          </div>
+        </div>
+      <? endif; ?>      
+      <div class="menu5">          
+        <span class="aname"><?=$aname?>님</span>
+        <span class="lout" onclick="logOut()">로그아웃</span>
+      </div>
 
+    </div>
 
-<? if($current != "firstConnect.php"){ ?>
-<div class="row">
-  <input type="button" value="로그아웃" onclick="logOut()"/>
-</div>
-<? } ?>
-
-
+    
+    
+  </nav>
+  
+  <div id="main">
+  
