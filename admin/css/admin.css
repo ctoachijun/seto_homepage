@@ -1,6 +1,8 @@
 body{margin:0;height:0;}
-#main{width:100%;min-height:85vh;display:flex;justify-content: center;}
-.content{padding:1rem;}
+#main{width:100%;min-height:84vh;display:flex;justify-content: center;min-width:220px;}
+.content{padding:1rem;height:100%;}
+.page_title{font-size:2rem;margin-top:20px;margin-bottom:50px;}
+.page_title div{border-bottom:1px solid #444;width:150px;}
 .txt-input,.sel-select{border:1px solid #CECECE;padding:.5rem;color:#777;box-shadow:1px 1px #eee;width:100%;outline:none;}
 .input_file{display:none}
 .btn{border:1px solid #CECECE; border-radius:5px; width:100%;height:100%;font-size:1rem;cursor:pointer}
@@ -15,6 +17,7 @@ body{margin:0;height:0;}
 .wv-4{width:25%;}
 .wv-5{width:20%;}
 .wv-6{width:16.44444%}
+.redcircle{background:#0C77FB;width:10px;height:10px;border-radius:50%;}
 
 
 form{width:100%;}
@@ -27,25 +30,23 @@ form{width:100%;}
 /*
   header footer
 */
-nav{background:#040000;align-items: center;width:100%;height:12vh;}
+nav{background:#040000;align-items: center;width:100%;height:12vh;min-width:220px;}
 .mobi{display:none}
 nav a{text-decoration: none;color:#fff;}
-nav .logo_div{width:18%;}
+nav .logo_div{width:15%;}
 nav .logo_div img{width:100%;}
 nav .nav_div{width:72%;color:#fff;justify-content: center;align-items:center;height:100%;}
 nav .nav_div div{display:flex;align-items:center;margin-right:50px;font-weight:700;font-size:1.4rem;height:50%;cursor:pointer;}
 nav .nav_div .active{border-bottom:2px solid #E6002D}
 nav .nav_div .dactive{color:#E6002D}
 nav .nav_div .menu4{position:relative;}
-nav .nav_div .menu4_drop{position:absolute;top:37px;left:0;width:200px; height:150px;flex-direction: column;background:#040000;display:none;}
+nav .nav_div .menu4_drop{position:absolute;top:50px;left:0;width:200px; height:150px;flex-direction: column;background:#040000;display:none;}
 nav .nav_div .menu4_drop_line{width:100%;font-size:1rem;font-weight:normal;margin:0;height:40px;padding-left:20px;padding-top:30px;}
 
 nav .acc_div{width:10%;height:100%;color:#eee;justify-content: center;align-items: center;flex-direction: column;}
 nav .acc_div .aname{font-weight:700;color:#fff;}
 nav .acc_div .lout{margin-top:10px;text-decoration: underline;cursor:pointer;font-size:.8rem;}
 .footer{width:100%;height:30px;background:#040000;color:#ccc;margin-top:10px;justify-content: center;align-items: center;}
-
-
 
 
 @media (max-width:1200px){
@@ -65,16 +66,17 @@ nav .acc_div .lout{margin-top:10px;text-decoration: underline;cursor:pointer;fon
 
 @media (max-width:768px){
   .mobi .logo_div img{width:180px;}
-  .mobi .acc_div{width:16%;}  
+  /* .mobi .acc_div{width:16%;}   */
+  .mobi .acc_div img{width:35px;}  
 }
 
 @media (max-width:400px){
   .mobi .logo_div img{width:180px;}
-  .mobi .acc_div img{width:35px;}  
+  .mobi .acc_div{width:20%;}
 }
 
-
-
+#accountList,#logList,#mooniList,#portpolList,#portpolReg,#mailList,#mailSend{width:80%;min-width:210px;}
+#accountReg{width:50%;min-width:210px;margin:0 auto;}
 
 /*
   로그인 화면
@@ -100,13 +102,97 @@ nav .acc_div .lout{margin-top:10px;text-decoration: underline;cursor:pointer;fon
 
 
 
-
 /*
   관리자 목록
 */
-.redcircle{background:red;width:10px;height:10px;border-radius:50%;}
-#accountList table{width:100%;}
+#accountList .top_div{width:100%;margin-bottom:50px;}
+#accountList .top_div div:first-child{width:10%;margin-right:10px;}
+#accountList .top_div div:nth-child(2){width:50%;margin-right:10px;justify-content: space-between;}
+#accountList .top_div div:last-child{width:10%;}
+#accountList .top_div .txt-input{width:80%;margin-right:10px;}
+#accountList .top_div .sw_div .btn{width:10%;}
+#accountList .top_div .sw_div .btn-ok{width:20%;margin-left:10px;}
+#accountList .table_div{justify-content: flex-start;}
+#accountList table{width:100%;border-collapse:collapse;font-size:0.9rem;}
 #accountList table td{text-align:center;}
+#accountList table th{height:20px;padding:.5rem;border-bottom:2px solid #ACACAC;}
+#accountList table tr{cursor:pointer;}
+#accountList table tr:hover{background:#fafbc3}
+#accountList table td{height:30px;padding:.5rem;border-bottom:1px solid #CECECE;}
+#accountList table .redcircle{margin:0 auto;}
+
+#accountList .view_mobi{display:none; flex-flow: row wrap;justify-content: center;}
+#accountList .view_mobi .mobiv_div{width:270px;min-width:200px;border:1px solid #CECECE; border-radius:10px;padding:0.8rem;margin-right:10px; margin-bottom:20px;}
+#accountList .view_mobi .mobiv_div div{display:flex;}
+#accountList .view_mobi .mobiv_div .m_line2{margin:5px 0;border-top:1px solid #eee;padding:5px 0;border-bottom:1px solid #eee;}
+#accountList .view_mobi .mobiv_div .m_line4{margin:5px 0;border-top:1px solid #eee;padding:5px 0;border-bottom:1px solid #eee;}
+#accountList .view_mobi .mobiv_div .m_line1 div{align-items: center;}
+#accountList .view_mobi .mobiv_div .m_line6 div{justify-content: flex-end;margin-top:20px;}
+#accountList .view_mobi .btn-no{width:80px;height:35px; }
+#accountList .view_mobi .paging_div .pagination{font-size:.7rem;}
+#accountList .topadm{border:1px solid #0C77FB !important}
+
+@media (max-width:1200px){
+  #accountList .top_div div:first-child{width:20%;}
+  #accountList .top_div div:nth-child(2){width:70%;}
+}
+@media (max-width:1000px){
+  #accountList .view_mobi{display:flex;}
+  #accountList .table_div{display:none;}
+  
+}
+@media (max-width:786px){
+  #accountList .top_div{flex-direction: column;}
+  #accountList .top_div div:first-child{width:100%;}
+  #accountList .top_div div:nth-child(2){display:flex;align-items: center;width:100%;margin-top:10px;}
+  #accountList .top_div div:nth-child(2) .btn{height:35px;width:50px;}
+  #accountList .top_div div:nth-child(2) .btn-ok{width:100px;}
+  
+  #accountList .view_mobi .mobiv_div{width:100%;}
+}
+@media (max-width:400px){
+  #accountList .top_div div:nth-child(2){flex-direction:column}
+  #accountList .top_div div:nth-child(2) .txt-input{width:94%;margin:0;}
+  #accountList .top_div div:nth-child(2) .btn{width:100%;margin-top:10px;}
+  #accountList .top_div div:nth-child(2) .btn-ok{margin-left:0;}
+}
+
+
+/*
+  관리자 등록/수정
+*/
+#accountReg .page_title div{width:220px;}
+#accountReg form{width:80%;margin:0 auto}
+#accountReg .pw_txt{font-size:0.8rem;font-weight:700;}
+#accountReg .row{margin-bottom:20px;width:90%;}
+#accountReg .error{font-size:0.9rem;margin-left:10px;}
+#accountReg #upw{margin-bottom:20px;}
+#accountReg .posi{display:flex;}
+#accountReg .posi .wv-2:first-child .txt-input{width:90%;}
+#accountReg .pil{color:red;font-weight:700;}
+#accountReg .rad_row{justify-content: space-around;}
+#accountReg .rad_row label{text-align:center;}
+#accountReg .rad_row div{flex-direction: column;align-items: center;}
+#accountReg .rad_row div img{width:80px;cursor:pointer;}
+#accountReg .btn_row{width:100%;height:50px;}
+#accountReg .btn_row .btn_div{width:100%;height:80%;}
+#accountReg .btn_row .btn_div .btn{width:40%;}
+#accountReg .btn_row .btn_div .btn-ok{margin-right:20px;}
+#accountReg .btn_row .btn-no{width:20%;height:40px;}
+
+@media (max-width:1100px){
+  #accountReg .posi{flex-direction: column;}
+  #accountReg .posi div{width:100%;}
+  #accountReg .posi .wv-2:first-child{margin-bottom:20px}
+  #accountReg .posi .wv-2:first-child .txt-input{width:100%}
+}
+@media (max-width:768px){
+  #accountReg .rad_row div img{width:50px;cursor:pointer;}
+  #accountReg .btn_row{flex-direction:column;height:80px;}
+  #accountReg .btn_row .btn_div{width:100%;height:40px;justify-content: space-between;}
+  #accountReg .btn_row .btn_div .btn{width:49%;margin:0;}
+  #accountReg .btn_row .btn-no{width:100%;height:40px;margin-top:10px;}
+}
 
 
 
@@ -128,12 +214,9 @@ nav .acc_div .lout{margin-top:10px;text-decoration: underline;cursor:pointer;fon
 /*
   문의 리스트
 */
-#mooniList{width:80%;}
-#mooniList .page_title{font-size:2rem;margin-top:20px;margin-bottom:50px;}
-#mooniList .page_title div{border-bottom:1px solid #444;width:150px;}
 #mooniList .row{display:flex;justify-content: space-between;margin-bottom:20px;}
 #mooniList .row .row_sel{width:30%;}
-#mooniList .row select{width:100px;}
+#mooniList .row select{width:30%;}
 #mooniList .row .row_btn{display:flex;width:70%;justify-content: space-between;}
 #mooniList .row .row_btn .txt_div{width:80%;display:flex;align-items: center;}
 #mooniList .row .row_btn .txt-input{width:70%;margin-right:10px;}
@@ -156,41 +239,109 @@ nav .acc_div .lout{margin-top:10px;text-decoration: underline;cursor:pointer;fon
 /* #mooniList table td:nth-child(8){width:10%;} */
 #mooniList table td:last-child{width:4%}
 #mooniList table .pagin{border:0;padding-top:20px;}
-#mooniList .modal{width:500px;min-height:200px;max-height:800px; background:#fff;position:fixed;z-index:510;top:50%;left:50%;transform:translate(-50%,-50%);padding:2rem;display:none;}
-#mooniList .modal_mtype{displa:block;border:1px solid #CECECE;width:}
-#mooniList .modal_mtype .mtype_row{display:flex;justify-content: space-between;}
+#mooniList .view_mobi{display:none; flex-flow: row wrap;justify-content: center;}
+#mooniList .view_mobi .mobiv_div{width:300px;min-width:200px;border:1px solid #CECECE; border-radius:10px;padding:0.5rem;margin-right:10px; margin-bottom:10px;}
+#mooniList .view_mobi .mobiv_div div{display:flex;}
+#mooniList .view_mobi .mobiv_div .m_line2{margin:5px 0;border-top:1px solid #eee;padding:5px 0;border-bottom:1px solid #eee;}
+#mooniList .view_mobi .mobiv_div .m_line4{margin:5px 0;border-top:1px solid #eee;padding:5px 0;border-bottom:1px solid #eee;}
+#mooniList .view_mobi .paging_div .pagination{font-size:.7rem;}
+
+#mooniList .modal{
+  width:30%;min-height:200px;max-height:800px; background:#fff;position:absolute;z-index:510;top:50%;left:50%;
+  transform:translate(-50%,-30%);padding:2rem;display:none;border:2px solid #777;border-radius:10px;
+  box-shadow:1px 1px #444;
+}
+#mooniList .modal .modal_title{margin:0;padding:0;font-size:1.5rem;margin-bottom:30px;}
+#mooniList .modal .title_line{margin:0;padding:0;border-bottom:1px solid #444;width:80%;}
+#mooniList .modal_mtype{display:none;border:1px solid #CECECE;}
+#mooniList .modal_mtype .top_div{justify-content: flex-start;align-items: center;}
+#mooniList .modal_mtype .top_div .txt-input{width:60%;margin-right:20px;}
+#mooniList .modal_mtype .top_div .btn{width:20%;height:35px;}
+#mooniList .modal_mtype .bottom_div{border:1px solid #999;min-height:100px;margin:20px 0;padding:5px 20px;max-height:150px;overflow-y: auto;}
+#mooniList .modal_mtype .mtype_row{display:flex;justify-content: space-between;margin-bottom:10px;}
 #mooniList .modal_mtype .mtype_row:hover{background:#ffe5e5;}
-#mooniList .modal_mtype .mtype{cursor:pointer}
+/* #mooniList .modal_mtype .mtype{cursor:pointer} */
 #mooniList .modal_mtype .mticon{cursor:pointer}
+#mooniList .modal_answer .mcont{max-height:300px;overflow-y: auto;}
 #mooniList .modal_answer .modal_row{display:flex;margin-bottom:20px;width:100%;justify-content: space-between;}
 #mooniList .modal_answer .modal_row div{display:flex;width:100%;text-align:left;}
-#mooniList .modal_answer .row_1 .modal_comp{margin-right:100px;}
-#mooniList .modal_answer .row_2 .modal_email{margin-left:50px;margin-right:50px;}
+#mooniList .modal_answer .modal_row .row_2{padding:20px 0;border-top:1px dotted #888;border-bottom:1px dotted #888;}
+#mooniList .modal_answer .modal_row .row_4{padding:20px 0;border-top:1px dotted #888;border-bottom:1px solid #0B77C7;}
+#mooniList .modal_answer .btn_row{margin-top:30px;margin-bottom:0;}
+/* #mooniList .modal_answer .modal_row .row_4{padding-top: 20px;border-top: 1px solid #0B77C0;} */
+/* #mooniList .modal_answer .modal_row .row_5{margin: 10px 0px;border-top: 1px dotted #0B77C0;width:50%;} */
 
 
-@media (max-width:1355px){
+@media (max-width:1600px){
   #mooniList .row{flex-direction:column}
   #mooniList .row .row_sel{width:100%;margin-bottom:20px;}
   #mooniList .row .row_sel select{width:20%;}
 }
 
+@media (max-width:1200px){
+  #mooniList table td:nth-child(3){display:none;}
+  #mooniList table th:nth-child(3){display:none;}
+  #mooniList table td:last-child{width:8%}
+  #mooniList .modal{width:46%;}
+}
+
+@media (max-width:1100px){
+  #mooniList .row .row_btn{width:100%;justify-content: flex-start;}
+  #mooniList .row .row_btn .txt_div{width:70%;}
+  #mooniList .row .row_btn .add_div{width:30%}
+  #mooniList .row .row_btn .txt_div .txt-input{width:70%;}
+  #mooniList .row .row_btn .add_div input{width:100%}
+  #mooniList .row .row_sel select{width:30%;}
+}
+
+@media (max-width:930px){
+  #mooniList table td:nth-child(4){display:none;}
+  #mooniList table th:nth-child(4){display:none;}
+  #mooniList table td:nth-child(5){width:10%}
+}
+
 @media (max-width:768px){
   #mooniList .row .row_sel select{width:30%;}
-  #mooniList .row .row_btn{width:100%;}
   #mooniList .row .row_btn .txt_div{width:100%;}
-  #mooniList .row .row_btn .txt_div .txt-input{width:70%;}
-  #mooniList .row .row_btn{flex-direction:column;}
   #mooniList .row .row_btn .add_div{margin-top:10px;}
+  #mooniList .row .row_btn .add_div input{width:200px;}
+  #mooniList .row .row_btn{flex-direction:column;}
+  #mooniList .row .row_btn .txt_div .txt-input{width:70%;}
+  
+  #mooniList table{display:none;}
+  #mooniList .view_mobi{display:flex;}
+  #mooniList .view_mobi .mobiv_div{width:100%;}
+  
+  #mooniList .modal{font-size:0.8rem;width:50%;}
+  
+  
+}
+
+@media (max-width:500px){
+  #mooniList .modal_answer .modal_row{margin-bottom:0;}
+  #mooniList .modal_answer .modal_row div{flex-direction: column;}
+  #mooniList .modal_answer .modal_row .wv-2:first-child{margin-bottom:10px;}
+  
+  #mooniList .modal_answer .modal_row .row_1{margin-bottom:10px;}
+  #mooniList .modal_answer .modal_row .row_2{padding:10px 0;}
+  #mooniList .modal_answer .modal_row .row_3{margin:10px 0;}
+  #mooniList .modal_answer .modal_row .row_4{padding:10px 0;}
+  #mooniList .modal_answer .mcont{padding-top:10px;}
+  /* #mooniList .modal_answer .modal_row .wv-2{width:30%;} */
 }
 
 @media (max-width:400px){
-  #mooniList .row .row_sel{display:flex;flex-direction:column}
-  #mooniList .row .row_sel select{width:100%;}
+  #mooniList .row .row_sel{display:flex;flex-direction:column;margin-bottom:0;}
+  #mooniList .row .row_sel select{width:100%;margin-bottom:5px;}
   #mooniList .row .row_btn .txt_div{display:flex;flex-direction:column;}
   #mooniList .row .row_btn .txt_div .txt-input{width:100%;margin:0;padding:10px 0;}
-  #mooniList .row .row_btn .txt_div input{width:100%;}
-  #mooniList .row .row_btn .add_div input{width:100%}
-
+  #mooniList .row .row_btn .txt_div .btn{width:100%;margin-top:5px;}
+  #mooniList .row .row_btn .add_div{width:100%;margin-top:5px;}
+  #mooniList .row .row_btn .add_div input{width:100%;}
+  
+  #mooniList .modal_mtype .top_div{flex-direction:column;}
+  #mooniList .modal_mtype .top_div .txt-input{margin-bottom:10px;width:90%;margin-right:0;}
+  #mooniList .modal_mtype .top_div .btn{width:100%;}
 }
 
 
@@ -198,7 +349,6 @@ nav .acc_div .lout{margin-top:10px;text-decoration: underline;cursor:pointer;fon
 /*
   포트폴리오 리스트
 */
-#portpolList{}
 
 #portpolList .port_wrap{display:flex;flex-flow:row wrap;padding:.5rem;}
 #portpolList .port_wrap .port_div{width:280px;height:100%;margin-right:50px;margin-bottom:50px;}
@@ -227,7 +377,6 @@ nav .acc_div .lout{margin-top:10px;text-decoration: underline;cursor:pointer;fon
 /*
   메일 발송 리스트
 */
-#mailList{}
 #mailList table{width:100%;text-align:center;border-collapse:collapse;}
 #mailList table .nadding{text-align:center;}
 #mailList table th{border-bottom:1px solid #444;}
@@ -257,7 +406,6 @@ nav .acc_div .lout{margin-top:10px;text-decoration: underline;cursor:pointer;fon
 /*
   메일 발송
 */
-#mailSend{}
 #mailSend .row{display:flex}
 #mailSend .img_div{display:none}
 #mailSend .row_cont #templ2{margin-left:50px;}

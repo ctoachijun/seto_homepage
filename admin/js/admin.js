@@ -330,7 +330,7 @@ function setModal(idx){
     data: {"w_mode":"setModal","idx":idx},
     success: function(result){
       let json = JSON.parse(result);
-      // console.log(json);
+      console.log(json);
 
       if(json.state == "N"){
         errorAlert();
@@ -343,6 +343,7 @@ function setModal(idx){
         $(".modal_wdate").html(json.wdate);
         $(".modal_content").html(json.content);
         $(".modal_type").html(json.mtype);
+        
         if(json.read=="Y"){
           $(".ans_td"+idx).html("<span class='yans'>확인</span>");
         }

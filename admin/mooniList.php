@@ -38,7 +38,7 @@ include "header.php";
 
 
 if(!$cur_page) $cur_page = 1;
-if(!$end) $end = 50;
+if(!$end) $end = 20;
 if(!$cur_page) $cur_page = 1;
 if(!$sort) $sort = "all";
 if(!$tsort) $tsort = "all";
@@ -198,6 +198,47 @@ $mtype_box = getMooniTypeList();
                 <? endif; ?>
             </table>
             
+            <div class="view_mobi">
+              <? foreach($mooni as $v) : 
+                  $idx = $v['i_idx'];
+                  $itidx = $v['i_itidx'];
+                  $comp = $v['i_company'];
+                  $name = $v['i_name'];
+                  $email = $v['i_email'];
+                  $tel = $v['i_tel'];
+                  $subj = $v['i_subject'];
+                  $read = $v['i_read'];
+                  $wdate = $v['i_wdate'];
+                  $rdate = $v['i_rdate'];
+                  $read == "N" ? $ans_txt = "<span class='noans'>미확인</span>" : $ans_txt = "<span class='yans'>확인</span>";
+                  $mtype = getMooniType($itidx);
+              ?>
+                  <div class="mobiv_div" onclick="setModal(<?=$idx?>)">
+                    <div class="m_line1">
+                      <div class="m_cont1 wv-2"><?=$mtype?></div><div class="m_cont2 wv-2 ans_td<?=$idx?>"><?=$ans_txt?></div>
+                    </div>
+                    <div class="m_line2">
+                      <div class="m_cont1 wv-2"><?=$comp?></div><div class="m_cont2 wv-2"><?=$name?></div>
+                    </div>
+                    <div class="m_line3">
+                      <div class="m_cont1 wv-1"><?=$email?></div>
+                    </div>
+                    <div class="m_line4">
+                      <div class="m_cont1 wv-1"><?=$subj?></div>
+                    </div>
+                    <div class="m_line5">
+                      <div class="m_cont1 wv-1"><?=$wdate?></div>
+                    </div>
+                      
+                  </div>
+              
+              
+              <? endforeach; ?>
+                  <div class="paging_div"><? getPaging("setohp_moon", $pqs, $where)?></div>
+            </div>
+            
+            
+            
           </div>
         </div>
     </form>
@@ -205,34 +246,48 @@ $mtype_box = getMooniTypeList();
     
     <div class="modal modal_answer">
       <input type="hidden" name="seldata" />
+      <div class="modal_title">
+        <div class="title_txt">문의 상세</div>
+        <div class="title_line"></div>
+      </div>
       <div class="modal_row">
-        <div class='row_1'><span class="modal_comp"></span><span class="modal_name"></span></div>
-      </div>      
-      <div class="modal_row">
-        <div class="row_2"><span class="modal_tel"></span><span class="modal_email"></span></div>
-      </div>      
-      <div class="modal_row">
-        <div class="row_3"><span class="modal_type"></span></div>
-      </div>      
-      <div class="modal_row">
-        <div class="row_4">
-          <div>제목 : <span class="modal_subject"></span></div><div>작성일 : <span class="modal_wdate"></span></div>
+        <div class="row_1">
+          <div class="wv-2"><span class="modal_type"></span></div><div class="wv-2"><span class="modal_wdate"></span></div>
         </div>
       </div>      
       <div class="modal_row">
-        <span class="modal_content"></span>
+        <div class='row_2'>
+          <div class="wv-2"><span class="modal_comp"></span></div><div class="wv-2"><span class="modal_name"></span></div>
+        </div>
       </div>      
       <div class="modal_row">
+        <div class="row_3">
+          <div class="wv-2"><span class="modal_tel"></span></div><div class="wv-2"><span class="modal_email"></span></div>
+        </div>
+      </div>      
+      <div class="modal_row">
+        <div class="row_4">
+          <div><span class="modal_subject"></span></div>
+        </div>
+      </div>      
+      <div class="modal_row mcont">
+        <span class="modal_content"></span>
+      </div>      
+      <div class="modal_row btn_row">
         <input type="button" class="btn" value="닫기" onclick="closeModal()" />
       </div>      
     </div>
     
     
     <div class="modal modal_mtype">
-      <div class="top_div">
+      <div class="modal_title">
+        <div class="title_txt">문의 유형 추가</div>
+        <div class="title_line"></div>
+      </div>
+      <div class="top_div d-flex">
         <input type='hidden' name='aejud' />
         <input type='hidden' name='nowclass' />
-        <input type="text" id="mtype" /><input type="button" class="btn btn-ok" value="추가" onclick="addMtype()" />
+        <input type="text" id="mtype" class="txt-input" /><input type="button" class="btn btn-ok" value="추가" onclick="addMtype()" />
       </div>
       <div class="bottom_div">
         <div class="mtype_div">
@@ -249,6 +304,9 @@ $mtype_box = getMooniTypeList();
   <? include "footer.php"; ?>  
   <script>
     $("#closeBtn").click( function(){
+      closeModal();
+    });
+    $(".backblack").click( function(){
       closeModal();
     });
   </script>

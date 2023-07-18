@@ -414,7 +414,7 @@ function chkPermission($idx,$num){
   }
 }
 function getMooniInfo($idx){
-  $sql = "SELECT * FROM sthp_inquiry as i INNER JOIN sthp_inquiry_type as it ON i.i_itidx = it.it_idx WHERE i.i_idx = {$idx}";
+  $sql = "SELECT * FROM sthp_inquiry as i LEFT OUTER JOIN sthp_inquiry_type as it ON i.i_itidx = it.it_idx WHERE i.i_idx = {$idx}";
   return sql_fetch($sql);
 }
 function getMooniType($idx){

@@ -166,30 +166,37 @@
     break;
     
     case "setModal" :
-      $sql = "UPDATE sthp_inquiry SET i_read = 'Y' WHERE i_idx = {$idx}";
-      $re = sql_exec($sql);
+      $mooni = getMooniInfo($idx);
+      $read = $mooni['i_read'];
       
-      if($re){
-        $mooni = getMooniInfo($idx);
+      // 안읽은 경우에만 읽음표시 후 로그 기록.
+      if($read == "N"){
+        $sql = "UPDATE sthp_inquiry SET i_read = 'Y' WHERE i_idx = {$idx}";
+        $re = sql_exec($sql);
         
-        $output['comp'] = $mooni['i_company'];
-        $output['name'] = $mooni['i_name'];
-        $output['tel'] = $mooni['i_tel'];
-        $output['email'] = $mooni['i_email'];
-        $output['wdate'] = $mooni['i_wdate'];
-        $output['subject'] = $mooni['i_subject'];
-        $output['content'] = $mooni['i_content'];
-        $output['read'] = $mooni['i_read'];
-        $output['mtype'] = $mooni['it_type'];
-        
-        //로그
-        $exec = $mooni['i_company']." (".$output['name'] = $mooni['i_name'].") 문의 확인";
-        getLog($sql,$exec,$aname);
-        
-        $output['state'] = "Y";
-      }else{
-        $output['state'] = "N";
+        if($re){
+          //로그
+          $exec = $mooni['i_company']." (".$mooni['i_name'].") 문의 확인";
+          getLog($sql,$exec,$aname);
+          
+          $output['state'] = "Y";
+        }else{
+          $output['state'] = "N";
+        }
       }
+
+      $output['comp'] = $mooni['i_company'];
+      $output['name'] = $mooni['i_name'];
+      $output['tel'] = $mooni['i_tel'];
+      $output['email'] = $mooni['i_email'];
+      $output['wdate'] = $mooni['i_wdate'];
+      $output['subject'] = $mooni['i_subject'];
+      $output['content'] = preg_replace("/\\n/","<br>",$mooni['i_content']);
+      $output['read'] = $mooni['i_read'];
+      $output['mtype'] = $mooni['it_type'];
+      
+      
+      $output['sql'] = $sql;
       
       echo json_encode($output,JSON_UNESCAPED_UNICODE);
     break;
