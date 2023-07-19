@@ -95,13 +95,42 @@ $noimg = "/img/no_img1.jpg";
         <img src="../img/hamb.png" />
       </div>
     </div>
+    <ul class="nav_div">
+      <li class="mmenu1"><a href="portpolList.php">포트폴리오</a></li>
+      <li class="mmenu2"><a href="mooniList.php">문의</a></li>
+      <li class="mmenu3"><a href="mailList.php">뉴스레터</a></li>
+      <? if($agrade == "A"): ?>
+        <li class="mmenu4">
+          <a>계정관리</a>
+          <ul class="mmenu4_drop">
+            <li class="mmenu4_drop_line <?=$drop1_act?>" onclick="accpageMove(1)">관리자 계정관리</li>
+            <li class="mmenu4_drop_line <?=$drop2_act?>" onclick="accpageMove(2)">관리자 로그</li>
+          </ul>
+      </li>
+      <? endif; ?>      
+      <li class="mmenu5">          
+        <span class="aname"><?=$aname?>님</span>
+        <span class="lout" onclick="logOut()">로그아웃</span>
+      </li>
+
+    </div>
+
+    <!-- <nav class="mobi">
+    <div class="top_div">
+      <div class="logo_div">
+        <a href="/admin"><img src="../img/seto_logo.png" /></a>
+      </div>
+      <div class="acc_div">
+        <img src="../img/hamb.png" />
+      </div>
+    </div>
     <div class="nav_div">
       <div class="menu1"><a href="portpolList.php">포트폴리오</a></div>
       <div class="menu2"><a href="mooniList.php">문의</a></div>
       <div class="menu3"><a href="mailList.php">뉴스레터</a></div>
       <? if($agrade == "A"): ?>
         <div class="menu4">
-          계정관리
+          <a>계정관리</a>
           <div class="menu4_drop">
             <div class="menu4_drop_line <?=$drop1_act?>" onclick="accpageMove(1)">관리자 계정관리</div>
             <div class="menu4_drop_line <?=$drop2_act?>" onclick="accpageMove(2)">관리자 로그</div>
@@ -113,8 +142,8 @@ $noimg = "/img/no_img1.jpg";
         <span class="lout" onclick="logOut()">로그아웃</span>
       </div>
 
-    </div>
-
+    </div> -->
+    
     
     
   </nav>

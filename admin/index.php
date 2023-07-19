@@ -53,10 +53,10 @@
               </div>
               <div class="left_cont">
                 <div class="head">
-                <span>PassWord :</span>
+                  <span>비밀번호 :</span>
                 </div>
                 <div class="inputd">
-                <input type="password" class="txt-input" id="upw" name="upw" autocomplete="new-password" placeholder="Password를 입력 해 주세요." />
+                  <input type="password" class="txt-input" id="upw" name="upw" autocomplete="new-password" placeholder="Password를 입력 해 주세요." />
                 </div>
               </div>
             </div>
@@ -80,4 +80,5 @@
             chkAccount();
         }
     });
+    
   </script>

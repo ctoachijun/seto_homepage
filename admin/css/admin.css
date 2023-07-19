@@ -1,4 +1,10 @@
-body{margin:0;height:0;}
+* { 
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{min-height:100vh;}
 #main{width:100%;min-height:84vh;display:flex;justify-content: center;min-width:220px;}
 .content{padding:1rem;height:100%;}
 .page_title{font-size:2rem;margin-top:20px;margin-bottom:50px;}
@@ -31,8 +37,8 @@ form{width:100%;}
   header footer
 */
 nav{background:#040000;align-items: center;width:100%;height:12vh;min-width:220px;}
-.mobi{display:none}
-nav a{text-decoration: none;color:#fff;}
+.mobi{display:none;position:fixed;z-index:400;}
+nav a{text-decoration: none;color:#fff; cursor:pointer}
 nav .logo_div{width:15%;}
 nav .logo_div img{width:100%;}
 nav .nav_div{width:72%;color:#fff;justify-content: center;align-items:center;height:100%;}
@@ -40,7 +46,7 @@ nav .nav_div div{display:flex;align-items:center;margin-right:50px;font-weight:7
 nav .nav_div .active{border-bottom:2px solid #E6002D}
 nav .nav_div .dactive{color:#E6002D}
 nav .nav_div .menu4{position:relative;}
-nav .nav_div .menu4_drop{position:absolute;top:50px;left:0;width:200px; height:150px;flex-direction: column;background:#040000;display:none;}
+nav .nav_div .menu4_drop{position:absolute;top:50px;left:0;width:200px; height:110px;flex-direction: column;background:#040000;display:none;}
 nav .nav_div .menu4_drop_line{width:100%;font-size:1rem;font-weight:normal;margin:0;height:40px;padding-left:20px;padding-top:30px;}
 
 nav .acc_div{width:10%;height:100%;color:#eee;justify-content: center;align-items: center;flex-direction: column;}
@@ -52,8 +58,26 @@ nav .acc_div .lout{margin-top:10px;text-decoration: underline;cursor:pointer;fon
 @media (max-width:1200px){
   .notmobi{display:none;}
   .mobi{display:flex;flex-direction:column;}
-  /* .mobi .logo_div{width:60%} */
-  .mobi .logo_div img{width:250px;}
+  .mobi .logo_div img{width:250px; cursor:pointer}
+  .mobi .acc_div img{width:50px; cursor:pointer}
+  .mobi .top_div{width:100%;height:100%;display:flex;justify-content: space-between;align-items: center;}
+  .mobi .acc_div{align-items: center;justify-content: center; display:flex;}
+
+  .mobi .nav_div{display:none;width:100%;height:500px; max-height:800px;background:#040000;}
+  .mobi ul{list-style:none;}
+  .mobi ul li{width:100%;text-align:center;display:block;align-items:center; border-top:1px solid #CECECE;line-height:60px;font-size:1.3rem;}
+  .mobi ul li a{cursor:pointer;}
+  .mobi ul .mmenu5{font-size:1rem;}
+  .mobi ul li .lout{margin-left:50px;cursor:pointer;}
+  
+  .mobi .mmenu4 .mmenu4_drop{width:100%;display:none;}
+  .mobi .mmenu4 .mmenu4_drop li:last-child{border-top:1px dotted #CECECE;}
+  .mobi .mmenu4 .mmenu4_drop li{font-size:1rem;}
+  .mobi .mmenu4 .mmenu4_drop li a{cursor:pointer}
+  
+  
+  
+  /* .mobi .logo_div img{width:250px;}
   .mobi .top_div{width:100%;height:100%;display:flex;justify-content: space-between;align-items: center;}
   .mobi .acc_div{align-items: center;justify-content: center; display:flex;}
   .mobi .acc_div img{width:50px;}
@@ -62,12 +86,12 @@ nav .acc_div .lout{margin-top:10px;text-decoration: underline;cursor:pointer;fon
   .mobi .nav_div .menu4_drop{display:none;}
   .mobi .nav_div .menu5{display:flex;font-size:1rem;}
   .mobi .nav_div .menu5 .lout{margin-left:50px;}
+  .mobi a{font-size:1rem;} */
 }
 
 @media (max-width:768px){
   .mobi .logo_div img{width:180px;}
-  /* .mobi .acc_div{width:16%;}   */
-  .mobi .acc_div img{width:35px;}  
+  .mobi .acc_div img{width:35px;} 
 }
 
 @media (max-width:400px){
@@ -81,16 +105,19 @@ nav .acc_div .lout{margin-top:10px;text-decoration: underline;cursor:pointer;fon
 /*
   로그인 화면
 */
-#logIn{width:100vw;height:100vh;background:#040000}
+#logIn{width:100%;height:100vh;background:#040000}
 #logIn .content{position:relative;width:100%;height:100%;}
-#logIn .login_div{position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);border:1px solid #222;width:40%;height:30%;padding:2rem;border:2px solid #CECECE;border-radius:10px;}
+#logIn .login_div{
+  position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);border:1px solid #222;max-width:500px;min-width:200px;height:300px;
+  width:40%;padding:2rem;border:2px solid #CECECE;border-radius:10px;
+}
 #logIn .login_div .cont_div{flex-direction: column;}
 #logIn .login_div .top_div{align-items:center;justify-content: center;}
-#logIn .login_div .top_div img{width:50%;}
-#logIn .login_div .top_div p{color:#eee;font-size:34px;font-weight:700;margin:0;}
+#logIn .login_div .top_div img{width: 250px;min-width:150px;}
+#logIn .login_div .top_div p{color:#eee;font-size:28px;font-weight:700;margin:0;margin-top:-5px;}
 #logIn .login_div .left_div{flex-direction:column;width:100%}
 #logIn .login_div .left_div .left_cont{display:flex;margin-top:20px;}
-#logIn .login_div .left_div .left_cont .head{display:flex;color:#fff;width:20%;text-align:right;align-items:center}
+#logIn .login_div .left_div .left_cont .head{display:flex;color:#fff;width:80px;text-align:right;align-items:center}
 #logIn .login_div .left_div .left_cont .head span{width:100%;}
 #logIn .login_div .left_div .left_cont .inputd{margin-left:20px;width:60%;}
 #logIn .login_div .left_div .left_cont .inputd input{border:0;}
@@ -99,7 +126,31 @@ nav .acc_div .lout{margin-top:10px;text-decoration: underline;cursor:pointer;fon
 #logIn .login_div .right_div a{color:#CCC;}
 #logIn .login_div .right_div input{width:30%;height:45px;border:0;}
 
-
+@media (max-width:1010px){
+  #logIn .login_div{width:60%;}
+  /* #logIn .login_div .top_div img{width: 62%;}
+  #logIn .login_div .top_div p{font-size:25px;margin-top:-2px;} */
+}
+@media (max-width:768px){
+  #logIn .login_div{top:44%;width:66%;}
+  #logIn .login_div .top_div p{font-size:20px;}
+}
+@media (max-width:600px){
+  #logIn .login_div{top:42%;}
+  #logIn .login_div{height:350px;}
+  #logIn .login_div .top_div{flex-direction:column}
+  #logIn .login_div .top_div img{width: 80%;}
+  #logIn .login_div .top_div p{font-size:22px;}
+  #logIn .login_div .left_div .left_cont{flex-direction: column;align-items: flex-start;}
+  #logIn .login_div .left_div .left_cont .head{text-align:left;}
+  #logIn .login_div .left_div .left_cont .inputd{margin-left:0px;width:100%;}
+  #logIn .login_div .right_div{width:100%;align-items: flex-start;}
+  #logIn .login_div .right_div input{width:100%;height:35px;}
+}
+@media (max-width:400px){
+  #logIn .login_div{width:80%;}
+  #logIn .txt-input::placeholder{font-size:.7rem;}
+}
 
 
 /*
@@ -227,8 +278,9 @@ nav .acc_div .lout{margin-top:10px;text-decoration: underline;cursor:pointer;fon
 #mooniList table{width:100%;text-align:center;border-collapse: collapse;font-size:0.9rem;}
 #mooniList table th{height:20px;padding:.5rem;border-bottom:2px solid #ACACAC;}
 #mooniList table tr{cursor:pointer;}
-#mooniList table tr:hover{background:#fafbc3}
-#mooniList table td{height:30px;padding:.5rem;border-bottom:1px solid #CECECE;}
+#mooniList table thead tr{background:#c0e8b8}
+#mooniList table tbody tr:hover{background:#fafbc3}
+#mooniList table td{height:30px;padding:.8rem;border-bottom:1px solid #CECECE;}
 #mooniList table td:first-child{width:3%;}
 #mooniList table td:nth-child(2){width:8%}
 #mooniList table td:nth-child(3){width:6%}
@@ -247,7 +299,7 @@ nav .acc_div .lout{margin-top:10px;text-decoration: underline;cursor:pointer;fon
 #mooniList .view_mobi .paging_div .pagination{font-size:.7rem;}
 
 #mooniList .modal{
-  width:30%;min-height:200px;max-height:800px; background:#fff;position:absolute;z-index:510;top:50%;left:50%;
+  width:30%;min-height:200px;max-height:800px; background:#fff;position:fixed;z-index:510;top:30%;left:50%;
   transform:translate(-50%,-30%);padding:2rem;display:none;border:2px solid #777;border-radius:10px;
   box-shadow:1px 1px #444;
 }
@@ -258,9 +310,9 @@ nav .acc_div .lout{margin-top:10px;text-decoration: underline;cursor:pointer;fon
 #mooniList .modal_mtype .top_div .txt-input{width:60%;margin-right:20px;}
 #mooniList .modal_mtype .top_div .btn{width:20%;height:35px;}
 #mooniList .modal_mtype .bottom_div{border:1px solid #999;min-height:100px;margin:20px 0;padding:5px 20px;max-height:150px;overflow-y: auto;}
+#mooniList .modal_mtype .btn_div input{height:35px;}
 #mooniList .modal_mtype .mtype_row{display:flex;justify-content: space-between;margin-bottom:10px;}
 #mooniList .modal_mtype .mtype_row:hover{background:#ffe5e5;}
-/* #mooniList .modal_mtype .mtype{cursor:pointer} */
 #mooniList .modal_mtype .mticon{cursor:pointer}
 #mooniList .modal_answer .mcont{max-height:300px;overflow-y: auto;}
 #mooniList .modal_answer .modal_row{display:flex;margin-bottom:20px;width:100%;justify-content: space-between;}
@@ -268,17 +320,16 @@ nav .acc_div .lout{margin-top:10px;text-decoration: underline;cursor:pointer;fon
 #mooniList .modal_answer .modal_row .row_2{padding:20px 0;border-top:1px dotted #888;border-bottom:1px dotted #888;}
 #mooniList .modal_answer .modal_row .row_4{padding:20px 0;border-top:1px dotted #888;border-bottom:1px solid #0B77C7;}
 #mooniList .modal_answer .btn_row{margin-top:30px;margin-bottom:0;}
-/* #mooniList .modal_answer .modal_row .row_4{padding-top: 20px;border-top: 1px solid #0B77C0;} */
-/* #mooniList .modal_answer .modal_row .row_5{margin: 10px 0px;border-top: 1px dotted #0B77C0;width:50%;} */
+#mooniList .modal_answer .btn_row input{height:35px;}
 
 
 @media (max-width:1600px){
-  #mooniList .row{flex-direction:column}
-  #mooniList .row .row_sel{width:100%;margin-bottom:20px;}
-  #mooniList .row .row_sel select{width:20%;}
 }
 
 @media (max-width:1200px){
+  #mooniList .row{flex-direction:column}
+  #mooniList .row .row_sel{width:100%;margin-bottom:20px;}
+  #mooniList .row .row_sel select{width:20%;}
   #mooniList table td:nth-child(3){display:none;}
   #mooniList table th:nth-child(3){display:none;}
   #mooniList table td:last-child{width:8%}
@@ -312,11 +363,11 @@ nav .acc_div .lout{margin-top:10px;text-decoration: underline;cursor:pointer;fon
   #mooniList .view_mobi{display:flex;}
   #mooniList .view_mobi .mobiv_div{width:100%;}
   
-  #mooniList .modal{font-size:0.8rem;width:50%;}
-  
-  
+  #mooniList .modal{ont-size:0.8rem;width:60%;}
 }
-
+@media (max-width:600px){
+  #mooniList .modal{width:80%;}
+}
 @media (max-width:500px){
   #mooniList .modal_answer .modal_row{margin-bottom:0;}
   #mooniList .modal_answer .modal_row div{flex-direction: column;}
@@ -331,6 +382,7 @@ nav .acc_div .lout{margin-top:10px;text-decoration: underline;cursor:pointer;fon
 }
 
 @media (max-width:400px){
+  #mooniList .modal{width:90%;}
   #mooniList .row .row_sel{display:flex;flex-direction:column;margin-bottom:0;}
   #mooniList .row .row_sel select{width:100%;margin-bottom:5px;}
   #mooniList .row .row_btn .txt_div{display:flex;flex-direction:column;}
@@ -340,7 +392,7 @@ nav .acc_div .lout{margin-top:10px;text-decoration: underline;cursor:pointer;fon
   #mooniList .row .row_btn .add_div input{width:100%;}
   
   #mooniList .modal_mtype .top_div{flex-direction:column;}
-  #mooniList .modal_mtype .top_div .txt-input{margin-bottom:10px;width:90%;margin-right:0;}
+  #mooniList .modal_mtype .top_div .txt-input{margin-bottom:10px;width:100%;margin-right:0;}
   #mooniList .modal_mtype .top_div .btn{width:100%;}
 }
 
