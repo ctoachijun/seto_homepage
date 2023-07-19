@@ -674,7 +674,7 @@
       $output['result'] = $res_txt;
       $output['code'] = $code_txt;
       $output['etc'] = $etc_txt;
-      $output['count'] = $info['sl_count'];
+      $output['count'] = $info['sl_count']." 건";
       $output['show'] = $show;
       
       

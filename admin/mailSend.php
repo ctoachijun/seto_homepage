@@ -6,9 +6,20 @@ include "header.php";
 ?>
   <div id="mailSend">
     <div class="content">
+      <div class="page_title">
+        <div>뉴스레터 발송</div>
+      </div>
       <form method="post" id="sendForm" >
+          <div class="row notice">
+            <div class="row_wrap">
+              <div class="row_title">※주의사항</div>
+              <div class="row_cont">
+                <h4><b>모든 항목이 필수</b>입니다. <span>미리보기</span>를 통해 내용 확인을 반드시 해 주세요.</h4>
+              </div>
+            </div>
+          </div>
           <div class="row">
-            <div class="row_wrap wv-2">
+            <div class="row_wrap">
               <div class="row_title">제목</div>
               <div class="row_cont">
                 <input type="text" class="txt-input" id="subject" name="subject" value="<?=$title?>" onchange="chkSpaceFe(this)" >
@@ -16,15 +27,15 @@ include "header.php";
             </div>
           </div>
           <div class="row">
-            <div class="row_wrap wv-2">
+            <div class="row_wrap">
               <div class="row_title">머릿글</div>
               <div class="row_cont">
                 <input type="text" class="txt-input" id="head" name="head" value="<?=$title?>" onchange="chkSpaceFe(this)" >
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="row_wrap wv-2">
+          <div class="row temp_div">
+            <div class="row_wrap">
               <div class="row_title">템플릿</div>
               <div class="row_cont">
                 <input type="radio" id="templ1" class="pcursor" name="template" value="temp1" onclick="setTemp(1)" checked /><label for="templ1" class="pcursor">템플릿1</label>
@@ -34,13 +45,23 @@ include "header.php";
             </div>
           </div>
           <div class="row">
-            <div class="row_wrap wv-4">
+            <div class="row_wrap">
               <div class="row_title">타이틀1</div>
               <div class="row_cont">
                 <input type="text" class="txt-input" id="title1" name="title1" value="<?=$title?>" onchange="chkSpaceFe(this)" >
               </div>
             </div>
-            <div class="row_wrap wv-4">
+          </div>
+          <div class="row">
+            <div class="row_wrap">
+              <div class="row_title">내용1</div>
+              <div class="row_cont">
+                <textarea id="cont1" name="cont1" class="txt-input" oninput="chkWall(this);" onchange="chkSpaceFe(this)"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="row_wrap">
               <div class="row_title">타이틀2</div>
               <div class="row_cont">
                 <input type="text" class="txt-input" id="title2" name="title2" value="<?=$sub_title?>" onchange="chkSpaceFe(this)" >
@@ -48,29 +69,23 @@ include "header.php";
             </div>
           </div>
           <div class="row">
-            <div class="row_wrap wv-4">
-              <div class="row_title">내용1</div>
-              <div class="row_cont">
-                <textarea id="cont1" name="cont1" class="txt-input" oninput="chkWall(this);" onchange="chkSpaceFe(this)"></textarea>
-              </div>
-            </div>
-            <div class="row_wrap wv-4">
+            <div class="row_wrap">
               <div class="row_title">내용2</div>
               <div class="row_cont">
                 <textarea id="cont2" name="cont2" class="txt-input" oninput="chkWall(this);" onchange="chkSpaceFe(this)"></textarea>
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="row_wrap wv-6 main_div">
+          <div class="row img_row">
+            <div class="row_wrap d-flex main_div">
               <div class="row_title">메인사진</div>
               <div class="row_cont">
-                <input type="file" id="mainimg" name="mainimg" class="input_file" onchange="setImgname(3); setThumbnail(event,'premain')" />
+                <input type="file" id="mainimg" name="mainimg" class="input_file" onchange="setThumbnail(event,'premain');setImgname(3)" />
                 <input type="button" class="btn mainbtn" value="찾기" />
                 <p class='mainimg_name'></p>
               </div>
             </div>
-            <div class="row_wrap wv-6 img1_div">
+            <div class="row_wrap d-flex img1_div">
               <div class="row_title">사진1</div>
               <div class="row_cont">
                 <input type="file" id="img1" name="img1" class="input_file" onchange="setImgname(1); setThumbnail(event,'preimg1')" />
@@ -78,7 +93,7 @@ include "header.php";
                 <p class='img1_name'></p>
               </div>
             </div>
-            <div class="row_wrap wv-6 img_div img2_div">
+            <div class="row_wrap d-flex img_div img2_div">
               <div class="row_title">사진2</div>
               <div class="row_cont">
                 <input type="file" id="img2" name="img2" class="input_file" onchange="setImgname(2); setThumbnail(event,'preimg2')"/>

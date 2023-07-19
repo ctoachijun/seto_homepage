@@ -20,6 +20,8 @@ function setThumbnail(event,did) {
         };
     
         reader.readAsDataURL(file);
+    }else{
+      return false;
     }
   }
 }
@@ -298,6 +300,7 @@ function logOut(){
 // 검색시 페이지는 무조건 1페이지
 function chgCurPage(){
   $("input[name=cur_page]").val(1);
+  $("input[name=total_cnt]").val("");
   // $("form").submit();
   return true;
 }  
@@ -547,9 +550,14 @@ function setImgname(num){
     img_id = $("#img"+num)[0].files;
   }
   
-  $("."+txt_target).html(img_id[0].name);
+  img = img_id[0].name;
+  var ext = img_id[0].name.split('.').pop().toLowerCase(); //확장자분리
+  //아래 확장자가 있는지 체크
+  if($.inArray(ext, ['jpg','jpeg','gif','png']) == -1) {
+  }else{
+    $("."+txt_target).html(img_id[0].name);
+  }
   console.log(img_id);  
-  
 }
 
 function setTemp(num){

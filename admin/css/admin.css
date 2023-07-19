@@ -5,7 +5,11 @@
 }
 
 body{min-height:100vh;}
-#main{width:100%;min-height:84vh;display:flex;justify-content: center;min-width:220px;}
+#main{width:100%;min-height:84vh;display:flex;justify-content: center;min-width:220px;padding-top:0px;}
+@media (max-width:1200px){
+  #main{padding-top:50px;}
+}
+.footer{min-width:230px;}
 .content{padding:1rem;height:100%;}
 .page_title{font-size:2rem;margin-top:20px;margin-bottom:50px;}
 .page_title div{border-bottom:1px solid #444;width:150px;}
@@ -36,7 +40,7 @@ form{width:100%;}
 /*
   header footer
 */
-nav{background:#040000;align-items: center;width:100%;height:12vh;min-width:220px;}
+nav{background:#040000;align-items: center;width:100%;height:auto;;min-width:220px;}
 .mobi{display:none;position:fixed;z-index:400;}
 nav a{text-decoration: none;color:#fff; cursor:pointer}
 nav .logo_div{width:15%;}
@@ -46,12 +50,12 @@ nav .nav_div div{display:flex;align-items:center;margin-right:50px;font-weight:7
 nav .nav_div .active{border-bottom:2px solid #E6002D}
 nav .nav_div .dactive{color:#E6002D}
 nav .nav_div .menu4{position:relative;}
-nav .nav_div .menu4_drop{position:absolute;top:50px;left:0;width:200px; height:110px;flex-direction: column;background:#040000;display:none;}
-nav .nav_div .menu4_drop_line{width:100%;font-size:1rem;font-weight:normal;margin:0;height:40px;padding-left:20px;padding-top:30px;}
+nav .nav_div .menu4_drop{position:absolute;top:32px;left:0;width:200px; height:100px;flex-direction: column;background:#040000;display:none;}
+nav .nav_div .menu4_drop_line{width:100%;font-size:1rem;font-weight:normal;margin:0;height:40px;padding-left:20px;padding-top:20px;}
 
 nav .acc_div{width:10%;height:100%;color:#eee;justify-content: center;align-items: center;flex-direction: column;}
 nav .acc_div .aname{font-weight:700;color:#fff;}
-nav .acc_div .lout{margin-top:10px;text-decoration: underline;cursor:pointer;font-size:.8rem;}
+nav .acc_div .lout{margin-top:5px;text-decoration: underline;cursor:pointer;font-size:.8rem;margin-bottom:5px;}
 .footer{width:100%;height:30px;background:#040000;color:#ccc;margin-top:10px;justify-content: center;align-items: center;}
 
 
@@ -63,7 +67,7 @@ nav .acc_div .lout{margin-top:10px;text-decoration: underline;cursor:pointer;fon
   .mobi .top_div{width:100%;height:100%;display:flex;justify-content: space-between;align-items: center;}
   .mobi .acc_div{align-items: center;justify-content: center; display:flex;}
 
-  .mobi .nav_div{display:none;width:100%;height:500px; max-height:800px;background:#040000;}
+  .mobi .nav_div{display:none;width:100%;height:auto; max-height:800px;background:#040000;}
   .mobi ul{list-style:none;}
   .mobi ul li{width:100%;text-align:center;display:block;align-items:center; border-top:1px solid #CECECE;line-height:60px;font-size:1.3rem;}
   .mobi ul li a{cursor:pointer;}
@@ -75,18 +79,6 @@ nav .acc_div .lout{margin-top:10px;text-decoration: underline;cursor:pointer;fon
   .mobi .mmenu4 .mmenu4_drop li{font-size:1rem;}
   .mobi .mmenu4 .mmenu4_drop li a{cursor:pointer}
   
-  
-  
-  /* .mobi .logo_div img{width:250px;}
-  .mobi .top_div{width:100%;height:100%;display:flex;justify-content: space-between;align-items: center;}
-  .mobi .acc_div{align-items: center;justify-content: center; display:flex;}
-  .mobi .acc_div img{width:50px;}
-  .mobi .nav_div{display:none;width:100%;height:500px;background:#040000}
-  .mobi .nav_div div{display:flex;height:80px;border-top:1px solid #CECECE;width:100%;justify-content: center;}
-  .mobi .nav_div .menu4_drop{display:none;}
-  .mobi .nav_div .menu5{display:flex;font-size:1rem;}
-  .mobi .nav_div .menu5 .lout{margin-left:50px;}
-  .mobi a{font-size:1rem;} */
 }
 
 @media (max-width:768px){
@@ -99,8 +91,8 @@ nav .acc_div .lout{margin-top:10px;text-decoration: underline;cursor:pointer;fon
   .mobi .acc_div{width:20%;}
 }
 
-#accountList,#logList,#mooniList,#portpolList,#portpolReg,#mailList,#mailSend{width:80%;min-width:210px;}
-#accountReg{width:50%;min-width:210px;margin:0 auto;}
+#accountList,#logList,#mooniList,#portpolList,#portpolReg,#mailList{width:80%;min-width:210px;}
+#accountReg,#mailSend{width:50%;min-width:210px;margin:0 auto;}
 
 /*
   로그인 화면
@@ -167,9 +159,12 @@ nav .acc_div .lout{margin-top:10px;text-decoration: underline;cursor:pointer;fon
 #accountList table{width:100%;border-collapse:collapse;font-size:0.9rem;}
 #accountList table td{text-align:center;}
 #accountList table th{height:20px;padding:.5rem;border-bottom:2px solid #ACACAC;}
-#accountList table tr{cursor:pointer;}
-#accountList table tr:hover{background:#fafbc3}
-#accountList table td{height:30px;padding:.5rem;border-bottom:1px solid #CECECE;}
+#accountList table thead tr{background:#c0e8b8;cursor:pointer}
+#accountList table tbody tr{cursor:pointer;height:45px;}
+#accountList table tbody tr:hover{background:#fafbc3}
+
+#accountList table tbody td{height:30px;padding:.5rem;border-bottom:1px solid #CECECE;}
+#accountList table tbody td:last-child{padding:0.2rem;}
 #accountList table .redcircle{margin:0 auto;}
 
 #accountList .view_mobi{display:none; flex-flow: row wrap;justify-content: center;}
@@ -203,7 +198,7 @@ nav .acc_div .lout{margin-top:10px;text-decoration: underline;cursor:pointer;fon
 }
 @media (max-width:400px){
   #accountList .top_div div:nth-child(2){flex-direction:column}
-  #accountList .top_div div:nth-child(2) .txt-input{width:94%;margin:0;}
+  #accountList .top_div div:nth-child(2) .txt-input{width:100%;margin:0;}
   #accountList .top_div div:nth-child(2) .btn{width:100%;margin-top:10px;}
   #accountList .top_div div:nth-child(2) .btn-ok{margin-left:0;}
 }
@@ -217,6 +212,7 @@ nav .acc_div .lout{margin-top:10px;text-decoration: underline;cursor:pointer;fon
 #accountReg .pw_txt{font-size:0.8rem;font-weight:700;}
 #accountReg .row{margin-bottom:20px;width:90%;}
 #accountReg .error{font-size:0.9rem;margin-left:10px;}
+#accountReg #uid{font-size:20px;}
 #accountReg #upw{margin-bottom:20px;}
 #accountReg .posi{display:flex;}
 #accountReg .posi .wv-2:first-child .txt-input{width:90%;}
@@ -226,7 +222,7 @@ nav .acc_div .lout{margin-top:10px;text-decoration: underline;cursor:pointer;fon
 #accountReg .rad_row div{flex-direction: column;align-items: center;}
 #accountReg .rad_row div img{width:80px;cursor:pointer;}
 #accountReg .btn_row{width:100%;height:50px;}
-#accountReg .btn_row .btn_div{width:100%;height:80%;}
+#accountReg .btn_row .btn_div{width:100%;height:80%;justify-content: center;}
 #accountReg .btn_row .btn_div .btn{width:40%;}
 #accountReg .btn_row .btn_div .btn-ok{margin-right:20px;}
 #accountReg .btn_row .btn-no{width:20%;height:40px;}
@@ -238,6 +234,7 @@ nav .acc_div .lout{margin-top:10px;text-decoration: underline;cursor:pointer;fon
   #accountReg .posi .wv-2:first-child .txt-input{width:100%}
 }
 @media (max-width:768px){
+  #accountReg{width:70%;}
   #accountReg .rad_row div img{width:50px;cursor:pointer;}
   #accountReg .btn_row{flex-direction:column;height:80px;}
   #accountReg .btn_row .btn_div{width:100%;height:40px;justify-content: space-between;}
@@ -250,16 +247,51 @@ nav .acc_div .lout{margin-top:10px;text-decoration: underline;cursor:pointer;fon
 /*
   관리자 로그
 */
+#logList .page_title div{width:180px;}
+#logList .top_div{width:100%;margin-bottom:20px;}
+#logList .top_div div:first-child{width:100px;margin-right:10px;}
+#logList .top_div div:last-child{width:80%;}
+#logList .top_div input:first-child{width:80%;margin-right:10px;}
+#logList .top_div input:last-child{width:100px;}
 #logList table{width:100%;text-align:center;border-collapse: collapse;}
 #logList table th{height:20px;padding:.5rem;border-bottom:2px solid #ACACAC;}
 #logList table td{height:30px;padding:.5rem;border-bottom:1px solid #CECECE;}
-#logList table td:first-child{width:3%;}
-#logList table td:nth-child(2){width:6%}
-#logList table td:nth-child(3){width:15%}
-#logList table td:nth-child(4){width:50%}
-#logList table td:last-child{width:8%}
+#logList table thead tr{background:#c0e8b8}
+#logList table tbody tr:hover{background:#fafbc3}
+#logList table td:first-child{width:6%;}
+#logList table td:nth-child(2){width:10%}
+#logList table td:nth-child(3){width:20%}
+#logList table td:nth-child(4){width:40%}
+#logList table td:last-child{width:10%}
 #logList table .pagin{border:0;padding-top:20px;}
 
+#logList .mobi_div{width:100%;padding:.5rem;display:flex;flex-flow: row wrap;display:none;}
+#logList .mobi_div .log_div{border:1px solid #CECECE;border-radius: 10px;width:43%;padding:.7rem;margin-right:15px;margin-top:15px;}
+#logList .mobi_div .log_div div{display:flex;justify-content: space-between;white-space:break-spaces;word-break:break-all;line-height:30px;}
+#logList .mobi_div .log_div > div:nth-child(2){border-top:1px dotted #444;margin:5px 0;padding:5px 0;border-bottom:1px dotted #444;}
+#logList .mobi_div .log_div .line_3{max-height:100px;overflow:auto}
+#logList .mobi_div .log_div b{color:#0C77FB}
+#logList .nothing{height:100px;text-align:center;}
+#logList .mobi_div .pagin{display:flex;justify-content: center;width:100%;}
+
+@media (max-width:900px){
+  #logList .table_div{display:none;}
+  #logList .mobi_div{display:flex;}
+  #logList .mobi_div .log_div{width:100%;}
+}
+@media (max-width:500px){
+  #logList .top_div{flex-direction:column}
+  #logList .top_div div:first-child{width:92%}
+  #logList .top_div .sel-select{width:100%;}
+  #logList .top_div div:last-child{margin-top:10px;width:92%;}
+  #logList .top_div div:last-child .btn{height:35px;}
+}
+@media (max-width:400px){
+  #logList{width:100%}
+  #logList .top_div div:last-child{flex-direction:column}
+  #logList .top_div div:last-child .txt-input{width:100%}
+  #logList .top_div div:last-child .btn{width:100%;margin-top:10px;}
+}
 
 
 /*
@@ -303,8 +335,7 @@ nav .acc_div .lout{margin-top:10px;text-decoration: underline;cursor:pointer;fon
   transform:translate(-50%,-30%);padding:2rem;display:none;border:2px solid #777;border-radius:10px;
   box-shadow:1px 1px #444;
 }
-#mooniList .modal .modal_title{margin:0;padding:0;font-size:1.5rem;margin-bottom:30px;}
-#mooniList .modal .title_line{margin:0;padding:0;border-bottom:1px solid #444;width:80%;}
+#mooniList .modal .modal_title{margin:0;padding:0;font-size:1.5rem;margin-bottom:30px;background:#f0dcf1;width:60%;border-bottom:1px solid #444;}
 #mooniList .modal_mtype{display:none;border:1px solid #CECECE;}
 #mooniList .modal_mtype .top_div{justify-content: flex-start;align-items: center;}
 #mooniList .modal_mtype .top_div .txt-input{width:60%;margin-right:20px;}
@@ -402,6 +433,7 @@ nav .acc_div .lout{margin-top:10px;text-decoration: underline;cursor:pointer;fon
   포트폴리오 리스트
 */
 
+#portpolList .page_title div{width:240px;}
 #portpolList .port_wrap{display:flex;flex-flow:row wrap;padding:.5rem;}
 #portpolList .port_wrap .port_div{width:280px;height:100%;margin-right:50px;margin-bottom:50px;}
 #portpolList .port_wrap .port_div .top_div{background:#454141;color:#fff;padding:1rem;display:flex;justify-content:space-between;}
@@ -419,7 +451,6 @@ nav .acc_div .lout{margin-top:10px;text-decoration: underline;cursor:pointer;fon
 */
 #portpolReg .row{display:flex;width:100%;}
 #portpolReg #thumbimg{display:none}
-#portpolReg .row .row_wrap .row_title{}
 #portpolReg .row .row_wrap .row_cont{display:flex;width:100%;}
 #portpolReg .row .row_wrap .row_cont .thumb_div{width:500px;height:300px;border:1px solid #CCC;object-fit: contain;}
 
@@ -429,24 +460,39 @@ nav .acc_div .lout{margin-top:10px;text-decoration: underline;cursor:pointer;fon
 /*
   메일 발송 리스트
 */
-#mailList table{width:100%;text-align:center;border-collapse:collapse;}
+#mailList .page_title div{width:210px;}
+#mailList .top_div{width:100%;justify-content: space-between;margin-bottom:30px;}
+#mailList .top_div div{display:flex;}
+#mailList .top_div .rleft_div{width:40%;}
+#mailList .top_div .rleft_div .sel-select{width:150px;margin-right:10px;}
+#mailList .top_div .rleft_div .txt-input{width:100%;}
+#mailList .top_div .rright_div{width:60%;justify-content: space-between;}
+#mailList .top_div .rright_div .btn{width:100px;margin-left:10px;}
+#mailList .top_div .rright_div .btn-ok{width:150px;height:35px;}
+#mailList table{width:100%;text-align:center;border-collapse:collapse;font-size:.9rem;}
 #mailList table .nadding{text-align:center;}
-#mailList table th{border-bottom:1px solid #444;}
-#mailList table tr:hover{background:#fbeeee;}
+#mailList table thead tr{background:#c0e8b8}
+#mailList table tbody tr{cursor:pointer;}
+#mailList table tbody tr:hover{background:#fbeeee}
+#mailList table th{border-bottom:2px solid #ACACAC;height:20px;padding:.5rem;}
 #mailList table td{padding:10px 0;border-bottom:1px solid #ccc;}
-#mailList table td:first-child{width:3%;}
+#mailList table td:first-child{width:6%;}
 #mailList table td:nth-child(2){width:10%}
-#mailList table td:nth-child(3){width:30%}
-#mailList table td:nth-child(4){width:5%}
-#mailList table td:nth-child(5){width:10%}
-#mailList table td:nth-child(6){width:10%}
+#mailList table td:nth-child(3){width:40%}
+#mailList table td:nth-child(4){width:10%}
+#mailList table td:nth-child(5){width:15%}
 #mailList table td:last-child{width:8%}
+#mailList table .nadding{border:0;}
 #mailList .img_div{width:100px;height:100px;border:1px solid #000;margin:0 auto;}
 #mailList .img_div img{width:100%;height:100%;object-fit:cover;}
+#mailList .mobi_div{display:none;}
+#mailList .mobi_div .nothing{width:100%;text-align:center;height:50px;}
+
 #mailList .modal{
   width:500px;min-height:200px;max-height:800px; background:#fff;position:fixed;z-index:510;top:50%;left:50%;
   transform:translate(-50%,-50%);padding:1rem;border:1.5px solid #ddd; display:none;
 }
+#mailList .modal .modal_title{margin:0;padding:0;font-size:1.5rem;margin-bottom:30px;background:#f0dcf1;width:60%;border-bottom:1px solid #444;}
 #mailList .detail_row{width:100%;display:flex;flex-flow:row wrap;margin-bottom:20px;border-bottom:1px dotted;padding-bottom:10px;}
 #mailList .detail_row div:first-child{font-weight:700;width:20%;}
 #mailList .detail_row div:last-child{margin-left:50px;width:60%}
@@ -454,14 +500,76 @@ nav .acc_div .lout{margin-top:10px;text-decoration: underline;cursor:pointer;fon
 #mailList .detail_row .detail_receiv_mail{border:1px solid #ccc;padding:.6rem;overflow-y:scroll;min-height:100px;max-height:100px;display:flex;flex-flow:column nowrap}
 
 
+@media (max-width:1000px){
+  #mailList .top_div{flex-direction:column;align-items: flex-start;}
+  #mailList .top_div .rleft_div{align-items: flex-end;width:100%;margin-bottom:10px;}
+  #mailList .top_div .rleft_div .sel-select{width:30%;margin-right:10px;}
+  #mailList .top_div .rleft_div .txt-input{width:69%;}
+  #mailList .top_div .rright_div{width:100%;justify-content: flex-end;}
+  #mailList .top_div .rright_div .btn{height:35px;}
+  #mailList .pagin_div{width:100%;text-align:center;}
+}
+@media (max-width:800px){
+  #mailList .table_div{display:none;}
+  #mailList .modal{width:80%;}
+  #mailList .mobi_div{display:flex;flex-wrap:wrap}
+  #mailList .mobi_div .news_div{width:100%;height:auto;border:1px solid #CECECE;border-radius:10px;padding:1rem;font-size:.9rem;margin-bottom:10px;}
+  #mailList .mobi_div .news_div .line_1{width:100%;justify-content:flex-start;}
+  #mailList .mobi_div .news_div .line_1 > div:last-child{display:flex;flex-direction:column;margin-left:15px;}
+  #mailList .mobi_div .news_div .line_1 > div:last-child div{width:100%;height:25px;}
+  #mailList .mobi_div .news_div .line_1 > div:last-child div:first-child{height:38px;}  
+}
+@media (max-width:500px){
+  #mailList .modal{overflow:auto;height:500px;}
+  #mailList .modal .detail_row{flex-direction:column}
+  #mailList .modal .detail_row .detail_head{width:100%;}
+  #mailList .modal .detail_row div:last-child{width:80%;}
+}
+@media (max-width:400px){
+  #mailList .top_div .rleft_div{flex-direction:column;align-items:flex-start;margin-bottom:10px;}
+  #mailList .top_div .rleft_div .sel-select{width:100%;margin-bottom:10px;}
+  #mailList .top_div .rleft_div .txt-input{width:100%;}
+  #mailList .top_div .rright_div{width:100%;justify-content:space-between;}
+  #mailList .top_div .rright_div .btn{margin-left:0;}
+  
+  #mailList .mobi_div .news_div .line_1{flex-direction:column;text-align:center;}
+  #mailList .mobi_div .news_div .line_1 > div:last-child{margin-left:0;margin-top:10px;}
+  
+  #mailList .modal .modal_title{width:110px;}
+  #mailList .modal .detail_row div:last-child{width:100%;margin-left:0;}
+  #mailList .modal .detail_row .detail_receiv_mail{word-break: break-all;}
+}
+
+
+
+
 
 /*
   메일 발송
 */
-#mailSend .row{display:flex}
+#mailSend form{width:80%;margin:0 auto}
+#mailSend .page_title div{width:210px;}
+#mailSend .txt-input{width:100%;}
+#mailSend .notice{margin-bottom:40px !important;}
+#mailSend .notice .row_title{font-weight:700;color:red;}
+#mailSend .notice .row_cont span{font-weight:700;color:#0C77FB;}
+#mailSend .notice .row_cont b{text-decoration:underline}
+#mailSend .row{display:flex;width:100%;margin-bottom:20px;}
+#mailSend .row .row_wrap{width:100%;}
+#mailSend .temp_div{margin:50px 0;border:1px dotted #aaa;padding-left:1rem;padding-bottom:1rem;}
+#mailSend .temp_div .row_wrap{height:100px;display:flex;justify-content: center;flex-direction: column;}
+#mailSend .temp_div .row_title{border-bottom:1px solid #CCC;margin-bottom:30px;}
+#mailSend .temp_div .row_cont{display:flex;justify-content: center;}
 #mailSend .img_div{display:none}
 #mailSend .row_cont #templ2{margin-left:50px;}
 #mailSend .row_cont #templ3{margin-left:50px;}
+#mailSend textarea{width:100%;min-height:150px;overflow-y:auto}
+
+#mailSend .img_row{display:flex;flex-direction:column}
+#mailSend .img_row .row_wrap{width:100%;flex-flow:row wrap;}
+#mailSend .img_row .row_wrap .row_cont{display:flex}
+#mailSend .img_row .btn{width:100px;height:35px;}
+
 #mailSend .sendbtn{height:50px;width:20%;}
 #mailSend .excel_div{display:flex;justify-content: flex-end;}
 #mailSend .target_div{border:1px solid #AAA;margin-top:30px;min-height:200px;}

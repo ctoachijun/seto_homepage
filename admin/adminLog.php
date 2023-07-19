@@ -36,7 +36,6 @@ $total_cnt = sql_num_rows($tsql);
 // var_dump($total_cnt);
 if(!$number) $number = $total_cnt;
 
-
 // 페이징을 위한 쿼리스트링
 $pqs = $_SERVER['QUERY_STRING'];
 if(!$pqs){
@@ -50,22 +49,29 @@ if(!$pqs){
 
   <div id="logList">
     <div class="content">
+      <div class="page_title">
+        <div>관리자 로그</div>
+      </div>
       <form method="get" id="regForm" onsubmit="return chgCurPage()">
           <input type="hidden" name="total_cnt" value="<?=$total_cnt?>" />
           <input type="hidden" name="cur_page" value="<?=$cur_page?>" />
           <input type="hidden" name="end" value="<?=$end?>" />
 
-          <div class="row">
-            <select id='stype' name='type'>
-              <option value='name' <? if($type == "name") echo "selected"; ?>>이름</option>            
-              <option value='exec' <? if($type == "exec") echo "selected"; ?>>동작</option>
-              <option value='wdate' <? if($type == "wdate") echo "selected"; ?>>실행일</option>
-            </select>
-            <input type='text' class='txt-input' name="sw" value="<?=$sw?>"/>
-            <input type="submit" class='btn' value="검색" />
+          <div class="row top_div d-flex">
+            <div>
+              <select id='stype' class="sel-select" name='type'>
+                <option value='name' <? if($type == "name") echo "selected"; ?>>이름</option>            
+                <option value='exec' <? if($type == "exec") echo "selected"; ?>>동작</option>
+                <option value='wdate' <? if($type == "wdate") echo "selected"; ?>>실행일</option>
+              </select>
+            </div>
+            <div class="d-flex">
+              <input type='text' class='txt-input' name="sw" value="<?=$sw?>"/>
+              <input type="submit" class='btn' value="검색" />
+            </div>
           </div>
 
-          <div class="row">
+          <div class="row table_div">
             <table>
               <? if($log): ?>
                 <thead>
@@ -106,8 +112,37 @@ if(!$pqs){
                   <tr><td colspan="7">검색결과가 없습니다.</td></tr>
                 <? endif; ?>
             </table>
+          </div>
+          
+          <div class="mobi_div">
+          <? 
+          if($log):
+            foreach($log as $v){
+              $idx = $v['al_idx'];
+              $name = $v['al_name'];
+              $exec = $v['al_exec'];
+              $exsql = $v['al_sql'];
+              $wdate = $v['al_wdate'];              
+          ?>
+            <div class="log_div">
+              <div class="line_1"><div></div><div><?=$wdate?></div></div>
+              <div class="line_2"><div><?=$name?></div><div><b><?=$exec?></b></div></div>
+              <div class="line_3"><div><?=$exsql?></div></div>
+            </div>
+          <? 
+            }
+          ?>
+            <div class="pagin" ><? getPaging("setohp_log", $pqs, $where)?></div>
+
+          <? else : ?>
+            <div class="nothing">검색결과가 없습니다.</div>
+          <? endif; ?>
             
           </div>
+            
+          
+          
+          
         </div>
     </form>
 

@@ -46,6 +46,9 @@ if(!$pqs){
 
 <div id="portpolList">
     <div class="content">
+      <div class="page_title">
+        <div>포트폴리오 관리</div>
+      </div>
       <form method="get" id="regForm" onsubmit="return chgCurPage()">
           <input type="hidden" name="total_cnt" value="<?=$total_cnt?>" />
           <input type="hidden" name="cur_page" value="<?=$cur_page?>" />

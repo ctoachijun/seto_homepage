@@ -50,25 +50,32 @@ if(!$pqs){
 
   <div id="mailList">
     <div class="content">
-      <form method="get" id="regForm" onsubmit="return chgCurPage();" >
+      <div class="page_title">
+        <div>뉴스레터 관리</div>
+      </div>
+      <form method="get" id="regForm" action="<?=$PHP_SELF?>" onsubmit="return chgCurPage();" >
           <input type='hidden' name='cur_page' value="<?=$cur_page?>" />
           <input type='hidden' name='end' value="<?=$end?>" />
           <input type='hidden' name='start' value="<?=$start?>" />
           <input type='hidden' name='total_cnt' value="<?=$total_cnt?>" />
 
-          <div class="row">
-            <select id='stype' name='type' class="sel-select">
-              <option value='subject' <? if($type == "subject") echo "selected"; ?>>제목</option>            
-              <option value='tname' <? if($type == "tname") echo "selected"; ?>>수신자</option>
-              <option value='tmail' <? if($type == "tmail") echo "selected"; ?>>수신메일</option>
-              <option value='sdate' <? if($type == "sdate") echo "selected"; ?>>발송일시</option>
-            </select>
-            <input type='text' class='txt-input' name="sw" value="<?=$sw?>"/>
-            <input type="submit" class='btn' value="검색" />
-            <input type="button" class='btn btn-ok' value="메일 발송" onclick="goSend()"/>
+          <div class="row top_div d-flex">
+            <div class="rleft_div">
+              <select id='stype' name='type' class="sel-select">
+                <option value='subject' <? if($type == "subject") echo "selected"; ?>>제목</option>            
+                <option value='tname' <? if($type == "tname") echo "selected"; ?>>수신자</option>
+                <option value='tmail' <? if($type == "tmail") echo "selected"; ?>>수신메일</option>
+                <option value='sdate' <? if($type == "sdate") echo "selected"; ?>>발송일시</option>
+              </select>
+              <input type='text' class='txt-input' name="sw" value="<?=$sw?>"/>
+            </div>
+            <div class="rright_div d-flex">
+              <input type="submit" class='btn' value="검색" />
+              <input type="button" class='btn btn-ok' value="메일 발송" onclick="goSend()"/>
+            </div>
           </div>
 
-          <div class="row">
+          <div class="row table_div">
             <table>
               <? if($mlist): ?>
                 <thead>
@@ -80,7 +87,6 @@ if(!$pqs){
                     <th>수신자</th>
                     <th>발송일시</th>
                     <th>결과</th>
-                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -117,7 +123,7 @@ if(!$pqs){
                     $img = "<img src='../img/nsletter/{$year}/{$mainimg}' />";
                                       
                 ?>
-                  <tr>
+                  <tr onclick="showMlDetail(<?=$idx?>)">
                     <td><?=$number?></td>
                     <td><div class='img_div'><?=$img?></div></td>
                     <td><?=$subject?></td>
@@ -125,16 +131,13 @@ if(!$pqs){
                     <td><?=$receiver?></td>
                     <td><?=$sdate?></td>
                     <td><?=$status_txt?></td>
-                    <td><input type="button" class="btn" value="상세" onclick="showMlDetail(<?=$idx?>)" /></td>
                   </tr>
                 <? 
                   $number--;
                   endforeach;   
                 ?>
-                
-                
                   <tr>
-                    <td class="pagin" colspan="8"><? getPaging("setohp_mail_list", $pqs, $where)?></td>
+                    <td class="pagin" colspan="7"><? getPaging("setohp_mail_list", $pqs, $where)?></td>
                   </tr>
                                 
                 </tbody>
@@ -142,12 +145,77 @@ if(!$pqs){
                   <tr><td colspan="8" class="nadding">검색결과가 없습니다.</td></tr>
                 <? endif; ?>
             </table>
-            
           </div>
+                  
+          
+          <div class="mobi_div d-flex">
+            
+            <? if($mlist): 
+                foreach($mlist as $v) : 
+                  $idx = $v['s_idx'];
+                  $subject = $v['s_subject'];
+                  $template = $v['s_template'];
+                  $mainimg = $v['s_mainimg'];
+                  $receiver_box = explode("|",$v['sl_tname']);
+                  $send_count = $v['sl_count'];
+                  $sdate = $v['sl_sdate'];
+                  $status = $v['sl_status'];
+                  $msg = $v['sl_msg'];
+                  
+                  if($template == "temp1"){
+                    $temp_txt = "1번";
+                  }else if($template == "temp2"){
+                    $temp_txt = "2번";
+                  }else{
+                    $temp_txt = "3번";
+                  }
+
+                  $send_count -= 1;
+                  $send_count > 0 ? $receiver = $receiver_box[0]."<br> 외 {$send_count}명" : $receiver = $receiver_box[0];
+                  
+                  if($status === "0"){
+                    $status_txt = "정상";
+                  }else{
+                    $status_txt = "발송 실패";
+                  }
+                    
+                  $date_box = explode("-",$v['s_wdate']);
+                  $year = $date_box[0];
+                  $img = "<img src='../img/nsletter/{$year}/{$mainimg}' />";
+            ?>
+            
+                  <div class="news_div d-flex" onclick="showMlDetail(<?=$idx?>)">
+                    <div class="line_1 d-flex">
+                      <div>
+                        <div class='img_div'><?=$img?></div>
+                      </div>
+                      <div>
+                        <div><?=$subject?></div>
+                        <div><?=$status_txt?></div>
+                        <div><?=preg_replace("/<br>/","",$receiver)?></div>
+                        <div><?=$sdate?></div>                  
+                      </div>
+                    </div>
+                  </div>
+
+              <? endforeach; ?>
+            
+              <div class="pagin_div"><? getPaging("setohp_mail_list", $pqs, $where)?></div>
+            
+            <? else: ?>
+              <div class="nothing">검색결과가 없습니다.</div>
+            <? endif; ?>
+          </div>
+          
+
+
         </div>
     </form>
     
     <div class="modal detail_div">
+      <div class="modal_title">
+        <div class="title_txt">발송 상세</div>
+      </div>
       <div class="detail_row">
         <div class="detail_head">발송일</div>
         <div class="temp_wdate"></div>

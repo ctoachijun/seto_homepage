@@ -16,7 +16,7 @@ $alist = getAdminList($type,$sw);
 <div id="accountList">
     <div class="content">
       <div class="page_title">
-        <div>문의 관리</div>
+        <div>계정 관리</div>
       </div>
       <form method="get" id="regForm" >
           <input type='hidden' name='reg_type' value="<?=$reg_type?>" />
@@ -50,7 +50,6 @@ $alist = getAdminList($type,$sw);
                     <th>부서</th>
                     <th>직함</th>
                     <th>로그인</th>
-                    <th></th>
                     <th></th>
                   </tr>
                 </thead>

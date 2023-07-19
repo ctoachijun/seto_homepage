@@ -248,7 +248,6 @@ $mtype_box = getMooniTypeList();
       <input type="hidden" name="seldata" />
       <div class="modal_title">
         <div class="title_txt">문의 상세</div>
-        <div class="title_line"></div>
       </div>
       <div class="modal_row">
         <div class="row_1">
