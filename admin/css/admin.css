@@ -2,6 +2,25 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'SUITE-Regular', sans-serif;
+  
+}
+
+/* 
+  출처 : 눈누 사이트 (https://noonnu.cc/font_page/1150)
+  해당폰트들은 웹사이트에서 사용 가능한 라이센스라서 문제없음.
+*/
+
+@font-face { /* 영덕바다체 폰트 적용 */
+  font-family: "YDSea";
+  src: url("/files/font/BusanSea.ttf") format("truetype");
+  font-weight: normal;
+}
+@font-face { /* 스위트체 폰트 적용  */
+  font-family: 'SUITE-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
 }
 
 body{min-height:100vh;}
@@ -17,9 +36,13 @@ body{min-height:100vh;}
 .input_file{display:none}
 .btn{border:1px solid #CECECE; border-radius:5px; width:100%;height:100%;font-size:1rem;cursor:pointer}
 .btn-ok{background:#1e8cec;color:#fff}
-.btn-ok:hover{border:1px solid #0580ec;font-size:1rem}
+.btn-ok:hover{border:1px solid #0580ec;font-size:1rem;font-weight:700;}
 .btn-no{background:#ef1c1c;color:#fff}
-.btn-no:hover{border:1px solid #ef1c1c;font-size:1rem}
+.btn-no:hover{border:1px solid #ef1c1c;font-size:1rem;font-weight:700;}
+.btn-info{background:#37ad3f;color:#fff}
+.btn-info:hover{border:1px solid #37ad3f;font-size:1rem;font-weight:700;}
+.btn-warning{background:#eef168;}
+.btn-warning:hover{border:1px solid #eef168;font-size:1rem;font-weight:700;}
 .d-flex{display:flex}
 .wv-1{width:100%;}
 .wv-2{width:50%;}
@@ -27,7 +50,7 @@ body{min-height:100vh;}
 .wv-4{width:25%;}
 .wv-5{width:20%;}
 .wv-6{width:16.44444%}
-.redcircle{background:#0C77FB;width:10px;height:10px;border-radius:50%;}
+.redcircle{background:#0C76F7;width:10px;height:10px;border-radius:50%;}
 
 
 form{width:100%;}
@@ -176,7 +199,7 @@ nav .acc_div .lout{margin-top:5px;text-decoration: underline;cursor:pointer;font
 #accountList .view_mobi .mobiv_div .m_line6 div{justify-content: flex-end;margin-top:20px;}
 #accountList .view_mobi .btn-no{width:80px;height:35px; }
 #accountList .view_mobi .paging_div .pagination{font-size:.7rem;}
-#accountList .topadm{border:1px solid #0C77FB !important}
+#accountList .topadm{border:1px solid #0C76F7 !important}
 
 @media (max-width:1200px){
   #accountList .top_div div:first-child{width:20%;}
@@ -270,7 +293,7 @@ nav .acc_div .lout{margin-top:5px;text-decoration: underline;cursor:pointer;font
 #logList .mobi_div .log_div div{display:flex;justify-content: space-between;white-space:break-spaces;word-break:break-all;line-height:30px;}
 #logList .mobi_div .log_div > div:nth-child(2){border-top:1px dotted #444;margin:5px 0;padding:5px 0;border-bottom:1px dotted #444;}
 #logList .mobi_div .log_div .line_3{max-height:100px;overflow:auto}
-#logList .mobi_div .log_div b{color:#0C77FB}
+#logList .mobi_div .log_div b{color:#0C76F7}
 #logList .nothing{height:100px;text-align:center;}
 #logList .mobi_div .pagin{display:flex;justify-content: center;width:100%;}
 
@@ -550,40 +573,114 @@ nav .acc_div .lout{margin-top:5px;text-decoration: underline;cursor:pointer;font
 #mailSend form{width:80%;margin:0 auto}
 #mailSend .page_title div{width:210px;}
 #mailSend .txt-input{width:100%;}
-#mailSend .notice{margin-bottom:40px !important;}
+
+#mailSend .news_title{font-size:20px;background:#938484;padding:10px;border:1px solid #938484;box-shadow:1px 1px #000;color:#fff;}
+#mailSend .notice{margin-bottom:30px !important;}
 #mailSend .notice .row_title{font-weight:700;color:red;}
-#mailSend .notice .row_cont span{font-weight:700;color:#0C77FB;}
+#mailSend .notice .row_cont span{font-weight:700;color:#0C76F7;}
 #mailSend .notice .row_cont b{text-decoration:underline}
 #mailSend .row{display:flex;width:100%;margin-bottom:20px;}
 #mailSend .row .row_wrap{width:100%;}
-#mailSend .temp_div{margin:50px 0;border:1px dotted #aaa;padding-left:1rem;padding-bottom:1rem;}
-#mailSend .temp_div .row_wrap{height:100px;display:flex;justify-content: center;flex-direction: column;}
-#mailSend .temp_div .row_title{border-bottom:1px solid #CCC;margin-bottom:30px;}
-#mailSend .temp_div .row_cont{display:flex;justify-content: center;}
+#mailSend .row .row_title{display:flex;align-items: center;}
+#mailSend .row .row_title span{font-size:.5rem;}
+
+#mailSend .temp_div .row_cont{margin-top:20px;display:flex;}
+#mailSend .temp_div .row_cont input{display:none;}
+#mailSend .temp_div .row_cont .templabel{display:flex;justify-content: center;align-items: center; width:100px;height:100px;border:1px solid #aaa;color:#666;border-radius:5px;}
+#mailSend .temp_div .row_cont .seltemp2 {margin:0 20px;}
+#mailSend .temp_div .row_cont .selact{background:linear-gradient(to bottom right, #040000 30%, #E6002D);color:#fff;font-weight:600;letter-spacing:2px;}
 #mailSend .img_div{display:none}
 #mailSend .row_cont #templ2{margin-left:50px;}
 #mailSend .row_cont #templ3{margin-left:50px;}
 #mailSend textarea{width:100%;min-height:150px;overflow-y:auto}
 
-#mailSend .img_row{display:flex;flex-direction:column}
+#mailSend .img_box{border:1px solid #ccc;border-radius:5px;padding:1rem;height:auto;}
+#mailSend .img_row{display:flex;flex-direction:column;word-break:break-all}
 #mailSend .img_row .row_wrap{width:100%;flex-flow:row wrap;}
-#mailSend .img_row .row_wrap .row_cont{display:flex}
-#mailSend .img_row .btn{width:100px;height:35px;}
+#mailSend .img_row .img1_div{margin-bottom:10px;margin-top:10px;}
+#mailSend .img_row .row_wrap .row_title{width:60px;}
+#mailSend .img_row .row_wrap .row_cont{display:flex;align-items: center;}
+#mailSend .img_row .row_wrap .row_cont p{margin-left:20px;}
+#mailSend .img_row .btn{width:30px;height:30px;color:#fff;background:#0C76F7;border:2px solid #0c61d8;margin-left:10px;}
+#mailSend .preview_div .btn{height:35px;}
 
-#mailSend .sendbtn{height:50px;width:20%;}
-#mailSend .excel_div{display:flex;justify-content: flex-end;}
-#mailSend .target_div{border:1px solid #AAA;margin-top:30px;min-height:200px;}
-#mailSend .target_div .line_div{display:flex;justify-content:space-between;padding:0 10px;height:35px;}
-#mailSend .target_div .line_div .pname{width:20%}
-#mailSend .target_div .line_div .pmail{width:70%}
-
-#mailSend #preview1{width:650px;min-height:700px;height:100%;display:none;position:absolute;top:25%;left:50%;transform:translate(-50%, -20%);z-index:510;background-size:contain}
+#mailSend #preview1{width:650px;height:600px;height:100%;display:none;position:fixed;top:25%;left:50%;transform:translate(-50%, -20%);z-index:510;background-size:contain;overflow:auto}
+#mailSend #preview1 .notice{position:absolute;top:10px;left:10px;color:#fff;}
 #mailSend #preview1 #temp1{width:auto;height:auto;max-width:100%;max-height:100%;}
-#mailSend #preview2{width:650px;min-height:700px;height:100%;display:none;position:absolute;top:25%;left:50%;transform:translate(-50%, -20%);z-index:510;background-size:contain}
+#mailSend #preview2{width:650px;height:600px;height:100%;display:none;position:fixed;top:25%;left:50%;transform:translate(-50%, -20%);z-index:510;background-size:contain;overflow:auto}
+#mailSend #preview2 .notice{position:absolute;top:10px;right:10px;color:#fff;}
 #mailSend #preview2 #temp2{width:auto;height:auto;max-width:100%;max-height:100%;}
 
+#mailSend .section_line{width:90%;border-bottom:1px solid #0c61d8;margin:50px auto;}
 
+#mailSend .sendtype .row_cont{width:100%;justify-content:center;}
+#mailSend .sendtype .send_select_btn{
+  width:80px;height:80px;border:1px solid #ccc;border-radius:5px;box-shadow:1px 1px #000;justify-content: center;align-items: center;
+  cursor:pointer;
+}
+#mailSend .sendtype .send_select_btn:active{box-shadow: 0px 0px; transform:translateX(1px);transform:translateY(1px)}
+#mailSend .sendtype .one{margin-right:50px;}
+#mailSend .sendtype .sendact{background:#f8c398;font-weight:700;}
+#mailSend .one_up_div .txt-input{width:90%;}
+#mailSend .one_up_div .row:first-child{width:90%;margin:0;}
+#mailSend .one_up_div .row:first-child .row_wrap:first-child{width:50%;}
+#mailSend .one_up_div .row:last-child{width:10%;margin:0;display:flex;align-items: flex-end;}
+#mailSend .one_up_div .btn{height:35px;width:100px;margin:0;}
 
+#mailSend .all_up_div{display:none;}
+#mailSend .all_up_div .txt_box{width:100%;padding:1rem;border:1px solid #ccc;border-radius:5px;}
+#mailSend .all_up_div .txt_box ul{list-style: decimal;padding-left:20px;}
+#mailSend .all_up_div .excel_div{width:100%;margin-top:20px;justify-content: center;}
+#mailSend .all_up_div .excel_div .btn{height:35px;}
+#mailSend .all_up_div .excel_div a .btn{width:120px;margin-right:30px;}
+#mailSend .all_up_div .excel_div > .btn{width:200px;}
+
+#mailSend .target_row{margin-top:20px;flex-direction: column;}
+#mailSend .target_div{border:1px solid #ccc;margin-top:30px;min-height:200px;max-height:600px;overflow:auto;border-radius:5px;padding:1rem;}
+#mailSend .target_div .line_div{display:flex;justify-content:space-between;padding:0 10px;height:35px;align-items:center;}
+#mailSend .target_div .line_div:hover{background:#f5dcdc;}
+#mailSend .target_div .line_div .pname{width:20%}
+#mailSend .target_div .line_div .pmail{width:70%}
+#mailSend .sendbtn{height:50px;width:20%;}
+#mailSend .target_row > div:last-child{display:flex;justify-content: flex-end;margin-top:20px;}
+
+@media (max-width:1200px){
+  #mailSend{width:60%;}
+}
+@media (max-width:800px){
+  #mailSend{width:70%;}
+}
+@media (max-width:700px){
+  #mailSend{width:80%;}
+}
+@media (max-width:600px){
+  #mailSend{width:90%;}
+  #mailSend .img_row .row_wrap .row_cont p{font-size:.9rem;}
+}
+@media (max-width:420px){
+  #mailSend form{width:100%;}
+  #mailSend .temp_div .row_cont{justify-content: space-between;}
+  #mailSend .temp_div .row_cont .templabel{width:76px;height:76px;font-size:.9rem;}
+  #mailSend .img_row{}
+  #mailSend .sendtype .send_select_btn{width:68px;height:68px;font-size:.8rem;}
+  #mailSend .img_row .row_wrap{display:flex;flex-direction: column;}
+  #mailSend .one_up_div .row:first-child{flex-direction:column;}
+  #mailSend .one_up_div .row:first-child .row_wrap{width:100%;}
+  #mailSend .one_up_div .row:first-child .row_wrap:first-child{width:100%;margin-bottom:10px;}
+  #mailSend .one_up_div .row:first-child input{width:100%;}
+  #mailSend .one_up_div .row:last-child{width:18%;margin-left:10px;}
+  #mailSend .one_up_div .btn{height:35px;width:100%;}
+
+  #mailSend .all_up_div .excel_div a .btn{width:100px;margin-right:20px;}
+  #mailSend .all_up_div .excel_div > .btn{width:180px;}
+  
+}
+
+@media (max-width:310px){
+  #mailSend .temp_div .row_cont .templabel{width:60px;height:60px;font-size:.7rem;}
+  #mailSend .all_up_div .excel_div a .btn{width:80px;margin-right:10px;}
+  #mailSend .all_up_div .excel_div > .btn{width:160px;}
+}
 
 
 
@@ -606,4 +703,5 @@ nav .acc_div .lout{margin-top:5px;text-decoration: underline;cursor:pointer;font
 .pagination-sm>li:first-child>a,.pagination-sm>li:first-child>span{border-top-left-radius:3px;border-bottom-left-radius:3px}
 .pagination-sm>li:last-child>a,.pagination-sm>li:last-child>span{border-top-right-radius:3px;border-bottom-right-radius:3px}
 .pager{padding-left:0;margin:20px 0;text-align:center;list-style:none}
+
 

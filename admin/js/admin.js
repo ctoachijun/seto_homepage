@@ -561,14 +561,25 @@ function setImgname(num){
 }
 
 function setTemp(num){
+
+  // 템플릿 라벨 클래스 초기화
+  $(".templabel").removeClass("selact");
+  
+  // 이미지 버튼 클래스 초기화
   $(".main_div").removeClass("img_div");
   $(".img1_div").removeClass("img_div");
   $(".img2_div").removeClass("img_div");
+  
   if(num == 1){
+    $(".seltemp1").addClass("selact");
     $(".img2_div").addClass("img_div");
   }else if(num == 2){
+    $(".seltemp2").addClass("selact");
   }else{
+    $(".seltemp3").addClass("selact");
   }
+  
+  console.log("체크값 : "+$("input[name=template]:checked").val());
 }
 
 function showTempl(){
@@ -830,3 +841,19 @@ function accpageMove(num){
     location.href="adminLog.php";
   }
 }
+
+function setTargetAdd(num){
+  if(num == 1){
+    $(".one").addClass("sendact");
+    $(".all").removeClass("sendact");
+    $(".one_up_div").css("display","flex");
+    $(".all_up_div").hide();
+  }else{
+    $(".one").removeClass("sendact");
+    $(".all").addClass("sendact");
+    // $(".all_up_div").css("display","flex");
+    $(".all_up_div").show();
+    $(".one_up_div").hide();
+  }
+}
+

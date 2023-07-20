@@ -1,5 +1,6 @@
 <div id="preview1">
   <div id='temp1' border='1' style='width:100%;padding:20px;background:#000'>
+    <span class="notice">영역 바깥의 검은부분을 클릭 / 터치 하시면 닫힙니다.</span>
     <table border='0' cellpadding='0' cellspacing='0'
       style='-moz-box-sizing:border-box; -webkit-box-sizing:border-box; box-sizing:border-box; min-height:100%; padding:5px; width:100%'>
       <tbody>
@@ -225,6 +226,7 @@
 
 
 <div id="preview2">
+  <span class="notice">영역 바깥의 검은부분을 클릭 / 터치 하시면 닫힙니다.</span>
   <div id='temp2' border='1' style='width:100%;background:#fff'>
     <table border='0' cellpadding='0' cellspacing='0'
       style='-moz-box-sizing:border-box; -webkit-box-sizing:border-box; box-sizing:border-box; min-height:100%;  padding:5px; width:100%;'>
