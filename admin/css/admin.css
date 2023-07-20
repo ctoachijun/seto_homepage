@@ -51,6 +51,7 @@ body{min-height:100vh;}
 .wv-5{width:20%;}
 .wv-6{width:16.44444%}
 .redcircle{background:#0C76F7;width:10px;height:10px;border-radius:50%;}
+.nadding{border:0;text-align:center;padding-top:50px !important;padding-bottom:50px !important;font-size:1.5rem;border-top:1px solid #ccc;border-bottom:1px solid #ccc}
 
 
 form{width:100%;}
@@ -458,14 +459,96 @@ nav .acc_div .lout{margin-top:5px;text-decoration: underline;cursor:pointer;font
 
 #portpolList .page_title div{width:240px;}
 #portpolList .port_wrap{display:flex;flex-flow:row wrap;padding:.5rem;}
-#portpolList .port_wrap .port_div{width:280px;height:100%;margin-right:50px;margin-bottom:50px;}
-#portpolList .port_wrap .port_div .top_div{background:#454141;color:#fff;padding:1rem;display:flex;justify-content:space-between;}
-#portpolList .port_wrap .port_div .thumb_div{display:flex;width:100%;height:250px;padding:.2rem;}
-#portpolList .port_wrap .port_div .thumb_div img{object-fit:contain;width:100%;}
+
+#portpolList .top_div .top1{width:60%;}
+#portpolList .top_div .top1 div:first-child{width:260px;margin-right:10px;}
+#portpolList .top_div .top1 div select:first-child{width:150px;margin-right:10px;font-size:.9rem;}
+#portpolList .top_div .top1 div select:last-child{width:100px;font-size:.9rem;}
+#portpolList .top_div .top1 div:last-child{width:80%;margin-right:10px;}
+#portpolList .top_div .top1 div:last-child input{height:100%;}
+#portpolList .top_div .top2{width:40%;justify-content: space-between;}
+#portpolList .top_div .top2 > .btn{width:80px;}
+#portpolList .top_div .top2 .add_div .btn{width:150px;}
+
+#portpolList .table_div{margin-top:30px;text-align:center;}
+#portpolList table{border-collapse:collapse;font-size:0.9rem;}
+#portpolList table thead tr{background:#c0e8b8}
+#portpolList table thead th{height:20px;padding:.5rem;border-bottom:2px solid #ACACAC;}
+#portpolList .table_div tbody tr:nth-child(even){background:#EEE;}
+#portpolList .table_div tbody tr:hover{background:#fef5da}
+#portpolList .table_div tbody .img_div{width:100px;height:100px;}
+#portpolList .table_div tbody .img_div img{width:100%;height:100%;object-fit:contain;}
+#portpolList .table_div tbody td{cursor:pointer;padding:.3rem;}
+#portpolList .table_div tbody td:first-child{width:6%}
+#portpolList .table_div tbody td:nth-child(2){width:10%;}
+#portpolList .table_div tbody td:nth-child(3){width:6%;}
+#portpolList .table_div tbody td:nth-child(4){width:20%;}
+#portpolList .table_div tbody td:nth-child(5){width:10%;}
+#portpolList .table_div tbody td:nth-child(6){width:10%}
+#portpolList .table_div tbody td:nth-child(7){width:8%}
+#portpolList .table_div tbody td:nth-child(8){width:10%}
+#portpolList .table_div tbody td:last-child{width:6%}
+#portpolList .table_div tbody td .btn{height:40px;}
+
+#portpolList .pagin{background:#fff;border-top:1px solid #CECECE;padding-top:20px;}
+
+#portpolList .mobi_div{display:none;}
+#portpolList .port_wrap .port_div{min-width:180px;width:45%;height:auto;margin-bottom:20px;margin-right:10px;font-size:.9rem;}
+#portpolList .port_wrap .port_div .mtop_div{background:#454141;color:#fff;padding:1rem;display:flex;justify-content:space-between;}
+#portpolList .port_wrap .port_div .thumb_div{display:flex;width:100%;height:150px;}
+#portpolList .port_wrap .port_div .thumb_div img{object-fit:cover;width:100%;height:100%;}
 #portpolList .port_wrap .port_div .bottom_div{background:#454141;color:#fff;}
 #portpolList .port_wrap .port_div .bottom_div div{display:flex;justify-content:space-between;padding:.2rem;}
 #portpolList .port_wrap .port_div .bottom_div .bline2{align-items:flex-end;}
-#portpolList .port_wrap .port_div .bottom_div .bline2 .amount{font-size:130%;color:#faf36c}
+#portpolList .port_wrap .port_div .bottom_div .bline2 .amount{font-size:1rem;color:#faf36c}
+
+
+
+
+@media (max-width:1000px){
+  #portpolList .top_div .top1{flex-direction:column}
+  #portpolList .top_div .top1 div:last-child{margin-top:9px;margin-bottom:1px;margin-right:0px;width:98%;}
+  #portpolList .top_div .top1 div:last-child input{width:100%;}
+  #portpolList .top_div .top2{align-items:flex-end;}
+  #portpolList .top_div .top2 .btn{height:38px;}
+}
+@media (max-width:900px){
+  #portpolList .table_div{display:none}
+  #portpolList .mobi_div{display:block}
+  #portpolList .pagin_div{width:100%;display:flex;justify-content: center;}
+}
+@media (max-width:800px){
+  #portpolList .top_div .top1{width:50%;}
+  #portpolList .top_div .top2{width:50%;}
+  #portpolList .top_div .top2 > .btn{width:70px;height:35px;font-size:.9rem;}
+  #portpolList .top_div .top2 .add_div .btn{width:120px;height:35px;font-size:.9rem;}
+}
+@media (max-width:660px){
+  #portpolList .port_wrap .port_div{width:400px;height:auto;font-size:.9rem;}
+  #portpolList .port_wrap .port_div .thumb_div{height:180px;}
+}
+@media (max-width:580px){
+  #portpolList .top_div{flex-direction:column}
+  #portpolList .top_div .top1{width:100%;}
+  #portpolList .top_div .top1 div:first-child{width:100%;}
+  #portpolList .top_div .top1 div select:first-child{width:49%;margin-right:10px;}
+  #portpolList .top_div .top1 div select:last-child{width:49%;}
+  #portpolList .top_div .top1 div:last-child{width:100%;}
+  #portpolList .top_div .top2{width:100%;margin-top:10px;}
+  #portpolList .top_div .top2 .btn{width:40%;margin-right:10px;}
+  #portpolList .top_div .top2 .add_div{width:60%;}
+  #portpolList .top_div .top2 .add_div .btn{width:100%;}
+}
+@media (max-width:400px){
+  #portpolList{width:90%}
+  #portpolList .top_div .top1 div:first-child{flex-direction:column}
+  #portpolList .top_div .top1 div select:first-child{width:100%;margin-bottom:10px;}
+  #portpolList .top_div .top1 div select:last-child{width:100%;}
+
+}
+
+
+
 
 
 
@@ -493,7 +576,7 @@ nav .acc_div .lout{margin-top:5px;text-decoration: underline;cursor:pointer;font
 #mailList .top_div .rright_div .btn{width:100px;margin-left:10px;}
 #mailList .top_div .rright_div .btn-ok{width:150px;height:35px;}
 #mailList table{width:100%;text-align:center;border-collapse:collapse;font-size:.9rem;}
-#mailList table .nadding{text-align:center;}
+#mailList table .nadding{border:0;}
 #mailList table thead tr{background:#c0e8b8}
 #mailList table tbody tr{cursor:pointer;}
 #mailList table tbody tr:hover{background:#fbeeee}
@@ -505,7 +588,6 @@ nav .acc_div .lout{margin-top:5px;text-decoration: underline;cursor:pointer;font
 #mailList table td:nth-child(4){width:10%}
 #mailList table td:nth-child(5){width:15%}
 #mailList table td:last-child{width:8%}
-#mailList table .nadding{border:0;}
 #mailList .img_div{width:100px;height:100px;border:1px solid #000;margin:0 auto;}
 #mailList .img_div img{width:100%;height:100%;object-fit:cover;}
 #mailList .mobi_div{display:none;}
@@ -661,7 +743,6 @@ nav .acc_div .lout{margin-top:5px;text-decoration: underline;cursor:pointer;font
   #mailSend form{width:100%;}
   #mailSend .temp_div .row_cont{justify-content: space-between;}
   #mailSend .temp_div .row_cont .templabel{width:76px;height:76px;font-size:.9rem;}
-  #mailSend .img_row{}
   #mailSend .sendtype .send_select_btn{width:68px;height:68px;font-size:.8rem;}
   #mailSend .img_row .row_wrap{display:flex;flex-direction: column;}
   #mailSend .one_up_div .row:first-child{flex-direction:column;}

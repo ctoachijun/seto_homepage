@@ -132,9 +132,8 @@ function getPaging($tbl, $qs, $where){
   }else if($tbl == "setohp_mail_list"){
     $join = "as s LEFT OUTER JOIN sthp_sendmail_log as sl ON s.s_idx = sl.sl_sidx";
     $tbl_name = "sthp_sendmail {$join}";
-    
-  }else if($tbl == ""){
-    $tbl_name = "";
+  }else if($tbl == "setohp_port_list"){
+    $tbl_name = "sthp_portpolio";
   }
   
   // 쿼리스트링에서 변수 및 값 대입
