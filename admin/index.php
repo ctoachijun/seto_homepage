@@ -61,7 +61,7 @@
               </div>
             </div>
             <div class="right_div d-flex">
-              <input type="button" class="btn btn-ok" value='로그인' onclick="chkAccount()"/>
+              <button type="button" class="btn btn-ok" onclick="chkAccount()">로그인</button>
               <!-- <p class="fpt">비밀번호를 잊은 경우에는 <a href="./forgetPw.php">여기</a>를 클릭 해 주세요.</p> -->
             </div>
           </div>
@@ -75,8 +75,8 @@
   <script src="./js/admin.js"></script>
   
   <script type="text/javascript">
-    $("input").on("keyup",function(key){
-        if(key.keyCode==13) {
+    $(".txt-input").on("keydown",function(key){
+      if(key.keyCode==13) {
             chkAccount();
         }
     });

@@ -280,7 +280,8 @@ function chgPw(){
       let json = JSON.parse(result);
       
       if(json.state == "Y"){
-        location.href="main.php";
+        alert("변경했습니다. 재로그인 후 이용 해 주세요.");
+        location.href="/admin";
       }else{
         errorAlert();
       }

@@ -141,7 +141,7 @@ nav .acc_div .lout{margin-top:5px;text-decoration: underline;cursor:pointer;font
 #logIn .login_div .right_div{margin-top:30px;justify-content: center;flex-direction: column;align-items: center;}
 #logIn .login_div .right_div p{color:#888;}
 #logIn .login_div .right_div a{color:#CCC;}
-#logIn .login_div .right_div input{width:30%;height:45px;border:0;}
+#logIn .login_div .right_div button{width:30%;height:45px;border:0;}
 
 @media (max-width:1010px){
   #logIn .login_div{width:60%;}
@@ -168,6 +168,39 @@ nav .acc_div .lout{margin-top:5px;text-decoration: underline;cursor:pointer;font
   #logIn .login_div{width:80%;}
   #logIn .txt-input::placeholder{font-size:.7rem;}
 }
+
+
+
+
+
+/*
+  첫 접속 화면
+*/
+#firstConnect{width:100vw;height:100vh}
+#firstConnect .content{width:100%;display:flex;justify-content: center;align-items: center;}
+#firstConnect .pw_div{width:600px;height:auto;border:1px solid #cecece;padding:3rem;border-radius:10px;position:relative}
+#firstConnect .pw_div .logo_div{position:absolute;top:0;left:0;width:100%;height:50px;text-align:center;background:#020000;border-top-left-radius:10px;border-top-right-radius:10px;}
+#firstConnect .pw_div .logo_div img{height:100%;}
+#firstConnect .pw_div div{margin-bottom:20px;}
+#firstConnect .pw_div div:last-child{height:40px;}
+#firstConnect .pw_div .pw_notice{padding:1rem;font-size:1.2rem;border:1px solid #0c61d8; border-radius:10px;margin-top:20px;}
+#firstConnect .pw_div .pw_notice span{color:#E6002D;font-weight:700;text-decoration: underline;}
+
+@media (max-width:400px){
+  #firstConnect .pw_div{padding-left:1rem;padding-right:1rem;width:100%;}
+  #firstConnect .pw_div .logo_div{height:40px;}
+  #firstConnect .pw_div,#firstConnect .pw_div .pw_notice{font-size:.9rem;}
+}
+@media (max-width:300px){
+  #firstConnect .pw_div .logo_div{height:30px;}
+}
+@media (max-width:250px){
+  #firstConnect .pw_div .logo_div{height:20px;}
+}
+
+
+
+
 
 
 /*

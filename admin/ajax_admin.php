@@ -145,6 +145,7 @@
         //로그
         $exec = "첫 접속 비밀번호 변경";
         getLog($sql,$exec,$aname);
+        session_destroy();
         
       }else{
         $output['state'] = "N";
