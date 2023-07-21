@@ -16,7 +16,7 @@ if($cur_page > 1){
 }
 
 $order = "DESC";
-$where = "WHERE p_open = 'Y' ";
+$where = "WHERE 1 ";
 
 
 if($platform != "N"){
@@ -106,7 +106,7 @@ if(!$number) $number = $total_cnt;
                     <th>금액</th>
                     <th>달성률</th>
                     <th>등록일</th>
-                    <th></th>
+                    <!-- <th></th> -->
                   </tr>
                 </thead>
                 <tbody>
@@ -147,12 +147,11 @@ if(!$number) $number = $total_cnt;
                       $amount_txt = "{$amount_calc}만 {$curcy}";
                     }
                                         
-                    
-                    
+                    $open == "Y" ? $trback = "" : $trback = "nopen";
                     $img_tag = "<img src='../img/portpolio/{$img}'>";
                                       
                 ?>
-                  <tr onclick="goPortDetail(<?=$idx?>)">
+                  <tr class="chkType<?=$idx?> <?=$trback?>" onclick="goEditPortp(this)">
                     <td><?=$number?></td>
                     <td><div class='img_div'><?=$img_tag?></div></td>
                     <td><?=$country?></td>
@@ -161,7 +160,7 @@ if(!$number) $number = $total_cnt;
                     <td><?=$amount_txt?></td>
                     <td><?=$rate?></td>
                     <td><?=$wdate?></td>
-                    <td><input type="button" class="btn btn-no" value="비공개" onclick="" /></td>
+                    <!-- <td><input type="button" class="btn btn-no" value="비공개" onclick="" /></td> -->
                   </tr>
                 <? 
                   $number--;

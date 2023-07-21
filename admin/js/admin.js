@@ -93,7 +93,10 @@ function chkStrLength(obj,num){
   if(obj.value.length > num){
     alert(num+"글자까지 가능합니다.");
     obj.value = obj.value.substring(0,num);
-  }    
+  }else{
+    $(".chkstr").html(obj.value.length+"/100");
+  }
+      
 }
 
 function chkWall(obj){
@@ -102,7 +105,10 @@ function chkWall(obj){
   obj.value = val1;
 }
 
-
+function numberComm(num){
+  num = num.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return num;
+}
 
 
 
@@ -512,6 +518,7 @@ function goRegPortp(){
 
 function goEditPortp(obj){
   let cname = obj.className;
+  console.log(cname);
   let pidx = cname.replace(/[^0-9]/g,"");
   $("input[name=reg_type]").val("E");
   $("#regForm").attr("action","portpolReg.php");
@@ -856,4 +863,49 @@ function setTargetAdd(num){
     $(".one_up_div").hide();
   }
 }
+
+function setHpView(num){
+  if(num == 1){
+    $(".hpy").addClass("hpact");
+    $(".hpn").removeClass("hpact");
+  }else{
+    $(".hpy").removeClass("hpact");
+    $(".hpn").addClass("hpact");
+  }
+  console.log( $("input[name=open]:checked").val() );
+}
+
+function setCardData(num,obj){
+  let val; 
+  
+  if(num == 1){
+    $(".cont_right .title").html(obj.value);
+  }else if(num == 2){
+    $(".cont_right .subt").html(obj.value);
+  }else if(num == 3){
+    if(obj.value != "N"){
+      $(".cont_right .country").html(obj.value);
+    }else{
+      $(".cont_right .country").html("");
+    }
+  }else if(num == 4){
+    if(obj.value != "N"){
+      $(".cont_right .platf").html("<img src='../img/"+obj.value+".png'>");
+    }else{
+      $(".cont_right .platf").html("");
+    }
+  }else if(num == 5){
+    let cur =  $("#currency").val();
+    val = numberComm(obj.value);
+    $(".cont_right .amount").html(cur+" "+val);
+  }else if(num == 6){
+    val = numberComm(obj.value);
+    $(".cont_right .rate").html(val+" %");
+  }else if(num == 7){
+    $(".cont_right .subt").html(obj.value);
+  }
+  
+  
+}
+
 

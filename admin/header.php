@@ -79,8 +79,7 @@ $noimg = "/img/no_img1.jpg";
       <? endif; ?>      
     </div>
     <div class="acc_div d-flex">
-      <span>반갑습니다.</span>
-      <span class="aname"><?=$aname?>님</span>
+      <span class="aname">Hi~ <?=$aname?>님</span>
       <span class="lout" onclick="logOut()">로그아웃</span>
     </div>
   </nav>

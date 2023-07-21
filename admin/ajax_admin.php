@@ -291,14 +291,15 @@
         
         $sql = "UPDATE sthp_portpolio SET
                   p_title = '{$title}',
-                  p_sub_title = '{$shotd}',
+                  p_sub_title = '{$shortd}',
                   {$img_col}
                   p_country = '{$country}',
                   p_funding = '{$platform}',
                   p_amount = '{$amount}',
                   p_currency = '{$currency}',
                   P_rate = '{$rate}',
-                  p_desc = '{$desc}'
+                  p_desc = '{$desc}',
+                  p_open = '{$open}'
                 WHERE
                   p_idx = {$pidx};
         ";
@@ -306,7 +307,7 @@
         $rt = "등록";
         $sql = "INSERT INTO sthp_portpolio SET
                   p_title = '{$title}',
-                  p_sub_title = '{$shotd}',
+                  p_sub_title = '{$shortd}',
                   p_img = '{$fname}',
                   p_country = '{$country}',
                   p_funding = '{$platform}',
@@ -314,6 +315,7 @@
                   p_currency = '{$currency}',
                   P_rate = '{$rate}',
                   p_desc = '{$desc}',
+                  p_open = '{$open}',
                   p_wdate = now();
         ";
       }

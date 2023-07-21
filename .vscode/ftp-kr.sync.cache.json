@@ -2,9 +2,9 @@
   "ftp://setoworks@setoworks.cafe24.com": {
     ".bash_history": {
       "type": "-",
-      "size": 2376,
+      "size": 2397,
       "lmtime": 0,
-      "modified": false
+      "modified": true
     },
     ".bash_profile": {
       "type": "-",
@@ -77,8 +77,8 @@
         "css": {
           "admin.css": {
             "type": "-",
-            "size": 30405,
-            "lmtime": 1689759596648.634,
+            "size": 39377,
+            "lmtime": 1689841685329.0808,
             "modified": false
           }
         },
@@ -103,7 +103,7 @@
         "header.php": {
           "type": "-",
           "size": 4892,
-          "lmtime": 1689735183973.09,
+          "lmtime": 1689813244161.227,
           "modified": false
         },
         "index.php": {
@@ -115,8 +115,8 @@
         "js": {
           "admin.js": {
             "type": "-",
-            "size": 19882,
-            "lmtime": 1689759220195.0415,
+            "size": 20619,
+            "lmtime": 1689825935070.1638,
             "modified": false
           }
         },
@@ -128,8 +128,8 @@
         },
         "mailSend.php": {
           "type": "-",
-          "size": 7256,
-          "lmtime": 1689759421108.5332,
+          "size": 9508,
+          "lmtime": 1689828577604.855,
           "modified": false
         },
         "main.php": {
@@ -146,8 +146,8 @@
         },
         "portpolList.php": {
           "type": "-",
-          "size": 5881,
-          "lmtime": 1689755613924.3333,
+          "size": 15185,
+          "lmtime": 1689841701259.1794,
           "modified": false
         },
         "portpolReg.php": {
@@ -158,8 +158,8 @@
         },
         "previewDiv.php": {
           "type": "-",
-          "size": 21945,
-          "lmtime": 1689558194863.8445,
+          "size": 22155,
+          "lmtime": 1689817139563.1924,
           "modified": false
         },
         "template": {
@@ -192,7 +192,27 @@
           "modified": false
         }
       },
+      "favicon.ico": {
+        "type": "-",
+        "size": 4202,
+        "lmtime": 1689844276647.8733,
+        "modified": false
+      },
       "files": {
+        "font": {
+          "BusanSea.ttf": {
+            "type": "-",
+            "size": 564604,
+            "lmtime": 1689831733289.2644,
+            "modified": false
+          },
+          "YeongdeokSea.ttf": {
+            "type": "-",
+            "size": 2564084,
+            "lmtime": 1689831733438.7705,
+            "modified": false
+          }
+        },
         "sample.xlsx": {
           "type": "-",
           "size": 9187,
@@ -4549,8 +4569,8 @@
         },
         "seto.php": {
           "type": "-",
-          "size": 13272,
-          "lmtime": 1689642152512.568,
+          "size": 13296,
+          "lmtime": 1689835186006.9355,
           "modified": false
         },
         "simple_html_dom.php": {
