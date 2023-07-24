@@ -409,7 +409,7 @@ function chkTopAdmin($idx){
 
 function chkLogin(){
   if( empty($_SESSION['aidx']) || empty($_SESSION['aid']) ){
-    alert_href("관리자 전용 페이지입니다.","./");    
+    alert_href("관리자 전용 페이지입니다.","/admin");    
   }else{
     $box = getAdminInfo($_SESSION['aidx']);
     if(!$box['a_idx']){
@@ -465,4 +465,74 @@ function getNewsLetterInfo($idx){
 function getSendMailInfo($idx){
   $sql = "SELECT * FROM sthp_sendmail as s LEFT OUTER JOIN sthp_sendmail_log as sl ON s.s_idx = sl.sl_sidx WHERE s.s_idx = {$idx}";
   return sql_fetch($sql);
+}
+
+
+
+/*
+  홈페이지 함수
+*/
+
+
+// 모바일 체크
+function IsMobile(){
+  $mAgent = array("iPhone","iPod","Android","Blackberry","Opera Mini", "Windows ce", "Nokia", "sony" );
+  $chkMobile = false;
+
+  for($i=0; $i<sizeof($mAgent); $i++){
+    if(stripos( $_SERVER['HTTP_USER_AGENT'], $mAgent[$i] )){
+      $chkMobile = true;
+      break;
+    }
+  }
+
+  if($chkMobile) {
+    return true;
+  }else{
+    return false;
+  }
+}
+
+
+function visitCount(){
+  $vhis = $_SESSION['visit'];
+  if(!isset($vhis)){
+    $_SESSION['visit'] = "Y";
+
+    $ipaddr = $_SERVER['REMOTE_ADDR'];
+    $agent = $_SERVER['HTTP_USER_AGENT'];
+    $country = $_SERVER['HTTP_HOSTING_COUNTRY_CODE'];
+    $ref = $_SERVER['HTTP_REFERER'];
+    $date = date("Y-m-d");
+  
+    // 봇이든 아니든 일단 상세 기록은 추가
+    $dsql = "INSERT INTO sthp_visit_detail SET vd_date = now(), vd_ipaddr = '{$ipaddr}', vd_referer = '{$ref}', vd_agent = '{$agent}', vd_code = '{$country}'";
+    sql_exec($dsql);
+
+    // 봇인지를 판별
+    preg_match("/\+http/",$agent,$a_re);
+    
+    if(!$a_re){
+      // 카운트 하나 추가
+      $hour = date("H");
+      $db_hour = "H".$hour;
+
+      $sql = "SELECT * FROM sthp_visit WHERE v_date = '{$date}'";
+      $re = sql_fetch($sql);
+
+      // 오늘일자 데이터가 있으면 해당시간에 + 1, 없으면 입력.
+      if($re){
+        $nhour = $re[$db_hour] + 1;
+        $total = $re['v_total'] + 1;
+        $sql = "UPDATE sthp_visit SET {$db_hour} = {$nhour}, v_total = {$total} WHERE v_date = '{$date}'";
+      }else{
+        $sql = "INSERT INTO sthp_visit SET v_date = '{$date}', {$db_hour} = 1, v_total = 1";
+      }
+
+      $re = sql_exec($sql);
+    }
+
+  }else{
+    // 방문 세션이 남아있으니 카운팅 안함.
+  }
 }

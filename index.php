@@ -1,5 +1,10 @@
 <?php
   include "lib/seto.php";
+  
+  // session_destroy();
+  // var_dump($_SESSION);
+  visitCount();
+  
 ?>
 
 <div style="width:100%; display:flex; justify-content:center;flex-direction:column;align-items:center;">

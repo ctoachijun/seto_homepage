@@ -17,16 +17,16 @@ include "header.php";
 //   $tel = $arr_tel[array_rand($arr_tel)];
 //   $subj = $arr_title[array_rand($arr_title)];
 //   $cont = $arr_cont[array_rand($arr_cont)];
-//   $secret = rand(1000,9999);
   
 //   $term = $i * 2;
 //   $tstamp = strtotime("+{$term} seconds");
 //   $now = date("Y-m-d H:i:s", $tstamp);
-
+//   $itidx = rand(1,4);
+  
   
 //   $sql = "INSERT INTO sthp_inquiry SET
-//           i_company = '{$comp}', i_name = '{$name}', i_email = '{$email}', i_tel = '{$tel}', i_subject = '{$subj}', i_content = '{$cont}', 
-//           i_secret = {$secret}, i_wdate = '{$now}'
+//           i_itidx = {$itidx}, i_company = '{$comp}', i_name = '{$name}', i_email = '{$email}', i_tel = '{$tel}', i_subject = '{$subj}', i_content = '{$cont}', 
+//           i_wdate = '{$now}'
 //         ";
             
 //   // echo "$sql <br>";

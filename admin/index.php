@@ -7,7 +7,7 @@
     // var_dump($_SESSION);
     // echo "<br>";
   }else{
-    if($_SESSION){
+    if($_SESSION['aid'] && $_SESSION['aidx']){
       // header("./main.php");
       page_move("main.php");
     }
