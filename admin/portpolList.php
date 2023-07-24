@@ -172,7 +172,7 @@ if(!$number) $number = $total_cnt;
                                 
                 </tbody>
                 <? else : ?>
-                  <tr><td colspan="10" class="nadding">검색결과가 없습니다.</td></tr>
+                  <tr><td colspan="8" class="nadding">검색결과가 없습니다.</td></tr>
                 <? endif; ?>
             </table>
           </div>

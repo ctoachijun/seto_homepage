@@ -50,7 +50,7 @@ $alist = getAdminList($type,$sw);
                     <th>부서</th>
                     <th>직함</th>
                     <th>로그인</th>
-                    <th></th>
+                    <!-- <th></th> -->
                   </tr>
                 </thead>
                 <tbody>
@@ -73,7 +73,7 @@ $alist = getAdminList($type,$sw);
                     <td><?=$part?></td>
                     <td><?=$title?></td>
                     <td><?=$login?></td>
-                    <td><input type='button' class='btn btn-no' onclick="delAdmin(<?=$idx?>)" value="삭제"></span></td>
+                    <!-- <td><input type='button' class='btn btn-no' onclick="delAdmin(<?=$idx?>)" value="삭제"></span></td> -->
                   </tr>
                 <? endforeach; ?>
                 </tbody>
@@ -115,9 +115,9 @@ $alist = getAdminList($type,$sw);
                 <div class="m_line5">
                   <div class="m_cont1 wv-1"><?=$login?> (최종 로그인)</div>
                 </div>
-                <div class="m_line6">
+                <!-- <div class="m_line6">
                   <div class="m_cont1 wv-1"><input type='button' class='btn btn-no' onclick="delAdmin(<?=$idx?>)" value="삭제"></span></div>
-                </div>
+                </div> -->
           
                 <td></td>
               </div>

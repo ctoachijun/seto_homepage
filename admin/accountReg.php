@@ -21,6 +21,7 @@ if($reg_type == "E"){
   $part = $admin['a_part'];
   $title = $admin['a_title'];
   $grade = $admin['a_grade'];
+  $count = $admin['a_tpw_count'];
   
   if($grade == "N"){
     $grade1_chk = "checked";
@@ -31,6 +32,11 @@ if($reg_type == "E"){
   }
   
   $editver = "readonly";
+  
+  // 본인 계정인지 확인
+  if($aid == $uid) $nayo = 1;
+  
+  
 }
 
 
@@ -45,6 +51,8 @@ if($reg_type == "E"){
           <input type='hidden' name='idjud' />
           <input type='hidden' name='pwjud' />
           <input type='hidden' name='reg_type' value="<?=$reg_type?>" />
+          <input type='hidden' name='top' value="<?=$grade?>" />
+          <input type='hidden' name='nana' value="<?=$nayo?>" />
           <div class="row">
             <div><label for="uid">ID</label><span class="pil">*</span><span class="error error_id"></span></div>
             <div>
@@ -65,6 +73,13 @@ if($reg_type == "E"){
               <span class='pw_txt'>초기 비밀번호는 고정 세팅입니다 : 12341234</span>
             <? endif; ?>
           </div>
+          <? if($reg_type == "E") : ?>
+          <div class="row">
+            <div>
+              <label for="name">인증 횟수 : <span class="count"><?=$count?></span></label><input type="button" class="btn resetbtn" value="초기화" onclick="resetCount(<?=$admin_idx?>)" />              
+            </div>
+          </div>
+          <? endif; ?>
           <div class="row">
             <div>
               <label for="name">이름</label><span class="pil">*</span>
@@ -117,7 +132,6 @@ if($reg_type == "E"){
     $(function(){
       
       $("#uid").on("input",function(){
-        console.log(this.value);
         if(!chkEmailType(this.value)){
           $(".error_id").html("올바른 이메일 주소가 아닙니다.");
           $("input[name=idjud").val(1);

@@ -410,6 +410,12 @@ function chkTopAdmin($idx){
 function chkLogin(){
   if( empty($_SESSION['aidx']) || empty($_SESSION['aid']) ){
     alert_href("관리자 전용 페이지입니다.","./");    
+  }else{
+    $box = getAdminInfo($_SESSION['aidx']);
+    if(!$box['a_idx']){
+      session_destroy();
+      alert_href("재로그인 해 주세요.","/admin");    
+    }
   }
 }
 

@@ -815,6 +815,30 @@
       echo json_encode($output);
     break;
     
+    case "resetCount" : 
+      $sql = "UPDATE sthp_admin SET a_tpw_count = 0 WHERE a_idx = {$idx}";
+      $re = sql_exec($sql);
+      
+      if($re){
+        $output['state'] = "Y";
+        $admin = getAdminInfo($idx);
+        $output['count'] = $admin['a_tpw_count'];
+        $tname = $admin['a_name'];
+        
+        // 로그
+        $exec = ("관리자 [ {$tname} ] 인증횟수 초기화");
+        getLog($sql,$exec,$aname);
+      }else{
+        $output['state'] = "N";
+      }
+      
+      echo json_encode($output);
+    break;
+    
+    
+    
+    
+    
     
     
     default :

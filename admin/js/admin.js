@@ -213,7 +213,7 @@ function regAccount(){
       data: f,
       success: function(result){
         let json = JSON.parse(result);
-        console.log(json);
+        // console.log(json);
         
         if(json.state=="Y"){
           alert("정상 "+rt_txt+" 되었습니다");
@@ -235,6 +235,20 @@ function goDetail(idx){
   $("form").submit();
 }
 function delAdmin(idx){
+  let grade = $("input[name=top]").val();
+  
+  if(grade == "A"){
+    alert("관리계정은 삭제 할 수 없습니다.\n일반 계정으로 변경 후 삭제 해 주세요.");
+    return false;
+  }
+  
+  // 관리계정 삭제 방지처리로 본인계정은 자연스럽게 삭제 할 수 없게되지만 2차 방지용.
+  if($("input[name=nana").val() == 1){
+    alert("본인 계정을 삭제 할 수 없습니다.");
+    return false;
+  }
+  
+  
   if( confirm("해당 계정을 삭제 하시겠습니까?") ){
     $.ajax({
       url : "ajax_admin.php",
@@ -245,7 +259,7 @@ function delAdmin(idx){
       
       if(json.state == "Y"){
         alert("삭제 되었습니다.");
-        history.go(0);
+        history.go(-1);
       }else{
         erroeAlert();
       }
@@ -501,7 +515,7 @@ function regPortpolio(){
         
         if(json.state == "Y"){
           alert(rt_txt+" 되었습니다.");
-          pageBack();
+          location.href="./portpolList.php";
         }else{
           errorAlert();
         }
@@ -942,8 +956,29 @@ function sendTempPw(){
       }
     })
   }
-  
-  
+}
+
+function resetCount(idx){
+  if( confirm("인증횟수를 초기화 하시겠습니까?") ){
+    $.ajax({
+      url : "ajax_admin.php",
+      type: "post",
+      data: {"w_mode":"resetCount","idx":idx},
+      success : function(result){
+        let json = JSON.parse(result);
+        console.log(json);
+        
+        if(json.state=="Y"){
+          alert("초기화 했습니다.");
+          $(".count").html(json.count);
+          return false;
+        }else{
+          errorAlert();
+          return false;
+        }
+      }
+    })
+  }
 }
 
 

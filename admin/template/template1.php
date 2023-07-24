@@ -98,8 +98,8 @@
 						<table border='0' cellpadding='0' cellspacing='0' style='width:100%'>
 							<tbody>
 								<tr>
-									<td style='text-align:center'>
-                      <img alt='' border='0' name='upd_img' src='https://setoworks.cafe24.com/img/nsletter/<?=$year?>/<?=$mainimg?>' style='display:inline-block; max-width:100%; vertical-align:middle' width='800' /> 
+									<td style='text-align:center;height:300px;'>
+                      <img alt='' border='0' name='upd_img' src='https://setoworks.cafe24.com/img/nsletter/<?=$year?>/<?=$mainimg?>' style='display:inline-block; max-width:100%; height:100%; object-fit:contain; vertical-align:middle' width='800' /> 
                   </td>
 								</tr>
 								<tr>

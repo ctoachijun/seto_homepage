@@ -28,8 +28,6 @@ if($current == "portpolList.php" || $current == "portpolReg.php"){
 }
 
 
-
-
 // 첫 접속시 비밀번호 변경 페이지로 이동시킴.
 // 단, 비밀번호 변경 페이지인 경우에는 제외
 if($current != "firstConnect.php"){

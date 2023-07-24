@@ -2,11 +2,7 @@
 
 function sendMail($rnames,$raddrs,$subject,$content){   // sendMail(array,array,text,html)
   
-  //메일 발송 호출은 분당 300을 넘어서는 안된다.
-  
-  
-  
-/**
+ /**
  * 치환 메일 발송
  */
 

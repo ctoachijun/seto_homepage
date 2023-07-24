@@ -24,7 +24,7 @@
 }
 
 body{min-height:100vh;}
-#main{width:100%;min-height:84vh;display:flex;justify-content: center;min-width:220px;padding-top:0px;}
+#main{width:100%;min-height:84vh;min-width:220px;padding-top:0px;text-align:center;}
 @media (max-width:1200px){
   #main{padding-top:50px;}
 }
@@ -116,7 +116,7 @@ nav .acc_div .lout{margin-top:5px;text-decoration: underline;cursor:pointer;font
   .mobi .acc_div{width:20%;}
 }
 
-#accountList,#logList,#mooniList,#portpolList,#portpolReg,#mailList{width:80%;min-width:210px;}
+#accountList,#logList,#mooniList,#portpolList,#portpolReg,#mailList{width:80%;min-width:210px;margin:0 auto;min-height:90vh;}
 #accountReg,#mailSend{width:50%;min-width:210px;margin:0 auto;}
 
 /*
@@ -278,7 +278,9 @@ nav .acc_div .lout{margin-top:5px;text-decoration: underline;cursor:pointer;font
 #accountReg .pw_txt{font-size:0.8rem;font-weight:700;}
 #accountReg .row{margin-bottom:20px;width:90%;}
 #accountReg .error{font-size:0.9rem;margin-left:10px;}
+#accountReg .resetbtn{width:60px;height:25px;margin-left:20px;}
 #accountReg #uid{font-size:20px;}
+#accountReg #uid::placeholder{font-size:.9rem;}
 #accountReg #upw{margin-bottom:20px;}
 #accountReg .posi{display:flex;}
 #accountReg .posi .wv-2:first-child .txt-input{width:90%;}
@@ -307,7 +309,9 @@ nav .acc_div .lout{margin-top:5px;text-decoration: underline;cursor:pointer;font
   #accountReg .btn_row .btn_div .btn{width:49%;margin:0;}
   #accountReg .btn_row .btn-no{width:100%;height:40px;margin-top:10px;}
 }
-
+@media (max-width:400px){
+  #accountReg .resetbtn{width:100%; margin-left:0px;}
+}
 
 
 /*
@@ -825,12 +829,12 @@ nav .acc_div .lout{margin-top:5px;text-decoration: underline;cursor:pointer;font
 #mailSend .img_row .btn{width:30px;height:30px;color:#fff;background:#0C76F7;border:2px solid #0c61d8;margin-left:10px;}
 #mailSend .preview_div .btn{height:35px;}
 
-#mailSend #preview1{width:650px;height:600px;height:100%;display:none;position:fixed;top:25%;left:50%;transform:translate(-50%, -20%);z-index:510;background-size:contain;overflow:auto}
+#mailSend #preview1{width:650px;height:700px;display:none;position:fixed;top:25%;left:50%;transform:translate(-50%, -20%);z-index:510;background-size:contain;overflow:auto;background:#000;}
 #mailSend #preview1 .notice{position:absolute;top:10px;left:10px;color:#fff;}
-#mailSend #preview1 #temp1{width:auto;height:auto;max-width:100%;max-height:100%;}
-#mailSend #preview2{width:650px;height:600px;height:100%;display:none;position:fixed;top:25%;left:50%;transform:translate(-50%, -20%);z-index:510;background-size:contain;overflow:auto}
+#mailSend #preview1 #temp1{width:auto;height:100%;max-width:100%;max-height:100%;}
+#mailSend #preview2{width:650px;height:700px;display:none;position:fixed;top:25%;left:50%;transform:translate(-50%, -20%);z-index:510;background-size:contain;overflow:auto;background:#fff;}
 #mailSend #preview2 .notice{position:absolute;top:10px;right:10px;color:#fff;}
-#mailSend #preview2 #temp2{width:auto;height:auto;max-width:100%;max-height:100%;}
+#mailSend #preview2 #temp2{width:auto;height:100%;max-width:100%;max-height:100%;}
 
 #mailSend .section_line{width:90%;border-bottom:1px solid #0c61d8;margin:50px auto;}
 
