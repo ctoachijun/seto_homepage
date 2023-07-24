@@ -133,15 +133,15 @@ $postvars = $postvars.', "receiver":'.$receiver;
 //$postvars = $postvars.', "remained_count":"'.$remained_count.'"';
 
 // 필수 안내문구를 추가할 경우 주석 해제
-$postvars = $postvars.', "agreement_text":"'.$agreement_text.'"';
-$postvars = $postvars.', "deny_text":"'.$deny_text.'"';
-$postvars = $postvars.', "sender_info_text":"'.$sender_info_text.'"';
-$postvars = $postvars.', "logo_state":"'.$logo_state.'"';
-$postvars = $postvars.', "logo_path":"'.$logo_path.'"';
-$postvars = $postvars.', "logo_sort":"'.$logo_sort.'"';
+// $postvars = $postvars.', "agreement_text":"'.$agreement_text.'"';
+// $postvars = $postvars.', "deny_text":"'.$deny_text.'"';
+// $postvars = $postvars.', "sender_info_text":"'.$sender_info_text.'"';
+$postvars = $postvars.', "logo_state":"'.$logo_state.'"'; // 이게 없으면 일정 컨텐츠 이하로 숨김처리가 된다.
+// $postvars = $postvars.', "logo_path":"'.$logo_path.'"';
+// $postvars = $postvars.', "logo_sort":"'.$logo_sort.'"';
 
 // 메일내용, 풋터(수신옵션) 정렬 사용할 경우 주석 해제
-//$postvars = $postvars.', "footer_sort":"'.$footer_sort.'"';
+$postvars = $postvars.', "footer_sort":"'.$footer_sort.'"';
 
 // 메일 발송결과를 받고 싶은 URL 사용할 경우 주석 해제
 // $postvars = $postvars.', "return_url_yn":'.TRUE;       //return_url 사용시 필수 입력

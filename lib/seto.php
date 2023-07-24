@@ -123,6 +123,29 @@ function qsChgForminput($qs,$nopt){
     
   return $html;
 }
+
+// 임의의 문자열 생성 ( 특수문자 포함 )
+function passwordGenerator(){
+  $low = array("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z");
+  $high = array("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z");
+  $gi = array("!", "@", "#", "%", "^", "&");
+
+  for($i=0; $i<2; $i++){
+    $tbox[$i] = $low[array_rand($low)];
+  }
+  for($i=0; $i<4; $i++){
+    array_push($tbox,rand(0,9));
+  }
+  for($i=0; $i<1; $i++){
+    array_push($tbox,$high[array_rand($high)]);
+    array_push($tbox,$gi[array_rand($gi)]);
+  }
+  shuffle($tbox);
+  $txt = implode("",$tbox);
+
+  return $txt;
+}
+
 function getPaging($tbl, $qs, $where){
 
   if($tbl == "setohp_log"){

@@ -125,7 +125,7 @@ nav .acc_div .lout{margin-top:5px;text-decoration: underline;cursor:pointer;font
 #logIn{width:100%;height:100vh;background:#040000}
 #logIn .content{position:relative;width:100%;height:100%;}
 #logIn .login_div{
-  position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);border:1px solid #222;max-width:500px;min-width:200px;height:300px;
+  position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);border:1px solid #222;max-width:500px;min-width:200px;height:320px;
   width:40%;padding:2rem;border:2px solid #CECECE;border-radius:10px;
 }
 #logIn .login_div .cont_div{flex-direction: column;}
@@ -138,10 +138,13 @@ nav .acc_div .lout{margin-top:5px;text-decoration: underline;cursor:pointer;font
 #logIn .login_div .left_div .left_cont .head span{width:100%;}
 #logIn .login_div .left_div .left_cont .inputd{margin-left:20px;width:60%;}
 #logIn .login_div .left_div .left_cont .inputd input{border:0;}
-#logIn .login_div .right_div{margin-top:30px;justify-content: center;flex-direction: column;align-items: center;}
-#logIn .login_div .right_div p{color:#888;}
+#logIn .login_div .right_div{margin-top:30px;justify-content: space-between;flex-direction: column;align-items: center;}
+#logIn .login_div .right_div p{color:#888;margin-top:18px;}
 #logIn .login_div .right_div a{color:#CCC;}
 #logIn .login_div .right_div button{width:30%;height:45px;border:0;}
+
+/*비밀번호 찾기*/
+#logIn .login_div .desc_div{width:100%;color:#fff;margin-top:30px;align-items: flex-start;justify-content: center;flex-direction: column;margin-bottom:10px;}
 
 @media (max-width:1010px){
   #logIn .login_div{width:60%;}
@@ -154,7 +157,7 @@ nav .acc_div .lout{margin-top:5px;text-decoration: underline;cursor:pointer;font
 }
 @media (max-width:600px){
   #logIn .login_div{top:42%;}
-  #logIn .login_div{height:350px;}
+  #logIn .login_div{height:380px;}
   #logIn .login_div .top_div{flex-direction:column}
   #logIn .login_div .top_div img{width: 80%;}
   #logIn .login_div .top_div p{font-size:22px;}
@@ -166,7 +169,12 @@ nav .acc_div .lout{margin-top:5px;text-decoration: underline;cursor:pointer;font
 }
 @media (max-width:400px){
   #logIn .login_div{width:80%;}
+  #logIn .login_div{height:360px;}
   #logIn .txt-input::placeholder{font-size:.7rem;}
+  #logIn .login_div .right_div p{font-size:.8rem;}
+  #logIn .login_div .right_div button{width:100%;height:35px;}
+  
+  #logIn .login_div .desc_div p{font-size:.8rem;}
 }
 
 

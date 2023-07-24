@@ -25,9 +25,10 @@
           // 로그인 일시 입력처리
           $sql1 = "UPDATE sthp_admin SET a_login = now() WHERE a_idx = ".$re['a_idx'];
           $re1 = sql_exec($sql1);
-          // 중복이라도 로그 체크
-          $exec = "관리자 로그인";
-          getLog($sql1,$exec,$re['a_name']);
+          
+          // // 중복이라도 로그 체크
+          // $exec = "관리자 로그인";
+          // getLog($sql1,$exec,$re['a_name']);
           
         }else{
           $output['state'] = "W";
@@ -157,8 +158,8 @@
     case "logOut" :
       
       //로그
-      $exec = "[ {$aname} ] 로그아웃";
-      getLog("버튼 클릭으로 로그아웃",$exec,$aname);
+      // $exec = "[ {$aname} ] 로그아웃";
+      // getLog("버튼 클릭으로 로그아웃",$exec,$aname);
       
       session_destroy();
       $output['state'] = "Y";
@@ -377,43 +378,6 @@
       echo json_encode($output,JSON_UNESCAPED_UNICODE);
     break;
     
-    case "sendmail" :
-      // POST를 GET형태로 바꿔줌.
-      $post_string = http_build_query($_POST,'','&');
-      
-      // 템플릿 HTML 코드 받아오기
-      $url = "https://setoworks.cafe24.com/test/template1.php";
-      
-      $ch = curl_init();                                 //curl 초기화
-      curl_setopt($ch, CURLOPT_URL, $url);               //URL 지정하기
-      curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);    //요청 결과를 문자열로 반환 
-      curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);      //connection timeout 10초 
-      curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);   //원격 서버의 인증서가 유효한지 검사 안함
-      curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.7.5) Gecko/20041107 Firefox/1.0'); 
-
-      // post_data
-      // curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
-      curl_setopt($ch, CURLOPT_POST, true);
-      curl_setopt($ch, CURLOPT_POSTFIELDS, $post_string);      
-      
-      $response = curl_exec($ch);
-      curl_close($ch);
-
-      
-      // 메일 발송
-      include_once "../lib/directsend.php";
-      
-      // 넘어온 대상을 배열로 만들어 발송함수에 넘김
-      $rnames = explode("|",$arr_names);
-      $remails = explode("|",$arr_emails);
-      $output['target'] = $arr_names;
-      $res = sendMail($rnames,$remails,"3연속 가즈아!!!",$response);
-      $output['res'] = $res;
-      
-      echo $res;
-      echo json_encode($output,JSON_UNESCAPED_UNICODE);
-    break;
-  
     case "addEmailTarget" :
       empty($rnames) ? $rnames = $name : $rnames .= "|{$name}";
       empty($remails) ? $remails = $email : $remails .= "|{$email}";
@@ -747,7 +711,109 @@
       echo json_encode($output,JSON_UNESCAPED_UNICODE);
     break;
     
-    
+    case "sendTempPw" :
+      $sql = "SELECT * FROM sthp_admin WHERE a_id = '{$id}'";
+      $re = sql_fetch($sql);
+      // $output['sql'] = $sql;
+      // ID가 존재하지 않는경우
+      if(!$re){
+        $output['state'] = "IN";
+      }else{
+        $tmp_count = $re['a_tpw_count'];
+        $tmp_date = $re['a_tpw_sdate'];
+        $today = date("Y-m-d");
+        $today_ts = date("Y-m-d H:i:s");
+        $name = $re['a_name'];
+        
+        
+        if($tmp_count == 3 && $today == $tmp_date){
+          // 일 인증횟수 초과인 경우
+          $output['state'] = "O";
+        }else{
+          // 아무 문제없는 경우 임시비번으로 변경, 카운트 +1, 인증날짜 갱신.
+          $today == $tmp_date ? $tmp_count += 1 : $tmp_count = 1;
+          $create = passwordGenerator();
+          $tmp_pw = password_hash($create,PASSWORD_DEFAULT);
+          $usql = "UPDATE sthp_admin SET a_passwd = '{$tmp_pw}', a_first = 'Y', a_tpw_count = {$tmp_count}, a_tpw_sdate = '{$today}' WHERE a_id = '{$id}'";
+          $ure = sql_exec($usql);
+          
+          if($ure){
+            // DB입력 되었을경우, 메일 전송.
+            $cont = "
+            <div style='width:100%;height:80vh;text-align:left'>
+              <div style='width:600px;height:550px;border-left:1px solid #CECECE;border-right:1px solid #CECECE;border-radius:10px;'>
+                  <div style='width:100%;height:50px;background:#020000;border-top-left-radius:10px;border-top-right-radius:10px;'>
+                    <img style='width:200px;height:35px;margin-left:10px;margin-top:6px;' src='https://setoworks.cafe24.com/img/seto_logo.png' />
+                  </div>
+                  <div style='height:50px;border-bottom:2px solid #020000;margin-left:20px;width:550px;padding-top:15px;padding-bottom:30px;'>
+                    <p style='font-size:20px;'>요청하신 <span style='color:#020000;font-weight:700;text-decoration:underline;'>임시비밀번호</span>가 발급되었습니다.</p>
+                  </div>
+                  <div style='width:580px;margin-left:20px;margin-top:25px;border-bottom:1px solid #999;padding-bottom:20px;'>
+                    <div style='display:flex;margin-bottom:20px;'>
+                        <div style='width:150px;'>임시비밀번호 :</div>
+                        <div style='width:200px;'><span style='color:#E6002D;font-weight:700;'>{$create}</span></div>
+                    </div>
+                    <div style='display:flex;margin-bottom:20px;'>
+                        <div style='width:150px'>접수 시각 :</div>
+                        <div style='width:150px'>{$today_ts}</div>
+                    </div>
+                    <div style='display:flex;'>
+                        <div style='width:150px'>주의사항 :</div>
+                        <div style='width:390px;'>
+                          임시비밀번호 발급은 <span style='color:#E6002D;'>일 3회</span> 발송 가능합니다. 횟수가 초과 되었을 경우, 관리자에게 문의 해 주세요.
+                        </div>
+                    </div>
+                  </div>
+                  <div style='margin-left:20px;margin-top:20px;padding-top:20px;padding-bottom:40px;'>
+                    <p style='margin-bottom:10px;'><span style='font-size:10px'>●</span> 임시비밀번호를 포함 해 비밀번호는 암호화 되어 관리자도 알 수 없습니다.<br>비밀번호 관리에 유의 해 주세요.</p>
+                    <p style=''><span style='font-size:10px'>●</span> 임시비밀번호를 이용해 로그인 하시면 비밀번호 변경 화면이 표시되니 변경 후 사용해 주시길 바랍니다.</p>
+                  </div>
+                  <div style='height:70px;width:100%;border-bottom-left-radius:10px;border-bottom-right-radius:10px;background:#020000;text-align:center;padding-top:30px;'>
+                    <a style='' href='https://setoworks.cafe24.com/admin' target='_blank'><p style='margin:0;color:#fff;font-weight:700;font-size:24px;text-decoration:underline;'>관리자 로그인 하러가기</p></a>
+                  </div>
+              </div>
+            </div>
+            ";
+            
+            include_once("../lib/directsend.php");
+            $id_arr = explode("|",$id);
+            $name_arr = explode("|",$name);
+            $res = sendMail($name_arr,$id_arr,"[세토웍스 관리자] 임시비밀번호 발급입니다.",$cont);
+
+            $res = preg_replace("/\\n/","",$res);
+            $jdbox = json_decode($res,true);
+            $status = $jdbox['status'];
+            $msg = $jdbox['msg'];
+            $detail = $jdbox['msg_detail'];
+            $mcount = count($rtemails);
+            
+            $lsql = "INSERT INTO sthp_sendmail_log SET
+                      sl_sidx = 0,
+                      sl_tname = '{$name}',
+                      sl_tmail = '{$id}',
+                      sl_sdate = now(),
+                      sl_status = '{$status}',
+                      sl_msg = '{$msg}',
+                      sl_msg_detail = '{$detail}',
+                      sl_count = {$mcount}
+            ";
+            $lre = sql_exec($lsql);
+            
+            // 로그
+            $exec = "{$name} / {$id} - 임시비밀번호 메일 발송";
+            $sql_txt = "{$usql}\n{$lsql}";
+            getLog($sql_txt,$exec,"system");
+            
+            $output['state'] = "Y";
+            
+          }else{
+            $output['state'] = "N";
+          }
+        }
+      }
+      
+      echo json_encode($output);
+    break;
     
     
     

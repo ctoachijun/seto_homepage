@@ -16,10 +16,6 @@
   
 ?>
 
-
-
-
-
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -62,7 +58,7 @@
             </div>
             <div class="right_div d-flex">
               <button type="button" class="btn btn-ok" onclick="chkAccount()">로그인</button>
-              <!-- <p class="fpt">비밀번호를 잊은 경우에는 <a href="./forgetPw.php">여기</a>를 클릭 해 주세요.</p> -->
+              <p class="fpt">비밀번호를 잊은 경우에는 <a href="./forgetPw.php">여기</a>를 클릭 해 주세요.</p>
             </div>
           </div>
         </div>

@@ -905,8 +905,46 @@ function setCardData(num,obj){
   }else if(num == 7){
     $(".cont_right .subt").html(obj.value);
   }
+}
+
+function sendTempPw(){
+  let id = $("#uid").val();
+  console.log(id);
+  if(!id || id == ""){
+    alert("ID를 입력 해 주세요.");
+    $("#uid").focus();
+    return false;
+  }
+  
+  if( confirm("임시 비밀번호를 발송 하시겠습니까?")){
+    $.ajax({
+      url : "ajax_admin.php",
+      type: "post",
+      data: {"w_mode":"sendTempPw","id":id},
+      success: function(result){
+        let json = JSON.parse(result);
+        console.log(json);
+        
+        if(json.state == "IN"){
+          alert("등록 된 ID가 아닙니다.");
+          $("#uid").focus();
+          return false;
+        }else if(json.state == "O"){
+          alert("인증횟수 초과입니다. 관리자에게 문의주세요.");
+          return false;          
+        }else if(json.state == "N"){
+          errorAlert();
+        }else{
+          alert("발송되었습니다.");
+          location.href="/admin";
+        }
+        
+      }
+    })
+  }
   
   
 }
+
 
 
