@@ -10,13 +10,12 @@
   
   // 접속 IP를 기반으로 어디서 접속했는지 확인.
   $ipaddr = $_SERVER['REMOTE_ADDR'];
+  // $ipaddr = get_client_ip();
   $code = chkConnCountry($ipaddr);
   
-  foreach($_SERVER as $k => $v){
-    echo "$k : $v <br>";
-  }
-  
-  
+  // foreach($_SERVER as $k => $v){
+  //   echo "$k : $v <br>";
+  // }
   
   if($code == "KR"){
     echo '한국서 접속';
@@ -28,7 +27,7 @@
     echo "미쿸서 접속";
   }
   
-  
+
   
 ?>
 
