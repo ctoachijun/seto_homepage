@@ -492,8 +492,6 @@ function IsMobile(){
     return false;
   }
 }
-
-
 function visitCount(){
   $vhis = $_SESSION['visit'];
   if(!isset($vhis)){
@@ -536,3 +534,46 @@ function visitCount(){
     // 방문 세션이 남아있으니 카운팅 안함.
   }
 }
+function chkConnCountry($ip){
+  $skey = "ZsRAndbt9u1nZ0%2B62mJ6iHUfSk0eeGURSTaFHO0SbaLNdibl%2BGJdcOyodjXfSo85FmdxuJg6TXJ9tThW89y9lg%3D%3D";
+  $url = "http://apis.data.go.kr/B551505/whois/ip_address?serviceKey={$skey}&query={$ip}&answer=json";
+  
+  
+  $ch = curl_init();                                 //curl 초기화
+  curl_setopt($ch, CURLOPT_URL, $url);               //URL 지정하기
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);    //요청 결과를 문자열로 반환 
+  curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);      //connection timeout 10초 
+  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);   //원격 서버의 인증서가 유효한지 검사 안함
+  curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.7.5) Gecko/20041107 Firefox/1.0'); 
+
+  $response = curl_exec($ch);
+  curl_close($ch);
+
+  $res = json_decode($response);
+  $code = $res->response->whois->countryCode;
+  // $country = getCountryName($code);
+    
+  // return $code."/".$country;
+  return $code;
+}
+function getCountryName($code){
+  $skey = "ZsRAndbt9u1nZ0%2B62mJ6iHUfSk0eeGURSTaFHO0SbaLNdibl%2BGJdcOyodjXfSo85FmdxuJg6TXJ9tThW89y9lg%3D%3D";
+  $url = "https://apis.data.go.kr/1262000/CountryCodeService2/getCountryCodeList2?serviceKey={$skey}&numOfRows=10&pageNo=1&cond[country_iso_alp2::EQ]={$code}&returnType=json";
+  
+  
+  $ch = curl_init();                                 //curl 초기화
+  curl_setopt($ch, CURLOPT_URL, $url);               //URL 지정하기
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);    //요청 결과를 문자열로 반환 
+  curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);      //connection timeout 10초 
+  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);   //원격 서버의 인증서가 유효한지 검사 안함
+  curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.7.5) Gecko/20041107 Firefox/1.0'); 
+
+  $response = curl_exec($ch);
+  curl_close($ch);
+
+  $res = json_decode($response);
+  $country = $res->data[0]->country_nm;
+  
+  return $country;
+}
+
