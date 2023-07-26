@@ -174,16 +174,6 @@ function regAccount(){
     return false;
   }
   
-  // if( rt == "E" ){
-  //   if(!pw || !repw){
-  //     alert("비밀번호를 입력 해 주세요");
-  //     $("#upw").focus();
-  //     return false;
-  //   }
-  // }
-  
-  
-  
   if(!name){
     alert("이름을 입력 해 주세요");
     $("#uname").focus();
@@ -213,7 +203,7 @@ function regAccount(){
       data: f,
       success: function(result){
         let json = JSON.parse(result);
-        // console.log(json);
+        console.log(json);
         
         if(json.state=="Y"){
           alert("정상 "+rt_txt+" 되었습니다");
@@ -981,5 +971,53 @@ function resetCount(idx){
   }
 }
 
+function setManager(obj){
+  let org = $("input[name=inq_mng").val().trim();
+  let val = obj.value;
+  
+  console.log('검색 : '+org);
+  if( org.indexOf(val) == -1 ){
+    console.log(val + ' 없음');
+    if(!org){
+      $("input[name=inq_mng").val(obj.value);
+    }
+    
+    $.ajax({
+      url : "ajax_admin.php",
+      type: "post",
+      data: {"w_mode":"setManager","org":org,"val":val},
+      success: function(result){
+        let json = JSON.parse(result);
+        // console.log(json);
+        
+        $(".mng_view").html(json.html);
+        $("input[name=inq_mng").val(json.inq_mng);
+      }
+    })
+    
+  }else{
+    console.log(val + ' 있음');
+    alert("담당으로 등록 되어 있는 문의유형입니다.");
+    return false;
+  }
+  $("#mng").val("N").prop("selected",true);
+}
+
+function delMng(num){
+  let org = $("input[name=inq_mng").val().trim();
+  
+  $.ajax({
+    url : "ajax_admin.php",
+    type: "post",
+    data: {"w_mode":"delMng","idx":num,"org":org},
+    success: function(result){
+      let json = JSON.parse(result);
+      
+      $(".mng_view").html(json.html);
+      $("input[name=inq_mng").val(json.inq_mng);
+    
+    }
+  })
+}
 
 

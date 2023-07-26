@@ -276,7 +276,7 @@ nav .acc_div .lout{margin-top:5px;text-decoration: underline;cursor:pointer;font
 #accountReg .page_title div{width:220px;}
 #accountReg form{width:80%;margin:0 auto}
 #accountReg .pw_txt{font-size:0.8rem;font-weight:700;}
-#accountReg .row{margin-bottom:20px;width:90%;}
+#accountReg .row{margin-bottom:30px;width:90%;}
 #accountReg .error{font-size:0.9rem;margin-left:10px;}
 #accountReg .resetbtn{width:60px;height:25px;margin-left:20px;}
 #accountReg #uid{font-size:20px;}
@@ -284,8 +284,16 @@ nav .acc_div .lout{margin-top:5px;text-decoration: underline;cursor:pointer;font
 #accountReg #upw{margin-bottom:20px;}
 #accountReg .posi{display:flex;}
 #accountReg .posi .wv-2:first-child .txt-input{width:90%;}
+#accountReg .mng .sel-select{width:90%}
+#accountReg .mng .mng_view{border:1px solid #ccc;width:100%;height:auto;margin-top:20px;padding:1rem;max-height:200px;overflow: auto;}
+#accountReg .mng .mng_view .mng_row{display:flex;justify-content: space-between;}
+#accountReg .mng .mng_view .mng_row:nth-child(even){margin:10px 0;}
+#accountReg .mng .mng_view .mng_row:hover{background:#eee;}
+
+
+
 #accountReg .pil{color:red;font-weight:700;}
-#accountReg .rad_row{justify-content: space-around;}
+#accountReg .rad_row{justify-content: space-around; border-top:1px solid #ccc;padding-top:30px;border-bottom:1px solid #ccc;padding-bottom:30px;width:100%;margin:40px 0;}
 #accountReg .rad_row label{text-align:center;}
 #accountReg .rad_row div{flex-direction: column;align-items: center;}
 #accountReg .rad_row div img{width:80px;cursor:pointer;}

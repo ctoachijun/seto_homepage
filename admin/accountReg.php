@@ -12,6 +12,8 @@ $grade1_chk = "checked";
 $grade2_chk = "";
 $reg_type == "E" ? $rtxt = "수정": $rtxt = "등록";
 
+$inq_type = getInquiryType();
+
 
 if($reg_type == "E"){
   $admin = getAdminInfo($admin_idx);
@@ -37,6 +39,16 @@ if($reg_type == "E"){
   if($aid == $uid) $nayo = 1;
   
   
+  // 해당 계정이 어떤 문의에 담당으로 있는지 처리
+  $im_box = getMyInqInfo($admin_idx);
+  $im_arr = array();
+  foreach($im_box as $v){
+    array_push($im_arr,$v['it_idx']);
+  }  
+  $inq_mng = implode(",",$im_arr);  
+  $html = getMyInquiryHtml($inq_mng,0);
+  
+  
 }
 
 
@@ -53,6 +65,8 @@ if($reg_type == "E"){
           <input type='hidden' name='reg_type' value="<?=$reg_type?>" />
           <input type='hidden' name='top' value="<?=$grade?>" />
           <input type='hidden' name='nana' value="<?=$nayo?>" />
+          <input type='hidden' name='admin_idx' value="<?=$admin_idx?>" />
+          <input type='hidden' name='inq_mng' value="<?=$inq_mng?>" />
           <div class="row">
             <div><label for="uid">ID</label><span class="pil">*</span><span class="error error_id"></span></div>
             <div>
@@ -102,6 +116,25 @@ if($reg_type == "E"){
               <div><input type="text" class="txt-input" name="title" id="title" placeholder="직함 입력 해 주세요." value="<?=$title?>" /></div>
             </div>
           </div>
+          <div class="row mng d-flex">
+            <div class="wv-2">
+              <div><label for="part">문의담당 지정</label></div>
+              <div>
+                <select id="mng" class="sel-select" onchange="setManager(this)">
+                    <option value="N">== 선택 ==</option>
+                <? foreach($inq_type as $v) : ?>
+                    <option value="<?=$v['it_idx']?>"><?=$v['it_type']?></option>
+                <? endforeach; ?>
+                </select>                
+              </div>
+            </div>
+            <div class="wv-2">
+              <div class="mng_view">
+                <?=$html?>
+              </div>
+            </div>
+          </div>
+          
           <div class="row rad_row d-flex">
             <div class="d-flex">
               <label for="ilban"><img src="../img/user.png" /></label>

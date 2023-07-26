@@ -466,6 +466,45 @@ function getSendMailInfo($idx){
   $sql = "SELECT * FROM sthp_sendmail as s LEFT OUTER JOIN sthp_sendmail_log as sl ON s.s_idx = sl.sl_sidx WHERE s.s_idx = {$idx}";
   return sql_fetch($sql);
 }
+function getInquiryType(){
+  $sql = "SELECT * FROM sthp_inquiry_type";
+  return sql_query($sql);
+}
+function getInquiryTypeInfo($idx){
+  $sql = "SELECT * FROM sthp_inquiry_type WHERE it_idx = {$idx}";
+  return sql_fetch($sql);
+}
+function getMyInqInfo($idx){
+  $sql = "
+    SELECT * FROM sthp_inquiry_type WHERE 
+      (it_manager LIKE '{$idx}' || it_manager LIKE '%,{$idx}' || it_manager LIKE '{$idx},%' || it_manager LIKE '%,{$idx},%')
+  ";
+  return sql_query($sql);
+}
+function getMyInquiryHtml($org,$val){
+  // input에 세팅할 값
+  if(empty($org)){
+    // html 생성 - val 값이 있을때(추가);
+    if($val > 0){
+      $info = getInquiryTypeInfo($val);
+      $it_name = $info['it_type'];
+      $html = "<div class='mng_row mr{$val}'><span>{$it_name}</span><span class='pcursor' onclick='delMng({$val})'>X</span></div>";
+    }
+  }else{
+    $rbox = explode(",",$org);
+    // html 생성
+    foreach($rbox as $v){
+      $info = getInquiryTypeInfo($v);
+      $it_name = $info['it_type'];
+      $html .= "<div class='mng_row mr{$v}'><span>{$it_name}</span><span class='pcursor' onclick='delMng({$v})'>X</span></div>";
+    }
+  }
+  return $html;  
+}
+
+
+
+
 
 
 

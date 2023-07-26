@@ -58,6 +58,7 @@
       $name = addslashes($name);
       $part = addslashes($part);
       $title = addslashes($title);
+      
 
       if($reg_type == "I"){
         if(!$upw) $upw = "12341234";
@@ -65,6 +66,15 @@
         
         $sql = "INSERT INTO sthp_admin SET a_id = '{$uid}', a_passwd = '{$passwd}', a_name = '{$name}', a_tel = '{$tel}', 
                 a_part = '{$part}', a_title = '{$title}', a_grade = '{$grade}', a_wdate = now()";
+                
+        // 추가 후 idx 받아서 문의에 등록. 
+        // jud값으로 성공, 실패 판단
+        $admin_idx = sql_last_idx($sql);
+        
+        if($admin_idx){
+          $jud = 1;
+        }
+        
       }else{
         if(!empty($upw)){
           $passwd = password_hash($upw,PASSWORD_DEFAULT);
@@ -76,19 +86,85 @@
         }
 
           $sql = "UPDATE sthp_admin SET {$pw_col} a_name = '{$name}', a_tel = '{$tel}', 
-          a_part = '{$part}', a_title = '{$title}', a_grade = '{$grade}' WHERE a_id = '{$uid}'";
+          a_part = '{$part}', a_title = '{$title}', a_grade = '{$grade}' WHERE a_idx = '{$admin_idx}'";
+          
+          $re = sql_exec($sql);
+          if($re){
+            $jud = 1;
+          }
       }
-      $re = sql_exec($sql);
       
-      $output['sql'] = $sql;
-      if($re){
+      // $output['sql'] = $sql;
+      if($jud == 1){
         $output['state'] = "Y";
+        $output['inq_mng'] = $inq_mng;
+        
+        
+        // 문의유형 담당자 등록 처리
+        
+        // 담당 문의유형값이 있을때
+          $im_box = explode(",",$inq_mng);
+          $itinfo = getInquiryType();
+          
+          $cnt = 1;
+          foreach($itinfo as $v){
+            $mng_txt = "";
+            $it_idx = $v['it_idx'];
+            $mng = $v['it_manager'];
+            $mbox = explode(",",$mng);
+            
+            // 담당 문의유형 idx와 일치하는 항목인 경우(담당자로 지정 된 문의유형)
+            if( array_search($it_idx, $im_box) > -1 ){
+              
+              // 해당 문의유형 담당자 값에 존재하지 않는 경우
+              if( array_search($admin_idx, $mbox) === false ){  
+                  // 해당 문의유형에 아무 담당자도 없을 경우 담당자 지정.
+                  if(empty($mng)){
+                    $mng_txt = $admin_idx;
+                    
+                  // 등록된 담당자가 있을 경우 값 추가.
+                  }else{
+                    $mng_txt = $mng.",".$admin_idx;
+                  }
+              }else{
+                // 이미 존재하는 담당자인 경우 그대로 진행.
+                $mng_txt = $mng;
+              }
+              
+            // 담당 문의유형 idx와 일치하지 않는 항목인경우(담당자가 아닌 문의유형)
+            }else{
+              $output['im_box'] = $im_box;
+              // 해당 문의유형 담당자 값에 존재하지 않는 경우 그대로 진행
+              if( array_search($admin_idx, $mbox) === false ){  
+                  $mng_txt = $mng;
+              
+                  
+              // 담당자가 존재하는 경우
+              }else{
+                  // 담당자 값 삭제.
+                  unset( $mbox[array_search($admin_idx,$mbox)] );
+                  $mng_txt = implode(",",$mbox);
+              }
+              
+            }
+            
+            $usql = "UPDATE sthp_inquiry_type SET it_manager = '{$mng_txt}' WHERE it_idx = {$it_idx}";
+            $ure = sql_exec($usql);
+            
+            $output['usql'.$cnt] = $usql;
+            $cnt++;     
+            if(!$ure){
+              $output['state'] = "UN";
+            }
+          }
+        
         
         //로그
         $reg_type == "I" ? $ratype = 1 : $ratype = 2;
         $ratype == 1 ? $type_txt = "추가" : $type_txt = "수정";
         $exec = "관리자 계정 [ {$name} ] {$type_txt}";
-        $res = getLog($sql,$exec,$aname);
+        $sql_txt = $sql."\n".$usql;
+        $res = getLog($sql_txt,$exec,$aname);
         $output['res'] = $res;
       }else{
         $output['state'] = "N";
@@ -107,9 +183,26 @@
       if($re){
         $output['state'] = "Y";
         
+        
+        // 문의유형에서 담당자 등록된 값 전부 삭제
+        $del_info = getMyInqInfo($idx);
+        foreach($del_info as $v){
+          $mng_txt = "";
+          $it_idx = $v['it_idx'];
+          $mng = $v['it_manager'];
+          $mbox = explode(",",$mng);
+
+          unset( $mbox[array_search($idx,$mbox)] );
+          $mng_txt = implode(",",$mbox);
+
+          $usql = "UPDATE sthp_inquiry_type SET it_manager = '{$mng_txt}' WHERE it_idx = {$it_idx}";
+          $ure = sql_exec($usql);
+        }
+        
         // 로그
         $exec = "관리자 계정 [ {$name} ] 삭제";
-        getLog($sql,$exec,$aname);
+        $sql_txt = $sql."\n".$usql;
+        getLog($sql_txt,$exec,$aname);
         
       }else{
         $output['state'] = "N";
@@ -498,7 +591,7 @@
                 {$i3col}
                 s_wdate = now();
       ";
-      $sidx = sql_last_id($sql);
+      $sidx = sql_last_idx($sql);
       
       /* 
         POST 데이터를 템플릿에 적용시켜서 HTML 리턴 
@@ -835,6 +928,39 @@
       echo json_encode($output);
     break;
     
+    case "setManager":
+      
+      // input에 세팅할 값
+      if(empty($org)){
+        $rtxt = $val;
+      }else{
+        $rbox = explode(",",$org);
+        array_push($rbox,$val);
+        sort($rbox);
+        $rtxt = implode(",",$rbox);
+      }
+      
+      $output['html'] = getMyInquiryHtml($rtxt,$val);
+      $output['inq_mng'] = $rtxt;      
+      
+      echo json_encode($output,JSON_UNESCAPED_UNICODE);      
+    break;
+    
+    case "delMng" :
+      $tbox = explode(",",$org);
+      $tidx = array_search($idx,$tbox);
+      $target = $tbox[$tidx]; 
+    
+      unset($tbox[$tidx]);
+      $rtxt = implode(",",$tbox);
+
+      
+      $output['html'] = getMyInquiryHtml($rtxt,0);
+      $output['inq_mng'] = $rtxt;      
+      $output['inq_mng_d'] = $rdtxt;      
+      
+      echo json_encode($output);
+    break;
     
     
     

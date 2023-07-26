@@ -80,7 +80,7 @@ function sql_exec($sql){
   }
 }
 
-function sql_last_id($sql){
+function sql_last_idx($sql){
 
   global $db_con;
 

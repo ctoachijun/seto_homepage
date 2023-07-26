@@ -88,7 +88,7 @@ if(!$pqs){
                     $idx = $v['al_idx'];
                     $name = $v['al_name'];
                     $exec = $v['al_exec'];
-                    $exsql = $v['al_sql'];
+                    $exsql = preg_replace("/\n/","<br>",$v['al_sql']);
                     $wdate = $v['al_wdate'];
                 ?>
                   <tr>
