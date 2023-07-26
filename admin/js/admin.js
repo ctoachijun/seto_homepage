@@ -849,8 +849,10 @@ function setList(obj){
 function accpageMove(num){
   if(num == 1){
     location.href="accountList.php";
-  }else{
+  }else if(num == 2){
     location.href="adminLog.php";
+  }else{
+    location.href="visitList.php";
   }
 }
 
@@ -1020,4 +1022,18 @@ function delMng(num){
   })
 }
 
+function chgToday(){
+  $("form").submit();
+}
+
+function chgSort(num){
+  if(num == 2){
+    $("input[name=sw]").val("bot");
+  }else if(num == 3){
+    $("input[name=sw]").val("user");
+  }else{
+    $("input[name=sw]").val("");
+  }
+  chgToday();
+}
 

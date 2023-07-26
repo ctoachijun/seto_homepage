@@ -100,7 +100,9 @@ nav .acc_div .lout{margin-top:5px;text-decoration: underline;cursor:pointer;font
   .mobi ul li .lout{margin-left:50px;cursor:pointer;}
   
   .mobi .mmenu4 .mmenu4_drop{width:100%;display:none;}
-  .mobi .mmenu4 .mmenu4_drop li:last-child{border-top:1px dotted #CECECE;}
+  .mobi .mmenu4 .mmenu4_drop li:first-child{border-bottom:1px dotted #CECECE;}
+  .mobi .mmenu4 .mmenu4_drop li:nth-child(2){border:0;}
+  /* .mobi .mmenu4 .mmenu4_drop li:last-child{border-top:1px dotted #CECECE;} */
   .mobi .mmenu4 .mmenu4_drop li{font-size:1rem;}
   .mobi .mmenu4 .mmenu4_drop li a{cursor:pointer}
   
@@ -344,7 +346,7 @@ nav .acc_div .lout{margin-top:5px;text-decoration: underline;cursor:pointer;font
 #logList table .pagin{border:0;padding-top:20px;}
 
 #logList .mobi_div{width:100%;padding:.5rem;display:flex;flex-flow: row wrap;display:none;}
-#logList .mobi_div .log_div{border:1px solid #CECECE;border-radius: 10px;width:43%;padding:.7rem;margin-right:15px;margin-top:15px;}
+#logList .mobi_div .log_div{border:1px solid #CECECE;border-radius: 10px;width:43%;padding:.7rem;margin-top:15px;}
 #logList .mobi_div .log_div div{display:flex;justify-content: space-between;white-space:break-spaces;word-break:break-all;line-height:30px;}
 #logList .mobi_div .log_div > div:nth-child(2){border-top:1px dotted #444;margin:5px 0;padding:5px 0;border-bottom:1px dotted #444;}
 #logList .mobi_div .log_div .line_3{max-height:100px;overflow:auto}
@@ -369,6 +371,33 @@ nav .acc_div .lout{margin-top:5px;text-decoration: underline;cursor:pointer;font
   #logList .top_div div:last-child{flex-direction:column}
   #logList .top_div div:last-child .txt-input{width:100%}
   #logList .top_div div:last-child .btn{width:100%;margin-top:10px;}
+}
+
+/* 접속로그 그래프 */
+#logList #graph_div{width:100%;height:500px;}
+/* 접속로그 데이트피커 */
+#logList .dpicker{display:flex;justify-content: flex-end;height:30px;margin-bottom:10px;}
+#logList .dpicker input{border:1px solid #CCC;padding:.3rem}
+#logList .dpicker div{margin-left:30px;}
+#logList .dpicker div:first-child{width:200px;display:flex;}
+#logList .dpicker div:first-child input{width:80%;}
+#logList .dpicker div .act{font-weight:700;border:1px solid #E6002D;}
+#logList .dpicker div input{width:50px;cursor:pointer;}
+#logList .dpicker .ui-datepicker-trigger{border:0 !important;width:25px;}
+#logList .dpicker .ui-datepicker-trigger img{width:100%;height:100%;object-fit: contain;}
+#logList .mobi_div .log_div > div:last-child{border-top:1px dotted #444;margin:5px 0;padding:5px 0;}
+
+@media (max-width:768px){
+  #logList .dpicker{justify-content: flex-start;padding-left:.5rem;}
+  #logList .dpicker div{margin-left:0}
+}
+@media (max-width:550px){
+  #logList .dpicker{flex-direction:column;height:auto;margin-bottom:0px;}
+  #logList .dpicker div{margin:0;display:flex;}
+  #logList .dpicker div:first-child{width:100%;}
+  #logList .dpicker div:last-child{margin-top:10px;}
+  #logList .dpicker input[type="text"]{width:90%}
+  #logList .dpicker input[type="button"]:nth-child(2){margin:0 20px;}
 }
 
 

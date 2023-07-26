@@ -1,19 +1,23 @@
 <?
    include "../lib/seto.php";
+   include "../lib/PHPExcel/Classes/PHPExcel.php";
 
 
-   if($ipaddr){
+   // if($ipaddr){
 
-      $res = chkConnCountry($ipaddr);
-      $box = explode("/",$res);
+   //    $res = chkConnCountry($ipaddr);
+   //    $box = explode("/",$res);
       
-      $code = $box[0];
-      $country = $box[1];
+   //    $code = $box[0];
+   //    $country = $box[1];
       
-   }
+   // }
 
-
-
+   
+   
+   
+   
+   
 
 ?>
 

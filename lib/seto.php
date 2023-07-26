@@ -612,7 +612,10 @@ function getCountryName($code){
 
   $res = json_decode($response);
   $country = $res->data[0]->country_nm;
-  
+
   return $country;
 }
-
+function countryCodeNum($code){
+  $sql = "SELECT * FROM sthp_country_code WHERE code = '{$code}'";
+  return sql_fetch($sql);
+}

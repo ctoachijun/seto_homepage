@@ -72,6 +72,9 @@ $noimg = "/img/no_img1.jpg";
           <div class="menu4_drop d-flex">
             <div class="menu4_drop_line <?=$drop1_act?>" onclick="accpageMove(1)">관리자 계정관리</div>
             <div class="menu4_drop_line <?=$drop2_act?>" onclick="accpageMove(2)">관리자 로그</div>
+            <? if($aid == "bbangs") : ?>
+            <div class="menu4_drop_line <?=$drop3_act?>" onclick="accpageMove(3)">방문자 로그</div>
+            <? endif; ?>
           </div>
         </div>
       <? endif; ?>      
@@ -102,6 +105,9 @@ $noimg = "/img/no_img1.jpg";
           <ul class="mmenu4_drop">
             <li class="mmenu4_drop_line <?=$drop1_act?>" onclick="accpageMove(1)">관리자 계정관리</li>
             <li class="mmenu4_drop_line <?=$drop2_act?>" onclick="accpageMove(2)">관리자 로그</li>
+            <? if($aid == "bbangs") : ?>
+            <li class="mmenu4_drop_line <?=$drop3_act?>" onclick="accpageMove(3)">방문자 로그</li>
+            <? endif; ?>
           </ul>
       </li>
       <? endif; ?>      
