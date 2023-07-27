@@ -501,8 +501,14 @@ function getMyInquiryHtml($org,$val){
   }
   return $html;  
 }
-
-
+function getNoReadInq(){
+  $sql = "SELECT * FROM sthp_inquiry WHERE i_read = 'N'";
+  return sql_num_rows($sql);
+}
+function getReginqToday($today){
+  $sql = "SELECT * FROM sthp_inquiry WHERE i_wdate like '{$today}%'";
+  return sql_num_rows($sql);
+}
 
 
 
