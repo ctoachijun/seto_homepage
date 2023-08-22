@@ -1,0 +1,132 @@
+.inside{
+  /* width: 80%; */
+}
+
+
+/* 
+  SERVICE
+*/
+#s20230817ca3bf1a224207{}
+#s20230817ca3bf1a224207 img{opacity:0}
+
+.service_wrap{padding-top:50px;display:inline-flex;flex-flow:row wrap;}
+.service_wrap .service_div{width:50%; height:300px;background-image: url('https://cdn.imweb.me/thumbnail/20230817/03f26ebb3511b.jpg');background-position:50%;background-size:cover;background-repeat: no-repeat;padding:1rem;cursor:pointer;opacity:0}
+.service_wrap .service_div:nth-child(even){margin-top:60px;}
+.service_wrap .service_div .txt_div{width:100%;height:100%;color:#fff;padding:1rem;display:flex;flex-direction: column;justify-content: space-between;}
+.service_wrap .service_div .txt_div .txt_title{font-weight:700;font-size:2.3rem; margin-bottom:20px;}
+.service_wrap .service_div .txt_div .txt_cont{width:80%}
+.service_wrap .service_div .txt_div .txt_link{}
+#s20230817ca3bf1a224207 .widget_text_wrap .fixed_wrap{height:100%;}
+/* #s20230817ca3bf1a224207 .widget_text_wrap .fixed_wrap .fixed_left{position:absolute;top:164px;left:112px;bottom:auto;} */
+/* #s20230817ca3bf1a224207 .doz_row{position:relative} */
+
+#s20230817ca3bf1a224207 .widget_text_wrap .btn{background-color:#E6002D;color:#fff;border:1px solid #E6002D;margin-top:50px;}
+
+
+
+/* 
+  Contact
+*/
+
+.contact_box{width:100%;height:150px;border:1px solid #444;text-align:center;display:flex;flex-direction:column}
+.contact_box .cbtop_div{background:#020000; color:#fff;font-weight:700;padding:.5rem}
+.contact_box .cbcont_div{display:flex;justify-content: center;align-items: center;border:1px solid #ccc;flex:1;text-decoration: underline;}
+.contact_compbox{width:100%;display:flex;margin-bottom:20px;}
+.contact_compbox .comptitle_div{background:#020000; color:#fff;font-weight:700;padding:.5rem;width:10%;display:flex;align-items: center;justify-content: center;}
+.contact_compbox .compaddr_div{padding:.5rem .5rem .5rem 3rem;text-align:center;border:1px solid #ccc;flex:1;display:flex;align-items: center;justify-content: center;}
+
+
+/* 
+  입력폼 세팅
+*/
+
+/* CONTACT 페이지 입력폼 */
+#w20230821e41d1bdcf4114 #addFormw20230821e41d1bdcf4114{position:absolute; opacity:0;}
+#w20230821e41d1bdcf4114 .btn-primary{display:none;}
+
+/* CONTACT 페이지 회사소개서 버튼 */
+#w20230821af3d3be517da0 .doc_div{width:100%;display:flex; justify-content: center;align-items: center;}
+#w20230821af3d3be517da0 .doc_div .docbtn{width:20%;height:80px;background:#E6002D;color:#fff;font-weight:700;border:0;border-radius:10px;}
+
+
+
+/* 문의하기 페이지 입력폼 */
+#s20230821371fe9c6e80ca #addFormw2023082153415106e6bcb{position:absolute; opacity:0;}
+#s20230821371fe9c6e80ca .btn-primary{display:none;}
+
+#form_div1 .telnum_div{width:100%;}
+#form_div1 .telnum_div input[type="tel"]{width:100px;}
+#form_div1 .contact_rows{display:flex;justify-content: space-between;}
+#form_div1 .contact_rows > div{width:45%;}
+#form_div1 .btn_div{display:flex;justify-content: center;}
+#form_div1 .regbtn{width:20%;height:40px;background:#020000;color:#fff;font-weight:700}
+#form_div1 .regbtn:hover{background:#fff;color:#000;}
+
+/* 
+  CONTACT 모달
+*/
+
+#w20230821b61681f246a16 .btn-primary{display:none}
+#w2023082103a327c78cb78 .downbtn_div{width:100%;height:50px;display: flex;justify-content: center;align-items: center;margin-top:30px;}
+#w2023082103a327c78cb78 .downbtn_div .down-btn{width: 100px;height: 40px;background: #020000;color: #fff;font-weight: 700;}
+#w2023082103a327c78cb78 .downbtn_div .down-btn:hover{background:#fff;color:#020000;}
+
+
+/* 
+  포트폴리오용 갤러리 테스트
+*/
+/* ALL */
+#s20230822ad2d567644b1a .img_wrap ._txt_wrap{display:none;}
+#s20230822ad2d567644b1a .img_wrap .hover_txt{color:#fff;}
+#s20230822ad2d567644b1a .img_wrap .hover_txt .ptitle{font-size:25px;font-weight:700;position:absolute;top:20px;left:20px;z-index:500;}
+#s20230822ad2d567644b1a .img_wrap .hover_txt .pdesc{font-size:15px;font-weight:700;position:absolute;top:60px;left:20px;z-index:500;}
+#s20230822ad2d567644b1a .img_wrap .hover_txt .pamount{font-size:15px;font-weight:700;position:absolute;bottom:10px;right:30px;z-index:500;}
+#s20230822ad2d567644b1a .img_wrap .black{position:absolute;top:0;left:0;z-index:1;}
+
+/* FUNDING */
+#s20230822514fdcdad8755 .img_wrap ._txt_wrap{display:none;}
+#s20230822514fdcdad8755 .img_wrap .hover_txt{color:#fff;}
+#s20230822514fdcdad8755 .img_wrap .hover_txt .ptitle{font-size:25px;font-weight:700;position:absolute;top:20px;left:20px;z-index:500;}
+#s20230822514fdcdad8755 .img_wrap .hover_txt .pdesc{font-size:15px;font-weight:700;position:absolute;top:60px;left:20px;z-index:500;}
+#s20230822514fdcdad8755 .img_wrap .hover_txt .pamount{font-size:15px;font-weight:700;position:absolute;bottom:10px;right:30px;z-index:500;}
+#s20230822514fdcdad8755 .img_wrap .black{position:absolute;top:0;left:0;z-index:1;}
+
+/* VIDEO */
+#s20230822fc6bdf834dd5c .img_wrap ._txt_wrap{display:none;}
+#s20230822fc6bdf834dd5c .img_wrap .hover_txt{color:#fff;}
+#s20230822fc6bdf834dd5c .img_wrap .hover_txt .ptitle{font-size:25px;font-weight:700;position:absolute;top:20px;left:20px;z-index:500;}
+#s20230822fc6bdf834dd5c .img_wrap .hover_txt .pdesc{font-size:15px;font-weight:700;position:absolute;top:60px;left:20px;z-index:500;}
+#s20230822fc6bdf834dd5c .img_wrap .hover_txt .pamount{font-size:15px;font-weight:700;position:absolute;bottom:10px;right:30px;z-index:500;}
+#s20230822fc6bdf834dd5c .img_wrap .black{position:absolute;top:0;left:0;z-index:1;}
+
+
+/* MARKETING */
+#s202308224812f2311e1d1 .img_wrap ._txt_wrap{display:none;}
+#s202308224812f2311e1d1 .img_wrap .hover_txt{color:#fff;}
+#s202308224812f2311e1d1 .img_wrap .hover_txt .ptitle{font-size:25px;font-weight:700;position:absolute;top:20px;left:20px;z-index:500;}
+#s202308224812f2311e1d1 .img_wrap .hover_txt .pdesc{font-size:15px;font-weight:700;position:absolute;top:60px;left:20px;z-index:500;}
+#s202308224812f2311e1d1 .img_wrap .hover_txt .pamount{font-size:15px;font-weight:700;position:absolute;bottom:10px;right:30px;z-index:500;}
+#s202308224812f2311e1d1 .img_wrap .black{position:absolute;top:0;left:0;z-index:1;}
+
+/* 
+  포트폴리오 상세 - 대행업무
+*/
+.dhbya{border:1px solid #E6002D;border-radius:20px;width:200px;height:35px;padding:5px;display:flex;justify-content: center;align-items: center;margin-bottom:20px;font-weight:700;}
+
+/* 
+  ABOUT - 연혁
+*/
+.swiper-container{width:100%;height:200px;}
+.swiper{width:100%;height:300px;}
+.swiper-slide{text-align:center;font-size:25px;display:flex;justify-content: center;align-items: center;}
+
+
+
+/* 
+  test 페이지
+*/
+#s20230821161768f61529d .garo_wrap{height:400px;position:relative;top:0;left:0}
+#s20230821161768f61529d .box{
+  height:400px; font-size:30px;line-height:400px;text-align:center;border:2px solid #E6002D;box-sizing:border-box;
+  float:left;
+}
