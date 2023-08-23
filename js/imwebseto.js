@@ -12,7 +12,6 @@ $(function () {
       setTimeout(() => counter($mcounter, mmax), 50);
       setTimeout(() => counter($pcounter, pmax), 50);
       setTimeout(() => counter($ucounter, umax), 50);
-      console.log("있다");
     }
 
 
@@ -28,9 +27,6 @@ $(function () {
           $(this).animate({ 'opacity': '1' }, 1000);
         }
         
-        
-              
-        
         if($(window).width() >= 768){
           // 좌측 여백 계산
           let yleft = ( $(window).width() - 1280 ) / 2;
@@ -43,16 +39,15 @@ $(function () {
           let lbottom = $(window).height()-$(".fixed_left").offset().top+ $(".fixed_left").outerHeight();
           let main_height = $("main").height();
           let header_height = $("#doz_header_wrap").height();
-          console.log(main_height);
-          console.log(lbottom);
-          console.log(ybottom);
+          // console.log(main_height);
+          // console.log(lbottom);
+          // console.log(ybottom);
           let jbottom = $(window).height()-$("#w20230817b4f6d736d0f1b").offset().top+ $("#w20230817b4f6d736d0f1b").outerHeight();
-          console.log("----------");
+          // console.log("----------");
         }
       });
 
     });
-
     
     // 전화번호 입력시에는 전부 숫자만 입력되도록 처리
     $("input[type=tel]").keydown(function(){
@@ -60,10 +55,9 @@ $(function () {
       this.value = val.replace(/[^0-9]/gi,"");
     })
     
-    
     // 포트폴리오 이미지 호버시
     // ALL
-    $("#s20230822ad2d567644b1a .img_wrap").hover(function(){
+    $("#s2023082320fd98796dfe1 .img_wrap").hover(function(){
       $(".black").css("width","100%");
       $(".black").css("height","100%");
       $(".black").css("backgroundColor","#000");
@@ -71,13 +65,13 @@ $(function () {
       $(".black").css("z-index","400");
       $(".hover_txt").css("z-index","500");
     })
-    $("#s20230822ad2d567644b1a .img_wrap").mouseleave(function(){
+    $("#s2023082320fd98796dfe1 .img_wrap").mouseleave(function(){
       $(".overlay").css("background","");
       $(".overlay").css("opacity","");
     })
     
     // FUNDING
-    $("#s20230822514fdcdad8755 .img_wrap").hover(function(){
+    $("#s202308230d965259c3f46 .img_wrap").hover(function(){
       $(".black").css("width","100%");
       $(".black").css("height","100%");
       $(".black").css("backgroundColor","#000");
@@ -85,13 +79,13 @@ $(function () {
       $(".black").css("z-index","400");
       $(".hover_txt").css("z-index","500");
     })
-    $("#s20230822514fdcdad8755 .img_wrap").mouseleave(function(){
+    $("#s202308230d965259c3f46 .img_wrap").mouseleave(function(){
       $(".overlay").css("background","");
       $(".overlay").css("opacity","");
     })
     
     // VIDEO
-    $("#s20230822fc6bdf834dd5c .img_wrap").hover(function(){
+    $("#s20230823817a716006e1a .img_wrap").hover(function(){
       $(".black").css("width","100%");
       $(".black").css("height","100%");
       $(".black").css("backgroundColor","#000");
@@ -99,89 +93,46 @@ $(function () {
       $(".black").css("z-index","400");
       $(".hover_txt").css("z-index","500");
     })
-    $("#s20230822fc6bdf834dd5c .img_wrap").mouseleave(function(){
+    $("#s20230823817a716006e1a .img_wrap").mouseleave(function(){
       $(".overlay").css("background","");
       $(".overlay").css("opacity","");
     })
     
     // MARKETING
-    $("#s202308224812f2311e1d1 .img_wrap").hover(function(){
+    $("#s20230823364a6a73bd0dd .img_wrap").hover(function(){
       $(".black").css("width","100%");
       $(".black").css("height","100%");
       $(".black").css("backgroundColor","#000");
       $(".black").css("opacity","0.6");
       $(".black").css("z-index","400");
       $(".hover_txt").css("z-index","500");
+      $(".pwrap").css("z-index","500");
     })
-    $("#s202308224812f2311e1d1 .img_wrap").mouseleave(function(){
+    $("#s20230823364a6a73bd0dd .img_wrap").mouseleave(function(){
       $(".overlay").css("background","");
       $(".overlay").css("opacity","");
     })    
     
-    
-    
-    // 가로스크롤
-    if($("#s20230821161768f61529d .box").html()){
-      console.log("test");
-      let d_width = 0;
-      let d_height = 0;
+    // 피플 이미지 오버
+    $("#s202308236afb6cf513ff9 .img_wrap").hover(function(){
+      $(".pback").css("width","100%");
+      $(".pback").css("height","100%");
+      $(".pback").css("backgroundColor","#000");
+      $(".pback").css("opacity","0.6");
+      $(".pback").css("z-index","400");
+      $(".hover_txt").css("z-index","500");
+      $(".pwrap").css("z-index",500);
       
-      function tmp(){
-        let con_width = $(window).outerWidth() * $('.box').length;
-        $(".garo_wrap").css("width",con_width);
-        $(".box").css("width",con_width / $(".box").length);
-
-        let w_width = $(window).width();
-        let w_height = $(window).height();
-        
-        d_width = con_width - w_width;
-        d_height = $('body').height() - w_height;
-      }
-      tmp();      
+      $(".pwrap").slideDown();
+      $(".pback").slideDown();
       
-      let array = [];
-      for(let i=0; i<$('.box').length; i++) {
-          array[i] = $('.box').eq(i).offset().left
-      }
-
-      let chk = true;
-      $('.box').on('mousewheel DOMMouseScroll', function(){
-          console.log("휠");
-          if(chk) {
-              // 휠 일정시간동안 막기
-              chk = false;
-              setTimeout(function(){
-                  chk = true;
-              }, 500)
-
-              // 휠 방향 감지(아래: -120, 위: 120)
-              let w_delta = event.wheelDelta / 120;
-              console.log(w_delta);
-              // 휠 아래로
-              if(w_delta < 0 && $(this).next().length > 0) {
-                  $('.garo_wrap').animate({
-                      left: -array[$(this).index()+1]
-                  }, 500)
-              }
-              // 휠 위로
-              else if(w_delta > 0 && $(this).prev().length > 0) {
-                  $('.garo_wrap').animate({
-                      left: -array[$(this).index()-1]
-                  }, 500)
-              }
-          }
-      });
-
-      //브라우저를 resize했을시를 대비해 박스의 크기는 다시 구해준다.
-      $(window).resize(function(){
-          for(let i=0; i<$('.box').length; i++) {
-              array[i] = $('.box').eq(i).offset().left
-          }
-
-          tmp();
-      })      
-    }
-    
+    })
+    $("#s202308236afb6cf513ff9 .img_wrap").mouseleave(function(){
+      $(".pwrap").slideUP();
+      $(".pback").slideUp();
+      $(".overlay").css("background","");
+      $(".overlay").css("opacity","");
+    })    
     
     // 연혁 swiper
     if($("#s20230822f09a252370e14 .mySwiper").html()){
@@ -192,9 +143,6 @@ $(function () {
         },
       });        
     }
-    
-    
-    
     
 })
 
@@ -217,9 +165,6 @@ const counter = ($counter, max) => {
   }, 50);
 }
 
-
-
-
 function downSg() {
   if (!$("#input_txt_2b1f1ffdc08a1").val()) {
     alert("이름을 입력 해 주세요");
@@ -235,7 +180,6 @@ function downSg() {
     alert("이메일 형식을 확인 해 주세요.");
     return false;
   }
-
 
   SITE_FORM.confirmInputForm('w20230817253577ddd5205', 'N');
   location.href = "/admin/ajax/shop/download_prod_digital_file.cm?target_code=s202308179f2fc24db7397";
@@ -313,7 +257,6 @@ function setContactFormData(){
     }
   })
   
-  
   // 각 항목 세팅
   $("#input_txt_X3xXA267i9").val(ucomp);
   $("#input_txt_67eccd2dc4655").val(uname);
@@ -355,9 +298,37 @@ function downDoc(){
       location.href="/admin/ajax/shop/download_prod_digital_file.cm?target_code=s202308179f2fc24db7397";
     }
   }
-  // <a href="/admin/ajax/shop/download_prod_digital_file.cm?target_code=s202308179f2fc24db7397"></a>
 }
 
 function openModal(){
   SITE.openModalMenu('m20230817ba9b448f069b6', 'm20230817674de0a084d43');
+}
+
+function regNewsletter(){
+  let input_email = $("input[name=homemail").val();
+  if(!input_email){
+    alert("이메일 주소를 입력 해 주세요.");
+    return false;
+  }
+  
+  let re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+  if (!re.test(input_email)) {
+    alert("이메일 주소 형식을 확인 해 주세요.");
+    return false;
+  }
+  
+  let chkval = $("#mktok").prop("checked");
+  if(!chkval){
+    alert("마케팅 활용 동의를 해 주세요.");
+    return false;
+  }
+
+  
+  // 원래 폼에 값 세팅.
+  $("#input_email_1f1a2545c2f24").val(input_email);
+  if(chkval){
+    $("input[name='checkbox_b25a25bfc43a6[]'").prop("checked",true);
+  }
+  
+  SITE_FORM.confirmInputForm('w20230823399063f2e1413','N');
 }
