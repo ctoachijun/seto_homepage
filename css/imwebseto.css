@@ -1,4 +1,17 @@
 /* 
+  전체 화면폭 조절
+  일단 전체 가로폭을 쓰는 디자인이 HOME 밖에없으니.. HOME만 잡아놓고, 나중에 전체 가로폭 써야되는곳에 추가로 넣기.
+*/
+/* HOME 설정 */
+#s2023081737ab0bc413365 .inside{max-width:100% !important;}
+#s2023081737ab0bc413365 .inside > div:nth-of-type(odd){background:#eee}
+@media (max-width:991px){
+  #s2023081737ab0bc413365 .inside{padding-left:0;padding-right:0;}
+}
+
+
+
+/* 
   header - nav bar
 */
 /* #doz_header_wrap{position:absolute;width:100%} */
@@ -15,14 +28,12 @@
 #mobile_slide_menu .profile-area a,
 #mobile_slide_menu .profile-area .btn-group{display:none;}
 
+#w202308087f45a31e6aed1 .icon_type_menu .badge{display:none;}
+
 @media (max-width:991px){
   #screen_s20230817569ed54963a8f_I57FzP80n5{display:none;}
   
 }
-
-
-
-
 
 
 /* 
@@ -56,6 +67,26 @@
 #w2023081734fa6d97c05f5 .txt p,
 #w2023081734fa6d97c05f5 .hover_txt p{margin:0}
 
+/* 푸터 태그제작 */
+
+/* footer 상단 설정 */
+#s20230828265a48359dc08 .inside{width:100% !important;padding-left:0;padding-right:0;}
+
+#footer_wrap{width:100%;height:500px;padding:30px 50px; border:1px solid red;display:flex; flex-flow:column wrap;background:#000;}
+#footer_wrap .footer_row{display:flex;color:#fff;}
+#footer_wrap .footer_block1{width:40%;}
+#footer_wrap .footer_block1 .logo_div{width:50%;height:50px;object-fit:contain}
+#footer_wrap .footer_block1 .logo_div img{width:100%;height:100%}
+#footer_wrap .footer_block2{width:20%;height:100%;}
+#footer_wrap .footer_block3{width:20%;height:100%;}
+#footer_wrap .footer_block4{width:20%;height:100%;}
+
+#footer_wrap .footer_row > div{border:1px solid #777}
+
+@media (max-width:991px){
+  #s20230809fbc185bfd069e .inside div{text-align:center;}
+  #s20230809fbc185bfd069e .inside > div > div > div{display:flex;justify-content: center;}
+}
 
 
 /* 
@@ -74,33 +105,46 @@
 #visual_s20230817569ed54963a8f .sec_link .link_cont > span:last-child{position:absolute;top:42%;right:8%;font-size:50px;}
 
 /* 서비스 영역(스크롤) */
-.fixed_left{position:absolute;top:auto;left:0;}
-.service_wrap{padding-top:50px;}
-.service_wrap .service_div{width:64%; height:260px;padding:2rem;cursor:pointer;background:#020000;border-radius:34px;opacity:0;position:relative;}
-.service_wrap .service_div:nth-child(even){margin-left:120px;margin-top:30px;margin-bottom:30px;}
+.fixed_left{position:absolute;top:auto;left:0;padding-left:30px;}
+/* .service_wrap{padding-top:50px;padding-left:50px;} */
+.service_wrap{padding-top:50px;display:flex;align-items:flex-end;flex-direction: column;}
+.service_wrap .service_div{width:62%; height:260px;padding:2rem;cursor:pointer;background:#ff003b;border-radius:34px;opacity:0;position:relative;}
+/* .service_wrap .service_div:nth-child(even){margin-left:120px;margin-top:30px;margin-bottom:30px;} */
+.service_wrap .service_div:nth-child(odd){margin-right:180px;margin-top:30px;margin-bottom:30px;}
 .service_wrap .service_div .txt_div{width:100%;height:100%;color:#fff;padding:1rem;}
-.service_wrap .service_div .txt_div .txt_title{font-weight:700;font-size:2rem; margin-bottom:5px;color:#E6002D}
+.service_wrap .service_div .txt_div .txt_title{font-weight:700;font-size:2rem; margin-bottom:5px;}
 .service_wrap .service_div .txt_div .txt_cont{width:96%}
 .service_wrap .service_div .txt_div .txt_link{position:absolute;bottom:30px;font-weight:700}
 
 @media (max-width:991px){
   #visual_s20230817569ed54963a8f .sec_link{display:none} 
-  #w202308247187d6a6ab686{display:none;}  /* fixed_left 상단 여백 부분 */
-  #w202308244a2a02054e89b{display:none;}  /* service_wrap 상단 여백 부분 */
+  #w202308247187d6a6ab686,#w2023082852e1fc100b866{display:none;}  /* fixed_left 상단 여백 부분 */
+  #w202308244a2a02054e89b,#w20230828041ba6e71bfef,#w202308286182f7e86ae8f{display:none;}  /* service_wrap 상단 여백 부분 */
+  #w20230828d9108c8a7932e{display:none} /* serviec_wrap 하단 여백 부분 */
   
-  .fixed_left{position:relative;}
-  .fixed_left p:first-child{font-size:20px;padding-left:30px;}
+  .fixed_left{position:relative;padding-left:0px;}
+  .fixed_left p:first-child{font-size:20px;}
   .fixed_left p:nth-child(3) span{font-size:36px !important;line-height: 100%;}
   .fixed_left p:last-child span{font-size:16px !important;}
-  
-  .service_wrap{width:100%;padding-top:0;padding-left:30px;}
+
+  .service_wrap{width:100%;padding-top:0;padding-left:30px;display:block}
   .service_wrap .service_div{width:50%;clear:both;}
-  .service_wrap .service_div:nth-child(even){margin-right:30px;margin-top:30px;margin-bottom:30px;float:right}
+  .service_wrap .service_div:nth-child(even){margin-right:30px;margin-bottom:30px;float:right;}
+
+  .text_left{position:relative;}
+  .text_left p:first-child{font-size:20px;}
+  .text_left p:nth-child(3) span{font-size:36px !important;line-height: 100%;}
+  .text_left p:last-child span{font-size:16px !important;}
+  
+  #w20230828d674990848ee8{display:none}  /* 바우처 상단 여백 */
+  #w202308289da3009e08e67{display:none}  /* 바우처 이미지 상단 여백 */
+  .voucher_wrap .voucher_cont .voucher_row{justify-content: flex-start;}
+  
 }
 @media (max-width:766px){
   #visual_s20230817569ed54963a8f .sec_div .sec_title{font-size:40px}
-  #visual_s20230817569ed54963a8f .sec_div .sec_sub{margin-top:30px;font-size:14px;}
-  #w202308244a2a02054e89b{display:none;} /* service_wrap 상단 여백부분. */
+  #visual_s20230817569ed54963a8f .sec_div .sec_sub{margin-top:30px;font-size:14px;} */
+  #w202308244a2a02054e89b{display:none;}  /* service_wrap  상단 여백부분. */
   
   .service_wrap{width:100%;}
   .service_wrap .service_div{width:90%;}
@@ -111,6 +155,61 @@
   #visual_s20230817569ed54963a8f .sec_div .sec_sub{margin-top:20px;font-size:12px;}
   .fixed_left p:first-child{padding:0}
 }
+
+
+/* 바우처 */
+.voucher_wrap{width:100%;}
+/* .voucher_wrap .voucher_cont{padding-left:50px;} */
+.voucher_wrap .voucher_cont .voucher_row{display:flex;justify-content: flex-end;margin-bottom:15px;}
+.voucher_wrap .voucher_cont .voucher_div:first-child{margin-right:15px;}
+.voucher_wrap .voucher_cont .voucher_div{width:300px;height:220px;display:flex;justify-content: center;align-items:center;flex-direction: column;border-radius:20px;background:#000;}
+.voucher_wrap .voucher_cont .voucher_div .logo_div{width:200px;height:50px;margin-bottom:15px;object-fit: contain;}
+.voucher_wrap .voucher_cont .voucher_div .logo_div img{width:100%;height:100%}
+.voucher_wrap .voucher_cont .voucher_div .txt_div{width:80%;height:45px;text-align:center;font-size:18px;color:#fff}
+
+.voucher_wrap .voucher_cont .kotra_div{background: url('https://cdn.imweb.me/thumbnail/20230828/ef76df9cb801d.jpg') no-repeat;background-size:100% 100%;}
+.voucher_wrap .voucher_cont .kotra_div .logo_div{height:75px;}
+
+@media (max-width:991px){
+  #w20230828d674990848ee8{display:none}  /* 바우처 상단 여백 */
+  #w202308289da3009e08e67,#w202308284a662427d2dbc{display:none}  /* 바우처 이미지 상단 여백 */
+  #w2023082845429956b1450{display:none}  /* 바우처 이미지 하단 여백 */
+  .voucher_wrap .voucher_cont .voucher_row{justify-content: flex-start;padding-left:30px;margin-bottom:45px;}
+  .voucher_wrap .voucher_cont .voucher_div:first-child{margin-right:45px;}
+  .voucher_wrap .voucher_cont .voucher_div{width:40%;height:300px;}
+}
+@media (max-width:766px){
+  .voucher_wrap .voucher_cont .voucher_row{flex-wrap:wrap;margin-bottom:30px;}
+  .voucher_wrap .voucher_cont .voucher_div:first-child{margin-right:0px;margin-bottom:30px;}
+  .voucher_wrap .voucher_cont .voucher_div{width:90%;}
+}
+@media (max-width:400px){
+}
+
+
+/* 뉴스룸 */
+#s2023081737ab0bc413365 div.widget._gallery_wrap .text_wrap{
+  background: #fff;
+  margin-top: -20px;
+  padding-left: 10px !important;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+@media (max-width:991px){
+  #w202308286f3b95b10099b{display:none}  /* 뉴스룸 상단 여백 */
+  #w202308282064b3b3474a5{display:none}  /* 뉴스룸 갤러리 상단 여백 */
+ 
+  #s2023081737ab0bc413365 div.widget._gallery_wrap{padding:10px 30px;}
+  #s2023081737ab0bc413365 div.widget._gallery_wrap .text_wrap .title{font-size:24px;padding:10px;}
+  #s2023081737ab0bc413365 div.widget._gallery_wrap .text_wrap .body{font-size:16px;}
+  #s2023081737ab0bc413365 div.widget._gallery_wrap .item_gallary{margin-right:20px;}
+}
+@media (max-width:766px){
+}
+@media (max-width:400px){
+  #w202308286bd27319b1338 .more_btn{border-radius:20px;}
+}
+
 
 
 

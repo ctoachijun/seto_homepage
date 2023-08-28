@@ -81,6 +81,7 @@ $(function () {
     }
 
 
+
     // 스크롤시 이미지 등장
     $(window).scroll(function () {
 
@@ -91,12 +92,16 @@ $(function () {
         $("#w20230825d156046a1b84d").css("opacity","1");
       }
       
+      let fwid = $(".fixed_left").width() + 30;
+      
+      
       // HOME 사업영역 표시 및 fixed 처리.
       $('#s2023081737ab0bc413365 .service_div').each(function () {
         var bottom_of_element = $(this).offset().top + $(this).outerHeight();
         var bottom_of_window = $(window).scrollTop() + $(window).height();
         let b_service_div = $(".fixed_left").offset().top + $(".fixed_left").outerHeight();
         
+            
         // console.log(bottom_of_element);
         // console.log(bottom_of_window);
         // console.log("-------------------");
@@ -104,18 +109,20 @@ $(function () {
           $(this).animate({ 'opacity': '1' }, 1000);
         }
 
-        let fl = ($(window).width() - 1280) / 2;
-        if($(window).width() < 1280 ){
-          fl = 0;
-        }
-        
+        // let fl = ($(window).width() - 1280) / 2;
+        // if($(window).width() < 1280 ){
+        //   fl = 0;
+        // }
+        let fl = 17.5;
         if($(window).width() > 991){
+    
           if(bottom_of_window >= 1574 && bottom_of_window < 3100){
+            $(".fixed_left").css("width",fwid+"px");
             // 좌측 여백 계산
-            fl += 16;
+            // fl += 16;
             $(".fixed_left").css("position","fixed");
             $(".fixed_left").css("top","170px");
-            $(".fixed_left").css("left",fl+"px");
+            $(".fixed_left").css("left",fl+"%");
             // $(".fixed_left").css("bottom","auto");
           }else if(bottom_of_window < 1588){
             $(".fixed_left").css("position","absolute");
