@@ -24,6 +24,13 @@ $(function () {
       $("#s2023080800e57504dc655").css("backgroundColor","rgba(0,0,0,0.4)");
     }
     
+    
+    if($("#s20230817569ed54963a8f #visual_s20230817569ed54963a8f").html()){
+
+    }
+    
+    
+    
     // 메인 텍스트 오른쪽에 프로젝트 뷰 호버처리.
     $("#s20230817569ed54963a8f .sec_link").hover(function(){
       $(".sec_link").css({
@@ -65,7 +72,7 @@ $(function () {
     })
         
     
-    // HOME 일때 숫자증가.
+    // HOME일때 실행
     if($("#s20230817569ed54963a8f #visual_s20230817569ed54963a8f").html()){
       
       // HOME - 숫자 증가 
@@ -78,6 +85,32 @@ $(function () {
       setTimeout(() => counter($mcounter, mmax), 50);
       setTimeout(() => counter($pcounter, pmax), 50);
       setTimeout(() => counter($ucounter, umax), 50);
+      
+      // 메인 텍스트 애니메이션 
+      // 우선 첫번째 가로폭 설정. 넉넉하게 40 추가.
+      let wkw = $("#visual_s20230817569ed54963a8f .txt1").width() + 40;
+      $("#visual_s20230817569ed54963a8f .txt_waku").css("width",wkw);
+      
+      // 1~4까지 루프 판단을 위한 변수.
+      let jud = 1;
+
+      // 일정 시간마다 테두리 이동. 단, 766 사이즈 이상에서만.
+      if($(window).width() > 400){
+        setInterval( ()=>{      
+          moveWaku(jud);
+          jud++;
+          if(jud == 5) jud = 1;
+        },3000);
+      }
+      // 모바일 사이즈. 메인 글자 크기와 사이즈가 다르므로 별도 동작
+      if($(window).width() <= 400){
+        $("#visual_s20230817569ed54963a8f .txt_waku").css("width",wkw-20);
+        setInterval( ()=>{      
+          moveWakuMobi(jud);
+          jud++;
+          if(jud == 5) jud = 1;
+        },3000);
+      }
     }
 
 
@@ -93,7 +126,6 @@ $(function () {
       }
       
       let fwid = $(".fixed_left").width() + 30;
-      
       
       // HOME 사업영역 표시 및 fixed 처리.
       $('#s2023081737ab0bc413365 .service_div').each(function () {
@@ -144,13 +176,13 @@ $(function () {
       });
             
       // 글로벌 크라우드 펀딩 - PROCESS 동작
-      if( $(window).scrollTop() > $("#text_w202308189b7d14baad0e8").offset().top){
-        $(".pbox2").css("animation-name","pb2");        
-        $(".pbox3").css("animation-name","pb3");        
-        $(".pbox4").css("animation-name","pb4");        
-        $(".pbox5").css("animation-name","pb5");        
-        $(".pbox6").css("animation-name","pb6");        
-      }
+      // if( $(window).scrollTop() > $("#text_w202308189b7d14baad0e8").offset().top){
+      //   $(".pbox2").css("animation-name","pb2");        
+      //   $(".pbox3").css("animation-name","pb3");        
+      //   $(".pbox4").css("animation-name","pb4");        
+      //   $(".pbox5").css("animation-name","pb5");        
+      //   $(".pbox6").css("animation-name","pb6");        
+      // }
       
       
     });
@@ -220,25 +252,55 @@ $(function () {
     })    
     
     // 피플 이미지 오버
-    $("#s202308236afb6cf513ff9 .img_wrap").hover(function(){
-      $(".pback").css("width","100%");
-      $(".pback").css("height","100%");
-      $(".pback").css("backgroundColor","#000");
-      $(".pback").css("opacity","0.6");
-      $(".pback").css("z-index","400");
-      $(".hover_txt").css("z-index","500");
-      $(".pwrap").css("z-index",500);
-      
-      $(".pwrap").slideDown();
-      $(".pback").slideDown();
-      
+    $("#people_wrap .img_div").mouseenter(function(){
+      $("#people_wrap .pbackg").animate({
+        width:"100%",
+        height:"100%",
+        opacity:"0.6"
+      },500,function(){
+        $("#people_wrap .hov_cont").fadeIn(300);
+      });
     })
-    $("#s202308236afb6cf513ff9 .img_wrap").mouseleave(function(){
-      $(".pwrap").slideUP();
-      $(".pback").slideUp();
-      $(".overlay").css("background","");
-      $(".overlay").css("opacity","");
-    })    
+    
+    $("#people_wrap .img_div").mouseleave(function(){
+      $("#people_wrap .hov_cont").fadeOut(300,function(){
+        $("#people_wrap .pbackg").animate({
+          width:"1px",
+          height:"1px",
+          opacity:"0"
+        },500);
+      });
+    })
+
+    
+    // $(".img_div").hover(function(){
+    //   $(".hov_cont").addClass("aos-init");
+    //   $(".hov_cont").addClass("aos-animate");
+      
+    // })
+    // $(".img_div").mouseleave(function(){
+    //   $(".hov_cont").removeClass("aos-init");
+    //   $(".hov_cont").removeClass("aos-animate");
+    // })
+    // $("#s202308236afb6cf513ff9 .img_wrap").hover(function(){
+    //   $(".pback").css("width","100%");
+    //   $(".pback").css("height","100%");
+    //   $(".pback").css("backgroundColor","#000");
+    //   $(".pback").css("opacity","0.6");
+    //   $(".pback").css("z-index","400");
+    //   $(".hover_txt").css("z-index","500");
+    //   $(".pwrap").css("z-index","500");
+      
+    //   $(".pwrap").slideDown();
+    //   $(".pback").slideDown();
+      
+    // })
+    // $("#s202308236afb6cf513ff9 .img_wrap").mouseleave(function(){
+    //   $(".pwrap").slideUP();
+    //   $(".pback").slideUp();
+    //   $(".overlay").css("background","");
+    //   $(".overlay").css("opacity","");
+    // })    
     
     // 연혁 swiper
     if($("#s20230822f09a252370e14 .mySwiper").html()){
@@ -275,6 +337,7 @@ $(function () {
         width: "toggle" 
       },400);
     })
+    
     
 })
 // load 끝
@@ -468,3 +531,144 @@ function regNewsletter(){
   SITE_FORM.confirmInputForm('w20230823399063f2e1413','N');
 }
 
+function moveWaku(jud){
+  // 이동은 1~4까지. 5가 되었다면 1로 변경
+  if(jud == 5) jud = 1; 
+  
+  // 포커스 글자의 너비
+  let wkw = $("#visual_s20230817569ed54963a8f .txt"+jud).width() + 40;
+  
+  // 다음 이동대상의 너비를 알기위해 다음 번호를 지정.
+  let judp = jud + 1;
+
+  // 애니메이션 효과 부여
+  $("#visual_s20230817569ed54963a8f .txt_waku").css("animation-name","move"+jud);
+  
+  // 만약, 마지막 4번째라면 다음은 첫번째 블럭을 지정하기 위한 설정.
+  if(jud == 4) judp= 1;
+  let wkw2 = $("#visual_s20230817569ed54963a8f .txt"+judp).width() + 40;
+  let cha = 0;
+  console.log(jud+" / "+judp);
+  console.log(wkw+" / "+wkw2);
+  
+  // 다음 블럭의 너비와 비교해 어느쪽이 더 넒은지에 따라 계산법 적용 후 너비 적용.
+  if(wkw > wkw2){
+    cha = wkw - wkw2;
+    
+    // 움직임에 맞춰 글자 이동.
+    if(jud == 1){
+    }else if(jud == 3){
+
+    }else if(jud == 4){
+      $("#visual_s20230817569ed54963a8f .txt2").animate({
+        "margin-left": "20px"
+      },2000);
+      $("#visual_s20230817569ed54963a8f .txt4").animate({
+        "margin-left": "0px"
+      },2000);
+    }
+
+    $("#visual_s20230817569ed54963a8f .txt_waku").animate({
+      "width": wkw-cha+"px"
+    },2000);
+  }else{
+    cha = wkw2 - wkw;
+    
+    // 움직임에 맞춰 글자 이동.
+    if(jud == 2){
+      $("#visual_s20230817569ed54963a8f .txt2").animate({
+        "margin-left": "0px"
+      },2000);
+
+      $("#visual_s20230817569ed54963a8f .txt4").animate({
+        "margin-left": "20px"
+      },2000);
+    }
+
+    $("#visual_s20230817569ed54963a8f .txt_waku").animate({
+      "width": wkw+cha+"px"
+    },2000);
+  }
+  
+  // 하단 서브텍스트 동작
+  setTimeout(function(){
+    $("#visual_s20230817569ed54963a8f .st1").hide();  
+    $("#visual_s20230817569ed54963a8f .st2").hide();  
+    $("#visual_s20230817569ed54963a8f .st3").hide();  
+    $("#visual_s20230817569ed54963a8f .st4").hide();  
+    $("#visual_s20230817569ed54963a8f .st"+judp).fadeIn();
+  },500)
+  
+
+  return jud;
+}
+
+function moveWakuMobi(jud){
+  // 이동은 1~4까지. 5가 되었다면 1로 변경
+  if(jud == 5) jud = 1; 
+  
+  // 포커스 글자의 너비
+  let wkw = $("#visual_s20230817569ed54963a8f .txt"+jud).width() + 20;
+
+  // 애니메이션 효과 부여
+  $("#visual_s20230817569ed54963a8f .txt_waku").css("animation-name","mmove"+jud);
+  
+  // 다음 이동대상의 너비를 알기위해 다음 번호를 지정.
+  let judp = jud + 1;
+  
+  // 만약, 마지막 4번째라면 다음은 첫번째 블럭을 지정하기 위한 설정.
+  if(jud == 4) judp= 1;
+  let wkw2 = $("#visual_s20230817569ed54963a8f .txt"+judp).width() + 24;
+  let cha = 0;
+  
+  // 다음 블럭의 너비와 비교해 어느쪽이 더 넒은지에 따라 계산법 적용 후 너비 적용.
+  if(wkw > wkw2){
+    cha = wkw - wkw2;
+    
+    // 움직임에 맞춰 글자 이동.
+    if(jud == 1){
+    }else if(jud == 3){
+
+    }else if(jud == 4){
+      $("#visual_s20230817569ed54963a8f .txt2").animate({
+        "margin-left": "0px"
+      },2000);
+      $("#visual_s20230817569ed54963a8f .txt4").animate({
+        "margin-left": "-10px"
+      },2000);
+    }
+
+    $("#visual_s20230817569ed54963a8f .txt_waku").animate({
+      "width": wkw-cha+"px"
+    },2000);
+  }else{
+    cha = wkw2 - wkw;
+    
+    // 움직임에 맞춰 글자 이동.
+    if(jud == 2){
+      $("#visual_s20230817569ed54963a8f .txt2").animate({
+        "margin-left": "-10px"
+      },2000);
+
+      $("#visual_s20230817569ed54963a8f .txt4").animate({
+        "margin-left": "0px"
+      },2000);
+    }
+
+    $("#visual_s20230817569ed54963a8f .txt_waku").animate({
+      "width": wkw+cha+"px"
+    },2000);
+  }
+    
+  // 하단 서브텍스트 동작
+  setTimeout(function(){
+    $("#visual_s20230817569ed54963a8f .st1").hide();  
+    $("#visual_s20230817569ed54963a8f .st2").hide();  
+    $("#visual_s20230817569ed54963a8f .st3").hide();  
+    $("#visual_s20230817569ed54963a8f .st4").hide();  
+    $("#visual_s20230817569ed54963a8f .st"+judp).fadeIn();
+  },500)
+  
+
+  return jud;
+}

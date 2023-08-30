@@ -14,13 +14,13 @@
     },
     ".ftpaccess": {
       "type": "-",
-      "size": 38583,
+      "size": 38617,
       "lmtime": 0,
       "modified": false
     },
     ".ftpaccess2": {
       "type": "-",
-      "size": 53873,
+      "size": 53951,
       "lmtime": 0,
       "modified": false
     },
@@ -193,8 +193,8 @@
       "css": {
         "imwebseto.css": {
           "type": "-",
-          "size": 15898,
-          "lmtime": 1692952643457.221,
+          "size": 20885,
+          "lmtime": 1693203345018.294,
           "modified": false
         },
         "seto.css": {
@@ -362,8 +362,8 @@
       "js": {
         "imwebseto.js": {
           "type": "-",
-          "size": 15013,
-          "lmtime": 1692952606248.834,
+          "size": 15182,
+          "lmtime": 1693202290730.7805,
           "modified": false
         },
         "seto.js": {
