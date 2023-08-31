@@ -342,8 +342,6 @@ $(function () {
 })
 // load 끝
 
-
-
 const counter = ($counter, max) => {
   console.log(max);
   let now = max;
@@ -488,12 +486,13 @@ function downDoc(){
   let tel3 = $("input[name=phonenumber3_1810a1a792d2f]").val();
   let uemail = $("#input_email_585cb3dbe09ab").val();
   
-  SITE_FORM.confirmInputForm('w20230821b61681f246a16','N');
+  SITE_FORM.confirmInputForm('w20230831f65b974c1a11c','N');
   
   if(comp && uname && tel1 && tel2 && tel3 && uemail){
     let re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
     if (re.test(uemail)) {
-      location.href="/admin/ajax/shop/download_prod_digital_file.cm?target_code=s202308179f2fc24db7397";
+      // location.href="https://protoseto.imweb.me/form_file_download.cm?c=YTo0OntzOjEwOiJib2FyZF9jb2RlIjtzOjIyOiJiMjAyMzA4MzEzNTIyNWE5ZjA5NDEyIjtzOjk6ImZvcm1fY29kZSI7czoyMjoiZjIwMjMwODMxMjdhOTkwM2IxYjhkMSI7czo5OiJmaWxlX2NvZGUiO3M6MjI6ImYyMDIzMDgzMWY0OWQ2MWJhYTY0MDMiO3M6MTQ6ImZpbGVfaXRlbV9jb2RlIjtzOjEzOiJkYTFlNzI4M2EzZjQ5Ijt9";
+      location.href="https://protoseto.imweb.me/admin/ajax/shop/download_prod_digital_file.cm?target_code=s202308179f2fc24db7397";
     }
   }
 }
@@ -528,7 +527,7 @@ function regNewsletter(){
     $("input[name='checkbox_b25a25bfc43a6[]'").prop("checked",true);
   }
   
-  SITE_FORM.confirmInputForm('w20230823399063f2e1413','N');
+  SITE_FORM.confirmInputForm('w20230831e970237b02466','N');
 }
 
 function moveWaku(jud){
@@ -672,3 +671,26 @@ function moveWakuMobi(jud){
 
   return jud;
 }
+
+function setSizeIframe(){
+  window.addEventListener('message', function(e){
+    if(e.data.ifheight > 0){
+      $("#carr").css("height",e.data.ifheight+50);
+      // $("#carr").css("height","3000px");
+      // $("#carr").attr('src','https://setoworks.cafe24.com/test/test.php');
+      // $("#carr").attr('src','https://makestarrecruit.oopy.io');
+      // sendMessageIframeRe();
+    }
+  })
+  // sendMessageIframe();
+}
+
+function sendMessageIframe(){
+  let ifm = document.getElementById('carr').contentWindow;
+  ifm.postMessage({ "parentData" : 'goheight' }, 'https://setoworks.cafe24.com');
+}
+function sendMessageIframeRe(){
+  let ifm = document.getElementById('carr').contentWindow;
+  ifm.postMessage({ "parentData" : 'chgCont' }, 'https://setoworks.cafe24.com');
+}
+
