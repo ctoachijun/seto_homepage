@@ -70,6 +70,9 @@ $(function () {
       })
       
     })
+    $(".sec_link").click(function(){
+      location.href="/ourwork";
+    })
         
     
     // HOME일때 실행
@@ -131,11 +134,13 @@ $(function () {
       $('#s2023081737ab0bc413365 .service_div').each(function () {
         var bottom_of_element = $(this).offset().top + $(this).outerHeight();
         var bottom_of_window = $(window).scrollTop() + $(window).height();
-        let b_service_div = $(".fixed_left").offset().top + $(".fixed_left").outerHeight();
+        // let b_service_div = $(".fixed_left").offset().top + $(".fixed_left").outerHeight();
         
             
-        // console.log(bottom_of_element);
+        // console.log($(window).scrollTop());
+        // console.log($("#last_sd").offset().top);
         // console.log(bottom_of_window);
+        // console.log($("#w20230828d674990848ee8").offset().top);
         // console.log("-------------------");
         if (bottom_of_window > bottom_of_element) {
           $(this).animate({ 'opacity': '1' }, 1000);
@@ -146,9 +151,10 @@ $(function () {
         //   fl = 0;
         // }
         let fl = 17.5;
+        fl = 9.2;
         if($(window).width() > 991){
     
-          if(bottom_of_window >= 1574 && bottom_of_window < 3100){
+          if(bottom_of_window >= 1936 && bottom_of_window < 3730){
             $(".fixed_left").css("width",fwid+"px");
             // 좌측 여백 계산
             // fl += 16;
@@ -156,12 +162,12 @@ $(function () {
             $(".fixed_left").css("top","170px");
             $(".fixed_left").css("left",fl+"%");
             // $(".fixed_left").css("bottom","auto");
-          }else if(bottom_of_window < 1588){
+          }else if(bottom_of_window < 1936){
             $(".fixed_left").css("position","absolute");
-            $(".fixed_left").css("top","30px");
+            $(".fixed_left").css("top","0px");
             $(".fixed_left").css("left","0px");
-          }else if(bottom_of_window >= 3100){
-            let fh = $(".service_wrap").height() - $(".fixed_left").height() + 54;
+          }else if(bottom_of_window >= 3730){
+            let fh = $(".service_wrap").height() - $(".fixed_left").height() + 5;
             
             $(".fixed_left").css("position","absolute");
             $(".fixed_left").css("top",fh+"px");
@@ -173,16 +179,24 @@ $(function () {
           // 이 부분은 400px 모바일에서 동작하므로 제외.
           
         }
+
+        // 크라우드펀딩 애니메이션인데 안쓸듯
+        // if( $(window).scrollTop() > $("#text_w202308189b7d14baad0e8").offset().top){
+        //   $(".pbox2").css("animation-name","pb2");        
+        //   $(".pbox3").css("animation-name","pb3");        
+        //   $(".pbox4").css("animation-name","pb4");        
+        //   $(".pbox5").css("animation-name","pb5");        
+        //   $(".pbox6").css("animation-name","pb6");        
+        // }
+        
+        
       });
-            
-      // 글로벌 크라우드 펀딩 - PROCESS 동작
-      // if( $(window).scrollTop() > $("#text_w202308189b7d14baad0e8").offset().top){
-      //   $(".pbox2").css("animation-name","pb2");        
-      //   $(".pbox3").css("animation-name","pb3");        
-      //   $(".pbox4").css("animation-name","pb4");        
-      //   $(".pbox5").css("animation-name","pb5");        
-      //   $(".pbox6").css("animation-name","pb6");        
-      // }
+      
+      
+      // $("#w20230901dc20c8406d406 .post_link_wrap").prop("href","");
+      $("#w20230901dc20c8406d406 .post_link_wrap").click(function(){
+        return false;
+      })
       
       
     });
@@ -271,36 +285,6 @@ $(function () {
         },500);
       });
     })
-
-    
-    // $(".img_div").hover(function(){
-    //   $(".hov_cont").addClass("aos-init");
-    //   $(".hov_cont").addClass("aos-animate");
-      
-    // })
-    // $(".img_div").mouseleave(function(){
-    //   $(".hov_cont").removeClass("aos-init");
-    //   $(".hov_cont").removeClass("aos-animate");
-    // })
-    // $("#s202308236afb6cf513ff9 .img_wrap").hover(function(){
-    //   $(".pback").css("width","100%");
-    //   $(".pback").css("height","100%");
-    //   $(".pback").css("backgroundColor","#000");
-    //   $(".pback").css("opacity","0.6");
-    //   $(".pback").css("z-index","400");
-    //   $(".hover_txt").css("z-index","500");
-    //   $(".pwrap").css("z-index","500");
-      
-    //   $(".pwrap").slideDown();
-    //   $(".pback").slideDown();
-      
-    // })
-    // $("#s202308236afb6cf513ff9 .img_wrap").mouseleave(function(){
-    //   $(".pwrap").slideUP();
-    //   $(".pback").slideUp();
-    //   $(".overlay").css("background","");
-    //   $(".overlay").css("opacity","");
-    // })    
     
     // 연혁 swiper
     if($("#s20230822f09a252370e14 .mySwiper").html()){
@@ -491,8 +475,9 @@ function downDoc(){
   if(comp && uname && tel1 && tel2 && tel3 && uemail){
     let re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
     if (re.test(uemail)) {
-      // location.href="https://protoseto.imweb.me/form_file_download.cm?c=YTo0OntzOjEwOiJib2FyZF9jb2RlIjtzOjIyOiJiMjAyMzA4MzEzNTIyNWE5ZjA5NDEyIjtzOjk6ImZvcm1fY29kZSI7czoyMjoiZjIwMjMwODMxMjdhOTkwM2IxYjhkMSI7czo5OiJmaWxlX2NvZGUiO3M6MjI6ImYyMDIzMDgzMWY0OWQ2MWJhYTY0MDMiO3M6MTQ6ImZpbGVfaXRlbV9jb2RlIjtzOjEzOiJkYTFlNzI4M2EzZjQ5Ijt9";
-      location.href="https://protoseto.imweb.me/admin/ajax/shop/download_prod_digital_file.cm?target_code=s202308179f2fc24db7397";
+      location.href="https://protoseto.imweb.me/form_file_download.cm?c=YTo0OntzOjEwOiJib2FyZF9jb2RlIjtzOjIyOiJiMjAyMzA4MzEzNTIyNWE5ZjA5NDEyIjtzOjk6ImZvcm1fY29kZSI7czoyMjoiZjIwMjMwODMxMjdhOTkwM2IxYjhkMSI7czo5OiJmaWxlX2NvZGUiO3M6MjI6ImYyMDIzMDgzMWY0OWQ2MWJhYTY0MDMiO3M6MTQ6ImZpbGVfaXRlbV9jb2RlIjtzOjEzOiJkYTFlNzI4M2EzZjQ5Ijt9";
+      // SITE_SHOP_DETAIL.digitalFileDownload('202308313563283');
+      // location.href="https://protoseto.imweb.me/admin/ajax/shop/download_prod_digital_file.cm?target_code=s202308179f2fc24db7397";
     }
   }
 }
@@ -547,8 +532,8 @@ function moveWaku(jud){
   if(jud == 4) judp= 1;
   let wkw2 = $("#visual_s20230817569ed54963a8f .txt"+judp).width() + 40;
   let cha = 0;
-  console.log(jud+" / "+judp);
-  console.log(wkw+" / "+wkw2);
+  // console.log(jud+" / "+judp);
+  // console.log(wkw+" / "+wkw2);
   
   // 다음 블럭의 너비와 비교해 어느쪽이 더 넒은지에 따라 계산법 적용 후 너비 적용.
   if(wkw > wkw2){
@@ -694,3 +679,6 @@ function sendMessageIframeRe(){
   ifm.postMessage({ "parentData" : 'chgCont' }, 'https://setoworks.cafe24.com');
 }
 
+function goPage(pg){
+  location.href="/"+pg;
+}

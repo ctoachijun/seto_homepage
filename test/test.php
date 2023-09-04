@@ -2,23 +2,40 @@
    include "../lib/seto.php";
    include "../lib/PHPExcel/Classes/PHPExcel.php";
 
-
    
-   $count = array("W","X","Y","Z","AA");
    
-   for($i=50; $i<=61; $i++){
-      foreach($count as $v){
-      //  echo "=SUMIFS(U2:U22,F2:F22,\">=\"&H{$i},F2:F22,\"<=\"&I{$i},B2:B22,\"=\"&\"{$v}\")";
-      //  echo "=SUMIFS(U2:U22,E2:E22,\">=\"&H{$i},E2:E22,\"<=\"&I{$i},F2:F22,\">=\"&H{$i},F2:F22,\"<=\"&I{$i},B2:B22,\"=\"&\"{$v}\")+SUMIFS(U2:U22,E2:E22,\"<\"&H{$i},F2:F22,\">=\"&H{$i},F2:F22,\"<=\"&I{$i},B2:B22,\"=\"&\"{$v}\")+SUMIFS(U2:U22,E2:E22,\">=\"&H{$i},E2:E22,\"<=\"&I{$i},F2:F22,\">\"&I{$i},B2:B22,\"=\"&\"{$v}\")";
-         echo "=프로젝트별!{$v}{$i}";
-         echo "<br>";
-      }
-      echo "<br><br>";
-   }
+   
    
 
+   // for($i=0; $i<22; $i++){
+   //    $ga = rand(5000000,50000000);
+   //    $ga1 = ceil($ga / 100000);
+   //    $ga = $ga1 * 100000;
+      
+   //    echo "$ga<br>";
+   // }
+   
+   // exit;
+   
+//    $count = array("X","Y","Z","AA","AB");
+//    $count = array("한국","일본","미국","대만","기타");
+//    $count = array("B","C","D","E","F");
+   
+//    for($i=163; $i<=174; $i++){
+//    foreach($count as $v){
+//       //  echo "=SUMIFS(U2:U22,F2:F22,\">=\"&H{$i},F2:F22,\"<=\"&I{$i},B2:B22,\"=\"&\"{$v}\")";
+//       //  echo "=SUMIFS(U2:U22,E2:E22,\">=\"&H{$i},E2:E22,\"<=\"&I{$i},F2:F22,\">=\"&H{$i},F2:F22,\"<=\"&I{$i},B2:B22,\"=\"&\"{$v}\")+SUMIFS(U2:U22,E2:E22,\"<\"&H{$i},F2:F22,\">=\"&H{$i},F2:F22,\"<=\"&I{$i},B2:B22,\"=\"&\"{$v}\")+SUMIFS(U2:U22,E2:E22,\">=\"&H{$i},E2:E22,\"<=\"&I{$i},F2:F22,\">\"&I{$i},B2:B22,\"=\"&\"{$v}\")";
+//          // echo "=SUMIFS(K2:K22,E2:E22,\">=\"&AD{$i},E2:E22,\"<=\"&AE{$i},B2:B22,\"=\"&\"{$v}\")";
+//          // echo "=SUMIFS(N2:N29,F2:F29,\">=\"&H{$i},F2:F29,\"<=\"&I{$i},B2:B29,\"=\"&\"{$v}\")";
+//          echo "=프로젝트별!{$v}{$i}";
+//          echo "<br>";
+//       }
+//       echo "<br><br>";
+//    }
+   
 
-exit;
+
+// exit;
 
 ?>
 
