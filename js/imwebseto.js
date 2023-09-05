@@ -1,35 +1,54 @@
 $(function () {
   
     // nav바 배경
-    $("#w20230808d713387d6df0d ul").hover(function(){
+    $("#w2023090533b016edb5f36 ul").hover(function(){
         $("#s2023080800e57504dc655").css("backgroundColor","rgba(0,0,0,0.4)");
-        $("#dropdown_w20230808d713387d6df0d .plain_name").css("color","#fff");
+
+        if($("#dropdown_w2023090533b016edb5f36").css("display") == "none"){
+          // HOME 이외에 표시 될 작업들
+          $("#s2023080800e57504dc655 .section_bg_color").css("backgroundColor","");
+          $("#w2023090533b016edb5f36 .plain_name").css("color","#fff");
+          $("#dropdown_w2023090533b016edb5f36 .plain_name").css("color","#fff");
+        }else{
+        }
+        
     })
-    $("#w20230808d713387d6df0d ul").mouseleave(function(){
+    $("#w2023090533b016edb5f36 ul").mouseleave(function(){
       
       $("#s2023080800e57504dc655").css("backgroundColor","");
-      $("#dropdown_w20230808d713387d6df0d .mega_dropdown_wrap").hover(function(){
+      $("#s2023080800e57504dc655 .section_bg_color").css("");
+      $("#w2023090533b016edb5f36 .plain_name").css("color","#000");
+
+      
+      $("#dropdown_w2023090533b016edb5f36 .mega_dropdown_wrap").hover(function(){
         $("#s2023080800e57504dc655").css("backgroundColor","rgba(0,0,0,0.4)");
+        $("#w2023090533b016edb5f36 .plain_name").css("color","#fff");
+        $("#dropdown_w2023090533b016edb5f36 .plain_name").css("color","#fff");
+
       })
-      $("#dropdown_w20230808d713387d6df0d .mega_dropdown_wrap").mouseleave(function(){
+
+      $("#dropdown_w2023090533b016edb5f36 .mega_dropdown_wrap").mouseleave(function(){
+
         setTimeout(function(){
           $("#s2023080800e57504dc655").css("backgroundColor","");    
         },430);
+        
+        if($("#dropdown_w2023090533b016edb5f36").css("display") == "none"){
+        }else{
+          // HOME 이외에 표시 될 작업들
+          $("#s2023080800e57504dc655 .section_bg_color").css("");
+          $("#w2023090533b016edb5f36 .plain_name").css("color","");
+        }
+
       })
     })
     
-    if($("#dropdown_w20230808d713387d6df0d").css("display") == "none"){
+    if($("#dropdown_w2023090533b016edb5f36").css("display") == "none"){
       $("#s2023080800e57504dc655").css("backgroundColor","");
     }else{
       $("#s2023080800e57504dc655").css("backgroundColor","rgba(0,0,0,0.4)");
     }
-    
-    
-    if($("#s20230817569ed54963a8f #visual_s20230817569ed54963a8f").html()){
-
-    }
-    
-    
+   
     
     // 메인 텍스트 오른쪽에 프로젝트 뷰 호버처리.
     $("#s20230817569ed54963a8f .sec_link").hover(function(){

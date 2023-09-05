@@ -15,15 +15,15 @@
   header - nav bar
 */
 /* #doz_header_wrap{position:absolute;width:100%} */
-#dropdown_w20230808d713387d6df0d .mega_dropdown_wrap{background:rgba(0,0,0,0.4)}
-#w20230808d713387d6df0d .viewport-nav > li.dropdown > .notranslate a, #w20230808d713387d6df0d .viewport-nav > li.dropdown > a{text-align:center;}
-#w20230808d713387d6df0d .viewport-nav > li.dropdown > .notranslate a.active, #w20230808d713387d6df0d .viewport-nav > li.dropdown > a.active{color:#ff2f97;font-weight:700;}
-#dropdown_w20230808d713387d6df0d .mega_dropdown .sub_menu a{height:2.5rem;text-align:center;line-height:2.5rem;width:fit-content;padding-left:10px;padding-right:10px;margin:0 auto;}
+#dropdown_w2023090533b016edb5f36 .mega_dropdown_wrap{background:rgba(0,0,0,0.4)}
+#w2023090533b016edb5f36 .viewport-nav > li.dropdown > .notranslate a, #w2023090533b016edb5f36 .viewport-nav > li.dropdown > a{text-align:center;}
+#w2023090533b016edb5f36 .viewport-nav > li.dropdown > .notranslate a.active, #w2023090533b016edb5f36 .viewport-nav > li.dropdown > a.active{font-weight:700;text-decoration:underline}
+#dropdown_w2023090533b016edb5f36 .mega_dropdown .sub_menu a{height:2.5rem;text-align:center;line-height:2.5rem;width:fit-content;padding-left:10px;padding-right:10px;margin:0 auto;}
 
 .sub_menu .active{padding:0.5rem;border:1px solid #fff;border-radius:10px;font-weight:700;}
-#dropdown_w20230808d713387d6df0d .mega_dropdown_wrap .mega_dropdown > div{text-align:center;padding-top:20px;}
-#dropdown_w20230808d713387d6df0d .mega_dropdown_wrap .mega_dropdown > div:nth-of-type(2){width:150px;}
-#dropdown_w20230808d713387d6df0d .mega_dropdown_wrap .mega_dropdown > div:nth-of-type(3){width:110px;}
+#dropdown_w2023090533b016edb5f36 .mega_dropdown_wrap .mega_dropdown > div{text-align:center;padding-top:20px;}
+#dropdown_w2023090533b016edb5f36 .mega_dropdown_wrap .mega_dropdown > div:nth-of-type(2){width:150px;}
+#dropdown_w2023090533b016edb5f36 .mega_dropdown_wrap .mega_dropdown > div:nth-of-type(3){width:110px;}
 
 #mobile_slide_menu .profile-area a,
 #mobile_slide_menu .profile-area .btn-group{display:none;}
@@ -422,61 +422,230 @@
 /* 
   SERVICE - 글로벌 크라우드 펀딩
 */
-#s202308186cc434a0d497f .txt_body{color:#020000 !important}
+#service_main_wrap{height:540px;}
+#service_main_wrap .service_main{width:100%;height:100%;position:relative;}
+#service_main_wrap .service_main .main_img{width:50%;position:absolute;top:0;right:50px;}
+#service_main_wrap .service_main .main_img img{border-radius:20px;}
+#service_main_wrap .service_main .main_text{width:60%;position:absolute;bottom:0;left:0;}
+#service_main_wrap .service_main .main_text .title1{font-size:36px;}
+#service_main_wrap .service_main .main_text .title2{font-size:36px;}
+#service_main_wrap .service_main .main_text .title2 .background{background:#fff;}
+#service_main_wrap .service_main .main_text .cont{margin-top:30px;}
 
 
-/* 이하 기존 적용했던 애니메이션 */
-#s202308186cc434a0d497f .fun_wrap{
-  width:100%;height:150px;display:flex;justify-content: center;
+/* SERVICE - 프로세스 */
+#s20230905817df0947f307 .doz_row img{width:280px !important;height:}
+#s20230905817df0947f307 .steptitle{position:absolute;top:30px;left:35px;font-size:16px;color:#000;}
+#s20230905817df0947f307 .title{position:absolute;bottom:20px;left:35px;font-size:20px;font-weight:700;color:#000;word-break:keep-all}
+#s20230905817df0947f307 .stepcont{padding:2rem;line-height:150%;}
+
+@media (max-width:991px){
+  #w20230818d04a9e4fcca75,
+  #w20230905a701bef964f93,
+  #w20230905bd6efb0b6172d,
+  #w20230905890e1ee179c5e,
+  #w202309056b0ad7678d02c,
+  #w202309051782ee431fffa,
+  #w20230905cf650c71ab22a,
+  #w202309054047e1730f651,
+  #w20230905a942f7318b066,
+  #w20230905f5be1d4cbc5eb,
+  #w20230905c89a349897896,
+  #w20230905e66ca4519f518,
+  #w20230905d7ce5630604b6,
+  #w2023090535aaa9200608d,
+  #w202309050a4eee39e8aec,
+  #w20230905018502cc4772c{display:none;}
 }
-#s202308186cc434a0d497f .fun_process{
-  position:relative;width:100%;border:1px solid #000
-}
-#s202308186cc434a0d497f .fun_process .pro_box{
-  width:100px;height:100px;border:1px solid;position:absolute;top:20px;left:20%;display:flex;justify-content: center;align-items: center;
+@media (max-width:766px){
+  #service_main_wrap{height:400px;padding:1rem}
+  #service_main_wrap .service_main .main_img img{width:100%;}
+  #service_main_wrap .service_main .main_text{width:100%;}
+  #service_main_wrap .service_main .main_text .title1{font-size:26px;}
+  #service_main_wrap .service_main .main_text .title2{font-size:26px;}
   
-  animation-iteration-count:1;
-  animation-timing-function:ease-in;
-  animation-fill-mode: forwards;
 }
-#s202308186cc434a0d497f .fun_process .pbox2,
-#s202308186cc434a0d497f .fun_process .pbox3,
-#s202308186cc434a0d497f .fun_process .pbox4,
-#s202308186cc434a0d497f .fun_process .pbox5,
-#s202308186cc434a0d497f .fun_process .pbox6{opacity:1}
+@media (max-width:400px){
+}
 
-#s202308186cc434a0d497f .fun_process .pbox2{animation-duration:1s;}
-@-webkit-keyframes pb2{
-  0%{left:20%;}
-  100%{left:30%;}
+
+
+/* 
+  SERVICE - 플랫폼 페이지
+*/
+
+/* SERVICE - 플랫폼 페이지 특징 */
+#platform_charac .arrow{position:absolute;z-index:1;top:43%;left:36.5%;}
+#platform_charac .platform_row{display:flex;flex-direction:column;position:relative;z-index:5;}
+#platform_charac .platform_row:first-of-type{margin-bottom:80px;}
+#platform_charac .platform_row .plf_title{font-size:26px;margin-bottom:20px;}
+#platform_charac .platform_row .charac_cont{display:flex;}
+#platform_charac .platform_row .charac_cont > div{position:relative;z-index:5}
+#platform_charac .platform_row .charac_cont .charac_row{display:flex;}
+#platform_charac .platform_row .charac_cont .charac_row:first-child{margin-right:40px;}
+#platform_charac .platform_row .charac_cont .charac_row .charac_div{width:300px;padding:2.5rem;background-color:#fff;border-radius:30px;border:1px solid #cecece}
+#platform_charac .platform_row .charac_cont .charac_row .charac_div:first-child{margin-right:40px;}
+#platform_charac .platform_row .charac_cont .charac_row .charac_div .cicon{height:65px;}
+#platform_charac .platform_row .charac_cont .charac_row .charac_div .ctitle{font-size:20px;margin-top:30px;font-weight:700;line-height:130%;}
+#platform_charac .platform_row .charac_cont .charac_row .charac_div .ccont{font-size:14px;margin-top:10px;line-height:180%;}
+
+/* SERVICE - 플랫폼 메인 텍스트 상단 여백 */
+#w2023090514ce6b1ae7612,
+#w2023090594c92feff82d8,
+#w20230905040d8ef234e43,
+#w202309050c0c1d05d868b,
+#w2023090575bf3e49be494,
+#w202309054d15b50b24e78,
+#w202309054d3d205203000{margin-top:80px;}
+
+
+/* SERVICE - 플랫폼 하단 상담하기 버튼 중앙정렬로 보이게 맞춤 */
+#w20230905ba6a8e1fe4ba7 .btn_f6df399f9e629,
+#w20230905bfc24538c715a .btn_f6df399f9e629,
+#w20230905ba085ff28e1e1 .btn_f6df399f9e629,
+#w202309050bb4811e0879c .btn_f6df399f9e629,
+#w20230905b483dacfed00a .btn_f6df399f9e629,
+#w20230905d298bef129127 .btn_f6df399f9e629,
+#w20230901be4393df9b41f .btn_f6df399f9e629{margin-left:-80px !important;}
+
+@media (max-width:991px){
+  #platform_charac .platform_row{padding:0 20px;}
+  #platform_charac .platform_row:first-of-type{margin-bottom:40px;}
+  #platform_charac .platform_row .charac_cont .charac_row{flex-direction:column;width:50%;}
+  #platform_charac .platform_row .charac_cont .charac_row:first-child{margin-right:0px;}
+  #platform_charac .platform_row .charac_cont .charac_row .charac_div{width:90%;height:335px;margin-bottom:50px;}
+  #platform_charac .arrow{top:42%;left:35%;}
+
+  /* SERVICE - 플랫폼 메인 텍스트 본문 상단 여백 */
+  #w2023090514ce6b1ae7612,
+  #w2023090594c92feff82d8,
+  #w20230905040d8ef234e43,
+  #w202309050c0c1d05d868b,
+  #w2023090575bf3e49be494,
+  #w202309054d15b50b24e78,
+  #w202309054d3d205203000{margin-top:0px;}  
+  
+  /* SERVICE - 플랫폼 메인 타이틀 상단 여백 */
+  #w20230905e9b0acccbf9ff,
+  #w20230905f7a6344c3dcc7,
+  #w20230905e730b6c0b71ee,
+  #w2023090567732ba79c536,
+  #w20230905224e55d3349a3,
+  #w20230905347d9ff8c3523,
+  #w20230905096dbeb64e7f4,
+  #w202309059ad8ec3178a68,
+  #w20230905549f626d5509f,
+  #w20230905bafe45a3c574a,
+  #w20230905462267e1a3704,
+  #w20230905d19af0a5aedd6,
+  #w2023090598bc47cd5ef9b,
+  #w2023090584afbd852e510{display:none}
+  
+  /* SERVICE - 플랫폼 메인 타이틀 하단 여백 */
+  #w20230905ded9f25bfd3d2,
+  #w20230905dbce772477e4e,
+  #w2023090565000672ce196,
+  #w20230905bd7d27027fcd4,
+  #w202309059ec41d12f354a,
+  #w202309054a737123048f0,
+  #w202309052220d7fae0172{display:none;}
+  
+  /* SERVICE - 플랫폼 메인 하단 여백 */
+  #w202309052b67b201dfd28,
+  #w20230905dbabefb90aef5,
+  #w2023090510b7811cde1ea,
+  #w20230905a847439a37e2a,
+  #w20230905148bdc447e1fd,
+  #w202309056d33bb920a367,
+  #w20230905746d1eb58dfd3{display:none;}
+  
+  /* SERVICE - 플랫폼 특징 상단 여백 */
+  #w20230905a97440ce8335f,
+  #w20230905f5d2cf6328f3c,
+  #w20230905307c601f86547,
+  #w20230905f5607a4b605a1,
+  #w202309055395d90ec99d9,
+  #w20230905b9d4b30586ee0,
+  #w202308186dabf0ec2e990{display:none;}
+  
+  
+  /* 
+    SERVICE - 플랫폼 버튼 윗쪽 공백 제거 
+    킥스타터부터 아래에서 2개씩
+  */
+  #w20230905c2e1bcfe85b9a,
+  #w202309054f109bd435c6e,
+  #w20230905ce21b25e023cf,
+  #w2023090519871b6cd6ac5,
+  #w2023090506af570aaa98e,
+  #w20230905110a54b1f06c2,
+  #w20230905fc70a28606845,
+  #w2023090581c3a92f9fa6e,
+  #w202309053fb1d29a0f1bc,
+  #w20230905086aaa1e13739,
+  #w202309052a4f2a02cf84c,
+  #w20230905dddbea38902a8,
+  #w202308184f560ff1c74a7,
+  #w2023081837151d04e4248{display:none} 
+  
+  /* SERVICE - 플랫폼 상담신청 버튼 중앙 정렬 */
+  #w20230905ba6a8e1fe4ba7 .btn_f6df399f9e629,
+  #w20230905bfc24538c715a .btn_f6df399f9e629,
+  #w20230905ba085ff28e1e1 .btn_f6df399f9e629,
+  #w202309050bb4811e0879c .btn_f6df399f9e629,
+  #w20230905b483dacfed00a .btn_f6df399f9e629,
+  #w20230905d298bef129127 .btn_f6df399f9e629,
+  #w20230901be4393df9b41f .btn_f6df399f9e629{margin-left:-40px !important;}
 }
-#s202308186cc434a0d497f .fun_process .pbox3{animation-duration:1.5s;}
-@-webkit-keyframes pb3{
-  0%{left:20%;}
-  100%{left:40%;}
+@media (max-width:766px){
+  #platform_charac .platform_row:first-of-type{margin-bottom:60px;}
+  #platform_charac .platform_row .charac_cont .charac_row .charac_div{margin-bottom:30px;}
+  #s20230818fba51183c28f0 .arrow{top:41%; left:28%;}
+  
+  /* SERVICE - 플랫폼 메인 타이틀 상단 여백 */
+  #w20230905e9b0acccbf9ff,
+  #w20230905e730b6c0b71ee,
+  #w20230905224e55d3349a3,
+  #w20230905096dbeb64e7f4,
+  #w20230905549f626d5509f,
+  #w202309056d33bb920a367,
+  #w2023090598bc47cd5ef9b,
+  #w2023090584afbd852e510{display:block}
+  
 }
-#s202308186cc434a0d497f .fun_process .pbox4{animation-duration:2s;}
-@-webkit-keyframes pb4{
-  0%{left:20%;}
-  100%{left:50%;}
-}
-#s202308186cc434a0d497f .fun_process .pbox5{animation-duration:2.5s;}
-@-webkit-keyframes pb5{
-  0%{left:20%;}
-  100%{left:60%;}
-}
-#s202308186cc434a0d497f .fun_process .pbox6{animation-duration:3s;}
-@-webkit-keyframes pb6{
-  0%{left:20%;}
-  100%{left:70%;}
+@media (max-width:400px){
+  #platform_charac .platform_row .charac_cont,
+  #platform_charac .platform_row .charac_cont .charac_row:first-child{margin-right:0px;}
+  #platform_charac .platform_row .charac_cont{flex-direction:column}
+  #platform_charac .platform_row .charac_cont .charac_row{width:100%;}
+  #platform_charac .platform_row .charac_cont .charac_row .charac_div{width:100%;margin-bottom:20px;}
+  #platform_charac .platform_row .charac_cont .charac_row .charac_div:first-child{margin-right:0px;}
+  #platform_charac .arrow{position:absolute;z-index:1;top:44%;left:14%;}
+  
+  /* SERVICE - 플랫폼 상담신청 버튼 중앙 정렬 */
+  #w20230905ba6a8e1fe4ba7 .btn_f6df399f9e629,
+  #w202309050bb4811e0879c .btn_f6df399f9e629,
+  #w20230905bfc24538c715a .btn_f6df399f9e629,
+  #w20230905b483dacfed00a .btn_f6df399f9e629,
+  #w20230905d298bef129127 .btn_f6df399f9e629,
+  #w20230901be4393df9b41f .btn_f6df399f9e629{margin-left:0px !important;}
+  
 }
 
 /* 
   서비스 소개서 받기 따라다니는 버튼
 */
-#w202308181121e7b959e87,#w20230901a69ee48d63cd0{position:fixed;right:8%;bottom:10%;z-index:50;}
+#w202308181121e7b959e87,#w20230901a69ee48d63cd0{position:fixed;right:18%;bottom:18%;z-index:50;}
 
-
+@media (max-width:991px){
+}
+@media (max-width:766px){
+  #w202308181121e7b959e87,#w20230901a69ee48d63cd0{right:10%;bottom:10%;}
+  #w202308181121e7b959e87 .btn_0ed6f47cc3765{width:150px;font-size:14px;padding:20px 15px;}
+  
+}
+@media (max-width:400px){
+}
 
 
 
