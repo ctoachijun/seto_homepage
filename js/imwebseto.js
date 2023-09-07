@@ -1,53 +1,48 @@
 $(function () {
   
     // nav바 배경
-    $("#w2023090533b016edb5f36 ul").hover(function(){
-        $("#s2023080800e57504dc655").css("backgroundColor","rgba(0,0,0,0.4)");
-
-        if($("#dropdown_w2023090533b016edb5f36").css("display") == "none"){
-          // HOME 이외에 표시 될 작업들
-          $("#s2023080800e57504dc655 .section_bg_color").css("backgroundColor","");
-          $("#w2023090533b016edb5f36 .plain_name").css("color","#fff");
-          $("#dropdown_w2023090533b016edb5f36 .plain_name").css("color","#fff");
-        }else{
-        }
-        
-    })
-    $("#w2023090533b016edb5f36 ul").mouseleave(function(){
-      
-      $("#s2023080800e57504dc655").css("backgroundColor","");
-      $("#s2023080800e57504dc655 .section_bg_color").css("");
-      $("#w2023090533b016edb5f36 .plain_name").css("color","#000");
-
-      
-      $("#dropdown_w2023090533b016edb5f36 .mega_dropdown_wrap").hover(function(){
-        $("#s2023080800e57504dc655").css("backgroundColor","rgba(0,0,0,0.4)");
+    
+    // 메인 영역 호버시 배경,색상 변경
+    $("#w2023090533b016edb5f36").mouseenter(function(){
+        $("#s2023080800e57504dc655 .section_bg_color").css("backgroundColor","rgba(0,0,0,0.6)");
         $("#w2023090533b016edb5f36 .plain_name").css("color","#fff");
         $("#dropdown_w2023090533b016edb5f36 .plain_name").css("color","#fff");
-
-      })
-
-      $("#dropdown_w2023090533b016edb5f36 .mega_dropdown_wrap").mouseleave(function(){
-
-        setTimeout(function(){
-          $("#s2023080800e57504dc655").css("backgroundColor","");    
-        },430);
         
-        if($("#dropdown_w2023090533b016edb5f36").css("display") == "none"){
-        }else{
-          // HOME 이외에 표시 될 작업들
-          $("#s2023080800e57504dc655 .section_bg_color").css("");
-          $("#w2023090533b016edb5f36 .plain_name").css("color","");
-        }
-
-      })
+        // 이탈시 시간차로 메인 복원처리에 시간차때문에 여러 오류가 나서, 다 덮어씌움
+        setTimeout(function(){
+          $("#s2023080800e57504dc655 .section_bg_color").css("backgroundColor","rgba(0,0,0,0.6)");
+          $("#w2023090533b016edb5f36 .plain_name").css("color","#fff");
+          $("#dropdown_w2023090533b016edb5f36 .plain_name").css("color","#fff");
+        },450);
+  
     })
     
-    if($("#dropdown_w2023090533b016edb5f36").css("display") == "none"){
-      $("#s2023080800e57504dc655").css("backgroundColor","");
-    }else{
-      $("#s2023080800e57504dc655").css("backgroundColor","rgba(0,0,0,0.4)");
-    }
+    // 메인 영역에서 이탈시 배경,색상 복원
+    $("#w2023090533b016edb5f36").mouseleave(function(){
+      setTimeout(function(){
+        $("#s2023080800e57504dc655 .section_bg_color").css("backgroundColor","");
+        $("#w2023090533b016edb5f36 .plain_name").css("color","");
+        $("#dropdown_w2023090533b016edb5f36 .plain_name").css("color","");
+      },450);
+
+      // 메인영역 이탈 후 서브영역 호버시 메인 유지
+      $("#dropdown_w2023090533b016edb5f36").mouseenter(function(){
+        setTimeout(function(){
+          $("#s2023080800e57504dc655 .section_bg_color").css("backgroundColor","rgba(0,0,0,0.6)");
+          $("#w2023090533b016edb5f36 .plain_name").css("color","#fff");
+          $("#dropdown_w2023090533b016edb5f36 .plain_name").css("color","#fff");
+        },450);
+      })
+      
+      // 메인영역 이탈 후 서브영역 호버 후 서브영역 이탈시 메인 배경,색상 복원
+      $("#dropdown_w2023090533b016edb5f36 .mega_dropdown_wrap").mouseleave(function(){
+        setTimeout(function(){
+          $("#s2023080800e57504dc655 .section_bg_color").css("backgroundColor","");
+          $("#w2023090533b016edb5f36 .plain_name").css("color","");
+          $("#dropdown_w2023090533b016edb5f36 .plain_name").css("color","");
+        },450);
+      })
+    })
    
     
     // 메인 텍스트 오른쪽에 프로젝트 뷰 호버처리.
@@ -97,16 +92,6 @@ $(function () {
     // HOME일때 실행
     if($("#s20230817569ed54963a8f #visual_s20230817569ed54963a8f").html()){
       
-      // HOME - 숫자 증가 
-      const $mcounter = document.querySelector(".crow_money");
-      const $pcounter = document.querySelector(".crow_people");
-      const $ucounter = document.querySelector(".crow_unit");
-      let mmax = 240;
-      let pmax = 26;
-      let umax = 600;
-      setTimeout(() => counter($mcounter, mmax), 50);
-      setTimeout(() => counter($pcounter, pmax), 50);
-      setTimeout(() => counter($ucounter, umax), 50);
       
       // 메인 텍스트 애니메이션 
       // 우선 첫번째 가로폭 설정. 넉넉하게 40 추가.
@@ -136,7 +121,9 @@ $(function () {
     }
 
 
+    let any = false;
 
+    
     // 스크롤시 이미지 등장
     $(window).scroll(function () {
 
@@ -150,7 +137,7 @@ $(function () {
       let fwid = $(".fixed_left").width() + 30;
       
       // HOME 사업영역 표시 및 fixed 처리.
-      $('#s2023081737ab0bc413365 .service_div').each(function () {
+      $('#w202308243345d0fde1e26 .service_div').each(function () {
         var bottom_of_element = $(this).offset().top + $(this).outerHeight();
         var bottom_of_window = $(window).scrollTop() + $(window).height();
         // let b_service_div = $(".fixed_left").offset().top + $(".fixed_left").outerHeight();
@@ -169,34 +156,52 @@ $(function () {
         // if($(window).width() < 1280 ){
         //   fl = 0;
         // }
-        let fl = 17.5;
-        fl = 9.2;
+        let fl = 12.8;
+        // fl = 140;
+        // let cdw = $(".col-dz-1").width();
+        // fl = cdw + 45;
+        // console.log(fl);
         if($(window).width() > 991){
     
-          if(bottom_of_window >= 1936 && bottom_of_window < 3730){
+          if(bottom_of_window >= 1573 && bottom_of_window < 3300){
             $(".fixed_left").css("width",fwid+"px");
             // 좌측 여백 계산
             // fl += 16;
             $(".fixed_left").css("position","fixed");
-            $(".fixed_left").css("top","170px");
+            $(".fixed_left").css("top","120px");
             $(".fixed_left").css("left",fl+"%");
             // $(".fixed_left").css("bottom","auto");
-          }else if(bottom_of_window < 1936){
+          }else if(bottom_of_window < 1573){
             $(".fixed_left").css("position","absolute");
-            $(".fixed_left").css("top","0px");
+            $(".fixed_left").css("top","35px");
             $(".fixed_left").css("left","0px");
-          }else if(bottom_of_window >= 3730){
-            let fh = $(".service_wrap").height() - $(".fixed_left").height() + 5;
+          }else if(bottom_of_window >= 3300){
+            let fh = $(".service_wrap").height() - $(".fixed_left").height() - 50;
             
             $(".fixed_left").css("position","absolute");
             $(".fixed_left").css("top",fh+"px");
             $(".fixed_left").css("bottom","auto");
             $(".fixed_left").css("left","0px");
           }
-          
         }else{
           // 이 부분은 400px 모바일에서 동작하므로 제외.
           
+        }
+        
+        if(bottom_of_window > 3200 && any === false){
+            any = true;
+            console.log(any);
+
+            // HOME - 숫자 증가 
+            const $mcounter = document.querySelector(".crow_money");
+            const $pcounter = document.querySelector(".crow_people");
+            const $ucounter = document.querySelector(".crow_unit");
+            let mmax = 240;
+            let pmax = 26;
+            let umax = 600;
+            setTimeout(() => counter($mcounter, mmax), 50);
+            setTimeout(() => counter($pcounter, pmax), 50);
+            setTimeout(() => counter($ucounter, umax), 50);
         }
 
         // 크라우드펀딩 애니메이션인데 안쓸듯
@@ -346,7 +351,7 @@ $(function () {
 // load 끝
 
 const counter = ($counter, max) => {
-  console.log(max);
+  // console.log(max);
   let now = max;
   const handle = setInterval(() => {
     $counter.innerHTML = Math.ceil(max - now);

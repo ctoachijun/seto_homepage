@@ -1,23 +1,14 @@
-/* 
-  전체 화면폭 조절
-  일단 전체 가로폭을 쓰는 디자인이 HOME 밖에없으니.. HOME만 잡아놓고, 나중에 전체 가로폭 써야되는곳에 추가로 넣기.
-*/
-/* HOME 설정 */
-#s2023081737ab0bc413365 .inside{max-width:100% !important;}
-#s2023081737ab0bc413365 .inside > div:nth-of-type(odd){background:#eee}
-@media (max-width:991px){
-  #s2023081737ab0bc413365 .inside{padding-left:0;padding-right:0;}
-}
-
-
 
 /* 
   header - nav bar
 */
-/* #doz_header_wrap{position:absolute;width:100%} */
-#dropdown_w2023090533b016edb5f36 .mega_dropdown_wrap{background:rgba(0,0,0,0.4)}
+#s2023080800e57504dc655 .inline-inside{padding-left:155px;}
+#s2023080800e57504dc655 .inline-col-group{padding-bottom:0px}
+
+#w2023090533b016edb5f36{height:70px;}  /* 내비게이션 ul 위젯 ID  */
 #w2023090533b016edb5f36 .viewport-nav > li.dropdown > .notranslate a, #w2023090533b016edb5f36 .viewport-nav > li.dropdown > a{text-align:center;}
 #w2023090533b016edb5f36 .viewport-nav > li.dropdown > .notranslate a.active, #w2023090533b016edb5f36 .viewport-nav > li.dropdown > a.active{font-weight:700;text-decoration:underline}
+#dropdown_w2023090533b016edb5f36 .mega_dropdown_wrap{background:rgba(0,0,0,0.4);}
 #dropdown_w2023090533b016edb5f36 .mega_dropdown .sub_menu a{height:2.5rem;text-align:center;line-height:2.5rem;width:fit-content;padding-left:10px;padding-right:10px;margin:0 auto;}
 
 .sub_menu .active{padding:0.5rem;border:1px solid #fff;border-radius:10px;font-weight:700;}
@@ -27,7 +18,6 @@
 
 #mobile_slide_menu .profile-area a,
 #mobile_slide_menu .profile-area .btn-group{display:none;}
-
 #w202308087f45a31e6aed1 .icon_type_menu .badge{display:none;}
 
 @media (max-width:991px){
@@ -38,41 +28,12 @@
 /* 
   footer
 */
+
 /* 기존 푸터 */
 #doz_footer_wrap{display:none}
 
 
-
-/* 공기관 이미지 및 공백 처리 */
-#w20230817cdf9cef526287 .widget.image{margin-top:0;margin-bottom:0;}
-#w20230817cdf9cef526287 .img_wrap{display:flex}
-#w20230817cdf9cef526287 .txt,
-#w20230817cdf9cef526287 .hover_txt{text-align:left}
-#w20230817cdf9cef526287 .txt p,
-#w20230817cdf9cef526287 .hover_txt p{margin:0}
-
-#w20230817be1c54a92973e .widget.image{margin-bottom:0;}
-#w20230817be1c54a92973e .img_wrap{display:flex}
-#w20230817be1c54a92973e .txt,
-#w20230817be1c54a92973e .hover_txt{text-align:left}
-#w20230817be1c54a92973e .txt p,
-#w20230817be1c54a92973e .hover_txt p{margin:0;}
-
-#w202308177b64a11822bd7 .widget.image{margin-bottom:0;}
-#w202308177b64a11822bd7 .img_wrap{display:flex}
-#w202308177b64a11822bd7 .txt,
-#w202308177b64a11822bd7 .hover_txt{text-align:left}
-#w202308177b64a11822bd7 .txt p,
-#w202308177b64a11822bd7 .hover_txt p{margin:0}
-
-#w2023081734fa6d97c05f5 .img_wrap{display:flex}
-#w2023081734fa6d97c05f5 .txt,
-#w2023081734fa6d97c05f5 .hover_txt{text-align:left}
-#w2023081734fa6d97c05f5 .txt p,
-#w2023081734fa6d97c05f5 .hover_txt p{margin:0}
-
 /* 푸터 태그제작 */
-
 /* footer 상단 설정 */
 #s20230828265a48359dc08 .inside{max-width:100% !important;padding-left:0;padding-right:0;}
 
@@ -93,8 +54,8 @@
 #footer_wrap .footer_block2{width:30%;height:100%;}
 #footer_wrap .footer_block3{width:30%;height:100%;word-break:break-all}
 #footer_wrap .footer_block4{width:30%;height:100%;}
-#footer_wrap .copy_div{width:100%;font-weight:700;padding-left:100px;}
-
+#footer_wrap .copy_div{width:100%;font-weight:700;padding-left:100px;display:flex;}
+#footer_wrap .copy_div span:first-child{margin-right:10px;}
 
 @media (max-width:991px){
   #s20230809fbc185bfd069e .inside div{text-align:center;}
@@ -112,6 +73,9 @@
   #footer_wrap .footer_row .right_block{flex-direction:column}
   #footer_wrap .footer_row .right_block > div{width:100%}
   #footer_wrap .block_cont ul{margin-left:50px;margin-top:10px;}
+
+  #footer_wrap .copy_div{flex-direction:column;}
+  #footer_wrap .copy_div span:first-child{margin-right:0px;}
 }
 
 
@@ -133,7 +97,7 @@
 
 
 /* 애니메이션 테스트용 */
-#visual_s20230817569ed54963a8f .sec_div{position:relative;padding-left:200px;margin-top:-150px;}
+#visual_s20230817569ed54963a8f .sec_div{position:relative;padding-left:200px;margin-top:-20px;}
 #visual_s20230817569ed54963a8f .sec_cont{position:relative;width:100%;}
 #visual_s20230817569ed54963a8f .sec_cont .sec_row{width:100%;height:80px;display:flex;}
 #visual_s20230817569ed54963a8f .sec_cont .sec_row > div{font-size:60px;font-weight:700;}
@@ -255,8 +219,8 @@
 
 
 /* 서비스 영역(스크롤) */
-.fixed_left{position:absolute;top:auto;left:0;padding-left:30px;}
-.service_wrap{padding-top:50px;display:flex;align-items:flex-end;flex-direction: column;}
+.fixed_left{position:absolute;top:auto;left:0;}
+.service_wrap{padding-top:0px;display:flex;align-items:flex-end;flex-direction: column;}
 .service_wrap .service_div{width:62%; height:260px;padding:2rem;cursor:pointer;background:#ff003b;border-radius:34px;opacity:0;position:relative;}
 .service_wrap .service_div:nth-child(odd){margin-right:180px;margin-top:30px;margin-bottom:30px;}
 .service_wrap .service_div .txt_div{width:100%;height:100%;color:#fff;padding:1rem;}
@@ -336,7 +300,6 @@
 
 
 /* HOME - OUR WORK*/
-#w20230904b05c47bff464c .swiper{}
 #w20230904b05c47bff464c .swiper .s1_div{background: url('https://cdn.imweb.me/thumbnail/20230904/603e0b49868a0.jpg') no-repeat 50%;}
 #w20230904b05c47bff464c .swiper .s2_div{background: url('https://cdn.imweb.me/thumbnail/20230904/7b9f92f3cf007.jpg') no-repeat 50%;}
 #w20230904b05c47bff464c .swiper .s3_div{background: url('https://cdn.imweb.me/thumbnail/20230904/6af1330540540.jpg') no-repeat 50%;}
@@ -433,11 +396,23 @@
 #service_main_wrap .service_main .main_text .cont{margin-top:30px;}
 
 
+
 /* SERVICE - 프로세스 */
-#s20230905817df0947f307 .doz_row img{width:280px !important;height:}
+#s2023090602022130b2a6a .doz_row img,
+#s20230905817df0947f307 .doz_row img{width:280px !important;}
+
+#s2023090602022130b2a6a .steptitle,
 #s20230905817df0947f307 .steptitle{position:absolute;top:30px;left:35px;font-size:16px;color:#000;}
-#s20230905817df0947f307 .title{position:absolute;bottom:20px;left:35px;font-size:20px;font-weight:700;color:#000;word-break:keep-all}
-#s20230905817df0947f307 .stepcont{padding:2rem;line-height:150%;}
+
+#s2023090602022130b2a6a .title,
+#s20230905817df0947f307 .title{position:absolute;bottom:20px;left:35px;font-size:20px;font-weight:700;color:#000;word-break:keep-all;width:70%;}
+
+#s2023090602022130b2a6a .stepcont,
+#s20230905817df0947f307 .stepcont{padding-left:1rem;padding-right:3rem;line-height:150%;}
+
+/* #s20230906d90b121f6066d .mobi_process{border:1px solid #cecece;border-radius:30px;padding:2rem;} */
+#s20230906d90b121f6066d .mobi_process{border-bottom:1px solid #ff003b;padding:2rem;}
+#s20230906d90b121f6066d #w2023090638420ccc55595 .mobi_process:first-child{border:0}
 
 @media (max-width:991px){
   #w20230818d04a9e4fcca75,
@@ -456,16 +431,31 @@
   #w2023090535aaa9200608d,
   #w202309050a4eee39e8aec,
   #w20230905018502cc4772c{display:none;}
+  
+  #service_main_wrap{padding:0 15px;height:575px;}
+  
 }
 @media (max-width:766px){
-  #service_main_wrap{height:400px;padding:1rem}
-  #service_main_wrap .service_main .main_img img{width:100%;}
+  #service_main_wrap{height:415px;padding:0 22px;}
+  #service_main_wrap .service_main .main_img{width:55%;right:0px;}
+  #service_main_wrap .service_main .main_img img{width:100%;right:0px;}
   #service_main_wrap .service_main .main_text{width:100%;}
   #service_main_wrap .service_main .main_text .title1{font-size:26px;}
   #service_main_wrap .service_main .main_text .title2{font-size:26px;}
-  
+  #s202309054bfdbede84d0d,#w2023090635d8dd390e2c1,#w202309057c17df5939359{padding:0 15px;}  
 }
 @media (max-width:400px){
+  #service_main_wrap{height:auto;}
+  #service_main_wrap .service_main{width:100%;height:100%;}
+  #service_main_wrap .service_main .main_img{width:100%;position:relative;right:0px;}
+  #service_main_wrap .service_main .main_img img{border-radius:20px;}
+  #service_main_wrap .service_main .main_text{width:100%;position:relative;margin-top:20px;}
+  #service_main_wrap .service_main .main_text .title1{font-size:20px;}
+  #service_main_wrap .service_main .main_text .title2{font-size:20px;}
+  #service_main_wrap .service_main .main_text .cont{font-size:14px;}
+  
+  #text_w20230905018ea584ed41e,#text_w2023090555f15c1aeacaa{padding:0px;}
+
 }
 
 
@@ -601,17 +591,6 @@
   #platform_charac .platform_row:first-of-type{margin-bottom:60px;}
   #platform_charac .platform_row .charac_cont .charac_row .charac_div{margin-bottom:30px;}
   #s20230818fba51183c28f0 .arrow{top:41%; left:28%;}
-  
-  /* SERVICE - 플랫폼 메인 타이틀 상단 여백 */
-  #w20230905e9b0acccbf9ff,
-  #w20230905e730b6c0b71ee,
-  #w20230905224e55d3349a3,
-  #w20230905096dbeb64e7f4,
-  #w20230905549f626d5509f,
-  #w202309056d33bb920a367,
-  #w2023090598bc47cd5ef9b,
-  #w2023090584afbd852e510{display:block}
-  
 }
 @media (max-width:400px){
   #platform_charac .platform_row .charac_cont,
@@ -635,7 +614,7 @@
 /* 
   서비스 소개서 받기 따라다니는 버튼
 */
-#w202308181121e7b959e87,#w20230901a69ee48d63cd0{position:fixed;right:18%;bottom:18%;z-index:50;}
+#w202308181121e7b959e87,#w20230901a69ee48d63cd0,#w202309065ab1682684cba{position:fixed;right:18%;bottom:18%;z-index:50;}
 
 @media (max-width:991px){
 }
@@ -646,6 +625,55 @@
 }
 @media (max-width:400px){
 }
+
+/* 
+  모바일 내비게이션 바
+   : 여백 다 없애고, 경계 라인 추가. 위젯설정에서 글자색과 라운딩 처리 후 a 태그 아래쪽 라인 추가 및 활성메뉴 색상 추가.
+*/
+/* 킥스타터. 이후 순서대로 진행 */
+#s20230905773f7423f2188.mobile_section main .inside{padding:0;}
+#w2023090502d9c49366d21 .widget.button{padding:0;}
+#w2023090502d9c49366d21 .widget.button .button_wrap{padding:10px;border-bottom:1px solid #cecece;margin-bottom:25px;}
+#w2023090502d9c49366d21 .widget.button .button_wrap a{border-bottom:1px solid #cecece}
+#w2023090502d9c49366d21 .widget.button .button_wrap > div .cursor_default{border-bottom:1px solid #ff003b;color:#ff003b}
+
+#s202309056413e1dc6b63a.mobile_section main .inside{padding:0;}
+#w20230905ccb05c98a76a0 .widget.button{padding:0;}
+#w20230905ccb05c98a76a0 .widget.button .button_wrap{padding:10px;border-bottom:1px solid #cecece;margin-bottom:25px;}
+#w20230905ccb05c98a76a0 .widget.button .button_wrap a{border-bottom:1px solid #cecece}
+#w20230905ccb05c98a76a0 .widget.button .button_wrap > div .cursor_default{border-bottom:1px solid #ff003b;color:#ff003b}
+
+#s202309058202a5b4c8774.mobile_section main .inside{padding:0;}
+#w202309057e214551aa622 .widget.button{padding:0;}
+#w202309057e214551aa622 .widget.button .button_wrap{padding:10px;border-bottom:1px solid #cecece;margin-bottom:25px;}
+#w202309057e214551aa622 .widget.button .button_wrap a{border-bottom:1px solid #cecece}
+#w202309057e214551aa622 .widget.button .button_wrap > div .cursor_default{border-bottom:1px solid #ff003b;color:#ff003b}
+
+#s20230905584f429d7d33f.mobile_section main .inside{padding:0;}
+#w202309050927191d92d35 .widget.button{padding:0;}
+#w202309050927191d92d35 .widget.button .button_wrap{padding:10px;border-bottom:1px solid #cecece;margin-bottom:25px;}
+#w202309050927191d92d35 .widget.button .button_wrap a{border-bottom:1px solid #cecece}
+#w202309050927191d92d35 .widget.button .button_wrap > div .cursor_default{border-bottom:1px solid #ff003b;color:#ff003b}
+
+#s20230905467924eae6acc.mobile_section main .inside{padding:0;}
+#w2023090569e68b5a345c7 .widget.button{padding:0;}
+#w2023090569e68b5a345c7 .widget.button .button_wrap{padding:10px;border-bottom:1px solid #cecece;margin-bottom:25px;}
+#w2023090569e68b5a345c7 .widget.button .button_wrap a{border-bottom:1px solid #cecece}
+#w2023090569e68b5a345c7 .widget.button .button_wrap > div .cursor_default{border-bottom:1px solid #ff003b;color:#ff003b}
+ 
+#s20230905a595331d4f1a9.mobile_section main .inside{padding:0;}
+#w20230905e392033dee25f .widget.button{padding:0;}
+#w20230905e392033dee25f .widget.button .button_wrap{padding:10px;border-bottom:1px solid #cecece;margin-bottom:25px;}
+#w20230905e392033dee25f .widget.button .button_wrap a{border-bottom:1px solid #cecece}
+#w20230905e392033dee25f .widget.button .button_wrap > div .cursor_default{border-bottom:1px solid #ff003b;color:#ff003b}
+
+#s2023090513a911ec65b09.mobile_section main .inside{padding:0;}
+#w20230905b3c8ae1f648d8 .widget.button{padding:0;}
+#w20230905b3c8ae1f648d8 .widget.button .button_wrap{padding:10px;border-bottom:1px solid #cecece;margin-bottom:25px;}
+#w20230905b3c8ae1f648d8 .widget.button .button_wrap a{border-bottom:1px solid #cecece}
+#w20230905b3c8ae1f648d8 .widget.button .button_wrap > div .cursor_default{border-bottom:1px solid #ff003b;color:#ff003b}
+
+
 
 
 

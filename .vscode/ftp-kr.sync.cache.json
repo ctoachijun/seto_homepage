@@ -22,25 +22,11 @@
     "setodb": {},
     "test": {},
     "www": {
-      "js": {
-        "imwebseto.js": {
-          "type": "-",
-          "size": 22065,
-          "lmtime": 1693805917728.4814,
-          "modified": false
-        },
-        "seto.js": {
-          "type": "-",
-          "size": 0,
-          "lmtime": 0,
-          "modified": false
-        }
-      },
       "css": {
         "imwebseto.css": {
           "type": "-",
-          "size": 30256,
-          "lmtime": 1693818037755.007,
+          "size": 40674,
+          "lmtime": 1693990896944.0835,
           "modified": false
         },
         "seto.css": {
@@ -50,35 +36,17 @@
           "modified": false
         }
       },
-      "test": {
-        "cafe24api.php": {
+      "js": {
+        "imwebseto.js": {
           "type": "-",
-          "size": 14,
-          "lmtime": 0,
+          "size": 23450,
+          "lmtime": 1693990636230.3162,
           "modified": false
         },
-        "syncdata.php": {
+        "seto.js": {
           "type": "-",
           "size": 0,
           "lmtime": 0,
-          "modified": false
-        },
-        "template1.php": {
-          "type": "-",
-          "size": 8718,
-          "lmtime": 0,
-          "modified": false
-        },
-        "test.php": {
-          "type": "-",
-          "size": 4690,
-          "lmtime": 1693816814630.213,
-          "modified": false
-        },
-        "test2.php": {
-          "type": "-",
-          "size": 1811,
-          "lmtime": 1693816814613.1375,
           "modified": false
         }
       }
