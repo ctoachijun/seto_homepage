@@ -21,15 +21,19 @@
 //    $count = array("한국","일본","미국","대만","기타");
 //    $count = array("B","C","D","E","F");
 
-      $count = array("Wadiz","Makuake","Zeczec","Kickstarter","Kakaomakers","Funshop","Others");
-      $count = array("H","I","J","K","L","M","N");
+// $count = array("Wadiz","Makuake","Zeczec","Kickstarter","Kakaomakers","Funshop","Others");
+// $count = array("H","I","J","K","L","M","N");
 
-      for($a=1,$i=289; $i<=372; $i++,$a++){
-         foreach($count as $v){
-            if($a==13){
-               $a = 1;
-               echo "<br><br> ======== <br><br>";
-            }
+      // foreach($count as $v){
+      // $v = "Kakaomakers";
+      // $x = "O";
+      // $y = "E";
+      // $z = "F";
+      // for($a=1,$i=215; $i<=226; $i++,$a++){
+      //       if($a==13){
+      //          $a = 1;
+      //          echo "<br><br> ======== <br><br>";
+      //       }
             // 국가별
             //  echo "=SUMIFS(U2:U22,F2:F22,\">=\"&H{$i},F2:F22,\"<=\"&I{$i},B2:B22,\"=\"&\"{$v}\")";
             //  echo "=SUMIFS(U2:U22,E2:E22,\">=\"&H{$i},E2:E22,\"<=\"&I{$i},F2:F22,\">=\"&H{$i},F2:F22,\"<=\"&I{$i},B2:B22,\"=\"&\"{$v}\")+SUMIFS(U2:U22,E2:E22,\"<\"&H{$i},F2:F22,\">=\"&H{$i},F2:F22,\"<=\"&I{$i},B2:B22,\"=\"&\"{$v}\")+SUMIFS(U2:U22,E2:E22,\">=\"&H{$i},E2:E22,\"<=\"&I{$i},F2:F22,\">\"&I{$i},B2:B22,\"=\"&\"{$v}\")";
@@ -37,16 +41,32 @@
             // echo "=SUMIFS(N2:N29,F2:F29,\">=\"&H{$i},F2:F29,\"<=\"&I{$i},B2:B29,\"=\"&\"{$v}\")";
             
             // 펀딩사이트
-            // echo "=SUMIFS(U2:U211,F2:F211,\">=\"&H{$i},F2:F211,\"<=\"&I{$i},C2:C211,\"=\"&\"{$v}\")";
-            // echo "=SUMIFS(U2:U211,D2:D211,\">=\"&H{$i},D2:D211,\"<=\"&I{$i},E2:E211,\">=\"&H{$i},E2:E211,\"<=\"&I{$i},C2:C211,\"=\"&\"{$v}\")+SUMIFS(U2:U211,D2:D211,\"<\"&H{$i},E2:E211,\">=\"&H{$i},E2:E211,\"<=\"&I{$i},C2:C211,\"=\"&\"{$v}\")+SUMIFS(U2:U211,D2:D211,\">=\"&H{$i},D2:D211,\"<=\"&I{$i},E2:E211,\">\"&I{$i},C2:C211,\"=\"&\"{$v}\")";
+            // echo "=SUMIFS({$x}2:{$x}211,{$y}2:{$y}211,\">=\"&A{$i},{$y}2:{$y}211,\"<=\"&B{$i},C2:C211,\"=\"&\"{$v}\")";
+            // echo "=SUMIFS(U2:U211,{$y}2:{$y}211,\">=\"&A{$i},{$y}2:{$y}211,\"<=\"&B{$i},{$z}2:{$z}211,\">=\"&A{$i},{$z}2:{$z}211,\"<=\"&B{$i},C2:C211,\"=\"&\"{$v}\")+SUMIFS(U2:U211,{$y}2:{$y}211,\"<\"&A{$i},{$z}2:{$z}211,\">=\"&A{$i},{$z}2:{$z}211,\"<=\"&B{$i},C2:C211,\"=\"&\"{$v}\")+SUMIFS(U2:U211,{$y}2:{$y}211,\">=\"&A{$i},{$y}2:{$y}211,\"<=\"&B{$i},{$z}2:{$z}211,\">\"&B{$i},C2:C211,\"=\"&\"{$v}\")";
             // echo "=SUMIFS(O2:O211,F2:F211,\">=\"&H{$i},F2:F211,\"<=\"&I{$i},C2:C211,\"=\"&\"{$v}\")";
-            echo "=프로젝트별!{$v}{$i}";
-            echo "<br>";
-         }
-         echo "<br><br>";
-      }
+            // echo "=프로젝트별!{$v}{$i}";
+         //    echo "<br>";
+         // }
+         // echo "<br><br>";
+      // }
    
-
+   $key = array("1B8qIYm2a2AZWz-lDlEAA9wBzcl_blZrJQbAQRD02hbU","1LB7VNo2UMkpeXRbbzECGkGZ9_EsvaV5Gm0VYHb2zrJA","1j16M4UvNPyzgsnsk7dVVwBXnFwr-8RBX9GxnRpl46ro","12JfqNwQNHF8RiQybzTcdlOFMw8BXUIBscAC2W7xBmH0","1yGMwL4YS-IuBbs0Z21qC9TnSrVVfH4CqSlp0SO_iEtA");
+   $count = array("한국","일본","미국","대만","기타");
+   
+   for($a=289,$b=1; $a<=372; $a++,$b++){
+      if($b==13){
+         $b=1;
+         echo "<br><br> ======= <br><br>";
+      }
+      for($i=0; $i<5; $i++){
+         echo "=IMPORTRANGE(\"".$key[$i]."\",\"'".$count[$i]."'!B{$a}\")<br>";
+      }
+      echo "<br>";
+   }
+   
+   
+      
+     
 
 exit;
 

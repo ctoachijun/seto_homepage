@@ -681,6 +681,10 @@
 /* 
   WORK
 */
+
+/* 게시글 상세페이지 하단 다음글/이전글 비공개 */
+#s2023090616fb3cf432729 .comment_section .list_tap{display:none;}
+
 @media (max-width:991px){
   #s20230823364a6a73bd0dd #w202308235f74d67cd9ef1{display:none}  /* 이미지 상단 여백 */
   #s2023082320fd98796dfe1 #text_w202308233dc6f9f191d61{margin:0;}   /* ALL */
