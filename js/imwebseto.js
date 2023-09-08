@@ -4,44 +4,45 @@ $(function () {
     
     // 메인 영역 호버시 배경,색상 변경
     $("#w2023090533b016edb5f36").mouseenter(function(){
-        $("#s2023080800e57504dc655 .section_bg_color").css("backgroundColor","rgba(0,0,0,0.6)");
+        $("#s2023080800e57504dc655 .section_bg_color").css("backgroundColor","rgba(0,0,0,0.4)");
         $("#w2023090533b016edb5f36 .plain_name").css("color","#fff");
         $("#dropdown_w2023090533b016edb5f36 .plain_name").css("color","#fff");
-        
+
         // 이탈시 시간차로 메인 복원처리에 시간차때문에 여러 오류가 나서, 다 덮어씌움
-        setTimeout(function(){
-          $("#s2023080800e57504dc655 .section_bg_color").css("backgroundColor","rgba(0,0,0,0.6)");
-          $("#w2023090533b016edb5f36 .plain_name").css("color","#fff");
-          $("#dropdown_w2023090533b016edb5f36 .plain_name").css("color","#fff");
-        },450);
+        // setTimeout(function(){
+        //   $("#s2023080800e57504dc655 .section_bg_color").css("backgroundColor","rgba(0,0,0,0.4)");
+        //   $("#w2023090533b016edb5f36 .plain_name").css("color","#fff");
+        //   $("#dropdown_w2023090533b016edb5f36 .plain_name").css("color","#fff");
+        // },450);
   
     })
     
     // 메인 영역에서 이탈시 배경,색상 복원
     $("#w2023090533b016edb5f36").mouseleave(function(){
-      setTimeout(function(){
+      // setTimeout(function(){
         $("#s2023080800e57504dc655 .section_bg_color").css("backgroundColor","");
         $("#w2023090533b016edb5f36 .plain_name").css("color","");
         $("#dropdown_w2023090533b016edb5f36 .plain_name").css("color","");
-      },450);
+      // },450);
 
-      // 메인영역 이탈 후 서브영역 호버시 메인 유지
-      $("#dropdown_w2023090533b016edb5f36").mouseenter(function(){
-        setTimeout(function(){
-          $("#s2023080800e57504dc655 .section_bg_color").css("backgroundColor","rgba(0,0,0,0.6)");
-          $("#w2023090533b016edb5f36 .plain_name").css("color","#fff");
-          $("#dropdown_w2023090533b016edb5f36 .plain_name").css("color","#fff");
-        },450);
-      })
+      // // 메인영역 이탈 후 서브영역 호버시 메인 유지
+      // $("#dropdown_w2023090533b016edb5f36").mouseenter(function(){
+      //   setTimeout(function(){
+      //     $("#s2023080800e57504dc655 .section_bg_color").css("backgroundColor","rgba(0,0,0,0.4)");
+      //     $("#w2023090533b016edb5f36 .plain_name").css("color","#fff");
+      //     $("#dropdown_w2023090533b016edb5f36 .plain_name").css("color","#fff");
+      //   },450);
+      // })
       
-      // 메인영역 이탈 후 서브영역 호버 후 서브영역 이탈시 메인 배경,색상 복원
-      $("#dropdown_w2023090533b016edb5f36 .mega_dropdown_wrap").mouseleave(function(){
-        setTimeout(function(){
-          $("#s2023080800e57504dc655 .section_bg_color").css("backgroundColor","");
-          $("#w2023090533b016edb5f36 .plain_name").css("color","");
-          $("#dropdown_w2023090533b016edb5f36 .plain_name").css("color","");
-        },450);
-      })
+      // // 메인영역 이탈 후 서브영역 호버 후 서브영역 이탈시 메인 배경,색상 복원
+      // $("#dropdown_w2023090533b016edb5f36 .mega_dropdown_wrap").mouseleave(function(){
+      //   setTimeout(function(){
+      //     $("#s2023080800e57504dc655 .section_bg_color").css("backgroundColor","");
+      //     $("#w2023090533b016edb5f36 .plain_name").css("color","");
+      //     $("#dropdown_w2023090533b016edb5f36 .plain_name").css("color","");
+      //   },450);
+      // })
+
     })
    
     
@@ -176,7 +177,7 @@ $(function () {
             $(".fixed_left").css("top","35px");
             $(".fixed_left").css("left","0px");
           }else if(bottom_of_window >= 3300){
-            let fh = $(".service_wrap").height() - $(".fixed_left").height() - 50;
+            let fh = $(".service_wrap").height() - $(".fixed_left").height() - 35;
             
             $(".fixed_left").css("position","absolute");
             $(".fixed_left").css("top",fh+"px");
@@ -222,7 +223,6 @@ $(function () {
         return false;
       })
       
-      
     });
     
     // 전화번호 입력시에는 전부 숫자만 입력되도록 처리
@@ -231,64 +231,7 @@ $(function () {
       this.value = val.replace(/[^0-9]/gi,"");
     })
     
-    // 포트폴리오 이미지 호버시
-    // ALL
-    $("#s2023082320fd98796dfe1 .img_wrap").hover(function(){
-      $(".black").css("width","100%");
-      $(".black").css("height","100%");
-      $(".black").css("backgroundColor","#000");
-      $(".black").css("opacity","0.6");
-      $(".black").css("z-index","400");
-      $(".hover_txt").css("z-index","500");
-    })
-    $("#s2023082320fd98796dfe1 .img_wrap").mouseleave(function(){
-      $(".overlay").css("background","");
-      $(".overlay").css("opacity","");
-    })
-    
-    // FUNDING
-    $("#s202308230d965259c3f46 .img_wrap").hover(function(){
-      $(".black").css("width","100%");
-      $(".black").css("height","100%");
-      $(".black").css("backgroundColor","#000");
-      $(".black").css("opacity","0.6");
-      $(".black").css("z-index","400");
-      $(".hover_txt").css("z-index","500");
-    })
-    $("#s202308230d965259c3f46 .img_wrap").mouseleave(function(){
-      $(".overlay").css("background","");
-      $(".overlay").css("opacity","");
-    })
-    
-    // VIDEO
-    $("#s20230823817a716006e1a .img_wrap").hover(function(){
-      $(".black").css("width","100%");
-      $(".black").css("height","100%");
-      $(".black").css("backgroundColor","#000");
-      $(".black").css("opacity","0.6");
-      $(".black").css("z-index","400");
-      $(".hover_txt").css("z-index","500");
-    })
-    $("#s20230823817a716006e1a .img_wrap").mouseleave(function(){
-      $(".overlay").css("background","");
-      $(".overlay").css("opacity","");
-    })
-    
-    // MARKETING
-    $("#s20230823364a6a73bd0dd .img_wrap").hover(function(){
-      $(".black").css("width","100%");
-      $(".black").css("height","100%");
-      $(".black").css("backgroundColor","#000");
-      $(".black").css("opacity","0.6");
-      $(".black").css("z-index","400");
-      $(".hover_txt").css("z-index","500");
-      $(".pwrap").css("z-index","500");
-    })
-    $("#s20230823364a6a73bd0dd .img_wrap").mouseleave(function(){
-      $(".overlay").css("background","");
-      $(".overlay").css("opacity","");
-    })    
-    
+
     // 피플 이미지 오버
     $("#people_wrap .img_div").mouseenter(function(){
       $("#people_wrap .pbackg").animate({
@@ -346,7 +289,56 @@ $(function () {
       },400);
     })
     
-    
+
+    // WORK에서만 동작
+    if($("#s2023090616fb3cf432729").html()){
+      let url = new URL(window.location.href);
+      let param = url.searchParams.get('category');
+
+
+      if(!param){
+        $("#w2023090778a70f63ea705").hide();
+      }else{
+        
+        let cnt;
+        // 크라우드펀딩 카테고리.
+        if(param == "mRg58T6185"){
+          // 글 업로드 순서대로 플랫폼 및 액수를 추가.
+          let arr_plf = new Array(
+            "킥스타터", "킥스타터", "와디즈", "마쿠아케", "인디고고", "와디즈", "마쿠아케", "젝젝"
+          )
+          let arr_amt = new Array(
+            "$1,560,000", "$980,000", "￦89,000,000", "￥3,389,000", "$560,000", "￦50,000", "￥850,000", "NT$350,000"
+          );
+
+          $("#w2023090778a70f63ea705 .list-style-card").each(function(index){
+            $(this).mouseenter(function(){
+              cnt = index + 1;
+              $("#w2023090778a70f63ea705 .list-style-card:nth-of-type("+cnt+") .card-body").append("<div class='amount'>"+arr_amt[index]+"</div>");
+              $("#w2023090778a70f63ea705 .list-style-card:nth-of-type("+cnt+") .card-body").prepend("<div class='plf'>[ "+arr_plf[index]+" ]</div>");
+            })
+            $(this).mouseleave(function(){
+              cnt = index + 1;
+              $("#w2023090778a70f63ea705 .list-style-card:nth-of-type("+cnt+") .card-body .amount").remove();
+              $("#w2023090778a70f63ea705 .list-style-card:nth-of-type("+cnt+") .card-body .plf").remove();
+            })
+          })
+        }else if(param == "7gZ2T111Hp"){
+          $("#w2023090778a70f63ea705 .list-style-card").each(function(index){
+            $(this).mouseenter(function(){
+              cnt = index + 1;
+              $("#w2023090778a70f63ea705 .list-style-card:nth-of-type("+cnt+") .card-body").prepend("<div class='plf'>[ 프리오더 ]</div>");
+            })
+            $(this).mouseleave(function(){
+              cnt = index + 1;
+              $("#w2023090778a70f63ea705 .list-style-card:nth-of-type("+cnt+") .card-body .plf").remove();
+            })
+          })
+        }
+
+      }
+    }
+      
 })
 // load 끝
 
@@ -368,28 +360,6 @@ const counter = ($counter, max) => {
     now -= step;
   }, 50);
 }
-
-function downSg() {
-  if (!$("#input_txt_2b1f1ffdc08a1").val()) {
-    alert("이름을 입력 해 주세요");
-    return false;
-  }
-  if (!$("#input_email_58604975b635b").val()) {
-    alert("이메일을 입력 해 주세요");
-    return false;
-  }
-
-  let re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-  if (!re.test($("#input_email_58604975b635b").val())) {
-    alert("이메일 형식을 확인 해 주세요.");
-    return false;
-  }
-
-  SITE_FORM.confirmInputForm('w20230817253577ddd5205', 'N');
-  location.href = "/admin/ajax/shop/download_prod_digital_file.cm?target_code=s202308179f2fc24db7397";
-
-}
-
 
 // 문의에 입력된 데이터를 기존 폼에 세팅 후 전송
 function setContactFormData(){
@@ -487,21 +457,16 @@ function chkSpaceFe(obj){
 }
 
 function downDoc(){
-  let comp = $("#input_txt_04l6hl1261").val();
   let uname = $("#input_txt_3a5f3c9c46b4e").val();
-  let tel1 = $("input[name=phonenumber1_1810a1a792d2f]").val();
-  let tel2 = $("input[name=phonenumber2_1810a1a792d2f]").val();
-  let tel3 = $("input[name=phonenumber3_1810a1a792d2f]").val();
   let uemail = $("#input_email_585cb3dbe09ab").val();
   
-  SITE_FORM.confirmInputForm('w20230831f65b974c1a11c','N');
   
-  if(comp && uname && tel1 && tel2 && tel3 && uemail){
+  SITE_FORM.confirmInputForm('w20230831f65b974c1a11c','N');
+  if(uname && uemail){
     let re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+
     if (re.test(uemail)) {
-      location.href="https://protoseto.imweb.me/form_file_download.cm?c=YTo0OntzOjEwOiJib2FyZF9jb2RlIjtzOjIyOiJiMjAyMzA4MzEzNTIyNWE5ZjA5NDEyIjtzOjk6ImZvcm1fY29kZSI7czoyMjoiZjIwMjMwODMxMjdhOTkwM2IxYjhkMSI7czo5OiJmaWxlX2NvZGUiO3M6MjI6ImYyMDIzMDgzMWY0OWQ2MWJhYTY0MDMiO3M6MTQ6ImZpbGVfaXRlbV9jb2RlIjtzOjEzOiJkYTFlNzI4M2EzZjQ5Ijt9";
-      // SITE_SHOP_DETAIL.digitalFileDownload('202308313563283');
-      // location.href="https://protoseto.imweb.me/admin/ajax/shop/download_prod_digital_file.cm?target_code=s202308179f2fc24db7397";
+      window.open('about:blank').location.href="https://drive.google.com/file/d/1BcRJp_H3Uhu_dngur48j0LYFiJQQVpi7/view?usp=drive_link";
     }
   }
 }

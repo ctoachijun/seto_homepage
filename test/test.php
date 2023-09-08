@@ -50,17 +50,48 @@
          // echo "<br><br>";
       // }
    
-   $key = array("1B8qIYm2a2AZWz-lDlEAA9wBzcl_blZrJQbAQRD02hbU","1LB7VNo2UMkpeXRbbzECGkGZ9_EsvaV5Gm0VYHb2zrJA","1j16M4UvNPyzgsnsk7dVVwBXnFwr-8RBX9GxnRpl46ro","12JfqNwQNHF8RiQybzTcdlOFMw8BXUIBscAC2W7xBmH0","1yGMwL4YS-IuBbs0Z21qC9TnSrVVfH4CqSlp0SO_iEtA");
-   $count = array("한국","일본","미국","대만","기타");
-   
+   $key = array(
+      "1B8qIYm2a2AZWz-lDlEAA9wBzcl_blZrJQbAQRD02hbU","1LB7VNo2UMkpeXRbbzECGkGZ9_EsvaV5Gm0VYHb2zrJA","12JfqNwQNHF8RiQybzTcdlOFMw8BXUIBscAC2W7xBmH0","1j16M4UvNPyzgsnsk7dVVwBXnFwr-8RBX9GxnRpl46ro",
+      "1B8qIYm2a2AZWz-lDlEAA9wBzcl_blZrJQbAQRD02hbU","1B8qIYm2a2AZWz-lDlEAA9wBzcl_blZrJQbAQRD02hbU","1yGMwL4YS-IuBbs0Z21qC9TnSrVVfH4CqSlp0SO_iEtA");
+   $count = array("한국","일본","대만","미국","한국","한국","기타");
+  
    for($a=289,$b=1; $a<=372; $a++,$b++){
-      if($b==13){
-         $b=1;
-         echo "<br><br> ======= <br><br>";
+      // for($a=229,$b=1; $a<=288; $a++,$b++){
+         if($b==13){
+            $b=1;
+            echo "<br><br> ======= <br><br>";
+         }
+      $soon = 1;
+      for($i=0; $i<6; $i++){
+         if($soon == 5){
+            $point = "E";
+         }else if($soon == 6){
+            $point = "F";
+         }else if($soon == 7){
+            $point = "G";
+         }else{
+            $point = "D";
+         }
+        
+         echo "=IMPORTRANGE(\"".$key[$i]."\",\"'".$count[$i]."'!{$point}\${$a}\")<br>";
+         $soon++;
       }
-      for($i=0; $i<5; $i++){
-         echo "=IMPORTRANGE(\"".$key[$i]."\",\"'".$count[$i]."'!B{$a}\")<br>";
+      for($i=0; $i<7; $i++){
+         if($i === 0){
+            $point = "G";
+            $ipt = "=IMPORTRANGE(\"".$key[$i]."\",\"'".$count[$i]."'!{$point}\${$a}\")";
+         }else if($i == 4 || $i == 5){
+            continue;
+         }else if($i == 6){
+            $point = "D";
+            $ipt .= "+IMPORTRANGE(\"".$key[$i]."\",\"'".$count[$i]."'!{$point}\${$a}\")";
+         }else{
+            $point = "E";
+            $ipt .= "+IMPORTRANGE(\"".$key[$i]."\",\"'".$count[$i]."'!{$point}\${$a}\")";
+         }
+
       }
+      echo $ipt."<br>";
       echo "<br>";
    }
    
