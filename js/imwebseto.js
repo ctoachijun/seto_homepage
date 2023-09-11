@@ -232,6 +232,42 @@ $(function () {
     })
     
 
+    // 연혁 swiper
+    if($("#w202309113b812d6fb921e .mySwiper").html()){
+      var swiper = new Swiper(".mySwiper", {
+        scrollbar: {
+          el: ".swiper-scrollbar",
+          hide: false,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+          // nextEl: ".prev_btn",
+          // prevEl: ".next_btn",
+        },
+        // effect: 'coverflow',
+        // slidesPerView: 'auto',
+        // coverflow: {
+        //   rotate: 0,
+        //   stretch: 100,
+        //   depth: 150,
+        //   modifier: 1.5,
+        //   slideShadows: true,
+        // }
+        breakpoints: {
+        
+          200: {
+            slidesPerView: 1,
+            spaceBetween: 50,
+          },
+          768: {
+            slidesPerView: 1.3,
+          },
+        },
+                
+      });        
+    }
+    
     // 피플 이미지 오버
     $("#people_wrap .img_div").mouseenter(function(){
       $("#people_wrap .pbackg").animate({
@@ -253,15 +289,8 @@ $(function () {
       });
     })
     
-    // 연혁 swiper
-    if($("#s20230822f09a252370e14 .mySwiper").html()){
-      var swiper = new Swiper(".mySwiper", {
-        scrollbar: {
-          el: ".swiper-scrollbar",
-          hide: true,
-        },
-      });        
-    }
+ 
+    
     
     // HOME 영역 포개기
     $(".left_div .more_btn").click(function(){
@@ -338,7 +367,82 @@ $(function () {
 
       }
     }
-      
+    
+    // footer 언어 버튼
+    $("#w20230828387546295e2ef .current_country").click(function(){
+      $(".sub_countmenu").toggle();
+    })
+    
+    
+    if($(window).width() < 767){
+      // ABOUT 애니메이션
+      $("#about_div .left_div").css("animation-name","mleft-move");
+      $("#about_div .right_div").css("animation-name","mright-move");
+    }else{
+      // ABOUT 애니메이션
+      $("#about_div .left_div").css("animation-name","left-move");
+      $("#about_div .right_div").css("animation-name","right-move");
+    }
+    
+    $("#s202309116b4fa1ce7069c .custom_btn .prev_btn").click(function(){
+      console.log("프리뷰");
+      $(".swiper-button-prev").click();
+    })
+    $("#s202309116b4fa1ce7069c .custom_btn .next_btn").click(function(){
+      console.log("넥스트");
+      $(".swiper-button-next").click();
+    })
+    
+    // ABOUT 해외 지사 구글맵 부분 - 클릭시 표시, 클릭시 닫음.
+    $(".addr_div").click(function(){
+      let box = this.className.split(" ");
+      let target = box[1];
+      let dp = $(".addr_iframe_div").css("display");
+      $(".addr_iframe_div").slideUp();
+    
+      if($(".i"+target).css("display") == "block"){
+        setTimeout(function(){
+          $("#about_addr_div").css("height","300px");
+        },500);
+      }else{
+        if($("#about_addr_div").css("height") == "300px"){
+          $("#about_addr_div").css("height","600px");
+          $(".i"+target).slideDown();
+        }else{
+          $(".i"+target).slideDown();
+        }
+      }
+    })
+
+    // 요거는 호버시 구글맵 나오게하던거
+    // $("#about_addr_div").mouseleave(function(){
+    //   $(".addr_iframe_div").slideUp();
+    //   setTimeout(function(){
+    //     $("#about_addr_div").css("height","300px");
+    //   },500);
+
+    // });
+    
+    // $(".addr_div").mouseleave(function(){
+    //   $(".addr_iframe_div").mouseenter(function(){
+    //     let box = this.className.split(" ");
+    //     let target = box[1];
+    //     $("."+target).show();
+    //     $("#about_addr_div").css("height","600px");
+    //   })
+    // })
+
+    // $(".addr_iframe_div").mouseleave(function(){
+    //   $(".addr_iframe_div").slideUp();
+    //   setTimeout(function(){
+    //     $("#about_addr_div").css("height","300px");
+    //   },500);
+    // })
+    
+
+
+    
+    
 })
 // load 끝
 

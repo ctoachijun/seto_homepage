@@ -43,8 +43,8 @@
         },
         "test.php": {
           "type": "-",
-          "size": 6419,
-          "lmtime": 1694065161141.1726,
+          "size": 7453,
+          "lmtime": 1694136959751.4546,
           "modified": false
         },
         "test2.php": {
@@ -57,11 +57,25 @@
       "css": {
         "imwebseto.css": {
           "type": "-",
-          "size": 40815,
-          "lmtime": 1694074264089.6472,
+          "size": 42244,
+          "lmtime": 1694163330214.5527,
           "modified": false
         },
         "seto.css": {
+          "type": "-",
+          "size": 0,
+          "lmtime": 0,
+          "modified": false
+        }
+      },
+      "js": {
+        "imwebseto.js": {
+          "type": "-",
+          "size": 22243,
+          "lmtime": 1694161345292.054,
+          "modified": false
+        },
+        "seto.js": {
           "type": "-",
           "size": 0,
           "lmtime": 0,
