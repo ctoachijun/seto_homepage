@@ -22,6 +22,34 @@
     "setodb": {},
     "test": {},
     "www": {
+      "css": {
+        "imwebseto.css": {
+          "type": "-",
+          "size": 48061,
+          "lmtime": 1694424851342.031,
+          "modified": false
+        },
+        "seto.css": {
+          "type": "-",
+          "size": 0,
+          "lmtime": 0,
+          "modified": false
+        }
+      },
+      "js": {
+        "imwebseto.js": {
+          "type": "-",
+          "size": 25309,
+          "lmtime": 1694425551814.962,
+          "modified": false
+        },
+        "seto.js": {
+          "type": "-",
+          "size": 0,
+          "lmtime": 0,
+          "modified": false
+        }
+      },
       "test": {
         "cafe24api.php": {
           "type": "-",
@@ -43,41 +71,13 @@
         },
         "test.php": {
           "type": "-",
-          "size": 7453,
-          "lmtime": 1694136959751.4546,
+          "size": 7579,
+          "lmtime": 1694394670478.9285,
           "modified": false
         },
         "test2.php": {
           "type": "-",
           "size": 1811,
-          "lmtime": 0,
-          "modified": false
-        }
-      },
-      "css": {
-        "imwebseto.css": {
-          "type": "-",
-          "size": 42244,
-          "lmtime": 1694163330214.5527,
-          "modified": false
-        },
-        "seto.css": {
-          "type": "-",
-          "size": 0,
-          "lmtime": 0,
-          "modified": false
-        }
-      },
-      "js": {
-        "imwebseto.js": {
-          "type": "-",
-          "size": 22243,
-          "lmtime": 1694161345292.054,
-          "modified": false
-        },
-        "seto.js": {
-          "type": "-",
-          "size": 0,
           "lmtime": 0,
           "modified": false
         }

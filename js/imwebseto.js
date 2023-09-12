@@ -74,7 +74,7 @@ $(function () {
         "top":"50%",
         "right":"20%"
       });
-      $(".sec_link .link_cont").html(">");
+      $(".sec_link .link_cont").html("＞");
       $(".sec_link .link_cont").css({
         "width":"",
         "font-size":"40px",
@@ -122,9 +122,9 @@ $(function () {
     }
 
 
-    let any = false;
+    // 스크롤시 한번만 동작하기위한 변수
+    let any = jum1 = false;
 
-    
     // 스크롤시 이미지 등장
     $(window).scroll(function () {
 
@@ -149,35 +149,41 @@ $(function () {
         // console.log(bottom_of_window);
         // console.log($("#w20230828d674990848ee8").offset().top);
         // console.log("-------------------");
-        if (bottom_of_window > bottom_of_element) {
-          $(this).animate({ 'opacity': '1' }, 1000);
-        }
 
-        // let fl = ($(window).width() - 1280) / 2;
-        // if($(window).width() < 1280 ){
-        //   fl = 0;
-        // }
         let fl = 12.8;
-        // fl = 140;
-        // let cdw = $(".col-dz-1").width();
-        // fl = cdw + 45;
-        // console.log(fl);
+
+        
         if($(window).width() > 991){
-    
+            
+          // 점 애니메이션
+          if(jum1 == false){
+            jum1 = true;
+            
+            // 중간에 잠시 멈춤 효과를 위해 callback 함수를 통해 delay로 전부 개별 동작
+            TweenMax.to('.tweenbox', 2, {
+              bezier: [
+                {top:117, right:9},
+                {top:300, right:-50},
+                {top:414, right:186},
+            ], 
+              ease: Power1.easeInOut, 
+              repeat: 0,
+              onComplete:nextMove1()
+            });
+          }
+
           if(bottom_of_window >= 1573 && bottom_of_window < 3300){
             $(".fixed_left").css("width",fwid+"px");
             // 좌측 여백 계산
-            // fl += 16;
             $(".fixed_left").css("position","fixed");
             $(".fixed_left").css("top","120px");
             $(".fixed_left").css("left",fl+"%");
-            // $(".fixed_left").css("bottom","auto");
           }else if(bottom_of_window < 1573){
             $(".fixed_left").css("position","absolute");
             $(".fixed_left").css("top","35px");
             $(".fixed_left").css("left","0px");
           }else if(bottom_of_window >= 3300){
-            let fh = $(".service_wrap").height() - $(".fixed_left").height() - 35;
+            let fh = $(".service_wrap").height() - $(".fixed_left").height() - 55;
             
             $(".fixed_left").css("position","absolute");
             $(".fixed_left").css("top",fh+"px");
@@ -188,6 +194,11 @@ $(function () {
           // 이 부분은 400px 모바일에서 동작하므로 제외.
           
         }
+
+        if (bottom_of_window > bottom_of_element) {
+          $(this).animate({ 'opacity': '1' }, 1000);
+        }
+
         
         if(bottom_of_window > 3200 && any === false){
             any = true;
@@ -205,32 +216,24 @@ $(function () {
             setTimeout(() => counter($ucounter, umax), 50);
         }
 
-        // 크라우드펀딩 애니메이션인데 안쓸듯
-        // if( $(window).scrollTop() > $("#text_w202308189b7d14baad0e8").offset().top){
-        //   $(".pbox2").css("animation-name","pb2");        
-        //   $(".pbox3").css("animation-name","pb3");        
-        //   $(".pbox4").css("animation-name","pb4");        
-        //   $(".pbox5").css("animation-name","pb5");        
-        //   $(".pbox6").css("animation-name","pb6");        
-        // }
-        
-        
       });
       
-      
-      // $("#w20230901dc20c8406d406 .post_link_wrap").prop("href","");
       $("#w20230901dc20c8406d406 .post_link_wrap").click(function(){
         return false;
       })
       
     });
     
+
+    
+    
+    
+    
     // 전화번호 입력시에는 전부 숫자만 입력되도록 처리
     $("input[type=tel]").keydown(function(){
       let val = this.value;
       this.value = val.replace(/[^0-9]/gi,"");
     })
-    
 
     // 연혁 swiper
     if($("#w202309113b812d6fb921e .mySwiper").html()){
@@ -326,7 +329,7 @@ $(function () {
 
 
       if(!param){
-        $("#w2023090778a70f63ea705").hide();
+        // $("#w2023090778a70f63ea705").hide();
       }else{
         
         let cnt;
@@ -342,25 +345,25 @@ $(function () {
 
           $("#w2023090778a70f63ea705 .list-style-card").each(function(index){
             $(this).mouseenter(function(){
-              cnt = index + 1;
-              $("#w2023090778a70f63ea705 .list-style-card:nth-of-type("+cnt+") .card-body").append("<div class='amount'>"+arr_amt[index]+"</div>");
-              $("#w2023090778a70f63ea705 .list-style-card:nth-of-type("+cnt+") .card-body").prepend("<div class='plf'>[ "+arr_plf[index]+" ]</div>");
+              // cnt = index + 1;
+              // $("#w2023090778a70f63ea705 .list-style-card:nth-of-type("+cnt+") .card-body").append("<div class='amount'>"+arr_amt[index]+"</div>");
+              // $("#w2023090778a70f63ea705 .list-style-card:nth-of-type("+cnt+") .card-body").prepend("<div class='plf'>"+arr_plf[index]+"</div>");
             })
             $(this).mouseleave(function(){
-              cnt = index + 1;
-              $("#w2023090778a70f63ea705 .list-style-card:nth-of-type("+cnt+") .card-body .amount").remove();
-              $("#w2023090778a70f63ea705 .list-style-card:nth-of-type("+cnt+") .card-body .plf").remove();
+              // cnt = index + 1;
+              // $("#w2023090778a70f63ea705 .list-style-card:nth-of-type("+cnt+") .card-body .amount").remove();
+              // $("#w2023090778a70f63ea705 .list-style-card:nth-of-type("+cnt+") .card-body .plf").remove();
             })
           })
         }else if(param == "7gZ2T111Hp"){
           $("#w2023090778a70f63ea705 .list-style-card").each(function(index){
             $(this).mouseenter(function(){
-              cnt = index + 1;
-              $("#w2023090778a70f63ea705 .list-style-card:nth-of-type("+cnt+") .card-body").prepend("<div class='plf'>[ 프리오더 ]</div>");
+              // cnt = index + 1;
+              // $("#w2023090778a70f63ea705 .list-style-card:nth-of-type("+cnt+") .card-body").prepend("<div class='plf'>[ 프리오더 ]</div>");
             })
             $(this).mouseleave(function(){
-              cnt = index + 1;
-              $("#w2023090778a70f63ea705 .list-style-card:nth-of-type("+cnt+") .card-body .plf").remove();
+              // cnt = index + 1;
+              // $("#w2023090778a70f63ea705 .list-style-card:nth-of-type("+cnt+") .card-body .plf").remove();
             })
           })
         }
@@ -380,7 +383,7 @@ $(function () {
       $("#about_div .right_div").css("animation-name","mright-move");
     }else{
       // ABOUT 애니메이션
-      $("#about_div .left_div").css("animation-name","left-move");
+      $("#about_div .center_div").css("animation-name","center-move");
       $("#about_div .right_div").css("animation-name","right-move");
     }
     
@@ -439,7 +442,8 @@ $(function () {
     //   },500);
     // })
     
-
+    
+      
 
     
     
@@ -774,4 +778,149 @@ function sendMessageIframeRe(){
 
 function goPage(pg){
   location.href="/"+pg;
+}
+
+
+function nextMove1(){
+  TweenMax.to('.tweenbox', 2, {
+    bezier: [
+      {top:414, right:186},
+      {top:594, right:-20},
+      {top:705, right:7}
+    ], 
+    ease: Power1.easeInOut, 
+    repeat: 0,
+    delay: 3,
+    onComplete:nextMove2()
+  });
+}
+function nextMove2(){
+  TweenMax.to('.tweenbox', 2, {
+    bezier: [
+      {top:705, right:7},
+      {top:888, right:-50},
+      {top:993, right:187}
+    ], 
+    ease: Power1.easeInOut, 
+    repeat: 0,
+    delay: 6,
+    onComplete:nextMove3()
+  });
+}
+function nextMove3(){
+  TweenMax.to('.tweenbox', 2, {
+    bezier: [
+      {top:993, right:187},
+      {top:1182, right:-20},
+      {top:1284, right:7}
+    ], 
+    ease: Power1.easeInOut, 
+    repeat: 0,
+    delay: 9,
+    onComplete:nextMove4()
+  });
+}
+function nextMove4(){
+  TweenMax.to('.tweenbox', 2, {
+    bezier: [
+      {top:1284, right:7},
+      {top:1394, right:-50},
+      {top:1576, right:186}
+    ], 
+    ease: Power1.easeInOut, 
+    repeat: 0,
+    delay: 12,
+    onComplete:nextMove5()
+  });
+}
+function nextMove5(){
+  TweenMax.to('.tweenbox', 2, {
+    bezier: [
+      {top:1576, right:186},
+      {top:1690, right:-20},
+      {top:1863, right:7}
+    ], 
+    ease: Power1.easeInOut, 
+    repeat: 0,
+    delay: 15,
+    onComplete:nextRMove6()
+  });
+}
+function nextRMove6(){
+  TweenMax.to('.tweenbox', 2, {
+    bezier: [
+      {top:1863, right:7},
+      {top:1690, right:-20},
+      {top:1576, right:186},
+    ], 
+    ease: Power1.easeInOut, 
+    repeat: 0,
+    delay: 18,
+    onComplete:nextRMove5()
+  });
+}
+function nextRMove5(){
+  TweenMax.to('.tweenbox', 2, {
+    bezier: [
+      {top:1576, right:186},
+      {top:1394, right:-50},
+      {top:1284, right:7},
+    ], 
+    ease: Power1.easeInOut, 
+    repeat: 0,
+    delay: 21,
+    onComplete:nextRMove4()
+  });
+}
+function nextRMove4(){
+  TweenMax.to('.tweenbox', 2, {
+    bezier: [
+      {top:1284, right:7},
+      {top:1182, right:-20},
+      {top:993, right:187},
+    ], 
+    ease: Power1.easeInOut, 
+    repeat: 0,
+    delay: 24,
+    onComplete:nextRMove3()
+  });
+}
+function nextRMove3(){
+  TweenMax.to('.tweenbox', 2, {
+    bezier: [
+      {top:993, right:187},
+      {top:888, right:-50},
+      {top:705, right:7},
+    ], 
+    ease: Power1.easeInOut, 
+    repeat: 0,
+    delay: 27,
+    onComplete:nextRMove2()
+  });
+}
+function nextRMove2(){
+  TweenMax.to('.tweenbox', 2, {
+    bezier: [
+      {top:705, right:7},
+      {top:594, right:-20},
+      {top:414, right:186},
+    ], 
+    ease: Power1.easeInOut, 
+    repeat: 0,
+    delay: 30,
+    onComplete:nextRMove1()
+  });
+}
+function nextRMove1(){
+  TweenMax.to('.tweenbox', 2, {
+    bezier: [
+      {top:414, right:186},
+      {top:300, right:-50},
+      {top:117, right:9},
+      ], 
+    ease: Power1.easeInOut, 
+    repeat: 0,
+    delay: 33,
+    
+  });
 }
