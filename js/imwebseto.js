@@ -44,79 +44,38 @@ $(function () {
       // })
 
     })
-   
-    
-    // 메인 텍스트 오른쪽에 프로젝트 뷰 호버처리.
-    $("#s20230817569ed54963a8f .sec_link").hover(function(){
-      $(".sec_link").css({
-        "width":"150px",  
-        "height":"150px",
-        "backgroundColor":"#fff",
-        "top":"46%",
-        "right":"18%"
-      });
-      $(".sec_link .link_cont").html("<span>view project</span><span>&gt;</span>");
-      $(".sec_link .link_cont").css({
-        "width":"90%",
-        "font-size":"26px",
-        "color":"#ff2f97",
-        "text-align":"right",
-        "padding-right":"40px",
-        "line-height":"100%"
-      })
-    })
 
-    $("#s20230817569ed54963a8f .sec_link").mouseleave(function(){
-      $(".sec_link").css({
-        "width":"70px",  
-        "height":"70px",
-        "backgroundColor":"",
-        "top":"50%",
-        "right":"20%"
-      });
-      $(".sec_link .link_cont").html("＞");
-      $(".sec_link .link_cont").css({
-        "width":"",
-        "font-size":"40px",
-        "color":"",
-        "text-align":"",
-        "padding-right":"",
-        "line-height":""
-      })
-      
-    })
-    $(".sec_link").click(function(){
-      location.href="/ourwork";
-    })
-        
     
     // HOME일때 실행
     if($("#s20230817569ed54963a8f #visual_s20230817569ed54963a8f").html()){
-      
-      
+     
       // 메인 텍스트 애니메이션 
       // 우선 첫번째 가로폭 설정. 넉넉하게 40 추가.
       let wkw = $("#visual_s20230817569ed54963a8f .txt1").width() + 40;
       $("#visual_s20230817569ed54963a8f .txt_waku").css("width",wkw);
       
+      let left_pok;
+      
       // 1~4까지 루프 판단을 위한 변수.
       let jud = 1;
 
       // 일정 시간마다 테두리 이동. 단, 766 사이즈 이상에서만.
-      if($(window).width() > 400){
+      if($(window).width() > 414){
+
         setInterval( ()=>{      
           moveWaku(jud);
           jud++;
-          if(jud == 5) jud = 1;
+          if(jud == 4) jud = 1;
         },3000);
       }
       // 모바일 사이즈. 메인 글자 크기와 사이즈가 다르므로 별도 동작
-      if($(window).width() <= 400){
+      if($(window).width() <= 414){
+ 
         $("#visual_s20230817569ed54963a8f .txt_waku").css("width",wkw-20);
         setInterval( ()=>{      
           moveWakuMobi(jud);
           jud++;
-          if(jud == 5) jud = 1;
+          if(jud == 4) jud = 1;
         },3000);
       }
     }
@@ -141,18 +100,16 @@ $(function () {
       $('#w202308243345d0fde1e26 .service_div').each(function () {
         var bottom_of_element = $(this).offset().top + $(this).outerHeight();
         var bottom_of_window = $(window).scrollTop() + $(window).height();
-        // let b_service_div = $(".fixed_left").offset().top + $(".fixed_left").outerHeight();
         
-            
+        // 카운트 시작점을 위한 좌표구하기
+        let count_top = $("#s20230906862a64f70b718").offset().top + $("#s20230906862a64f70b718").outerHeight() - 200;    
         // console.log($(window).scrollTop());
         // console.log($("#last_sd").offset().top);
         // console.log(bottom_of_window);
-        // console.log($("#w20230828d674990848ee8").offset().top);
+        // console.log(count_top);
         // console.log("-------------------");
 
         let fl = 12.8;
-
-        
         if($(window).width() > 991){
             
           // 점 애니메이션
@@ -172,18 +129,18 @@ $(function () {
             });
           }
 
-          if(bottom_of_window >= 1573 && bottom_of_window < 3300){
+          if(bottom_of_window >= 1630 && bottom_of_window < 3350){
             $(".fixed_left").css("width",fwid+"px");
             // 좌측 여백 계산
             $(".fixed_left").css("position","fixed");
             $(".fixed_left").css("top","120px");
             $(".fixed_left").css("left",fl+"%");
-          }else if(bottom_of_window < 1573){
+          }else if(bottom_of_window < 1630){
             $(".fixed_left").css("position","absolute");
             $(".fixed_left").css("top","35px");
             $(".fixed_left").css("left","0px");
-          }else if(bottom_of_window >= 3300){
-            let fh = $(".service_wrap").height() - $(".fixed_left").height() - 55;
+          }else if(bottom_of_window >= 3350){
+            let fh = $(".service_wrap").height() - $(".fixed_left").height() - 20;
             
             $(".fixed_left").css("position","absolute");
             $(".fixed_left").css("top",fh+"px");
@@ -200,9 +157,10 @@ $(function () {
         }
 
         
-        if(bottom_of_window > 3200 && any === false){
+        // if(bottom_of_window > 3200 && any === false){
+        if(bottom_of_window > count_top && any === false){
             any = true;
-            console.log(any);
+            // console.log(any);
 
             // HOME - 숫자 증가 
             const $mcounter = document.querySelector(".crow_money");
@@ -218,17 +176,39 @@ $(function () {
 
       });
       
-      $("#w20230901dc20c8406d406 .post_link_wrap").click(function(){
+      // HOME 뉴스룸 게시판 클릭시 무효화
+      $("#w2023091254e53d77f1943 .post_link_wrap").click(function(){
         return false;
       })
       
     });
-    
+    // HOME 영역 포개기
+    $(".left_div .more_btn").click(function(){
+      if( $(".left_cont").css("display") == "none" ){
+        $(".left_cont").animate({
+          width: "toggle" 
+        },400);
+      }
+    })
+    $(".right_div .more_btn").click(function(){
+      if( $(".right_cont").css("display") == "none" ){
+        $(".right_cont").animate({
+          width: "toggle"
+        },400);
+      }
+    })
+    $(".left_cont i").click(function(){
+      $(".left_cont").animate({
+        width: "toggle" 
+      },400);
+    })
+    $(".right_cont i").click(function(){
+      $(".right_cont").animate({
+        width: "toggle" 
+      },400);
+    })
+        
 
-    
-    
-    
-    
     // 전화번호 입력시에는 전부 숫자만 입력되도록 처리
     $("input[type=tel]").keydown(function(){
       let val = this.value;
@@ -271,6 +251,48 @@ $(function () {
       });        
     }
     
+    // 연혁 넘기기 버튼
+    $("#s202309116b4fa1ce7069c .custom_btn .prev_btn").click(function(){
+      $(".swiper-button-prev").click();
+    })
+    $("#s202309116b4fa1ce7069c .custom_btn .next_btn").click(function(){
+      $(".swiper-button-next").click();
+    })
+    
+    
+    // 피플 모바일에서 클릭시 호버효과 나오게
+    if($(window).width() < 991){
+      $("#s20230913d2cba4c85dfe6 .img_wrap").click(function(){
+      
+        if($(this).children(".txt._txt_wrap").css("display") == "none"){
+          $(".txt._txt_wrap").css("display","block");
+          $(".hover_overlay").css({
+            "opacity" : "0"
+          });
+          $(".hover_txt").css({
+            "z-index" : "1",
+            "opacity" : "0"
+          })
+        }else{
+          $(".txt._txt_wrap").css("display","block");
+          // 기존 nametag 부분 숨기기
+          $(this).children(".txt._txt_wrap").css("display","none");
+    
+          // 호버시 배경 검은색
+          $(this).children(".hover_overlay").css({
+            "opacity" : "1"
+          });
+    
+          //호버시 나오는 설명글
+          $(this).children(".hover_txt").css({
+            "z-index" : "10",
+            "opacity" : "1"
+          })
+        }
+        
+      })
+    }
+    
     // 피플 이미지 오버
     $("#people_wrap .img_div").mouseenter(function(){
       $("#people_wrap .pbackg").animate({
@@ -278,7 +300,7 @@ $(function () {
         height:"100%",
         opacity:"0.6"
       },500,function(){
-        $("#people_wrap .hov_cont").fadeIn(300);
+        $("#people_wrap .hov_cont").fadeIn();
       });
     })
     
@@ -292,35 +314,7 @@ $(function () {
       });
     })
     
- 
-    
-    
-    // HOME 영역 포개기
-    $(".left_div .more_btn").click(function(){
-      if( $(".left_cont").css("display") == "none" ){
-        $(".left_cont").animate({
-          width: "toggle" 
-        },400);
-      }
-    })
-    $(".right_div .more_btn").click(function(){
-      if( $(".right_cont").css("display") == "none" ){
-        $(".right_cont").animate({
-          width: "toggle"
-        },400);
-      }
-    })
-    $(".left_cont i").click(function(){
-      $(".left_cont").animate({
-        width: "toggle" 
-      },400);
-    })
-    $(".right_cont i").click(function(){
-      $(".right_cont").animate({
-        width: "toggle" 
-      },400);
-    })
-    
+
 
     // WORK에서만 동작
     if($("#s2023090616fb3cf432729").html()){
@@ -377,7 +371,7 @@ $(function () {
     })
     
     
-    if($(window).width() < 767){
+    if($(window).width() < 600){
       // ABOUT 애니메이션
       $("#about_div .left_div").css("animation-name","mleft-move");
       $("#about_div .right_div").css("animation-name","mright-move");
@@ -386,15 +380,7 @@ $(function () {
       $("#about_div .center_div").css("animation-name","center-move");
       $("#about_div .right_div").css("animation-name","right-move");
     }
-    
-    $("#s202309116b4fa1ce7069c .custom_btn .prev_btn").click(function(){
-      console.log("프리뷰");
-      $(".swiper-button-prev").click();
-    })
-    $("#s202309116b4fa1ce7069c .custom_btn .next_btn").click(function(){
-      console.log("넥스트");
-      $(".swiper-button-next").click();
-    })
+
     
     // ABOUT 해외 지사 구글맵 부분 - 클릭시 표시, 클릭시 닫음.
     $(".addr_div").click(function(){
@@ -613,24 +599,24 @@ function regNewsletter(){
 }
 
 function moveWaku(jud){
-  // 이동은 1~4까지. 5가 되었다면 1로 변경
-  if(jud == 5) jud = 1; 
+  
+  // 이동은 1~3까지. 4가 되었다면 1로 변경
+  if(jud == 4) jud = 1; 
   
   // 포커스 글자의 너비
   let wkw = $("#visual_s20230817569ed54963a8f .txt"+jud).width() + 40;
   
   // 다음 이동대상의 너비를 알기위해 다음 번호를 지정.
   let judp = jud + 1;
-
+  
   // 애니메이션 효과 부여
   $("#visual_s20230817569ed54963a8f .txt_waku").css("animation-name","move"+jud);
   
   // 만약, 마지막 4번째라면 다음은 첫번째 블럭을 지정하기 위한 설정.
-  if(jud == 4) judp= 1;
+  if(jud == 3) judp= 1;
   let wkw2 = $("#visual_s20230817569ed54963a8f .txt"+judp).width() + 40;
   let cha = 0;
-  // console.log(jud+" / "+judp);
-  // console.log(wkw+" / "+wkw2);
+
   
   // 다음 블럭의 너비와 비교해 어느쪽이 더 넒은지에 따라 계산법 적용 후 너비 적용.
   if(wkw > wkw2){
@@ -638,15 +624,21 @@ function moveWaku(jud){
     
     // 움직임에 맞춰 글자 이동.
     if(jud == 1){
-    }else if(jud == 3){
-
-    }else if(jud == 4){
-      $("#visual_s20230817569ed54963a8f .txt2").animate({
+      $("#visual_s20230817569ed54963a8f .txt3").animate({
         "margin-left": "20px"
       },2000);
-      $("#visual_s20230817569ed54963a8f .txt4").animate({
+     
+      $("#visual_s20230817569ed54963a8f .sec_link").animate({
+        "margin-left" : "25px"
+      },3000);
+    }else if(jud == 3){
+      $("#visual_s20230817569ed54963a8f .txt3").animate({
         "margin-left": "0px"
       },2000);
+      $("#visual_s20230817569ed54963a8f .sec_link").animate({
+        "margin-left" : "0px"
+      },3000);
+
     }
 
     $("#visual_s20230817569ed54963a8f .txt_waku").animate({
@@ -657,13 +649,7 @@ function moveWaku(jud){
     
     // 움직임에 맞춰 글자 이동.
     if(jud == 2){
-      $("#visual_s20230817569ed54963a8f .txt2").animate({
-        "margin-left": "0px"
-      },2000);
 
-      $("#visual_s20230817569ed54963a8f .txt4").animate({
-        "margin-left": "20px"
-      },2000);
     }
 
     $("#visual_s20230817569ed54963a8f .txt_waku").animate({
@@ -685,8 +671,8 @@ function moveWaku(jud){
 }
 
 function moveWakuMobi(jud){
-  // 이동은 1~4까지. 5가 되었다면 1로 변경
-  if(jud == 5) jud = 1; 
+  // 이동은 1~3까지. 4가 되었다면 1로 변경
+  if(jud == 4) jud = 1; 
   
   // 포커스 글자의 너비
   let wkw = $("#visual_s20230817569ed54963a8f .txt"+jud).width() + 20;
@@ -698,7 +684,7 @@ function moveWakuMobi(jud){
   let judp = jud + 1;
   
   // 만약, 마지막 4번째라면 다음은 첫번째 블럭을 지정하기 위한 설정.
-  if(jud == 4) judp= 1;
+  if(jud == 3) judp= 1;
   let wkw2 = $("#visual_s20230817569ed54963a8f .txt"+judp).width() + 24;
   let cha = 0;
   
@@ -708,15 +694,20 @@ function moveWakuMobi(jud){
     
     // 움직임에 맞춰 글자 이동.
     if(jud == 1){
-    }else if(jud == 3){
-
-    }else if(jud == 4){
-      $("#visual_s20230817569ed54963a8f .txt2").animate({
+      $("#visual_s20230817569ed54963a8f .txt3").animate({
         "margin-left": "0px"
       },2000);
-      $("#visual_s20230817569ed54963a8f .txt4").animate({
+      $("#visual_s20230817569ed54963a8f .sec_link").animate({
+        "margin-left" : "15px"
+      },3000);
+
+    }else if(jud == 3){
+      $("#visual_s20230817569ed54963a8f .txt3").animate({
         "margin-left": "-10px"
       },2000);
+      $("#visual_s20230817569ed54963a8f .sec_link").animate({
+        "margin-left" : "0px"
+      },3000);
     }
 
     $("#visual_s20230817569ed54963a8f .txt_waku").animate({
@@ -727,13 +718,6 @@ function moveWakuMobi(jud){
     
     // 움직임에 맞춰 글자 이동.
     if(jud == 2){
-      $("#visual_s20230817569ed54963a8f .txt2").animate({
-        "margin-left": "-10px"
-      },2000);
-
-      $("#visual_s20230817569ed54963a8f .txt4").animate({
-        "margin-left": "0px"
-      },2000);
     }
 
     $("#visual_s20230817569ed54963a8f .txt_waku").animate({
