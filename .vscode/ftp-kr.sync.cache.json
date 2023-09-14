@@ -22,28 +22,28 @@
     "setodb": {},
     "test": {},
     "www": {
-      "css": {
-        "imwebseto.css": {
+      "js": {
+        "imwebseto.js": {
           "type": "-",
-          "size": 47114,
-          "lmtime": 1694514898683.6687,
+          "size": 27839,
+          "lmtime": 1694598722539.2236,
           "modified": false
         },
-        "seto.css": {
+        "seto.js": {
           "type": "-",
           "size": 0,
           "lmtime": 0,
           "modified": false
         }
       },
-      "js": {
-        "imwebseto.js": {
+      "css": {
+        "imwebseto.css": {
           "type": "-",
-          "size": 28012,
-          "lmtime": 1694514087665.9128,
+          "size": 45037,
+          "lmtime": 1694597365123.705,
           "modified": false
         },
-        "seto.js": {
+        "seto.css": {
           "type": "-",
           "size": 0,
           "lmtime": 0,

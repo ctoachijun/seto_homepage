@@ -94,8 +94,7 @@ $(function () {
         $("#w20230825d156046a1b84d").css("opacity","1");
       }
       
-      let fwid = $(".fixed_left").width() + 30;
-      
+      // let fwid = $(".fixed_left").width() + 30;
       // HOME 사업영역 표시 및 fixed 처리.
       $('#w202308243345d0fde1e26 .service_div').each(function () {
         var bottom_of_element = $(this).offset().top + $(this).outerHeight();
@@ -109,7 +108,6 @@ $(function () {
         // console.log(count_top);
         // console.log("-------------------");
 
-        let fl = 12.8;
         if($(window).width() > 991){
             
           // 점 애니메이션
@@ -129,22 +127,22 @@ $(function () {
             });
           }
 
-          if(bottom_of_window >= 1630 && bottom_of_window < 3350){
-            $(".fixed_left").css("width",fwid+"px");
+          if(bottom_of_window >= 1706 && bottom_of_window < 3440){
+            // $(".fixed_left").css("width",fwid+"px");
             // 좌측 여백 계산
             $(".fixed_left").css("position","fixed");
-            $(".fixed_left").css("top","120px");
-            $(".fixed_left").css("left",fl+"%");
-          }else if(bottom_of_window < 1630){
+            $(".fixed_left").css("top","124px");
+            $(".fixed_left").css("left","16.2%");
+          }else if(bottom_of_window < 1706){
             $(".fixed_left").css("position","absolute");
-            $(".fixed_left").css("top","35px");
+            $(".fixed_left").css("top","38px");
             $(".fixed_left").css("left","0px");
-          }else if(bottom_of_window >= 3350){
-            let fh = $(".service_wrap").height() - $(".fixed_left").height() - 20;
+          }else if(bottom_of_window >= 3440){
+            let fh = $(".service_wrap").height() - $(".fixed_left").height() - 25;
             
             $(".fixed_left").css("position","absolute");
             $(".fixed_left").css("top",fh+"px");
-            $(".fixed_left").css("bottom","auto");
+            // $(".fixed_left").css("bottom","auto");
             $(".fixed_left").css("left","0px");
           }
         }else{
@@ -178,6 +176,7 @@ $(function () {
       
       // HOME 뉴스룸 게시판 클릭시 무효화
       $("#w2023091254e53d77f1943 .post_link_wrap").click(function(){
+        location.href="/about?#w2023091229ebe142df7ae";
         return false;
       })
       
@@ -318,51 +317,63 @@ $(function () {
 
     // WORK에서만 동작
     if($("#s2023090616fb3cf432729").html()){
-      let url = new URL(window.location.href);
-      let param = url.searchParams.get('category');
-
-
-      if(!param){
-        // $("#w2023090778a70f63ea705").hide();
-      }else{
+      
+      // 호버시가 아닌 그냥 있을때에도 정보 표시      
+      $("#w2023090778a70f63ea705 .card").each(function(){
         
-        let cnt;
-        // 크라우드펀딩 카테고리.
-        if(param == "mRg58T6185"){
-          // 글 업로드 순서대로 플랫폼 및 액수를 추가.
-          let arr_plf = new Array(
-            "킥스타터", "킥스타터", "와디즈", "마쿠아케", "인디고고", "와디즈", "마쿠아케", "젝젝"
-          )
-          let arr_amt = new Array(
-            "$1,560,000", "$980,000", "￦89,000,000", "￥3,389,000", "$560,000", "￦50,000", "￥850,000", "NT$350,000"
-          );
-
-          $("#w2023090778a70f63ea705 .list-style-card").each(function(index){
-            $(this).mouseenter(function(){
-              // cnt = index + 1;
-              // $("#w2023090778a70f63ea705 .list-style-card:nth-of-type("+cnt+") .card-body").append("<div class='amount'>"+arr_amt[index]+"</div>");
-              // $("#w2023090778a70f63ea705 .list-style-card:nth-of-type("+cnt+") .card-body").prepend("<div class='plf'>"+arr_plf[index]+"</div>");
-            })
-            $(this).mouseleave(function(){
-              // cnt = index + 1;
-              // $("#w2023090778a70f63ea705 .list-style-card:nth-of-type("+cnt+") .card-body .amount").remove();
-              // $("#w2023090778a70f63ea705 .list-style-card:nth-of-type("+cnt+") .card-body .plf").remove();
-            })
-          })
-        }else if(param == "7gZ2T111Hp"){
-          $("#w2023090778a70f63ea705 .list-style-card").each(function(index){
-            $(this).mouseenter(function(){
-              // cnt = index + 1;
-              // $("#w2023090778a70f63ea705 .list-style-card:nth-of-type("+cnt+") .card-body").prepend("<div class='plf'>[ 프리오더 ]</div>");
-            })
-            $(this).mouseleave(function(){
-              // cnt = index + 1;
-              // $("#w2023090778a70f63ea705 .list-style-card:nth-of-type("+cnt+") .card-body .plf").remove();
-            })
-          })
+        // 카테고리 이름 세팅
+        let cate_name = $(this).find(".title > span > em").html();
+        cate_name = cate_name.replace("[","");
+        cate_name = cate_name.replace("]","");
+        $(this).find(".post_link_wrap").prepend("<div class='category_name'>"+cate_name+"</div>");
+        
+        let title_name = $(this).find(".title").text();
+        let box = title_name.replace(/\s/g,"");
+        let box2 = box.split("]");
+        title_name = box2[1];
+        
+        // 각 이미지 세팅. 크라우드 펀딩일 경우 첫줄로 이미지를 판단.
+        let img_name = amount = "";
+        
+        if(cate_name == "글로벌 크라우드 펀딩"){
+          // let first_line = $(this).find(".text.text-block span").text().replace(/[^ㄱ-ㅎ가-힣]/g,"");
+          let first_line = $(this).find(".text.text-block span").text();
+          let first_box = first_line.split("-");
+          let plf = first_box[0].replace(/[^ㄱ-ㅎ가-힣]/g,"");
+          amount = first_box[1];
+          console.log(plf+"/"+amount);
+          
+          if(plf == "킥스타터"){
+            img_name = "https://cdn.imweb.me/thumbnail/20230914/091cbc71c1929.png";
+          }else if(plf == "인디고고"){
+            img_name = "https://cdn.imweb.me/thumbnail/20230914/70e1212b39e13.png";
+          }else if(plf == "젝젝"){
+            img_name = "";
+          }else if(plf == "모디안"){
+            img_name = "";
+          }else if(plf == "마쿠아케"){
+            img_name = "https://cdn.imweb.me/thumbnail/20230914/477cee78eefdf.png";
+          }else if(plf == "모디안"){
+            img_name = "";
+          }else if(plf == "포지블"){
+            img_name = "";
+          }else if(plf == "와디즈"){
+            img_name = "";
+          }
+        }else if(cate_name == "글로벌 프리오더"){
+          img_name = "";
+        }else if(cate_name == "글로벌 컨텐츠 마케팅"){
+          img_name = "";
+        }else if(cate_name == "글로벌 디지털 마케팅"){
+          img_name = "";
+        }else if(cate_name == "글로벌 커머스"){
+          img_name = "https://cdn.imweb.me/thumbnail/20230914/269d4323c01c4.png";
+        }else if(cate_name == "전시회 / 팝업스토어"){
+          img_name = "https://cdn.imweb.me/thumbnail/20230914/1f3aa556e4287.png";
         }
-
-      }
+        $(this).find(".post_link_wrap").append("<div class='title_div'><div class='img_row'><div class='title_img'><img src='"+img_name+"' alt=''></div><div class='amount'>"+amount+"</div></div><div class='title_name'>"+title_name+"</div></div>");
+        
+      })
     }
     
     // footer 언어 버튼

@@ -1,3 +1,63 @@
+<!-- ####  WORK 호버시 기존 액수 처리했던것들 -->
+
+let url = new URL(window.location.href);
+let param = url.searchParams.get('category');
+
+if(!param){
+  // $("#w2023090778a70f63ea705").hide();
+}else{
+  
+  let cnt;
+  // 크라우드펀딩 카테고리.
+  if(param == "mRg58T6185"){
+    // 글 업로드 순서대로 플랫폼 및 액수를 추가.
+    let arr_plf = new Array(
+      "킥스타터", "킥스타터", "와디즈", "마쿠아케", "인디고고", "와디즈", "마쿠아케", "젝젝"
+    )
+    let arr_amt = new Array(
+      "$1,560,000", "$980,000", "￦89,000,000", "￥3,389,000", "$560,000", "￦50,000", "￥850,000", "NT$350,000"
+    );
+
+    $("#w2023090778a70f63ea705 .list-style-card").each(function(index){
+      $(this).mouseenter(function(){
+        // cnt = index + 1;
+        // $("#w2023090778a70f63ea705 .list-style-card:nth-of-type("+cnt+") .card-body").append("<div class='amount'>"+arr_amt[index]+"</div>");
+        // $("#w2023090778a70f63ea705 .list-style-card:nth-of-type("+cnt+") .card-body").prepend("<div class='plf'>"+arr_plf[index]+"</div>");
+      })
+      $(this).mouseleave(function(){
+        // cnt = index + 1;
+        // $("#w2023090778a70f63ea705 .list-style-card:nth-of-type("+cnt+") .card-body .amount").remove();
+        // $("#w2023090778a70f63ea705 .list-style-card:nth-of-type("+cnt+") .card-body .plf").remove();
+      })
+    })
+  }else if(param == "7gZ2T111Hp"){
+    $("#w2023090778a70f63ea705 .list-style-card").each(function(index){
+      $(this).mouseenter(function(){
+        // cnt = index + 1;
+        // $("#w2023090778a70f63ea705 .list-style-card:nth-of-type("+cnt+") .card-body").prepend("<div class='plf'>[ 프리오더 ]</div>");
+      })
+      $(this).mouseleave(function(){
+        // cnt = index + 1;
+        // $("#w2023090778a70f63ea705 .list-style-card:nth-of-type("+cnt+") .card-body .plf").remove();
+      })
+    })
+  }
+
+}
+
+
+
+/* 이하, 이전 호버시 액수쪽 작업하면서 했던거. 디자인대로 작업하기때문에 주석처리해둠. JS도 있음. */
+/* 게시글 제목 크기 */
+/* #w2023090778a70f63ea705 .list-style-card .card-body .title-block{font-size:20px;font-weight:700;} */
+
+/* 호버시 액수 위치 */
+/* #w2023090778a70f63ea705 .amount{position:absolute;bottom:15px;right:15px;color:#fff;font-weight:700;font-size:22px;} */
+/* #w2023090778a70f63ea705 .plf{position:absolute;top:15px;left:15px; color:#fff;font-size:14px;} */
+
+
+
+
 
 <!-- #### 메인 회사소개서 다운로드 버튼 #### -->
 <div id="introDown">

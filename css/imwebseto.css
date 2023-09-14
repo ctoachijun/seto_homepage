@@ -248,9 +248,6 @@ html,body{
   #w20230904154072f90b65b .text-table{position:absolute;top:0;left:0}
   .sil_div{width:100%;height:200px;justify-content: flex-start;position:absolute;top:-250px;left:500px;}
   
-  #w202308247187d6a6ab686,#w2023082852e1fc100b866{display:none;}  /* fixed_left 상단 여백 부분 */
-  #w202308244a2a02054e89b,#w20230828041ba6e71bfef,#w202308286182f7e86ae8f{display:none;}  /* service_wrap 상단 여백 부분 */
-  #w20230828d9108c8a7932e{display:none} /* serviec_wrap 하단 여백 부분 */
   
   .fixed_left{position:relative;padding-left:0px;}
   .fixed_left p:first-child{font-size:20px;}
@@ -613,17 +610,31 @@ html,body{
   WORK
 */
 
-/* 게시글 제목 크기 */
-#w2023090778a70f63ea705 .list-style-card .card-body .title-block{font-size:20px;font-weight:700;}
+/* 라운딩 처리 및 크기 조절*/
+#w2023090778a70f63ea705 .type_grid.grid_01 .card{border-radius:30px;height:300px;}
+#w2023090778a70f63ea705 .type_grid.grid_01 .card .post_link_wrap{display:inline-block;height:300px;width:100%;position:relative;}
 
-/* 호버시 액수 위치 */
-#w2023090778a70f63ea705 .amount{position:absolute;bottom:15px;right:15px;color:#fff;font-weight:700;font-size:22px;}
-#w2023090778a70f63ea705 .plf{position:absolute;top:15px;left:15px; color:#fff;font-size:14px;}
+/* 배경 색 조절 */
+#w2023090778a70f63ea705 .type_grid .card .holder{background-color: rgba(0,0,0,0.4);}
 
-/* 카테고리 메뉴 전체버튼 미노출 */
-/* #w2023090752ff3815c67a6 ul > li:first-child{display:none} */
+/* 제목 위치 조절 */
+#w2023090778a70f63ea705 .title_div{position:absolute;left:25px;bottom:20px;height:126px;width:100%;}
+#w2023090778a70f63ea705 .title_div .img_row{display:flex;justify-content: space-between;width:84%;align-items:flex-end;margin-bottom:6px;}
+#w2023090778a70f63ea705 .title_div .title_img{width:50px;height:50px;}
+#w2023090778a70f63ea705 .title_div .title_img img{width:100%}
+#w2023090778a70f63ea705 .title_div .amount{color:#fff;font-size:20px;display:none;}
+#w2023090778a70f63ea705 .title_div .title_name{font-size:21px;color:#fff;font-weight:700;width:80%;}
+
+/* 카테고리 이름 태그 위치 조절 */
+#w2023090778a70f63ea705 .category_name{position:absolute;top:30px;left:25px;color:#fff;font-size:12px}
+
+/* 호버시 나오는 글자영역 미노출 */
+#w2023090778a70f63ea705 .type_grid.grid_01 .card:hover .card-body{display:none;}
+#w2023090778a70f63ea705 .card_wrapper{display:none;}
+
+
 /* 카테고리 active 배경 및 글자색 */
-#w2023090752ff3815c67a6 .active a{background:#ff003b;color:#fff;padding-top:10px;padding-bottom:10px}
+#w2023090752ff3815c67a6 .active a{background:#ff003b;padding-top:10px;padding-bottom:10px}
 #w2023090752ff3815c67a6 .active a .plain_name{color:#fff}
 
 
@@ -636,6 +647,11 @@ html,body{
   #w2023090752ff3815c67a6 .active a{padding-top:5px;padding-bottom:5px}
 }
 @media (max-width:415px){
+  #w2023090778a70f63ea705 .category_name{top:25px;left:15px;}
+  #w2023090778a70f63ea705 .title_div{left:15px;bottom:45px;height:80px;width:90%;}
+  #w2023090778a70f63ea705 .title_div .title_name{font-size:18px;}
+  #w2023090778a70f63ea705 .post_row{flex-direction:column;}
+  
   #w2023090752ff3815c67a6 .active a{padding-top:3px;padding-bottom:3px}
   #w2023090752ff3815c67a6 .sub-menu.h-menu-type2 ul li{width:180px;}
 }
@@ -943,5 +959,7 @@ html,body{
 */
 #w20230825d156046a1b84d{position:fixed;right:1%;bottom:1%;z-index:9999;opacity:0;}
 
+/* 모바일 상단 바로가기 */
+#w20230914dc538db5a14fa{position:fixed;right:5%;bottom:10%;z-index:30;}
 
 
