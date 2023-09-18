@@ -176,7 +176,7 @@ $(function () {
       
       // HOME 뉴스룸 게시판 클릭시 무효화
       $("#w2023091254e53d77f1943 .post_link_wrap").click(function(){
-        location.href="/about?#w2023091229ebe142df7ae";
+          location.href="/about?#w2023091229ebe142df7ae";
         return false;
       })
       
@@ -308,7 +308,31 @@ $(function () {
       });
     })
     
-
+    
+    // ABOUT - 뉴스룸 메뉴 클릭시 앵커 처리
+    $("#w2023091280f06dfc4dd1d ul li").click(function(){
+      console.log($(this).children('a').attr("href"));
+      let param = $(this).children('a').attr("href")+"&#w2023091229ebe142df7ae";
+      location.href = param;
+      
+      return false;
+    })
+    
+    // ABOUT - 뉴스룸 게시글 클릭시 주소 처리
+    $("#w2023091221648344c2ec5 .post_link_wrap").click(function(){
+      
+      let category = $(this).find(".title.title-block span em").html();
+      if(category == "PRESS RELEASE"){
+        // 첫줄 가져오기
+        let fline = $(this).find(".text.text-block span").html().replace(/#/g,'');
+        console.log(fline);
+        // 첫줄가져와서 링크 대신을 하면,게시글 작성 후 뉴스는 수정이 불가 ;;
+        // window.open('about:blank').location.href=fline
+        // return false;
+      }
+    })
+    
+    
 
     // WORK에서만 동작
     if($("#s2023090616fb3cf432729").html()){
@@ -466,19 +490,35 @@ const counter = ($counter, max) => {
 
 // 유형 클릭시 체크박스 세팅
 function chk_tgroup(group,num){
-  let uchkeck1;
-  let val = $(".chk_tgroup:nth-of-type("+num+")").html();
-  console.log(val);
-  $("input[name='type_check[]']").each(function(index){
+  let val;
+  if(group == 1){
+    val = $(".chk_tgroup:nth-of-type("+num+")").html();
+    $("input[name='type_check[]']").each(function(index){
       if($(this).val() == val){
         if($(this).prop("checked") === false){
-          $(this).prop("checked",true);  
+          $(this).prop("checked",true);
+          $(".chk_tgroup:nth-of-type("+num+")").addClass("active");
         }else{
-          $(this).prop("checked",false);  
+          $(this).prop("checked",false);
+          $(".chk_tgroup:nth-of-type("+num+")").removeClass("active");
         }
       }
-  })}
-
+    })
+  }else{
+    val = $(".chk_smok:nth-of-type("+num+")").html();
+    $("input[name='smok[]']").each(function(index){
+      if($(this).val() == val){
+        if($(this).prop("checked") === false){
+          $(this).prop("checked",true);
+          $(".chk_smok:nth-of-type("+num+")").addClass("active");
+        }else{
+          $(this).prop("checked",false);
+          $(".chk_smok:nth-of-type("+num+")").removeClass("active");
+        }
+      }
+    })
+  }
+}
 
 
 // 문의에 입력된 데이터를 기존 폼에 세팅 후 전송
@@ -525,7 +565,6 @@ function setContactFormData(){
       
       $("input[name='checkbox_1k2T3sr7E3[]']").each(function(index){
         if($(this).val() == ucheck1){
-          console.log($(this).val());
           $(this).prop("checked",true);
         }
       })
@@ -544,7 +583,6 @@ function setContactFormData(){
       
       $("input[name='checkbox_t49C58l505[]']").each(function(index){
         if($(this).val() == ucheck2){
-          console.log($(this).val());
           $(this).prop("checked",true);
         }
       })
