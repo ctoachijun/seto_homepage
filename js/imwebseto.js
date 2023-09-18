@@ -208,11 +208,6 @@ $(function () {
     })
         
 
-    // 전화번호 입력시에는 전부 숫자만 입력되도록 처리
-    $("input[type=tel]").keydown(function(){
-      let val = this.value;
-      this.value = val.replace(/[^0-9]/gi,"");
-    })
 
     // 연혁 swiper
     if($("#w202309113b812d6fb921e .mySwiper").html()){
@@ -466,6 +461,26 @@ const counter = ($counter, max) => {
   }, 50);
 }
 
+
+// 문의하기 입력폼 처리
+
+// 유형 클릭시 체크박스 세팅
+function chk_tgroup(group,num){
+  let uchkeck1;
+  let val = $(".chk_tgroup:nth-of-type("+num+")").html();
+  console.log(val);
+  $("input[name='type_check[]']").each(function(index){
+      if($(this).val() == val){
+        if($(this).prop("checked") === false){
+          $(this).prop("checked",true);  
+        }else{
+          $(this).prop("checked",false);  
+        }
+      }
+  })}
+
+
+
 // 문의에 입력된 데이터를 기존 폼에 세팅 후 전송
 function setContactFormData(){
   let uname = $("input[name=contact_name]").val();
@@ -561,20 +576,53 @@ function chkSpaceFe(obj){
   $("#"+id).val(val);
 }
 
+function onlyNum(obj){
+  let val = obj.value;
+
+  obj.value = val.replace(/[^0-9]/gi,"");
+}
+
 function downDoc(){
   let uname = $("#input_txt_3a5f3c9c46b4e").val();
   let uemail = $("#input_email_585cb3dbe09ab").val();
-  
+  let chk = chkbox_chk();
   
   SITE_FORM.confirmInputForm('w20230831f65b974c1a11c','N');
   if(uname && uemail){
     let re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
 
-    if (re.test(uemail)) {
-      window.open('about:blank').location.href="https://drive.google.com/file/d/1BcRJp_H3Uhu_dngur48j0LYFiJQQVpi7/view?usp=drive_link";
+    if (re.test(uemail) && chk) {
+      setTimeout(function(){
+        window.open('about:blank').location.href="https://drive.google.com/file/d/1BcRJp_H3Uhu_dngur48j0LYFiJQQVpi7/view?usp=drive_link";
+      },2000);
     }
   }
 }
+
+function setData(num,obj){
+  let val = obj.value;
+  
+  if(num == 1){
+    $("#input_txt_3a5f3c9c46b4e").val(val);
+  }else if(num == 2){
+    $("#input_email_585cb3dbe09ab").val(val);
+  }else if(num == 3){
+    $("#input_txt_04l6hl1261").val(val);
+  }else if(num == 4){
+    $("input[name=phonenumber1_1810a1a792d2f]").val(val);
+  }else if(num == 5){
+    $("input[name=phonenumber2_1810a1a792d2f]").val(val);
+  }else if(num == 6){
+    $("input[name=phonenumber3_1810a1a792d2f]").val(val);
+  }
+}
+
+function chkbox_chk(){
+  let chk = $("#chk_agree").prop("checked");
+  $("input[name='checkbox_5504of1lg1[]']").prop("checked",chk);
+  return chk;
+}
+
 
 function openModal(){
   SITE.openModalMenu('m20230817ba9b448f069b6', 'm20230817674de0a084d43');

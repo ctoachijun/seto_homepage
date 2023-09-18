@@ -22,11 +22,41 @@
     "setodb": {},
     "test": {},
     "www": {
+      "admin": {},
+      "backup": {},
+      "css": {
+        "imwebseto.css": {
+          "type": "-",
+          "size": 48524,
+          "lmtime": 1694759723865.0618,
+          "modified": false
+        },
+        "seto.css": {
+          "type": "-",
+          "size": 0,
+          "lmtime": 0,
+          "modified": false
+        }
+      },
+      "favicon.ico": {
+        "type": "-",
+        "size": 4202,
+        "lmtime": 0,
+        "modified": false
+      },
+      "files": {},
+      "img": {},
+      "index.php": {
+        "type": "-",
+        "size": 875,
+        "lmtime": 0,
+        "modified": false
+      },
       "js": {
         "imwebseto.js": {
           "type": "-",
-          "size": 27839,
-          "lmtime": 1694598722539.2236,
+          "size": 29654,
+          "lmtime": 1694761346432.4895,
           "modified": false
         },
         "seto.js": {
@@ -36,17 +66,63 @@
           "modified": false
         }
       },
-      "css": {
-        "imwebseto.css": {
+      "lib": {},
+      "setodb": {},
+      "test": {
+        "cafe24api.php": {
           "type": "-",
-          "size": 45037,
-          "lmtime": 1694597365123.705,
+          "size": 14,
+          "lmtime": 0,
           "modified": false
         },
-        "seto.css": {
+        "html_test.php": {
+          "type": "-",
+          "size": 5726,
+          "lmtime": 1694759175789.3857,
+          "modified": false
+        },
+        "syncdata.php": {
           "type": "-",
           "size": 0,
           "lmtime": 0,
+          "modified": false
+        },
+        "template1.php": {
+          "type": "-",
+          "size": 8718,
+          "lmtime": 0,
+          "modified": false
+        },
+        "test.php": {
+          "type": "-",
+          "size": 5367,
+          "lmtime": 0,
+          "modified": false
+        },
+        "test2.php": {
+          "type": "-",
+          "size": 1811,
+          "lmtime": 0,
+          "modified": false
+        }
+      },
+      "webapp": {
+        "exp_part1.php": {
+          "type": "-",
+          "size": 2315,
+          "lmtime": 1694768403928.5498,
+          "modified": false
+        },
+        "webapp.css": {
+          "type": "-",
+          "size": 315,
+          "lmtime": 1694768448831.1973,
+          "modified": false
+        },
+        "webapp.js": {
+          "type": "-",
+          "size": 0,
+          "lmtime": 1694767196517.2805,
           "modified": false
         }
       }
