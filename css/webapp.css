@@ -51,19 +51,23 @@
 */
 
 #exp1{width:100%;height:100vh;}
-#exp1 .sss_cont{border:1px solid #cecece;padding:3rem;}
+#exp1 .table_title{font-size:25px; margin-bottom:15px;font-weight:700;color:#777;}
+#exp1 .sss_cont{border:1px solid #cecece;padding:2rem 3rem;margin-top:20px;}
 #exp1 .sss_table{width:100%;flex-flow:wrap}
 #exp1 .sss_table > div{display:block;width:80px;border:1px solid #cecece;text-align:center;}
 #exp1 .sss_table > div > div{padding:5px;}
 #exp1 .sss_table .sss_th{background:#efefef;height:auto;}
-#exp1 .sss_table .sss_th > div:first-child{border-bottom:1px solid #cecece;}
+#exp1 .sss_table .sss_th > div:nth-child(2){border-bottom:1px solid #cecece;border-top:1px solid #cecece;height:35px;}
 #exp1 .sss_table .sss_th > div:last-child{height:35px;}
 #exp1 .sss_table .sss_td .title{border-bottom:1px solid #cecece;background:#fcefef}
-#exp1 .sss_table .sss_td input{text-align:center;}
+#exp1 .sss_table .sss_td .count{border-bottom:1px solid #cecece;}
+#exp1 .sss_table .sss_td .count input{text-align:center;}
+#exp1 .sss_table .sss_td .amount{border-top:1px solid #cecece;}
 #exp1 .input_txt{text-align:center;}
-#exp1 .input_div{text-align:right;padding:15px 0;}
+#exp1 .input_div{text-align:left;padding:15px 0;}
+#exp1 .input_div .btn-outline-edit{width:200px;}
 
-#exp1 .step_cont{margin:50px 0;border:1px solid #cecece;padding:3rem;}
+#exp1 .step_cont{margin:50px 0;border:1px solid #cecece;padding:2rem 3rem;}
 #exp1 .step_div{width:60%;}
 #exp1 .add_step,#exp1 .step_title,#exp1 .step_name{width:100%;}
 #exp1 .add_step{margin-bottom:10px;}
@@ -79,13 +83,30 @@
 #exp1 .step_div .step_name:nth-child(even){background:#efefef;}
 
 
-#exp1 .sum_cont{border:1px solid #cecece; padding:3rem;margin-bottom:50px;}
-#exp1 .sum_cont .month_row .month_title{border-top:1px solid #cecece;border-bottom:1px solid #cecece;border-right:1px solid #cecece;background:#fcefef}
-#exp1 .sum_cont .month_row .month_title:first-child{border-left:1px solid #cecece;}
-#exp1 .sum_cont .month_value_row .month_value{border-bottom:1px solid #cecece;border-right:1px solid #cecece;}
-#exp1 .sum_cont .month_value_row .month_value:first-child{border-left:1px solid #cecece;}
-#exp1 .sum_cont .month_row div,
-#exp1 .sum_cont .month_value_row div{width:80px;text-align:center;padding:5px;}
+#exp1 .search_cont{border:1px solid #cecece;padding:2rem 3rem}
+#exp1 .search_cont .search_row input{width:auto;}
+#exp1 .search_cont .pado{margin:0 20px;}
+#exp1 .search_cont .sbtn_div{width:120px;}
+#exp1 .search_cont .sbtn_div .btn{width:100px;}
+
+
+#exp1 .memcnt_cont{margin-top:10px;margin-bottom:10px;border:1px solid #cecece;padding:2rem 3rem}
+#exp1 .memcnt_cont .table_title .btn{margin-left:20px;}
+#exp1 .memcnt_cont .memcnt_row {display:inline-block}
+#exp1 .memcnt_cont .memcnt_row .memcnt_div{text-align:center;display:inline-block;width:80px;margin-bottom:5px;}
+#exp1 .memcnt_cont .memcnt_row .memcnt_title{border-top:1px solid #cecece;border-bottom:1px solid #cecece;border-right:1px solid #cecece;background:#fcefef;padding:5px;}
+#exp1 .memcnt_cont .memcnt_row .memcnt_value{border-bottom:1px solid #cecece;border-right:1px solid #cecece;padding:5px;}
+#exp1 .memcnt_cont .memcnt_row .memcnt_div:first-child .memcnt_title{border-left:1px solid #cecece;}
+#exp1 .memcnt_cont .memcnt_row .memcnt_div:first-child .memcnt_value{border-left:1px solid #cecece;}
+
+
+#exp1 .sum_cont{border:1px solid #cecece; padding:2rem 3rem;margin-bottom:30px;}
+#exp1 .sum_cont .table_title .btn{margin-left:20px;}
+#exp1 .sum_cont .month_row{display:inline-block}
+#exp1 .sum_cont .month_row .month_div{display:inline-block;width:80px;margin-bottom:5px;border:1px solid #cecece;padding:0;}
+#exp1 .sum_cont .month_row .month_title{border-bottom:1px solid #cecece;border-right:1px solid #cecece;background:#fcefef;width:100%;height:25px;}
+#exp1 .sum_cont .month_row .month_value{width:100%;height:25px;}
+#exp1 .sum_cont .month_row .month_div .month_value:nth-of-type(2){border-bottom:1px solid #cecece;}
 
 
 

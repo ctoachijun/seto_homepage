@@ -21,42 +21,45 @@
     "lib": {},
     "setodb": {},
     "test": {},
+    "webapp": {},
     "www": {
-      "admin": {},
-      "backup": {},
-      "css": {
-        "imwebseto.css": {
+      "webapp": {
+        "ajax_webapp.php": {
           "type": "-",
-          "size": 48524,
-          "lmtime": 1694759723865.0618,
+          "size": 1610,
+          "lmtime": 1695003721218.297,
           "modified": false
         },
-        "seto.css": {
+        "downExcel.php": {
           "type": "-",
-          "size": 0,
-          "lmtime": 0,
+          "size": 1508,
+          "lmtime": 1695017559820.845,
+          "modified": false
+        },
+        "exp_part1.php": {
+          "type": "-",
+          "size": 7540,
+          "lmtime": 1695016960555.6174,
+          "modified": false
+        },
+        "webapp.css": {
+          "type": "-",
+          "size": 4123,
+          "lmtime": 1695011204148.0742,
+          "modified": false
+        },
+        "webapp.js": {
+          "type": "-",
+          "size": 3282,
+          "lmtime": 1695018371504.4863,
           "modified": false
         }
-      },
-      "favicon.ico": {
-        "type": "-",
-        "size": 4202,
-        "lmtime": 0,
-        "modified": false
-      },
-      "files": {},
-      "img": {},
-      "index.php": {
-        "type": "-",
-        "size": 875,
-        "lmtime": 0,
-        "modified": false
       },
       "js": {
         "imwebseto.js": {
           "type": "-",
-          "size": 29654,
-          "lmtime": 1694761346432.4895,
+          "size": 31122,
+          "lmtime": 1695029330370.899,
           "modified": false
         },
         "seto.js": {
@@ -66,63 +69,17 @@
           "modified": false
         }
       },
-      "lib": {},
-      "setodb": {},
-      "test": {
-        "cafe24api.php": {
+      "css": {
+        "imwebseto.css": {
           "type": "-",
-          "size": 14,
-          "lmtime": 0,
+          "size": 49269,
+          "lmtime": 1695027877299.835,
           "modified": false
         },
-        "html_test.php": {
-          "type": "-",
-          "size": 5726,
-          "lmtime": 1694759175789.3857,
-          "modified": false
-        },
-        "syncdata.php": {
+        "seto.css": {
           "type": "-",
           "size": 0,
           "lmtime": 0,
-          "modified": false
-        },
-        "template1.php": {
-          "type": "-",
-          "size": 8718,
-          "lmtime": 0,
-          "modified": false
-        },
-        "test.php": {
-          "type": "-",
-          "size": 5367,
-          "lmtime": 0,
-          "modified": false
-        },
-        "test2.php": {
-          "type": "-",
-          "size": 1811,
-          "lmtime": 0,
-          "modified": false
-        }
-      },
-      "webapp": {
-        "exp_part1.php": {
-          "type": "-",
-          "size": 2315,
-          "lmtime": 1694768403928.5498,
-          "modified": false
-        },
-        "webapp.css": {
-          "type": "-",
-          "size": 315,
-          "lmtime": 1694768448831.1973,
-          "modified": false
-        },
-        "webapp.js": {
-          "type": "-",
-          "size": 0,
-          "lmtime": 1694767196517.2805,
           "modified": false
         }
       }

@@ -11,18 +11,23 @@ function editSaengsan(){
   if(confirm("생산성을 적용 하시겠습니까?")){
     let cnt = $("input[name=ss_count").val();
     
-    let arr_val = new Array();
-    let val;
+    let arr_count = new Array();
+    let arr_amount = new Array();
+    
+    let count,amount;
     for(let i=1; i<=cnt; i++){
-      val = $("input[name=ss_value"+i+"]").val();
-      arr_val.push(val);
+      count = $("input[name=ss_count"+i+"]").val();
+      arr_count.push(count);
+      amount = $("input[name=ss_amount"+i+"]").val();
+      arr_amount.push(amount);
     }
-    let val_txt = arr_val.join("|");
+    let count_txt = arr_count.join("|");
+    let amount_txt = arr_amount.join("|");
     
     $.ajax({
       url : "ajax_webapp.php",
       type: "post",
-      data: {"w_mode":"editSeangsan","data":val_txt},
+      data: {"w_mode":"editSeangsan","count":count_txt,"amount":amount_txt,"cnt":cnt},
       success: function(result){
         let json = JSON.parse(result);
         console.log(json);
@@ -123,11 +128,23 @@ function delStep(idx){
 }
 
 function downExcel(){
-  let value = $("input[name=sumsum").val();
+  let count = $("input[name=sumcnt").val();
+  let amount = $("input[name=sumamt").val();
   let toyear = $("input[name=years").val();
-  
-  $("#exp1").append("<form name='sumform' action='downExcel.php' method='post'></form>");
-  $("form").append("<input type='hidden' name='sums' value='"+value+"'>");
-  $("form").append("<input type='hidden' name='toyear' value='"+toyear+"'>");
+
+
+  $("form").attr("action","downExcel.php");
+  // $("#exp1").append("<form name='sumform' action='downExcel.php' method='post'></form>");
+  // $("form").append("<input type='hidden' name='sums_cnt' value='"+count+"'>");
+  // $("form").append("<input type='hidden' name='sums_amt' value='"+amount+"'>");
+  // $("form").append("<input type='hidden' name='toyear' value='"+toyear+"'>");
   $("form").submit();
 }
+
+function searchDate(){
+  let start = $("input[name=sstart").val();
+  let end = $("input[name=send").val();
+  
+  location.href="./exp_part1.php?sstart="+start+"&send="+end;
+}
+

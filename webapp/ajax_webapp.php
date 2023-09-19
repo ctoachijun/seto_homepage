@@ -5,12 +5,17 @@
     
     case "editSeangsan":
       $jud = 1;
-      $box = explode("|",$data);
-      for($i=0; $i<count($box); $i++){
-        $value = $box[$i];
-        if(empty($value)) $value = 0;
+      $box = explode("|",$count);
+      $box2 = explode("|",$amount);
+      for($i=0; $i<$cnt; $i++){
+        $count = $box[$i];
+        if(empty($count)) $count = 0;
         
-        $sql = "UPDATE ex_wp1_sss SET ews_value = '{$value}' WHERE ews_step = '$i'";
+        $amount = $box2[$i];
+        if(empty($amount)) $amount = 0;
+
+        
+        $sql = "UPDATE ex_wp1_sss SET ews_count = '{$count}', ews_amount = '{$amount}' WHERE ews_step = '$i'";
         $re = sql_exec($sql);
         
         if(!$re) $jud++;

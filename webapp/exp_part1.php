@@ -1,27 +1,29 @@
 <?
-  include "../lib/seto.php";
-  include "../lib/PHPExcel/Classes/PHPExcel.php";
-   
-  // 생산성
+  include "../lib/webapp.php";
+     
+  // 기준
   $ss_sql = "SELECT * FROM ex_wp1_sss";
   $ss_re = sql_query($ss_sql);
   $ss_count = count($ss_re);
-  
-  
-  // 스태프
+    
+  // 멤버
   $st_sql = "SELECT * FROM ex_wp1_stp";
   $st_re = sql_query($st_sql);
   
   // 합계
   $toyear = date("Y");
+  $first_month = $toyear."-01";
+  $last_month = $toyear."-12";
   $today = date("Y-m-d");
 
+  // 출력 날짜 초기화
+  if(!$sstart) $sstart = $first_month;
+  if(!$send) $send = $last_month;
   
-  // 배열 준비
-  for($i=1; $i<13; $i++){
-    $arr_sum[$i] = 0;
-  }
-  $arr_txt;
+  
+  $arr_txt = $arr_atxt;
+  $arr_sum = array();
+  $arr_mem_cnt = getSumMember($sstart,$send);
   
 ?>
 
@@ -29,11 +31,11 @@
 <html lang="ko">
 <head>
 	<meta charset="utf-8">
-	<title>생산성</title>
+	<title>멤버 건수/금액관리</title>
   <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-  <link href="./webapp.css" rel="stylesheet">
+  <link href="../css/webapp.css" rel="stylesheet">
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <script src="./webapp.js"></script>
+  <script src="../js/webapp.js"></script>
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>  
 
@@ -49,46 +51,49 @@
       
       <div class="rows">
         <div class="sss_cont">
+          <div class="table_title">#기준</div>
           <div class="sss_table dflex">
+            
             <div class="sss_th dflex jcai-center">
-              <div class="dflex jcai-center">월차</div><div class=" dflex jcai-center">생산성</div>
+              <div class="dflex jcai-center">월차</div><div class=" dflex jcai-center">건수</div><div class="dflex jcai-center">금액</div>
             </div>
             
             <?
                 foreach($ss_re as $v){ 
                   $ss_idx = $v['ews_idx'];
                   $step = $v['ews_step'];
-                  $value = $v['ews_value'];
+                  $count = $v['ews_count'];
+                  $amount = $v['ews_amount'];
                   
 
             ?>
                   <div class="sss_td">
                     <div class="title dflex jcai-center"><?=$step?></div>
-                    <div class="value  dflex jcai-center"><input type="text" class="input_txt" name="ss_value<?=$ss_idx?>" value="<?=$value?>"></div>
+                    <div class="count  dflex jcai-center"><input type="text" class="input_txt" name="ss_count<?=$ss_idx?>" value="<?=$count?>"></div>
+                    <div class="amount  dflex jcai-center"><input type="text" class="input_txt" name="ss_amount<?=$ss_idx?>" value="<?=$amount?>"></div>
                   </div>
 
             <?  } ?>
-            </tr>
-
-            </div>
-            <div class="input_div">
-              <input type="button" class="btn btn-outline-edit" value="수정" onclick="editSaengsan()" >
-              <!-- <input type="button" class="btn btn-outline-add" value="추가" onclick="addSaengsan()" > -->
-              <input type="hidden" name="ss_count" value="<?=$ss_count?>" >
-              <input type="hidden" name="years" value="<?=$toyear?>" >
-            </div> 
           </div>
-        </div>  
+          <div class="input_div">
+            <input type="button" class="btn btn-outline-edit" value="수정" onclick="editSaengsan()" >
+            <!-- <input type="button" class="btn btn-outline-add" value="추가" onclick="addSaengsan()" > -->
+            <input type="hidden" name="ss_count" value="<?=$ss_count?>" >
+            <input type="hidden" name="years" value="<?=$toyear?>" >
+          </div> 
+        </div>
+      </div>  
 
       <div class="rows">
         <div class="step_cont">
+            <div class="table_title">#멤버</div>
             <div class="step_div">
               <div class="add_step dflex jcai-center">
                 <div class="input_name"><input type="text" class="input_txt" id="step_name" name="step_name" placeholder="이름" onchange="chkSpaceFe(this)"></div>
                 <div class="input_month"><input type="text" class="input_txt" id="datepicker" name="step_month" placeholder="시작일" readonly></div>
                 <div class="input_btn">
                   <input type="button" class="btn btn-add" value="추가" onclick="addStep()">
-                  <input type="button" class="btn" value="엑셀" onclick="downExcel()">
+
                 </div>
                 <div></div>
               </div>
@@ -104,59 +109,123 @@
                 $name = $v['ewstp_name'];
                 $date = $v['ewstp_date'];
                                 
-                $date1 = new DateTime($today);
-                $date2 = new DateTime($date);
-                $interval = date_diff($date1, $date2);
-                $diff_month = $interval->m;
+                if($date > $today){
+                  $diff_month = 0;
+                }else{
+                  $date1 = new DateTime($today);
+                  $date2 = new DateTime($date);
+                  $interval = date_diff($date1, $date2);
+                  
+                  $diff_year = $interval->y;
+                  $diff_month = $interval->m+1;
+                  
+                  // 1년 이상 차이가 나면 12개월 더하기(연도가 바뀌는게 아닌 1년 차이상.)
+                  if($diff_year > 0 ){
+                    $diff_month += 12;
+                  }
+                }
                 
                 // echo "$today - $date = $diff_month 개월 차이<br>";
                 
-                sumMonth($diff_month,$date);
-                $arr_txt = implode("|",$arr_sum);
               ?>
               <div class="step_name dflex">
                 
                 <div class="name<?=$idx?> dflex jcai-center"><input type="text" class="input_txt" id="name<?=$idx?>" value="<?=$name?>" name="name<?=$idx?>"></div>
                 <div class="date<?=$idx?> dflex jcai-center"><input type="text" class="input_txt" id="date<?=$idx?>" value="<?=$date?>" name="date<?=$idx?>"></div>
-                <div class="month dflex jcai-center"><?=$diff_month+1?>개월차</div>
+                <div class="month dflex jcai-center"><?=$diff_month?>개월차</div>
                 <div class="btn_div bd<?=$idx?>">
-                  <input type="button" class="btn btn-edit" value='수정' onclick='editStep(<?=$idx?>)'>
-                  <input type="button" class="btn btn-delete" value='삭제' onclick='delStep(<?=$idx?>)'>
+                  <input type="button" class="btn btn-outline-edit" value='수정' onclick='editStep(<?=$idx?>)'>
+                  <input type="button" class="btn btn-outline-delete" value='삭제' onclick='delStep(<?=$idx?>)'>
                 </div>
               </div>              
               <?
               }
               ?>
               
-              <input type="hidden" name="sumsum" value="<?=$arr_txt?>" >
+              <input type="hidden" name="sumcnt" value="<?=$arr_cnt_txt?>" >
+              <input type="hidden" name="sumamt" value="<?=$arr_amt_txt?>" >
             </div>
         </div>
       </div>
           
       <div class="rows">
-        <div class="sum_cont dflex fd-column">
-          <div class="year_title"><?=$toyear?>년(월차 아닙니다.)</div>
-          <div class="month_row dflex">
+        <div class="search_cont dflex fd-column">
+          
+          <div class="table_title dflex ai-center">#검색 범위</div>
+          <div class="search_row dflex">
+            <div class="start_div dflex jcai-center">
+              <input type="text" class="input_txt" name="sstart" placeholder="시작일 ex) 2023-09" value="<?=$sstart?>" maxlength="7">
+            </div> 
+            <div class="pado dflex jcai-center">~</div>
+            <div class="end_div dflex jcai-center">
+              <input type="text" class="input_txt" name="send" placeholder="종료일 ex) 2023-09" value="<?=$send?>" maxlength="7">
+            </div>
+            <div class="sbtn_div dflex jcai-center"><input type="button" class="btn" value="검색" onclick="searchDate()" />
+          </div>
+        </div>
+      </div>
+
+      <div class="rows">
+        <div class="memcnt_cont dflex fd-column">
+          
+          <div class="table_title dflex ai-center">#월별 멤버수</div>
+          <div class="memcnt_row">
             <?
-              for($i=1; $i<13; $i++):
+                foreach($arr_mem_cnt as $k => $v):
+                  if($v > 0){
+                    $k = "<b>{$k}</b>";
+                    $v = "<b>{$v}</b>";
+                  }
+  
             ?>
-              <div class="month_title"><?=$i?>월</div>                        
+              <div class="memcnt_div dflex fd-column">
+                <div class="memcnt_title"><?=$k?></div>
+                <div class="memcnt_value"><?=$v?></div>
+              </div>
             <?
-              endfor;
+              endforeach;
             ?>
           </div>
-          <div class="month_value_row dflex">
-            <?
-              // for($i=1; $i<13; $i++):
-                foreach($arr_sum as $v):
-            ?>
-              <div class="month_value"><?=$v?></div>
-            <?
-              // endfor;
-                endforeach;
-            ?>
-
         </div>
+      </div>
+
+
+      <div class="rows">
+        <div class="sum_cont dflex fd-column">
+          
+          <div class="table_title dflex ai-center">#결과<input type="button" class="btn" value="엑셀" onclick="downExcel()"></div>
+          <!-- <div class="year_title"><?=$toyear?>년(월차 아닙니다.)</div> -->
+          <div class="month_row">
+            <?
+
+              // sumMonth($diff_month,$date);
+              sumMonth($sstart,$send);
+              foreach($arr_sum as $k => $v):
+                $box = explode("|",$v);
+                $sum_cnt = $box[0];
+                $sum_amt = $box[1];
+                
+                $post_sum .= "$k/$v";
+                $post_sum .= "#";
+                
+                if($sum_cnt > 0){
+                  $sum_cnt = "<b>{$sum_cnt}</b>";
+                  $sum_amt = "<b>{$sum_amt}</b>";
+                }
+                
+            ?>  
+                <div class="month_div">
+                  <div class="month_title dflex jcai-center"><?=$k?></div>                        
+                  <div class="month_value dflex jcai-center"><?=$sum_cnt?></div>
+                  <div class="month_value dflex jcai-center"><?=$sum_amt?></div>
+                </div>
+            <?
+              endforeach;
+            ?>
+            <form method="post">
+              <input type="hidden" name="arr_sum" value="<?=$post_sum?>" >
+            </form>
+          </div>
         </div>
       </div>
 
@@ -169,57 +238,32 @@
 
   <script>
     $( function() {
-      $("#datepicker").datepicker();
+      
+      $.datepicker.setDefaults({
+        dateFormat: 'yy-mm-dd',
+        prevText: '이전 달',
+        nextText: '다음 달',
+        monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+        monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+        showMonthAfterYear: true,
+        
+        dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+        dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+        dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],        
+        yearSuffix: '년'
+      });
+      
+      $("#datepicker").datepicker({
+        
+      });
     })
-    $.datepicker.setDefaults({
-      dateFormat: 'yy-mm-dd',
-      prevText: '이전 달',
-      nextText: '다음 달',
-      monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-      monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-      dayNames: ['일', '월', '화', '수', '목', '금', '토'],
-      dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
-      dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
-      showMonthAfterYear: true,
-      yearSuffix: '년'
-    });
+
+    
+    
       
   </script>
   
   
 </body>
 </html
-
-
-<?
-
-function sumMonth($diff,$date){
-  for($i=$diff,$a=1; $i>-1; $i--,$a++){
-    global $arr_sum,$today,$arr_txt;
-
-    $after_month = date("Y-m-d",strtotime("+{$a} months", strtotime($date)));
-    // 다음달이 오늘보다 작으면 배열 해당월 칸에 값을 더한다.
-    if($today > $after_month){
-      $box = explode("-",$after_month);
-      $index = (int)$box[1];
-      $sum = $arr_sum[$index];
-      $add = getSssValue($a);
-      $total = $sum + $add;
-      $arr_sum[$index] = $total;
-      
-      // echo "기준월 $date / $a 개월 뒤 $after_month / index : $index / sum : $sum / add : $add / total : $total<br>";
-    }
-  }
-  
-}
-
-
-function getSssValue($num){
-  $sql = "SELECT * FROM ex_wp1_sss WHERE ews_step = '{$num}'";
-  $re = sql_fetch($sql);
-  
-  return $re['ews_value'];
-}
-
-?>
 

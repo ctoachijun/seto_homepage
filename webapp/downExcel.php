@@ -2,43 +2,65 @@
   include "../lib/seto.php";
   include "../lib/PHPExcel/Classes/PHPExcel.php";
 
-  $arr_sum = explode("|",$sums);
+  $arr_cnt_sum = explode("|",$sums_cnt);
+  $arr_amt_sum = explode("|",$sums_amt);
   
-  $fname = "생산성_합산결과";
-  $re = sql_query($sql);
+  $fname = "합산결과";
+   
+  $box = explode("#",$arr_sum);
   
+  
+  $head = array("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z");
+  $borderStyle = array(
+    'borders' => array(
+    'allborders' => array(
+      'style' => PHPExcel_Style_Border::BORDER_THIN
+      )
+    )
+  );
   
   $phpExcel = new PHPExcel();
   $phpExcel->setActiveSheetIndex(0);
   $phpExcel->getActiveSheet()
-  ->setCellValue("A1","{$toyear}년")
-  ->setCellValue("A2","1월")
-  ->setCellValue("B2","2월")
-  ->setCellValue("C2","3월")
-  ->setCellValue("D2","4월")
-  ->setCellValue("E2","5월")
-  ->setCellValue("F2","6월")
-  ->setCellValue("G2","7월")
-  ->setCellValue("H2","8월")
-  ->setCellValue("I2","9월")
-  ->setCellValue("J2","10월")
-  ->setCellValue("K2","11월")
-  ->setCellValue("L2","12월")
-  ->setCellValue("A3",$arr_sum[0])
-  ->setCellValue("B3",$arr_sum[1])
-  ->setCellValue("C3",$arr_sum[2])
-  ->setCellValue("D3",$arr_sum[3])
-  ->setCellValue("E3",$arr_sum[4])
-  ->setCellValue("F3",$arr_sum[5])
-  ->setCellValue("G3",$arr_sum[6])
-  ->setCellValue("H3",$arr_sum[7])
-  ->setCellValue("I3",$arr_sum[8])
-  ->setCellValue("J3",$arr_sum[9])
-  ->setCellValue("K3",$arr_sum[10])
-  ->setCellValue("L3",$arr_sum[11]);
-
+  ->setCellValue("A1","날짜 범위 검색 결과")
+  ->setCellValue("A3","건수")
+  ->setCellValue("A4","금액");
   
-
+  $phpExcel->getActiveSheet()->getStyle("A2:A4")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB("FFCCCCCC");
+  $phpExcel->getActiveSheet()->getStyle("A2:A4")->applyFromArray($borderStyle);
+  
+  for($a=2; $a<5; $a++){
+    for($i=1; $i<=count($box); $i++){
+      
+      if(!empty($box[$i])){
+        $head_txt = $head[$i];
+        $box2 = explode("/",$box[$i]);
+        $title = $box2[0];
+        
+        $box3 = explode("|",$box2[1]);
+        $count = $box3[0];
+        $amount = $box3[1];
+        
+        if($a == 2){
+          $value = $title;
+          
+          $phpExcel->getActiveSheet()->getStyle("{$head_txt}{$a}")->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB("FFd6f4e6");
+          
+          
+        }else if($a == 3){
+          $value = $count;
+        }else if($a == 4){
+          $value = $amount;
+        }
+        
+        $phpExcel->getActiveSheet()->getStyle("{$head_txt}{$a}")->applyFromArray($borderStyle);
+        $phpExcel->getActiveSheet()
+          ->setCellValue("{$head_txt}{$a}",$value);
+          
+      }
+    }
+  }
+  
   
   
   $fname = iconv("UTF-8","EUC-KR",$fname);
