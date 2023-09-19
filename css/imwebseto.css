@@ -62,7 +62,6 @@ html,body{
 /* 드롭다운 (가로) */
 #footer_wrap .footer_block1 .dropdown_count{width:60%;position:relative;display:none;}
 #footer_wrap .footer_block1 .dropdown_count span{color:#fff;border:2px solid #efefef;padding:8px;border-radius:20px;margin-right:3px;cursor:pointer}
-#footer_wrap .footer_block1 .dropdown_count .current_country{}
 #footer_wrap .footer_block1 .dropdown_count .sub_countmenu{display:none}
 #footer_wrap .footer_block1 .dropdown_count .sub_countmenu:hover span{color:#ff003b;border:2px solid #ff003b;}
 

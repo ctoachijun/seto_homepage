@@ -170,17 +170,26 @@
           
           <div class="table_title dflex ai-center">#월별 멤버수</div>
           <div class="memcnt_row">
-            <?
+            <div class="memcnt_div_title dflex fd-column">
+              <div class="memcnt_title"></div>
+              <div class="memcnt_value">신규</div>
+              <div class="memcnt_value">누적</div>
+            </div>
+
+          <?
                 foreach($arr_mem_cnt as $k => $v):
+                  $s = getSumMemberCount($k);    
                   if($v > 0){
                     $k = "<b>{$k}</b>";
                     $v = "<b>{$v}</b>";
+                    $s = "<b>{$s}</b>";
                   }
   
             ?>
               <div class="memcnt_div dflex fd-column">
                 <div class="memcnt_title"><?=$k?></div>
                 <div class="memcnt_value"><?=$v?></div>
+                <div class="memcnt_value"><?=$s?></div>
               </div>
             <?
               endforeach;
@@ -196,6 +205,11 @@
           <div class="table_title dflex ai-center">#결과<input type="button" class="btn" value="엑셀" onclick="downExcel()"></div>
           <!-- <div class="year_title"><?=$toyear?>년(월차 아닙니다.)</div> -->
           <div class="month_row">
+            <div class="memcnt_div_title dflex fd-column">
+              <div class="memcnt_title">&nbsp;</div>
+              <div class="memcnt_value">건수</div>
+              <div class="memcnt_value">금액</div>
+            </div>            
             <?
 
               // sumMonth($diff_month,$date);

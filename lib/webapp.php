@@ -81,11 +81,13 @@ function sumMonth($start,$end){
   
   // 왜인지.. 1월에는 2월이 같이 나온다. diff에서 개월차 수가 그렇게 됨.
   // 전년 10월~ 당년 1월 = 4개월차  / 전년 10월~당년 2월 = 4개월차.
-  // 그래서 1월에는 차수 하나 빼주기
-  if($cmonth == "01"){
+  // 그래서 1월에는 차수 하나 빼주기 - 12월도 동일하게 나와서 포함
+  if($cmonth == "01" || $cmonth == "12"){
     $mcha--;
   }
-
+  
+  // echo "mcha $mcha <br>";
+  
   $tmp_start = $start;
   for($i=0; $i<=$mcha; $i++){
     $arr_sum[$tmp_start] = "0|0";
@@ -99,68 +101,76 @@ function sumMonth($start,$end){
     $sbox[1] = sprintf("%02d",$sbox[1]+1);
     $tmp_start = implode("-",$sbox);
   }
-  
+
   // $sql = "SELECT * FROM ex_wp1_stp WHERE ewstp_date >= '{$dstart}' AND ewstp_date <= '{$dend}'";
   $sql = "SELECT * FROM ex_wp1_stp";
   $re = sql_query($sql);
   
   // 멤버 한명당 수치를 대입해서 합산
   foreach($re as $v){
-    $mstart = substr($v['ewstp_date'],0,7);
+    // $mstart = $v['ewstp_date'];
+    $sub_mstart = substr($v['ewstp_date'],0,7);
     
-    // echo $v['ewstp_name'];
-    // echo "<br>";
-    
-    $diff1 = new DateTime($mstart);
-    $diff2 = new DateTime($today);
-    $interv = date_diff($diff1,$diff2);
-    
-    $interv_y = $interv->y;
-    $interv_m = $interv->m;
-    if($interv_y > 0){
-      $interv_m += 12;
-    }
-  
-   
-    // 멤버의 시작 년월
-    $ms_date = $mstart;
-    for($i=0; $i<=$interv_m; $i++){
+    foreach($arr_sum as $key => $val){
+      // echo "$sub_mstart : $key <br>";      
       
-      $moncha = getSssValue($i);
-
-      if($ms_date >= $start && $ms_date <= $end){
-        // 안의 데이터를 꺼내서 합산 후 다시 문자열로 대입
-        $inbox = $arr_sum[$ms_date];
-        if(!$inbox || $inbox === 0){
-          $arr_sum[$ms_date] = $moncha;
-        }else{
+      if($sub_mstart < $key){
+        if($key >= $start){
+          // echo "key = $key <br>";
+          $sub_key = $key."-20";
+          $diff1 = new DateTime($sub_key);
+          $diff2 = new DateTime($sub_mstart);
+          $interv = date_diff($diff1,$diff2);
+      
+          $interv_y = $interv->y;
+          $interv_m = $interv->m;
+          if($interv_y > 0){
+            $interv_m += 12;
+          }
+          
+          $step = $interv_m+1;
+          $moncha = getSssValue($step);        
+          // echo "$step : $moncha <br>";
+  
+          
+          $inbox = $arr_sum[$key];
+          
           $box = explode("|",$inbox);
           $incnt = $box[0];
           $inamount = $box[1];
           
           $monbox = explode("|", $moncha);
           $moncnt = $monbox[0];
-          // if($moncnt > 0 ) $moncnt = 1;
           $monamount = $monbox[1];
           
           $sum_cnt = $incnt + $moncnt;
           $sum_amount = $inamount + $monamount;
           $sum_txt = $sum_cnt."|".$sum_amount;
           
-          $arr_sum[$ms_date] = $sum_txt;
+          // echo "$incnt + $moncnt = $sum_cnt <br>";
+          // echo "$inamount + $monamount = $sum_amount <br>";
+          // echo "$sum_txt<br><br>";
+          
+          
+          $arr_sum[$key] = $sum_txt;
+          // echo "arr_sum $key = ".$arr_sum[$key]."<br><br><br>";
         }
+    
+      }else{
+        // echo "시작일보다 작으니 패스<br><br>";
       }
-      // $arr_sum[$ms_date] = getSssValue($i);
-      // 시작일의 한달 뒤
-      $after_month = date("Y-m-d",strtotime("+1 months", strtotime($ms_date."-01")));
-      $ms_date = substr($after_month,0,7);
+      
     }
+
     // foreach($arr_sum as $k => $v){
     //   echo "$k : $v <br>";
     // }
     // echo "<br><br>";
+
+    // echo "<br>";
   }
 }
+
 function getSssValue($num){
   $sql = "SELECT * FROM ex_wp1_sss WHERE ews_step = '{$num}'";
   $re = sql_fetch($sql);
@@ -185,7 +195,7 @@ function getSumMember($start,$end){
   $cmonth = substr($end,5,2);
   $cyear = substr($end,0,4);
   $dstart = $start."-01";
-  $dend = date("Y-m-t",mktime(0,0,0,$cmonth,1,$cyear));
+  $dend = $end."-20";
   
   // 개월차를 구함  
   $date1 = new DateTime($dstart);
@@ -197,13 +207,6 @@ function getSumMember($start,$end){
   $mcha = $interval->m;
   if($ycha > 0){
     $mcha += $ycha * 12;
-  }
-  
-  // 왜인지.. 1월에는 2월이 같이 나온다. diff에서 개월차 수가 그렇게 됨.
-  // 전년 10월~ 당년 1월 = 4개월차  / 전년 10월~당년 2월 = 4개월차.
-  // 그래서 1월에는 차수 하나 빼주기
-  if($cmonth == "01"){
-    $mcha--;
   }
 
   $tmp_start = $start;
@@ -236,6 +239,17 @@ function getSumMember($start,$end){
   }
 
   return $arr_mcnt;
+}
+
+function getSumMemberCount($date){
+  $emonth = substr($date,5,2);
+  $eyear = substr($date,0,4);
+  $last_end = date("Y-m-t",mktime(0,0,0,$emonth,1,$eyear));
+  
+  $sql = "SELECT * FROM ex_wp1_stp WHERE ewstp_date <= '{$last_end}%'";
+  $re = sql_num_rows($sql);
+  
+  return $re;
 }
 
 

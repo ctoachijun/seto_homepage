@@ -70,7 +70,6 @@ $(function () {
       }
       // 모바일 사이즈. 메인 글자 크기와 사이즈가 다르므로 별도 동작
       if($(window).width() <= 414){
- 
         $("#visual_s20230817569ed54963a8f .txt_waku").css("width",wkw-20);
         setInterval( ()=>{      
           moveWakuMobi(jud);
