@@ -66,7 +66,7 @@ $(function () {
           moveWaku(jud);
           jud++;
           if(jud == 4) jud = 1;
-        },3000);
+        },3500);
       }
       // 모바일 사이즈. 메인 글자 크기와 사이즈가 다르므로 별도 동작
       if($(window).width() <= 414){
@@ -87,11 +87,11 @@ $(function () {
     $(window).scroll(function () {
 
       // top버튼 표시처리
-      if( $(window).scrollTop() < 1000 ){
-        $("#w20230825d156046a1b84d").css("opacity","0");
-      }else{
-        $("#w20230825d156046a1b84d").css("opacity","1");
-      }
+      // if( $(window).scrollTop() < 1000 ){
+      //   $("#w20230825d156046a1b84d").css("opacity","0");
+      // }else{
+      //   $("#w20230825d156046a1b84d").css("opacity","1");
+      // }
       
       // let fwid = $(".fixed_left").width() + 30;
       // HOME 사업영역 표시 및 fixed 처리.
@@ -256,7 +256,6 @@ $(function () {
     // 피플 모바일에서 클릭시 호버효과 나오게
     if($(window).width() < 991){
       $("#s20230913d2cba4c85dfe6 .img_wrap").click(function(){
-      
         if($(this).children(".txt._txt_wrap").css("display") == "none"){
           $(".txt._txt_wrap").css("display","block");
           $(".hover_overlay").css({
@@ -491,7 +490,7 @@ const counter = ($counter, max) => {
 function chk_tgroup(group,num){
   let val;
   if(group == 1){
-    val = $(".chk_tgroup:nth-of-type("+num+")").html();
+    val = $(".chk_tgroup:nth-of-type("+num+") span").html();
     $("input[name='type_check[]']").each(function(index){
       if($(this).val() == val){
         if($(this).prop("checked") === false){
@@ -504,7 +503,7 @@ function chk_tgroup(group,num){
       }
     })
   }else{
-    val = $(".chk_smok:nth-of-type("+num+")").html();
+    val = $(".chk_smok:nth-of-type("+num+") span").html();
     $("input[name='smok[]']").each(function(index){
       if($(this).val() == val){
         if($(this).prop("checked") === false){
@@ -534,24 +533,47 @@ function setContactFormData(){
   // 필수 체크
   if(!ucomp){
     alert("회사명을 입력 해 주세요.");
+    $("#contact_comp").focus();
+    $(window).scrollTop($("#contact_comp").offset().top);
+    return false;
+  }
+
+  if( !tel1 ){
+    alert("연락처를 입력 해 주세요.");
+    $("#tel1").focus();
+    $(window).scrollTop($("#contact_comp").offset().top);
+    return false;
+  }
+  if( !tel2 ){
+    alert("연락처를 입력 해 주세요.");
+    $("#tel2").focus();
+    $(window).scrollTop($("#contact_comp").offset().top);
+    return false;
+  }
+  if( !tel3 ){
+    alert("연락처를 입력 해 주세요.");
+    $("#tel3").focus();
+    $(window).scrollTop($("#contact_comp").offset().top);
     return false;
   }
   if(!uname){
     alert("이름을 입력 해 주세요.");
-    return false;
-  }
-  if( !tel1 || !tel2 || !tel3 ){
-    alert("연락처를 입력 해 주세요.");
+    $("#contact_name").focus();
+    $(window).scrollTop($("#contact_comp").offset().top);
     return false;
   }
   if(!uemail){
     alert("이메일을 입력 해 주세요.");
+    $("#contact_email").focus();
+    $(window).scrollTop($("#contact_comp").offset().top);
     return false;
   }
 
   let re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
   if (!re.test(uemail)) {
     alert("이메일 형식을 확인 해 주세요.");
+    $("#contact_email").focus();
+    $(window).scrollTop($("#contact_comp").offset().top);
     return false;
   }
   
@@ -572,6 +594,7 @@ function setContactFormData(){
   
   if(chk1 != "Y"){
     alert("유형은 하나이상 선택 해 주세요.");
+    $(window).scrollTop($("#contact_email").offset().top);
     return false;
   }
   
