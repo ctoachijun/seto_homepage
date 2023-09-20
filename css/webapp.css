@@ -92,29 +92,28 @@
 
 #exp1 .memcnt_cont{margin-top:10px;margin-bottom:10px;border:1px solid #cecece;padding:2rem 3rem}
 #exp1 .memcnt_cont .table_title .btn{margin-left:20px;}
-#exp1 .memcnt_cont .memcnt_row {display:inline-block}
-#exp1 .memcnt_cont .memcnt_row .memcnt_div{text-align:center;display:inline-block;width:80px;margin-bottom:5px;}
-#exp1 .memcnt_cont .memcnt_row .memcnt_title{border-top:1px solid #cecece;border-bottom:1px solid #cecece;border-right:1px solid #cecece;background:#fcefef;padding:5px;}
-#exp1 .memcnt_cont .memcnt_row .memcnt_value{border-bottom:1px solid #cecece;border-right:1px solid #cecece;padding:5px;}
-#exp1 .memcnt_cont .memcnt_row .memcnt_div:first-child .memcnt_title{border-left:1px solid #cecece;}
-#exp1 .memcnt_cont .memcnt_row .memcnt_div:first-child .memcnt_value{border-left:1px solid #cecece;}
-#exp1 .memcnt_cont .memcnt_row .memcnt_div_title{text-align:center;display:inline-block;width:80px;margin-bottom:5px;}
+/* #exp1 .memcnt_cont .memcnt_row {display:inline-block} */
+#exp1 .memcnt_cont .memcnt_row .memcnt_div{text-align:center;display:inline-block;width:80px;margin-bottom:5px;border:1px solid #cecece}
+#exp1 .memcnt_cont .memcnt_row .memcnt_title{border-bottom:1px solid #cecece;border-right:1px solid #cecece;background:#fcefef;padding:5px;}
+#exp1 .memcnt_cont .memcnt_row .memcnt_value{padding:5px;}
+#exp1 .memcnt_cont .memcnt_row .memcnt_div .memcnt_value:nth-child(2){border-bottom:1px solid #cecece;}
+#exp1 .memcnt_cont .memcnt_row .memcnt_div_title{text-align:center;display:block;width:80px;margin-bottom:5px;margin-right:5px;}
 #exp1 .memcnt_cont .memcnt_row .memcnt_div_title > div{background:#cecece;}
 #exp1 .memcnt_cont .memcnt_row .memcnt_div_title .memcnt_title{height:21px;}
-#exp1 .memcnt_cont .memcnt_row .memcnt_div_title .memcnt_value{border-top:1px solid #fff;padding:5px;}
+#exp1 .memcnt_cont .memcnt_row .memcnt_div_title .memcnt_value{border-top:1px solid #fff;padding:5px;font-weight:700;color:#444;}
 
 
 #exp1 .sum_cont{border:1px solid #cecece; padding:2rem 3rem;margin-bottom:30px;}
 #exp1 .sum_cont .table_title .btn{margin-left:20px;}
-#exp1 .sum_cont .month_row{display:inline-block}
+/* #exp1 .sum_cont .month_row{display:inline-block} */
 #exp1 .sum_cont .month_row .month_div{display:inline-block;width:80px;margin-bottom:5px;border:1px solid #cecece;padding:0;}
 #exp1 .sum_cont .month_row .month_title{border-bottom:1px solid #cecece;border-right:1px solid #cecece;background:#fcefef;width:100%;height:25px;}
-#exp1 .sum_cont .month_row .month_value{width:100%;height:25px;}
+#exp1 .sum_cont .month_row .month_value{width:100%;height:25px;padding:5px; }
 #exp1 .sum_cont .month_row .month_div .month_value:nth-of-type(2){border-bottom:1px solid #cecece;}
-#exp1 .sum_cont .month_row .memcnt_div_title{text-align:center;display:inline-block;width:80px;margin-bottom:5px;}
+#exp1 .sum_cont .month_row .memcnt_div_title{text-align:center;display:block;width:80px;margin-bottom:5px;margin-right:5px;}
 #exp1 .sum_cont .month_row .memcnt_div_title > div{background:#cecece;}
 #exp1 .sum_cont .month_row .memcnt_div_title .memcnt_title{height:26px;}
-#exp1 .sum_cont .month_row .memcnt_div_title .memcnt_value{border-top:1px solid #fff;height:25px;}
+#exp1 .sum_cont .month_row .memcnt_div_title .memcnt_value{border-top:1px solid #fff;padding:5px; height:25px;font-weight:700;color:#444;}
 
 
 
