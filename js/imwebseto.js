@@ -131,7 +131,7 @@ $(function () {
             // 좌측 여백 계산
             $(".fixed_left").css("position","fixed");
             $(".fixed_left").css("top","124px");
-            $(".fixed_left").css("left","16.2%");
+            $(".fixed_left").css("left","260px");
           }else if(bottom_of_window < 1706){
             $(".fixed_left").css("position","absolute");
             $(".fixed_left").css("top","38px");
@@ -206,8 +206,75 @@ $(function () {
       },400);
     })
         
+    // SERVICE - 펀딩 PROCESS
+    // 펀딩 모바일에서 클릭시 호버효과 나오게
+    if($(window).width() < 991){
+      $("#s20230921030b17bf29cb1 .img_wrap").click(function(){
+        if($(this).children(".txt._txt_wrap").css("display") == "none"){
+          $(".txt._txt_wrap").css("display","block");
+          $(".hover_overlay").css({
+            "opacity" : "0"
+          });
+          $(".hover_txt").css({
+            "z-index" : "1",
+            "opacity" : "0"
+          })
+        }else{
+          $(".txt._txt_wrap").css("display","block");
+          // 기존 nametag 부분 숨기기
+          $(this).children(".txt._txt_wrap").css("display","none");
+    
+          // 호버시 배경 검은색
+          $(this).children(".hover_overlay").css({
+            "opacity" : "1"
+          });
+    
+          //호버시 나오는 설명글
+          $(this).children(".hover_txt").css({
+            "z-index" : "10",
+            "opacity" : "1"
+          })
+        }
+      })
+      
+      // 프리오더 PROCESS
+      $("#s20230921cc07d9d02f270 .img_wrap").click(function(){
+        if($(this).children(".txt._txt_wrap").css("display") == "none"){
+          $(".txt._txt_wrap").css("display","block");
+          $(".hover_overlay").css({
+            "opacity" : "0"
+          });
+          $(".hover_txt").css({
+            "z-index" : "1",
+            "opacity" : "0"
+          })
+        }else{
+          $(".txt._txt_wrap").css("display","block");
+          // 기존 nametag 부분 숨기기
+          $(this).children(".txt._txt_wrap").css("display","none");
+    
+          // 호버시 배경 검은색
+          $(this).children(".hover_overlay").css({
+            "opacity" : "1"
+          });
+    
+          //호버시 나오는 설명글
+          $(this).children(".hover_txt").css({
+            "z-index" : "10",
+            "opacity" : "1"
+          })
+        }
+        
+      })
 
+      
+    }
 
+    
+    
+    
+    
+    
     // 연혁 swiper
     if($("#w202309113b812d6fb921e .mySwiper").html()){
       var swiper = new Swiper(".mySwiper", {
@@ -527,32 +594,15 @@ function setContactFormData(){
   let tel3 = $("input[name=tel3]").val();
   let uemail = $("input[name=contact_email]").val();
   let ucomp = $("input[name=contact_comp").val();
-  let ucheck1 = chk1 = ucheck2 = "";
-  let uposition = $("input[name=contact_position").val();
+  let uboon = $("#contact_boon").val();
+  let cont = $("#contact_cont").val();
+
+  
   
   // 필수 체크
   if(!ucomp){
     alert("회사명을 입력 해 주세요.");
     $("#contact_comp").focus();
-    $(window).scrollTop($("#contact_comp").offset().top);
-    return false;
-  }
-
-  if( !tel1 ){
-    alert("연락처를 입력 해 주세요.");
-    $("#tel1").focus();
-    $(window).scrollTop($("#contact_comp").offset().top);
-    return false;
-  }
-  if( !tel2 ){
-    alert("연락처를 입력 해 주세요.");
-    $("#tel2").focus();
-    $(window).scrollTop($("#contact_comp").offset().top);
-    return false;
-  }
-  if( !tel3 ){
-    alert("연락처를 입력 해 주세요.");
-    $("#tel3").focus();
     $(window).scrollTop($("#contact_comp").offset().top);
     return false;
   }
@@ -568,7 +618,6 @@ function setContactFormData(){
     $(window).scrollTop($("#contact_comp").offset().top);
     return false;
   }
-
   let re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
   if (!re.test(uemail)) {
     alert("이메일 형식을 확인 해 주세요.");
@@ -576,40 +625,53 @@ function setContactFormData(){
     $(window).scrollTop($("#contact_comp").offset().top);
     return false;
   }
+
+
+  // if( !tel1 ){
+  //   alert("연락처를 입력 해 주세요.");
+  //   $("#tel1").focus();
+  //   $(window).scrollTop($("#contact_comp").offset().top);
+  //   return false;
+  // }
+  // if( !tel2 ){
+  //   alert("연락처를 입력 해 주세요.");
+  //   $("#tel2").focus();
+  //   $(window).scrollTop($("#contact_comp").offset().top);
+  //   return false;
+  // }
+  // if( !tel3 ){
+  //   alert("연락처를 입력 해 주세요.");
+  //   $("#tel3").focus();
+  //   $(window).scrollTop($("#contact_comp").offset().top);
+  //   return false;
+  // }
   
-  // 체크 된 값을 원래 폼의 체크박스에 체크하기
-  // 유형
-  $("input[name='type_check[]']").each(function(index){
-    if($(this).is(":checked") == true){
-      ucheck1 = $(this).val();
-      chk1 = "Y";
-      
-      $("input[name='checkbox_1k2T3sr7E3[]']").each(function(index){
-        if($(this).val() == ucheck1){
-          $(this).prop("checked",true);
-        }
-      })
-    }
-  })
-  
-  if(chk1 != "Y"){
-    alert("유형은 하나이상 선택 해 주세요.");
-    $(window).scrollTop($("#contact_email").offset().top);
+  if( !uboon ){
+    alert("상담 분야를 선택 해 주세요.");
     return false;
   }
   
-  // 목적
-  $("input[name='smok[]']").each(function(index){
-    if($(this).is(":checked") == true){
-      ucheck2 = $(this).val();
-      
-      $("input[name='checkbox_t49C58l505[]']").each(function(index){
-        if($(this).val() == ucheck2){
-          $(this).prop("checked",true);
-        }
-      })
-    }
-  })
+  if( !cont ){
+    alert("내용을 입력 해 주세요.");
+    $("#contact_cont").focus();
+    return false;
+  }
+  
+  
+  if(!$("#privacy").prop("checked")){
+    alert("개인정보 수집/이용에 동의 해 주세요.");
+    $("input[name='checkbox_A1Q8az4o3f[]']").prop("checked",false);
+    return false;
+  }else{
+    $("input[name='checkbox_A1Q8az4o3f[]']").prop("checked",true);
+  }
+  
+  if(!$("#marketing").prop("checked")){
+    $("input[name='checkbox_4O1WT92x80[]'").prop("checked",false);
+  }else{
+    $("input[name='checkbox_4O1WT92x80[]'").prop("checked",true);
+  }  
+  
   
   // 각 항목 세팅
   $("#input_txt_X3xXA267i9").val(ucomp);
@@ -618,14 +680,10 @@ function setContactFormData(){
   $("input[name=phonenumber2_b0f51fbf67589]").val(tel2);
   $("input[name=phonenumber3_b0f51fbf67589]").val(tel3);
   $("#input_email_K33b013KUJ").val(uemail);
-  $("#input_txt_04F04v0APP").val(uposition);
+  $("#input_select_71w7e352f3").val(uboon);
+  $("#input_text_area_820380Ls56").val(cont);
   
-  $("#input_select_P835cUAu78").val($("#contact_money").val());
-  $("#input_select_18db537785633").val($("#contact_sche").val());
-  $("#input_text_area_820380Ls56").val($("#contact_cont").val());
-  
-  SITE_FORM.confirmInputForm('w2023082153415106e6bcb','N');
-  
+  SITE_FORM.confirmInputForm('w20230922d39e998c04ab7','N');
 }
 
 function chkSpaceFe(obj){
