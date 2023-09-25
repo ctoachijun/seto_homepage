@@ -7,42 +7,13 @@ $(function () {
         $("#s2023080800e57504dc655 .section_bg_color").css("backgroundColor","rgba(0,0,0,0.4)");
         $("#w2023090533b016edb5f36 .plain_name").css("color","#fff");
         $("#dropdown_w2023090533b016edb5f36 .plain_name").css("color","#fff");
-
-        // 이탈시 시간차로 메인 복원처리에 시간차때문에 여러 오류가 나서, 다 덮어씌움
-        // setTimeout(function(){
-        //   $("#s2023080800e57504dc655 .section_bg_color").css("backgroundColor","rgba(0,0,0,0.4)");
-        //   $("#w2023090533b016edb5f36 .plain_name").css("color","#fff");
-        //   $("#dropdown_w2023090533b016edb5f36 .plain_name").css("color","#fff");
-        // },450);
-  
     })
     
     // 메인 영역에서 이탈시 배경,색상 복원
     $("#w2023090533b016edb5f36").mouseleave(function(){
-      // setTimeout(function(){
         $("#s2023080800e57504dc655 .section_bg_color").css("backgroundColor","");
         $("#w2023090533b016edb5f36 .plain_name").css("color","");
         $("#dropdown_w2023090533b016edb5f36 .plain_name").css("color","");
-      // },450);
-
-      // // 메인영역 이탈 후 서브영역 호버시 메인 유지
-      // $("#dropdown_w2023090533b016edb5f36").mouseenter(function(){
-      //   setTimeout(function(){
-      //     $("#s2023080800e57504dc655 .section_bg_color").css("backgroundColor","rgba(0,0,0,0.4)");
-      //     $("#w2023090533b016edb5f36 .plain_name").css("color","#fff");
-      //     $("#dropdown_w2023090533b016edb5f36 .plain_name").css("color","#fff");
-      //   },450);
-      // })
-      
-      // // 메인영역 이탈 후 서브영역 호버 후 서브영역 이탈시 메인 배경,색상 복원
-      // $("#dropdown_w2023090533b016edb5f36 .mega_dropdown_wrap").mouseleave(function(){
-      //   setTimeout(function(){
-      //     $("#s2023080800e57504dc655 .section_bg_color").css("backgroundColor","");
-      //     $("#w2023090533b016edb5f36 .plain_name").css("color","");
-      //     $("#dropdown_w2023090533b016edb5f36 .plain_name").css("color","");
-      //   },450);
-      // })
-
     })
 
     
@@ -61,7 +32,6 @@ $(function () {
 
       // 일정 시간마다 테두리 이동. 단, 766 사이즈 이상에서만.
       if($(window).width() > 414){
-
         setInterval( ()=>{      
           moveWaku(jud);
           jud++;
@@ -85,27 +55,14 @@ $(function () {
 
     // 스크롤시 이미지 등장
     $(window).scroll(function () {
+      var bottom_of_window = $(window).scrollTop() + $(window).height();
 
-      // top버튼 표시처리
-      // if( $(window).scrollTop() < 1000 ){
-      //   $("#w20230825d156046a1b84d").css("opacity","0");
-      // }else{
-      //   $("#w20230825d156046a1b84d").css("opacity","1");
-      // }
-      
-      // let fwid = $(".fixed_left").width() + 30;
       // HOME 사업영역 표시 및 fixed 처리.
       $('#w202308243345d0fde1e26 .service_div').each(function () {
         var bottom_of_element = $(this).offset().top + $(this).outerHeight();
-        var bottom_of_window = $(window).scrollTop() + $(window).height();
         
         // 카운트 시작점을 위한 좌표구하기
         let count_top = $("#s20230906862a64f70b718").offset().top + $("#s20230906862a64f70b718").outerHeight() - 200;    
-        // console.log($(window).scrollTop());
-        // console.log($("#last_sd").offset().top);
-        // console.log(bottom_of_window);
-        // console.log(count_top);
-        // console.log("-------------------");
 
         if($(window).width() > 991){
             
@@ -145,16 +102,13 @@ $(function () {
             $(".fixed_left").css("left","0px");
           }
         }else{
-          // 이 부분은 400px 모바일에서 동작하므로 제외.
-          
+        // 이 부분은 400px 모바일에서 동작하므로 제외.
         }
 
         if (bottom_of_window > bottom_of_element) {
           $(this).animate({ 'opacity': '1' }, 1000);
         }
 
-        
-        // if(bottom_of_window > 3200 && any === false){
         if(bottom_of_window > count_top && any === false){
             any = true;
             // console.log(any);
@@ -170,41 +124,37 @@ $(function () {
             setTimeout(() => counter($pcounter, pmax), 50);
             setTimeout(() => counter($ucounter, umax), 50);
         }
-
       });
       
-      // HOME 뉴스룸 게시판 클릭시 무효화
-      $("#w2023091254e53d77f1943 .post_link_wrap").click(function(){
-          location.href="/about?#w2023091229ebe142df7ae";
-        return false;
-      })
+
+      // ABOUT 애니메이션 스타트
+      let about_top = $("#s202309210bb5ee44410ad").offset().top;
+      // console.log(about_top);
+      // console.log(bottom_of_window);
+      // console.log("-----------------");
+      if(about_top <= bottom_of_window){
+        if($(window).width() < 600){
+          // ABOUT 애니메이션
+          $("#about_div .left_div").css("animation-name","mleft-move");
+          $("#about_div .right_div").css("animation-name","mright-move");
+        }else{
+          // ABOUT 애니메이션
+          $("#about_div .center_div").css("animation-name","center-move");
+          $("#about_div .right_div").css("animation-name","right-move");
+        }
+      }
+      
+      
+      
       
     });
-    // HOME 영역 포개기
-    $(".left_div .more_btn").click(function(){
-      if( $(".left_cont").css("display") == "none" ){
-        $(".left_cont").animate({
-          width: "toggle" 
-        },400);
-      }
+
+    // HOME 뉴스룸 게시판 클릭시 무효화
+    $("#w2023091254e53d77f1943 .post_link_wrap").click(function(){
+      location.href="/about?#w2023091229ebe142df7ae";
+      return false;
     })
-    $(".right_div .more_btn").click(function(){
-      if( $(".right_cont").css("display") == "none" ){
-        $(".right_cont").animate({
-          width: "toggle"
-        },400);
-      }
-    })
-    $(".left_cont i").click(function(){
-      $(".left_cont").animate({
-        width: "toggle" 
-      },400);
-    })
-    $(".right_cont i").click(function(){
-      $(".right_cont").animate({
-        width: "toggle" 
-      },400);
-    })
+
         
     // SERVICE - 펀딩 PROCESS
     // 펀딩 모바일에서 클릭시 호버효과 나오게
@@ -266,59 +216,7 @@ $(function () {
         }
         
       })
-
-      
     }
-
-    
-    
-    
-    
-    
-    // 연혁 swiper
-    if($("#w202309113b812d6fb921e .mySwiper").html()){
-      var swiper = new Swiper(".mySwiper", {
-        scrollbar: {
-          el: ".swiper-scrollbar",
-          hide: false,
-        },
-        navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-          // nextEl: ".prev_btn",
-          // prevEl: ".next_btn",
-        },
-        // effect: 'coverflow',
-        // slidesPerView: 'auto',
-        // coverflow: {
-        //   rotate: 0,
-        //   stretch: 100,
-        //   depth: 150,
-        //   modifier: 1.5,
-        //   slideShadows: true,
-        // }
-        breakpoints: {
-        
-          200: {
-            slidesPerView: 1,
-            spaceBetween: 50,
-          },
-          768: {
-            slidesPerView: 1.3,
-          },
-        },
-                
-      });        
-    }
-    
-    // 연혁 넘기기 버튼
-    $("#s202309116b4fa1ce7069c .custom_btn .prev_btn").click(function(){
-      $(".swiper-button-prev").click();
-    })
-    $("#s202309116b4fa1ce7069c .custom_btn .next_btn").click(function(){
-      $(".swiper-button-next").click();
-    })
-    
     
     // 피플 모바일에서 클릭시 호버효과 나오게
     if($(window).width() < 991){
@@ -425,7 +323,7 @@ $(function () {
           let first_box = first_line.split("-");
           let plf = first_box[0].replace(/[^ㄱ-ㅎ가-힣]/g,"");
           amount = first_box[1];
-          console.log(plf+"/"+amount);
+          // console.log(plf+"/"+amount);
           
           if(plf == "킥스타터"){
             img_name = "https://cdn.imweb.me/thumbnail/20230914/091cbc71c1929.png";
@@ -460,43 +358,26 @@ $(function () {
       })
     }
     
-    // footer 언어 버튼
-    $("#w20230828387546295e2ef .current_country").click(function(){
-      $(".sub_countmenu").toggle();
-    })
-    
-    
-    if($(window).width() < 600){
-      // ABOUT 애니메이션
-      $("#about_div .left_div").css("animation-name","mleft-move");
-      $("#about_div .right_div").css("animation-name","mright-move");
-    }else{
-      // ABOUT 애니메이션
-      $("#about_div .center_div").css("animation-name","center-move");
-      $("#about_div .right_div").css("animation-name","right-move");
-    }
-
-    
     // ABOUT 해외 지사 구글맵 부분 - 클릭시 표시, 클릭시 닫음.
-    $(".addr_div").click(function(){
-      let box = this.className.split(" ");
-      let target = box[1];
-      let dp = $(".addr_iframe_div").css("display");
-      $(".addr_iframe_div").slideUp();
+    // $(".addr_div").click(function(){
+    //   let box = this.className.split(" ");
+    //   let target = box[1];
+    //   let dp = $(".addr_iframe_div").css("display");
+    //   $(".addr_iframe_div").slideUp();
     
-      if($(".i"+target).css("display") == "block"){
-        setTimeout(function(){
-          $("#about_addr_div").css("height","300px");
-        },500);
-      }else{
-        if($("#about_addr_div").css("height") == "300px"){
-          $("#about_addr_div").css("height","600px");
-          $(".i"+target).slideDown();
-        }else{
-          $(".i"+target).slideDown();
-        }
-      }
-    })
+    //   if($(".i"+target).css("display") == "block"){
+    //     setTimeout(function(){
+    //       $("#about_addr_div").css("height","300px");
+    //     },500);
+    //   }else{
+    //     if($("#about_addr_div").css("height") == "300px"){
+    //       $("#about_addr_div").css("height","600px");
+    //       $(".i"+target).slideDown();
+    //     }else{
+    //       $(".i"+target).slideDown();
+    //     }
+    //   }
+    // })
 
     // 요거는 호버시 구글맵 나오게하던거
     // $("#about_addr_div").mouseleave(function(){
@@ -523,10 +404,7 @@ $(function () {
     //   },500);
     // })
     
-    
-      
-
-    
+   
     
 })
 // load 끝

@@ -303,18 +303,22 @@ html,body{
 
 /* 수출 바우처 */
 .voucher_wrap{width:100%;}
+.voucher_wrap .voucher_cont{margin-top:20px;}
 .voucher_wrap .voucher_cont .voucher_row{display:flex;justify-content: flex-end;margin-bottom:15px;}
 .voucher_wrap .voucher_cont .voucher_div:first-child{margin-right:15px;}
-.voucher_wrap .voucher_cont .voucher_div{width:300px;height:220px;}
+.voucher_wrap .voucher_cont .voucher_div{width:300px;height:220px;background:#000;border-radius:30px;display:flex;align-items:center;justify-content:center;flex-direction: column;}
+.voucher_wrap .voucher_cont .voucher_div .logo_div{width:200px;height:50px;margin-bottom:15px;object-fit: contain;}
+.voucher_wrap .voucher_cont .voucher_div .logo_div img{width:100%;height:100%;}
+.voucher_wrap .voucher_cont .voucher_div .txt_div{width:80%;height:45px;text-align:center;font-size:17px;color:#fff;}
+.voucher_wrap .voucher_cont .kotra_div{width:300px;height:220px;background: url('https://cdn.imweb.me/thumbnail/20230828/ef76df9cb801d.jpg') no-repeat;background-size:100% 100%;}
+.voucher_wrap .voucher_cont .kotra_div .logo_div{width:200px;height:80px;margin-bottom:15px;object-fit: contain;}
+.voucher_wrap .voucher_cont .voucher_row:last-child .voucher_div:last-of-type .logo_div{height:90px;}
 /* .voucher_wrap .voucher_cont .voucher_div{width:300px;height:220px;display:flex;justify-content: center;align-items:center;flex-direction: column;border-radius:20px;background:#000;} */
-.voucher_wrap .voucher_cont .voucher_div .logo_div{width:200px;height:50px;margin-bottom:15px;object-fit: contain;visibility:hidden}
-.voucher_wrap .voucher_cont .voucher_div .logo_div img{width:100%;height:100%;visibility:hidden}
-.voucher_wrap .voucher_cont .voucher_div .txt_div{width:80%;height:45px;text-align:center;font-size:18px;color:#fff;visibility:hidden}
 
-.voucher_wrap .voucher_cont .voucher_row:first-child .voucher_div:first-of-type{background: url('https://cdn.imweb.me/thumbnail/20230921/5ea4d81fc1487.jpg') no-repeat;background-size:100% 100%;}
+/* .voucher_wrap .voucher_cont .voucher_row:first-child .voucher_div:first-of-type{background: url('https://cdn.imweb.me/thumbnail/20230921/5ea4d81fc1487.jpg') no-repeat;background-size:100% 100%;}
 .voucher_wrap .voucher_cont .voucher_row:first-child .voucher_div:last-of-type{background: url('https://cdn.imweb.me/thumbnail/20230921/daa380d026501.jpg') no-repeat;background-size:100% 100%;}
 .voucher_wrap .voucher_cont .voucher_row:last-child .voucher_div:first-of-type{background: url('https://cdn.imweb.me/thumbnail/20230921/bc7508087f71b.jpg') no-repeat;background-size:100% 100%;}
-.voucher_wrap .voucher_cont .voucher_row:last-child .voucher_div:last-of-type{background: url('https://cdn.imweb.me/thumbnail/20230921/dca1de7cf7aa0.jpg') no-repeat;background-size:100% 100%;}
+.voucher_wrap .voucher_cont .voucher_row:last-child .voucher_div:last-of-type{background: url('https://cdn.imweb.me/thumbnail/20230921/dca1de7cf7aa0.jpg') no-repeat;background-size:100% 100%;} */
 /* .voucher_wrap .voucher_cont .kotra_div{background: url('https://cdn.imweb.me/thumbnail/20230828/ef76df9cb801d.jpg') no-repeat;background-size:100% 100%;}
 .voucher_wrap .voucher_cont .kotra_div .logo_div{height:75px;} */
 
@@ -671,6 +675,10 @@ html,body{
 #digimoo .row .digimoo_div .logo{width:80%;margin:0 auto;}
 #digimoo .row .digimoo_div .logo img{width:100%;}
 #digimoo .row .digimoo_div .pagemove{width:100%;text-align:center;margin-top:10px;font-size:16px;}
+#digimoo .row .digimoo_div .pagemove a{border-bottom:1px solid #666;padding-bottom:2px;}
+#digimoo .row .digimoo_div .pagemove a::before{
+  content: ">> "
+}
 
 @media (max-width:991px){
   
@@ -902,6 +910,39 @@ html,body{
   
 }
 
+/* ABOUT - 바우처 */
+.avoucher_wrap{width:100%;}
+.avoucher_wrap .avoucher_cont{margin-top:20px;display:flex;}
+.avoucher_wrap .avoucher_cont .avoucher_row{display:flex;margin-bottom:15px;width:50%;}
+.avoucher_wrap .avoucher_cont .avoucher_div:first-child{margin-right:4%;}
+.avoucher_wrap .avoucher_cont .avoucher_div{width:49%;height:220px;background:#000;border-radius:30px;display:flex;align-items:center;justify-content:center;flex-direction: column;}
+.avoucher_wrap .avoucher_cont .avoucher_div .logo_div{width:200px;height:50px;margin-bottom:15px;object-fit: contain;}
+.avoucher_wrap .avoucher_cont .avoucher_div .logo_div img{width:100%;height:100%;}
+.avoucher_wrap .avoucher_cont .avoucher_div .txt_div{width:80%;height:45px;text-align:center;font-size:17px;color:#fff;}
+.avoucher_wrap .avoucher_cont .kotra_div{width:300px;height:220px;background: url('https://cdn.imweb.me/thumbnail/20230828/ef76df9cb801d.jpg') no-repeat;background-size:100% 100%;}
+.avoucher_wrap .avoucher_cont .kotra_div .logo_div{width:200px;height:80px;margin-bottom:15px;object-fit: contain;}
+.avoucher_wrap .avoucher_cont .avoucher_row:last-child .voucher_div:last-of-type .logo_div{height:90px;}
+
+@media (max-width:991px){
+  .avoucher_wrap .avoucher_cont {flex-direction:column}
+  .avoucher_wrap .avoucher_cont .avoucher_row{display:flex;margin-bottom:15px;width:100%;justify-content: space-around;}
+  .avoucher_wrap .avoucher_cont .avoucher_div:first-child{margin-right:45px;}
+  .avoucher_wrap .avoucher_cont .avoucher_div{width:40%;height:300px;}
+}
+@media (max-width:766px){
+  .avoucher_wrap .avoucher_cont .avoucher_row{flex-wrap:wrap;margin-bottom:10px;justify-content: ;}
+  .avoucher_wrap .avoucher_cont .avoucher_div:first-child{margin-right:10px;margin-bottom:30px;}
+  .avoucher_wrap .avoucher_cont .avoucher_div{min-width:220px;width:49%;height:250px;}
+}
+@media (max-width:415px){
+  .avoucher_wrap .avoucher_cont .avoucher_row{justify-content: flex-start;padding-left:0px;margin-bottom:10px;}
+  .avoucher_wrap .avoucher_cont .avoucher_div:first-child{margin-bottom:10px;margin-right:0px;}
+  .avoucher_wrap .avoucher_cont .avoucher_div{width:100%;}
+}
+
+
+
+
 
 /* ABOUT - 피플 */
 #s202308236afb6cf513ff9 .pwrap{width:100%;height:200px;overflow:auto;color:#fff;position:absolute;top:0;left:0;padding:15px;word-break: keep-all;white-space:wrap;display:none;}
@@ -980,6 +1021,8 @@ html,body{
 #w2023091221648344c2ec5 .ma-item .card .card-body .title.title-block em{display:none;}
 #w2023091221648344c2ec5 .ma-item .card .card-body .text.text-block{display:none;}
 #w2023091221648344c2ec5 .ma-item .card .card-foot{padding-left:15px;}
+
+
 /* 상세페이지 */
 #w2023091221648344c2ec5 .board_view .board_summary .left .board_name{display:none;}
 #w2023091221648344c2ec5 .board_view .board_summary .left .date{font-size:16px;color:#777;padding-left:2px;}
@@ -1069,6 +1112,8 @@ html,body{
 /* 
   CONTACT
 */
+/* 구글맵 우측정렬 */
+#w20230821a8ac444f9ce50{text-align:right;padding-top:15px;}
 
 
 /* 
