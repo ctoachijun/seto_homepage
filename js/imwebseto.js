@@ -1,7 +1,10 @@
 $(function () {
-  
-    // nav바 배경
     
+    // 파트너 국내/글로벌 단위 처리
+    chkPartner();    
+  
+
+    // nav바 배경
     // 메인 영역 호버시 배경,색상 변경
     $("#w2023090533b016edb5f36").mouseenter(function(){
         $("#s2023080800e57504dc655 .section_bg_color").css("backgroundColor","rgba(0,0,0,0.4)");
@@ -31,15 +34,15 @@ $(function () {
       let jud = 1;
 
       // 일정 시간마다 테두리 이동. 단, 766 사이즈 이상에서만.
-      if($(window).width() > 414){
+      if($(window).width() > 415){
         setInterval( ()=>{      
           moveWaku(jud);
           jud++;
           if(jud == 4) jud = 1;
-        },3500);
+        },3000);
       }
       // 모바일 사이즈. 메인 글자 크기와 사이즈가 다르므로 별도 동작
-      if($(window).width() <= 414){
+      if($(window).width() <= 415){
         $("#visual_s20230817569ed54963a8f .txt_waku").css("width",wkw-20);
         setInterval( ()=>{      
           moveWakuMobi(jud);
@@ -56,6 +59,8 @@ $(function () {
     // 스크롤시 이미지 등장
     $(window).scroll(function () {
       var bottom_of_window = $(window).scrollTop() + $(window).height();
+      // console.log(bottom_of_window);
+      // console.log("-----------------");
 
       // HOME 사업영역 표시 및 fixed 처리.
       $('#w202308243345d0fde1e26 .service_div').each(function () {
@@ -126,12 +131,35 @@ $(function () {
         }
       });
       
-
+      // 회사소개서 버튼 투명처리 및 복원처리(가로폭 별 별도지정)
+      if($(window).width() > 991){
+        if(bottom_of_window > 1000){
+          $("#main_down").css("background","rgba(100,100,100,0.6)");
+        }else{
+          $("#main_down").css("background","#060000");
+        }
+      }else if($(window).width() < 992){
+        if(bottom_of_window > 850){
+          $("#main_down").css("background","rgba(100,100,100,0.6)");
+        }else{
+          $("#main_down").css("background","#060000");
+        }
+      }
+      
+      // 상단 바로가기
+      if(bottom_of_window > 3500){
+        $("#w20230825d156046a1b84d").css("opacity","1");
+        $("#w20230914dc538db5a14fa").css("opacity","1");
+        
+      }else{
+        $("#w20230825d156046a1b84d").css("opacity","0");
+        $("#w20230914dc538db5a14fa").css("opacity","0");
+      }
+      
+      
       // ABOUT 애니메이션 스타트
       let about_top = $("#s202309210bb5ee44410ad").offset().top;
       // console.log(about_top);
-      // console.log(bottom_of_window);
-      // console.log("-----------------");
       if(about_top <= bottom_of_window){
         if($(window).width() < 600){
           // ABOUT 애니메이션
@@ -619,7 +647,6 @@ function chkbox_chk(){
   return chk;
 }
 
-
 function openModal(){
   SITE.openModalMenu('m20230817ba9b448f069b6', 'm20230817674de0a084d43');
 }
@@ -680,13 +707,20 @@ function moveWaku(jud){
     // 움직임에 맞춰 글자 이동.
     if(jud == 1){
       $("#visual_s20230817569ed54963a8f .txt3").animate({
-        "margin-left": "20px"
+        "margin-left": "20px",
       },2000);
-     
+      $("#visual_s20230817569ed54963a8f .txt1").css("animation-name","nogradient");
+      $("#visual_s20230817569ed54963a8f .txt2").css("animation-name","gradient");
+      
+      
       $("#visual_s20230817569ed54963a8f .sec_link").animate({
         "margin-left" : "25px"
       },3000);
     }else if(jud == 3){
+      
+      $("#visual_s20230817569ed54963a8f .txt3").css("animation-name","nogradient");
+      $("#visual_s20230817569ed54963a8f .txt1").css("animation-name","gradient");
+      
       $("#visual_s20230817569ed54963a8f .txt3").animate({
         "margin-left": "0px"
       },2000);
@@ -706,7 +740,8 @@ function moveWaku(jud){
     if(jud == 2){
 
     }
-
+    $("#visual_s20230817569ed54963a8f .txt2").css("animation-name","nogradient");
+    $("#visual_s20230817569ed54963a8f .txt3").css("animation-name","gradient");
     $("#visual_s20230817569ed54963a8f .txt_waku").animate({
       "width": wkw+cha+"px"
     },2000);
@@ -752,6 +787,10 @@ function moveWakuMobi(jud){
       $("#visual_s20230817569ed54963a8f .txt3").animate({
         "margin-left": "0px"
       },2000);
+      $("#visual_s20230817569ed54963a8f .txt1").css("animation-name","nogradient");
+      $("#visual_s20230817569ed54963a8f .txt2").css("animation-name","gradient");
+
+      
       $("#visual_s20230817569ed54963a8f .sec_link").animate({
         "margin-left" : "15px"
       },3000);
@@ -760,6 +799,10 @@ function moveWakuMobi(jud){
       $("#visual_s20230817569ed54963a8f .txt3").animate({
         "margin-left": "-10px"
       },2000);
+      $("#visual_s20230817569ed54963a8f .txt3").css("animation-name","nogradient");
+      $("#visual_s20230817569ed54963a8f .txt1").css("animation-name","gradient");
+
+      
       $("#visual_s20230817569ed54963a8f .sec_link").animate({
         "margin-left" : "0px"
       },3000);
@@ -774,6 +817,8 @@ function moveWakuMobi(jud){
     // 움직임에 맞춰 글자 이동.
     if(jud == 2){
     }
+    $("#visual_s20230817569ed54963a8f .txt2").css("animation-name","nogradient");
+    $("#visual_s20230817569ed54963a8f .txt3").css("animation-name","gradient");
 
     $("#visual_s20230817569ed54963a8f .txt_waku").animate({
       "width": wkw+cha+"px"
@@ -963,3 +1008,26 @@ function nextRMove1(){
     
   });
 }
+
+// HOME - 파트너 섹션 전환
+function chgPartner(num){
+  let target = "partner"+num;
+  let url = "/?pt="+num+"#"+target;
+  
+  location.href=url;
+}
+
+function chkPartner(){
+    let urlParams = new URL(location.href).searchParams;  
+    let name = urlParams.get('pt');
+  
+    if(name == 1){
+      $("#s202309062f95dfb0d65e7").css("display","block");
+      $("#s20230926bea3aa6cc25a8").css("display","none");
+    }else if(name == 2){
+      $("#s202309062f95dfb0d65e7").css("display","none");
+      $("#s20230926bea3aa6cc25a8").css("display","block");
+    }
+}
+
+
