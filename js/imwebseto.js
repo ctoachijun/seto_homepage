@@ -1,8 +1,5 @@
 $(function () {
     
-    // 파트너 국내/글로벌 단위 처리
-    chkPartner();    
-  
 
     // nav바 배경
     // 메인 영역 호버시 배경,색상 변경
@@ -50,6 +47,45 @@ $(function () {
           if(jud == 4) jud = 1;
         },3000);
       }
+      
+      
+      // service 가로 스크롤링
+      let swiper = new Swiper(".service_swiper", {
+        slidesPerView:3,
+        spaceBetween:30,
+        speed: 5000,
+        autoplay:{
+          delay: 0,
+          disableOnInteraction: false,
+        },
+        loop:true,
+        
+      });
+      
+      // swiper.mousewheel.enable();
+      
+            
+      // 파트너스 클릭처리
+      if(chkMobile()){
+        $("#s202309062f95dfb0d65e7 .img_wrap").click(function(){
+          $("#s202309062f95dfb0d65e7 .img_wrap img").css("opacity","1");
+          $("#s202309062f95dfb0d65e7 .img_wrap .hover_img").css("opacity","0");
+          $(this).children("img").css("opacity","0");
+          $(this).children(".hover_img").css("opacity","1");
+        });
+        $("#s20230926bea3aa6cc25a8 .img_wrap").click(function(){
+          $("#s20230926bea3aa6cc25a8 .img_wrap img").css("opacity","1");
+          $("#s20230926bea3aa6cc25a8 .img_wrap .hover_img").css("opacity","0");
+          $(this).children("img").css("opacity","0");
+          $(this).children(".hover_img").css("opacity","1");
+        });
+      }
+      
+      // 클라이언트 스크롤링
+      setFlowBanner();
+
+      
+      
     }
 
 
@@ -59,77 +95,30 @@ $(function () {
     // 스크롤시 이미지 등장
     $(window).scroll(function () {
       var bottom_of_window = $(window).scrollTop() + $(window).height();
-      // console.log(bottom_of_window);
-      // console.log("-----------------");
 
-      // HOME 사업영역 표시 및 fixed 처리.
-      $('#w202308243345d0fde1e26 .service_div').each(function () {
-        var bottom_of_element = $(this).offset().top + $(this).outerHeight();
-        
-        // 카운트 시작점을 위한 좌표구하기
-        let count_top = $("#s20230906862a64f70b718").offset().top + $("#s20230906862a64f70b718").outerHeight() - 200;    
+      // 카운트 시작점을 위한 좌표구하기
+      let count_top = $("#s20230906862a64f70b718").offset().top + $("#s20230906862a64f70b718").outerHeight() - 200;    
+      console.log(bottom_of_window);
+      console.log(count_top);
+      console.log("-----------------");
 
-        if($(window).width() > 991){
-            
-          // 점 애니메이션
-          if(jum1 == false){
-            jum1 = true;
-            
-            // 중간에 잠시 멈춤 효과를 위해 callback 함수를 통해 delay로 전부 개별 동작
-            TweenMax.to('.tweenbox', 2, {
-              bezier: [
-                {top:117, right:9},
-                {top:300, right:-50},
-                {top:414, right:186},
-            ], 
-              ease: Power1.easeInOut, 
-              repeat: 0,
-              onComplete:nextMove1()
-            });
-          }
+      
+      if(bottom_of_window > count_top && any === false){
+          any = true;
+          // console.log(any);
 
-          if(bottom_of_window >= 1706 && bottom_of_window < 3440){
-            // $(".fixed_left").css("width",fwid+"px");
-            // 좌측 여백 계산
-            $(".fixed_left").css("position","fixed");
-            $(".fixed_left").css("top","124px");
-            $(".fixed_left").css("left","260px");
-          }else if(bottom_of_window < 1706){
-            $(".fixed_left").css("position","absolute");
-            $(".fixed_left").css("top","38px");
-            $(".fixed_left").css("left","0px");
-          }else if(bottom_of_window >= 3440){
-            let fh = $(".service_wrap").height() - $(".fixed_left").height() - 25;
-            
-            $(".fixed_left").css("position","absolute");
-            $(".fixed_left").css("top",fh+"px");
-            // $(".fixed_left").css("bottom","auto");
-            $(".fixed_left").css("left","0px");
-          }
-        }else{
-        // 이 부분은 400px 모바일에서 동작하므로 제외.
-        }
+          // HOME - 숫자 증가 
+          const $mcounter = document.querySelector(".crow_money");
+          const $pcounter = document.querySelector(".crow_people");
+          const $ucounter = document.querySelector(".crow_unit");
+          let mmax = 240;
+          let pmax = 26;
+          let umax = 600;
+          setTimeout(() => counter($mcounter, mmax), 50);
+          setTimeout(() => counter($pcounter, pmax), 50);
+          setTimeout(() => counter($ucounter, umax), 50);
+      }
 
-        if (bottom_of_window > bottom_of_element) {
-          $(this).animate({ 'opacity': '1' }, 1000);
-        }
-
-        if(bottom_of_window > count_top && any === false){
-            any = true;
-            // console.log(any);
-
-            // HOME - 숫자 증가 
-            const $mcounter = document.querySelector(".crow_money");
-            const $pcounter = document.querySelector(".crow_people");
-            const $ucounter = document.querySelector(".crow_unit");
-            let mmax = 240;
-            let pmax = 26;
-            let umax = 600;
-            setTimeout(() => counter($mcounter, mmax), 50);
-            setTimeout(() => counter($pcounter, pmax), 50);
-            setTimeout(() => counter($ucounter, umax), 50);
-        }
-      });
       
       // 회사소개서 버튼 투명처리 및 복원처리(가로폭 별 별도지정)
       if($(window).width() > 991){
@@ -385,52 +374,9 @@ $(function () {
         
       })
     }
-    
-    // ABOUT 해외 지사 구글맵 부분 - 클릭시 표시, 클릭시 닫음.
-    // $(".addr_div").click(function(){
-    //   let box = this.className.split(" ");
-    //   let target = box[1];
-    //   let dp = $(".addr_iframe_div").css("display");
-    //   $(".addr_iframe_div").slideUp();
-    
-    //   if($(".i"+target).css("display") == "block"){
-    //     setTimeout(function(){
-    //       $("#about_addr_div").css("height","300px");
-    //     },500);
-    //   }else{
-    //     if($("#about_addr_div").css("height") == "300px"){
-    //       $("#about_addr_div").css("height","600px");
-    //       $(".i"+target).slideDown();
-    //     }else{
-    //       $(".i"+target).slideDown();
-    //     }
-    //   }
-    // })
 
-    // 요거는 호버시 구글맵 나오게하던거
-    // $("#about_addr_div").mouseleave(function(){
-    //   $(".addr_iframe_div").slideUp();
-    //   setTimeout(function(){
-    //     $("#about_addr_div").css("height","300px");
-    //   },500);
-
-    // });
     
-    // $(".addr_div").mouseleave(function(){
-    //   $(".addr_iframe_div").mouseenter(function(){
-    //     let box = this.className.split(" ");
-    //     let target = box[1];
-    //     $("."+target).show();
-    //     $("#about_addr_div").css("height","600px");
-    //   })
-    // })
-
-    // $(".addr_iframe_div").mouseleave(function(){
-    //   $(".addr_iframe_div").slideUp();
-    //   setTimeout(function(){
-    //     $("#about_addr_div").css("height","300px");
-    //   },500);
-    // })
+    
     
    
     
@@ -865,169 +811,82 @@ function goPage(pg){
 }
 
 
-function nextMove1(){
-  TweenMax.to('.tweenbox', 2, {
-    bezier: [
-      {top:414, right:186},
-      {top:594, right:-20},
-      {top:705, right:7}
-    ], 
-    ease: Power1.easeInOut, 
-    repeat: 0,
-    delay: 3,
-    onComplete:nextMove2()
-  });
-}
-function nextMove2(){
-  TweenMax.to('.tweenbox', 2, {
-    bezier: [
-      {top:705, right:7},
-      {top:888, right:-50},
-      {top:993, right:187}
-    ], 
-    ease: Power1.easeInOut, 
-    repeat: 0,
-    delay: 6,
-    onComplete:nextMove3()
-  });
-}
-function nextMove3(){
-  TweenMax.to('.tweenbox', 2, {
-    bezier: [
-      {top:993, right:187},
-      {top:1182, right:-20},
-      {top:1284, right:7}
-    ], 
-    ease: Power1.easeInOut, 
-    repeat: 0,
-    delay: 9,
-    onComplete:nextMove4()
-  });
-}
-function nextMove4(){
-  TweenMax.to('.tweenbox', 2, {
-    bezier: [
-      {top:1284, right:7},
-      {top:1394, right:-50},
-      {top:1576, right:186}
-    ], 
-    ease: Power1.easeInOut, 
-    repeat: 0,
-    delay: 12,
-    onComplete:nextMove5()
-  });
-}
-function nextMove5(){
-  TweenMax.to('.tweenbox', 2, {
-    bezier: [
-      {top:1576, right:186},
-      {top:1690, right:-20},
-      {top:1863, right:7}
-    ], 
-    ease: Power1.easeInOut, 
-    repeat: 0,
-    delay: 15,
-    onComplete:nextRMove6()
-  });
-}
-function nextRMove6(){
-  TweenMax.to('.tweenbox', 2, {
-    bezier: [
-      {top:1863, right:7},
-      {top:1690, right:-20},
-      {top:1576, right:186},
-    ], 
-    ease: Power1.easeInOut, 
-    repeat: 0,
-    delay: 18,
-    onComplete:nextRMove5()
-  });
-}
-function nextRMove5(){
-  TweenMax.to('.tweenbox', 2, {
-    bezier: [
-      {top:1576, right:186},
-      {top:1394, right:-50},
-      {top:1284, right:7},
-    ], 
-    ease: Power1.easeInOut, 
-    repeat: 0,
-    delay: 21,
-    onComplete:nextRMove4()
-  });
-}
-function nextRMove4(){
-  TweenMax.to('.tweenbox', 2, {
-    bezier: [
-      {top:1284, right:7},
-      {top:1182, right:-20},
-      {top:993, right:187},
-    ], 
-    ease: Power1.easeInOut, 
-    repeat: 0,
-    delay: 24,
-    onComplete:nextRMove3()
-  });
-}
-function nextRMove3(){
-  TweenMax.to('.tweenbox', 2, {
-    bezier: [
-      {top:993, right:187},
-      {top:888, right:-50},
-      {top:705, right:7},
-    ], 
-    ease: Power1.easeInOut, 
-    repeat: 0,
-    delay: 27,
-    onComplete:nextRMove2()
-  });
-}
-function nextRMove2(){
-  TweenMax.to('.tweenbox', 2, {
-    bezier: [
-      {top:705, right:7},
-      {top:594, right:-20},
-      {top:414, right:186},
-    ], 
-    ease: Power1.easeInOut, 
-    repeat: 0,
-    delay: 30,
-    onComplete:nextRMove1()
-  });
-}
-function nextRMove1(){
-  TweenMax.to('.tweenbox', 2, {
-    bezier: [
-      {top:414, right:186},
-      {top:300, right:-50},
-      {top:117, right:9},
-      ], 
-    ease: Power1.easeInOut, 
-    repeat: 0,
-    delay: 33,
-    
-  });
-}
-
 // HOME - 파트너 섹션 전환
 function chgPartner(num){
-  let target = "partner"+num;
-  let url = "/?pt="+num+"#"+target;
+  let ow;
+  if($(window).width() <= 415){
+    ow = 180;
+  }else{
+    ow = 215;
+  }
   
-  location.href=url;
+  if(num == 1){
+    $("#s202309062f95dfb0d65e7").css("display","block");
+    $("#s20230926bea3aa6cc25a8").css("display","none");
+  }else{
+    $("#s202309062f95dfb0d65e7").css("display","none");
+    $("#s20230926bea3aa6cc25a8").css("display","block");
+    $("#s20230926bea3aa6cc25a8 .img_wrap").css("height","auto");
+    $("#s20230926bea3aa6cc25a8 img").css({
+      "width":ow,
+      "height":"100%",
+      "margin":"3.3px 0px"
+    });
+    
+    let ih = $("#s20230926bea3aa6cc25a8 img").css("height");
+    let iw = $("#s20230926bea3aa6cc25a8 img").css("width");
+    console.log(iw);
+    console.log(ih);
+    $("#s20230926bea3aa6cc25a8 .hover_img").css({
+      "width":iw,
+      "height":ih,
+      "margin":"3.3px 0px"
+    });
+  }
 }
 
-function chkPartner(){
-    let urlParams = new URL(location.href).searchParams;  
-    let name = urlParams.get('pt');
-  
-    if(name == 1){
-      $("#s202309062f95dfb0d65e7").css("display","block");
-      $("#s20230926bea3aa6cc25a8").css("display","none");
-    }else if(name == 2){
-      $("#s202309062f95dfb0d65e7").css("display","none");
-      $("#s20230926bea3aa6cc25a8").css("display","block");
-    }
+// 모바일 체크
+function chkMobile(){
+  let isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ? true : false;
+  return isMobile;
 }
+
+
+// 물흐르듯 로고 흘려버리는 jquery 
+function setFlowBanner(){
+  let wrap = $("#home_client");
+  let list = $(".client_cont");
+  let wrapWidth = wrap.width();
+  let listWidth = list.width();
+  let speed = 92;
+  
+  let clone = list.clone();
+  wrap.append(clone);
+  flowBannerAct();
+  
+  function flowBannerAct(){
+    if(listWidth < wrapWidth){
+      const listCount = Math.ceil(wrapWidth * 2 / listWidth);
+      for(let i = 2;i < listCount; i++){
+        clone = clone.clone();
+        wrap.append(clone);
+      }
+    }
+    let sp = listWidth / speed;
+    wrap.find(".client_cont").css({
+      'animation': sp+"s linear infinite flowRolling"
+    })
+  }
+  // 마우스가 요소 위로 진입했을 때 일시정지
+  wrap.on('mouseenter', function () {
+    wrap.find('.client_cont').css('animation-play-state', 'paused');
+  });
+
+  // 마우스가 요소에서 빠져나갈 때 재생
+  wrap.on('mouseleave', function () {
+      wrap.find('.client_cont').css('animation-play-state', 'running');
+  });
+}
+
 
 
