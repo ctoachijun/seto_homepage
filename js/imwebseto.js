@@ -22,31 +22,31 @@ $(function () {
      
       // 메인 텍스트 애니메이션 
       // 우선 첫번째 가로폭 설정. 넉넉하게 40 추가.
-      let wkw = $("#visual_s20230817569ed54963a8f .txt1").width() + 40;
-      $("#visual_s20230817569ed54963a8f .txt_waku").css("width",wkw);
+      // let wkw = $("#visual_s20230817569ed54963a8f .txt1").width() + 40;
+      // $("#visual_s20230817569ed54963a8f .txt_waku").css("width",wkw);
       
-      let left_pok;
+      // let left_pok;
       
-      // 1~4까지 루프 판단을 위한 변수.
-      let jud = 1;
+      // // 1~4까지 루프 판단을 위한 변수.
+      // let jud = 1;
 
-      // 일정 시간마다 테두리 이동. 단, 766 사이즈 이상에서만.
-      if($(window).width() > 415){
-        setInterval( ()=>{      
-          moveWaku(jud);
-          jud++;
-          if(jud == 4) jud = 1;
-        },3000);
-      }
-      // 모바일 사이즈. 메인 글자 크기와 사이즈가 다르므로 별도 동작
-      if($(window).width() <= 415){
-        $("#visual_s20230817569ed54963a8f .txt_waku").css("width",wkw-20);
-        setInterval( ()=>{      
-          moveWakuMobi(jud);
-          jud++;
-          if(jud == 4) jud = 1;
-        },3000);
-      }
+      // // 일정 시간마다 테두리 이동. 단, 766 사이즈 이상에서만.
+      // if($(window).width() > 415){
+      //   setInterval( ()=>{      
+      //     moveWaku(jud);
+      //     jud++;
+      //     if(jud == 4) jud = 1;
+      //   },3000);
+      // }
+      // // 모바일 사이즈. 메인 글자 크기와 사이즈가 다르므로 별도 동작
+      // if($(window).width() <= 415){
+      //   $("#visual_s20230817569ed54963a8f .txt_waku").css("width",wkw-20);
+      //   setInterval( ()=>{      
+      //     moveWakuMobi(jud);
+      //     jud++;
+      //     if(jud == 4) jud = 1;
+      //   },3000);
+      // }
       
       
       // service 가로 스크롤링
@@ -95,30 +95,31 @@ $(function () {
     // 스크롤시 이미지 등장
     $(window).scroll(function () {
       var bottom_of_window = $(window).scrollTop() + $(window).height();
-
-      // 카운트 시작점을 위한 좌표구하기
-      let count_top = $("#s20230906862a64f70b718").offset().top + $("#s20230906862a64f70b718").outerHeight() - 200;    
-      console.log(bottom_of_window);
-      console.log(count_top);
-      console.log("-----------------");
-
       
-      if(bottom_of_window > count_top && any === false){
-          any = true;
-          // console.log(any);
-
-          // HOME - 숫자 증가 
-          const $mcounter = document.querySelector(".crow_money");
-          const $pcounter = document.querySelector(".crow_people");
-          const $ucounter = document.querySelector(".crow_unit");
-          let mmax = 240;
-          let pmax = 26;
-          let umax = 600;
-          setTimeout(() => counter($mcounter, mmax), 50);
-          setTimeout(() => counter($pcounter, pmax), 50);
-          setTimeout(() => counter($ucounter, umax), 50);
-      }
-
+      // 카운트 섹션의 html이 있는 경우에만 작업. offset top 때문에 에러나서 about 애니메이션이 동작 안함.
+      if($("#s20230906862a64f70b718").html()){
+        // 카운트 시작점을 위한 좌표구하기
+        let count_top = $("#s20230906862a64f70b718").offset().top + $("#s20230906862a64f70b718").outerHeight() - 200;    
+        // console.log(bottom_of_window);
+        // console.log(count_top);
+        // console.log("-----------------");
+  
+        
+        if(bottom_of_window > count_top && any === false){
+            any = true;
+  
+            // HOME - 숫자 증가 
+            const $mcounter = document.querySelector(".crow_money");
+            const $pcounter = document.querySelector(".crow_people");
+            const $ucounter = document.querySelector(".crow_unit");
+            let mmax = 240;
+            let pmax = 26;
+            let umax = 600;
+            setTimeout(() => counter($mcounter, mmax), 50);
+            setTimeout(() => counter($pcounter, pmax), 50);
+            setTimeout(() => counter($ucounter, umax), 50);
+        }
+      }  
       
       // 회사소개서 버튼 투명처리 및 복원처리(가로폭 별 별도지정)
       if($(window).width() > 991){
@@ -148,7 +149,10 @@ $(function () {
       
       // ABOUT 애니메이션 스타트
       let about_top = $("#s202309210bb5ee44410ad").offset().top;
+      // console.log(bottom_of_window);
       // console.log(about_top);
+      // console.log("-----------------");
+
       if(about_top <= bottom_of_window){
         if($(window).width() < 600){
           // ABOUT 애니메이션
@@ -173,6 +177,57 @@ $(function () {
     })
 
         
+    // SERVICE - 내비 버튼
+    let garo_sum = 0;
+    if($("#w20231005a2428ce56e89b").html()){
+        garo_sum += $("#w20231005a2428ce56e89b > div > div > div > div:nth-child(1)").width();
+      $("#w20231005a2428ce56e89b").scrollLeft(garo_sum);
+    }
+    if($("#w20231005dafb1b8885a94").html()){
+      for(let i=1; i<=2; i++){
+        garo_sum += $("#w20231005dafb1b8885a94 > div > div > div > div:nth-child("+i+")").width();
+        console.log(i+"번째 "+$("#w20231005dafb1b8885a94 > div > div > div > div:nth-child("+i+")").width());
+      }
+      console.log("sum = "+garo_sum);
+      $("#w20231005dafb1b8885a94").scrollLeft(garo_sum);
+    }
+    if($("#w202310053a8927cd30a6e").html()){
+      for(let i=1; i<=3; i++){
+        garo_sum += $("#w202310053a8927cd30a6e > div > div > div > div:nth-child("+i+")").width();
+        console.log(i+"번째 "+$("#w202310053a8927cd30a6e > div > div > div > div:nth-child("+i+")").width());
+      }
+      console.log("sum = "+garo_sum);
+
+      $("#w202310053a8927cd30a6e").scrollLeft(garo_sum);
+    }
+    if($("#w202310053fd982aa0756f").html()){
+      for(let i=1; i<=4; i++){
+        garo_sum += $("#w202310053fd982aa0756f > div > div > div > div:nth-child("+i+")").width();
+        console.log(i+"번째 "+$("#w202310053fd982aa0756f > div > div > div > div:nth-child("+i+")").width());
+      }
+      console.log("sum = "+garo_sum);
+
+      $("#w202310053fd982aa0756f").scrollLeft(garo_sum);
+    }
+    if($("#w20231005c0c327c28fc53").html()){
+      for(let i=1; i<=5; i++){
+        garo_sum += $("#w20231005c0c327c28fc53 > div > div > div > div:nth-child("+i+")").width();
+        console.log(i+"번째 "+$("#w20231005c0c327c28fc53 > div > div > div > div:nth-child("+i+")").width());
+      }
+      console.log("sum = "+garo_sum);
+
+      $("#w20231005c0c327c28fc53").scrollLeft(garo_sum);
+    }
+    if($("#w202310055922395b48388").html()){
+      for(let i=1; i<=6; i++){
+        garo_sum += $("#w202310055922395b48388 > div > div > div > div:nth-child("+i+")").width();
+        console.log(i+"번째 "+$("#w202310055922395b48388 > div > div > div > div:nth-child("+i+")").width());
+      }
+      console.log("sum = "+garo_sum);
+
+      $("#w202310055922395b48388").scrollLeft(garo_sum);
+    }
+    
     // SERVICE - 펀딩 PROCESS
     // 펀딩 모바일에서 클릭시 호버효과 나오게
     if($(window).width() < 991){
@@ -888,5 +943,20 @@ function setFlowBanner(){
   });
 }
 
-
+// 문의하기 양식 세팅
+function setInqForm(obj){
+  let val = obj.value;
+  let txt;
+  console.log(obj.value);
+  
+  txt = "아래 양식에 맞게 입력 해 주세요.\n";
+  if(val == "글로벌 크라우드 펀딩"){
+    txt += "업체명 : \n제품명 : \n참고 URL : \n내용 : \n";
+  }else if(val == "기타"){
+    txt = "";
+  }
+  
+  $("#contact_cont").val(txt);
+  
+}
 

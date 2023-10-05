@@ -23,31 +23,11 @@
     "test": {},
     "webapp": {},
     "www": {
-      "js": {
-        "imwebseto.js": {
-          "type": "-",
-          "size": 29865,
-          "lmtime": 1695633386276.8164,
-          "modified": false
-        },
-        "seto.js": {
-          "type": "-",
-          "size": 0,
-          "lmtime": 0,
-          "modified": false
-        },
-        "webapp.js": {
-          "type": "-",
-          "size": 3882,
-          "lmtime": 0,
-          "modified": false
-        }
-      },
       "css": {
         "imwebseto.css": {
           "type": "-",
-          "size": 65843,
-          "lmtime": 1695632185579.526,
+          "size": 68462,
+          "lmtime": 1696412339379.312,
           "modified": false
         },
         "seto.css": {
@@ -59,6 +39,26 @@
         "webapp.css": {
           "type": "-",
           "size": 6228,
+          "lmtime": 0,
+          "modified": false
+        }
+      },
+      "js": {
+        "imwebseto.js": {
+          "type": "-",
+          "size": 28809,
+          "lmtime": 1696412845822.0808,
+          "modified": false
+        },
+        "seto.js": {
+          "type": "-",
+          "size": 0,
+          "lmtime": 0,
+          "modified": false
+        },
+        "webapp.js": {
+          "type": "-",
+          "size": 3882,
           "lmtime": 0,
           "modified": false
         }
