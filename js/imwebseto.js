@@ -49,19 +49,22 @@ $(function () {
       // }
       
       
-      // service 가로 스크롤링
-      let swiper = new Swiper(".service_swiper", {
+      // service 슬라이드
+      let sswiper = new Swiper(".sslide_cont", {
         slidesPerView:3,
+        centeredSlides: false,
         spaceBetween:30,
-        speed: 5000,
-        autoplay:{
-          delay: 0,
-          disableOnInteraction: false,
+        loop:false,
+        navigation:{
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
         },
-        loop:true,
-        
-      });
-      
+        on:{
+          reachEnd: function(){
+          }
+        }
+    });
+
       // swiper.mousewheel.enable();
       
             
@@ -110,10 +113,10 @@ $(function () {
   
             // HOME - 숫자 증가 
             const $mcounter = document.querySelector(".crow_money");
-            const $pcounter = document.querySelector(".crow_people");
+            const $pcounter = document.querySelector(".crow_exp");
             const $ucounter = document.querySelector(".crow_unit");
             let mmax = 240;
-            let pmax = 26;
+            let pmax = 370;
             let umax = 600;
             setTimeout(() => counter($mcounter, mmax), 50);
             setTimeout(() => counter($pcounter, pmax), 50);
@@ -459,49 +462,61 @@ const counter = ($counter, max) => {
 
 
 // 문의하기 입력폼 처리
+// 유형 클릭시 라디오버튼 세팅
+function chk_tgroup(num){
+  let rclass = "rtype"+num;
+  $("."+rclass).prop("checked",true);
+  $(".chk_tgroup").removeClass("active");
+  $(".chk_tgroup:nth-of-type("+num+")").addClass("active");
 
-// 유형 클릭시 체크박스 세팅
-function chk_tgroup(group,num){
-  let val;
-  if(group == 1){
-    val = $(".chk_tgroup:nth-of-type("+num+") span").html();
-    $("input[name='type_check[]']").each(function(index){
-      if($(this).val() == val){
-        if($(this).prop("checked") === false){
-          $(this).prop("checked",true);
-          $(".chk_tgroup:nth-of-type("+num+")").addClass("active");
-        }else{
-          $(this).prop("checked",false);
-          $(".chk_tgroup:nth-of-type("+num+")").removeClass("active");
-        }
-      }
-    })
-  }else{
-    val = $(".chk_smok:nth-of-type("+num+") span").html();
-    $("input[name='smok[]']").each(function(index){
-      if($(this).val() == val){
-        if($(this).prop("checked") === false){
-          $(this).prop("checked",true);
-          $(".chk_smok:nth-of-type("+num+")").addClass("active");
-        }else{
-          $(this).prop("checked",false);
-          $(".chk_smok:nth-of-type("+num+")").removeClass("active");
-        }
-      }
-    })
+  // 기존 입력폼 라디오버튼에 바로 체크 처리.
+  let now;
+  $("input[name=radio_1k2T3sr7E3]").each(function(index){
+    now = num-1;
+    if(now == index){
+      $(this).prop("checked",true);
+    }
+  })
+  setInqForm(num);  
+}
+
+// 문의하기 양식 세팅
+function setInqForm(num){
+  let txt;
+  
+  txt = "아래 양식에 맞게 입력 해 주세요.\n\n";
+  if(num == 1){
+    txt += "제품명 : \n타겟 국가 : \n참고 URL : \n내용 : \n";
+  }else if(num == 2){
+    txt += "제품명 : \n타겟 국가 : \n예상 광고비용 : \n내용 : \n";
+  }else if(num == 3){
+    txt += "제품명 : \n타겟 국가 : \n예상 광고비용 : \n내용 : \n";
+  }else if(num == 4){
+    txt += "제품명 : \n타겟 국가 : \n예상 광고비용 : \n내용 : \n";
+  }else if(num == 5){
+    txt += "제품명 : \n희망 플랫폼 : \n참고 URL : \n내용 : \n";
+  }else if(num == 6){
+    txt += "제품명 : \n타겟 국가 : \n예산 : \n내용 : \n";
+  }else if(num == 7){
+    txt += "희망지원사업 : \n목적 : \n내용 : \n";
+  }else if(num == 8){
+    txt += "제품명 : \n내용 : \n";
   }
+  
+  $("#contact_cont").val(txt);
 }
 
 
 // 문의에 입력된 데이터를 기존 폼에 세팅 후 전송
-function setContactFormData(){
+function setContactFormData(num){
   let uname = $("input[name=contact_name]").val();
   let tel1 = $("input[name=tel1]").val();
   let tel2 = $("input[name=tel2]").val();
   let tel3 = $("input[name=tel3]").val();
   let uemail = $("input[name=contact_email]").val();
   let ucomp = $("input[name=contact_comp").val();
-  let uboon = $("#contact_boon").val();
+  // let uboon = $("#contact_boon").val();
+  let chk1 = "N";
   let cont = $("#contact_cont").val();
 
   
@@ -553,17 +568,20 @@ function setContactFormData(){
   //   return false;
   // }
   
-  if( !uboon ){
-    alert("상담 분야를 선택 해 주세요.");
+
+  // 체크 된 값을 원래 폼의 체크박스에 체크하기
+  // 유형
+  $("input[name=radio_1k2T3sr7E3]").each(function(index){
+      if($(this).is(":checked")){
+        chk1 = "Y";
+        console.log("체크한게 있음!");
+      }
+  })
+  
+  if(chk1 == "N"){
+    alert("문의 유형을 선택 해 주세요.");
     return false;
   }
-  
-  if( !cont ){
-    alert("내용을 입력 해 주세요.");
-    $("#contact_cont").focus();
-    return false;
-  }
-  
   
   if(!$("#privacy").prop("checked")){
     alert("개인정보 수집/이용에 동의 해 주세요.");
@@ -579,7 +597,7 @@ function setContactFormData(){
     $("input[name='checkbox_4O1WT92x80[]'").prop("checked",true);
   }  
   
-  
+  $(".regbtn").prop("disabled",true);
   // 각 항목 세팅
   $("#input_txt_X3xXA267i9").val(ucomp);
   $("#input_txt_67eccd2dc4655").val(uname);
@@ -587,10 +605,16 @@ function setContactFormData(){
   $("input[name=phonenumber2_b0f51fbf67589]").val(tel2);
   $("input[name=phonenumber3_b0f51fbf67589]").val(tel3);
   $("#input_email_K33b013KUJ").val(uemail);
-  $("#input_select_71w7e352f3").val(uboon);
+  // $("#input_select_71w7e352f3").val(uboon);
   $("#input_text_area_820380Ls56").val(cont);
   
-  SITE_FORM.confirmInputForm('w20230922d39e998c04ab7','N');
+  
+  if(num == 1){
+    SITE_FORM.confirmInputForm('w20230922d39e998c04ab7','N');
+  }else if(num == 2){
+    SITE_FORM.confirmInputForm('w20231006357cc284b6fb4','N');    
+  }
+  
 }
 
 function chkSpaceFe(obj){
@@ -612,7 +636,10 @@ function downDoc(){
   let uemail = $("#input_email_585cb3dbe09ab").val();
   let chk = chkbox_chk();
   
-  SITE_FORM.confirmInputForm('w20230831f65b974c1a11c','N');
+  $(".down-btn").attr("disabled",true);
+  setTimeout(function(){
+    SITE_FORM.confirmInputForm('w20230831f65b974c1a11c','N');
+  },1000);
   if(uname && uemail){
     let re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
 
@@ -943,20 +970,4 @@ function setFlowBanner(){
   });
 }
 
-// 문의하기 양식 세팅
-function setInqForm(obj){
-  let val = obj.value;
-  let txt;
-  console.log(obj.value);
-  
-  txt = "아래 양식에 맞게 입력 해 주세요.\n";
-  if(val == "글로벌 크라우드 펀딩"){
-    txt += "업체명 : \n제품명 : \n참고 URL : \n내용 : \n";
-  }else if(val == "기타"){
-    txt = "";
-  }
-  
-  $("#contact_cont").val(txt);
-  
-}
 
