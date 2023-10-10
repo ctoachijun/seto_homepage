@@ -3,18 +3,18 @@ $(function () {
 
     // nav바 배경
     // 메인 영역 호버시 배경,색상 변경
-    $("#w2023090533b016edb5f36").mouseenter(function(){
-        $("#s2023080800e57504dc655 .section_bg_color").css("backgroundColor","rgba(0,0,0,0.4)");
-        $("#w2023090533b016edb5f36 .plain_name").css("color","#fff");
-        $("#dropdown_w2023090533b016edb5f36 .plain_name").css("color","#fff");
-    })
+    // $("#w2023090533b016edb5f36").mouseenter(function(){
+    //     $("#s2023080800e57504dc655 .section_bg_color").css("backgroundColor","rgba(0,0,0,0.4)");
+    //     $("#w2023090533b016edb5f36 .plain_name").css("color","#fff");
+    //     $("#dropdown_w2023090533b016edb5f36 .plain_name").css("color","#fff");
+    // })
     
-    // 메인 영역에서 이탈시 배경,색상 복원
-    $("#w2023090533b016edb5f36").mouseleave(function(){
-        $("#s2023080800e57504dc655 .section_bg_color").css("backgroundColor","");
-        $("#w2023090533b016edb5f36 .plain_name").css("color","");
-        $("#dropdown_w2023090533b016edb5f36 .plain_name").css("color","");
-    })
+    // // 메인 영역에서 이탈시 배경,색상 복원
+    // $("#w2023090533b016edb5f36").mouseleave(function(){
+    //     $("#s2023080800e57504dc655 .section_bg_color").css("backgroundColor","");
+    //     $("#w2023090533b016edb5f36 .plain_name").css("color","");
+    //     $("#dropdown_w2023090533b016edb5f36 .plain_name").css("color","");
+    // })
 
     
     // HOME일때 실행
@@ -59,8 +59,14 @@ $(function () {
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev",
         },
-        on:{
-          reachEnd: function(){
+        breakpoints: {
+          280:{
+            slidesPerView:1,
+            spaceBetween:10
+          },
+          765:{
+            slidesPerView:2,
+            spaceBetween:30,
           }
         }
     });
