@@ -20,35 +20,6 @@ $(function () {
     // HOME일때 실행
     if($("#s20230817569ed54963a8f #visual_s20230817569ed54963a8f").html()){
      
-      // 메인 텍스트 애니메이션 
-      // 우선 첫번째 가로폭 설정. 넉넉하게 40 추가.
-      // let wkw = $("#visual_s20230817569ed54963a8f .txt1").width() + 40;
-      // $("#visual_s20230817569ed54963a8f .txt_waku").css("width",wkw);
-      
-      // let left_pok;
-      
-      // // 1~4까지 루프 판단을 위한 변수.
-      // let jud = 1;
-
-      // // 일정 시간마다 테두리 이동. 단, 766 사이즈 이상에서만.
-      // if($(window).width() > 415){
-      //   setInterval( ()=>{      
-      //     moveWaku(jud);
-      //     jud++;
-      //     if(jud == 4) jud = 1;
-      //   },3000);
-      // }
-      // // 모바일 사이즈. 메인 글자 크기와 사이즈가 다르므로 별도 동작
-      // if($(window).width() <= 415){
-      //   $("#visual_s20230817569ed54963a8f .txt_waku").css("width",wkw-20);
-      //   setInterval( ()=>{      
-      //     moveWakuMobi(jud);
-      //     jud++;
-      //     if(jud == 4) jud = 1;
-      //   },3000);
-      // }
-      
-      
       // service 슬라이드
       let sswiper = new Swiper(".sslide_cont", {
         slidesPerView:3,
@@ -69,11 +40,21 @@ $(function () {
             spaceBetween:30,
           }
         }
-    });
-
-      // swiper.mousewheel.enable();
+      });
       
-            
+      // service 호버시 동작
+      $(".service_div").on("mouseenter", function(index){
+        console.log("엔터!");
+        console.log($(this).find('.txt_cont').html());
+        $(this).append("<div class='backblack'></div>");
+        $(this).find(".txt_cont").toggle();
+        
+      });
+      $(".service_div").on("mouseleave", function(){
+        $(".service_div .backblack").remove();
+        $(this).find(".txt_cont").toggle();
+      })
+
       // 파트너스 클릭처리
       if(chkMobile()){
         $("#s202309062f95dfb0d65e7 .img_wrap").click(function(){
@@ -90,13 +71,8 @@ $(function () {
         });
       }
       
-      // 클라이언트 스크롤링
-      setFlowBanner();
-
-      
       
     }
-
 
     // 스크롤시 한번만 동작하기위한 변수
     let any = jum1 = false;
@@ -119,13 +95,13 @@ $(function () {
   
             // HOME - 숫자 증가 
             const $mcounter = document.querySelector(".crow_money");
-            const $pcounter = document.querySelector(".crow_exp");
+            const $pcounter = document.querySelector(".crow_fan");
             const $ucounter = document.querySelector(".crow_unit");
             let mmax = 240;
-            let pmax = 370;
+            let fmax = 27;
             let umax = 600;
             setTimeout(() => counter($mcounter, mmax), 50);
-            setTimeout(() => counter($pcounter, pmax), 50);
+            setTimeout(() => counter($pcounter, fmax), 50);
             setTimeout(() => counter($ucounter, umax), 50);
         }
       }  
@@ -483,34 +459,34 @@ function chk_tgroup(num){
       $(this).prop("checked",true);
     }
   })
-  setInqForm(num);  
+  // setInqForm(num);  
 }
 
 // 문의하기 양식 세팅
-function setInqForm(num){
-  let txt;
+// function setInqForm(num){
+//   let txt;
   
-  txt = "아래 양식에 맞게 입력 해 주세요.\n\n";
-  if(num == 1){
-    txt += "제품명 : \n타겟 국가 : \n참고 URL : \n내용 : \n";
-  }else if(num == 2){
-    txt += "제품명 : \n타겟 국가 : \n예상 광고비용 : \n내용 : \n";
-  }else if(num == 3){
-    txt += "제품명 : \n타겟 국가 : \n예상 광고비용 : \n내용 : \n";
-  }else if(num == 4){
-    txt += "제품명 : \n타겟 국가 : \n예상 광고비용 : \n내용 : \n";
-  }else if(num == 5){
-    txt += "제품명 : \n희망 플랫폼 : \n참고 URL : \n내용 : \n";
-  }else if(num == 6){
-    txt += "제품명 : \n타겟 국가 : \n예산 : \n내용 : \n";
-  }else if(num == 7){
-    txt += "희망지원사업 : \n목적 : \n내용 : \n";
-  }else if(num == 8){
-    txt += "제품명 : \n내용 : \n";
-  }
+//   txt = "아래 양식에 맞게 입력 해 주세요.\n\n";
+//   if(num == 1){
+//     txt += "제품명 : \n타겟 국가 : \n참고 URL : \n내용 : \n";
+//   }else if(num == 2){
+//     txt += "제품명 : \n타겟 국가 : \n예상 광고비용 : \n내용 : \n";
+//   }else if(num == 3){
+//     txt += "제품명 : \n타겟 국가 : \n예상 광고비용 : \n내용 : \n";
+//   }else if(num == 4){
+//     txt += "제품명 : \n타겟 국가 : \n예상 광고비용 : \n내용 : \n";
+//   }else if(num == 5){
+//     txt += "제품명 : \n희망 플랫폼 : \n참고 URL : \n내용 : \n";
+//   }else if(num == 6){
+//     txt += "제품명 : \n타겟 국가 : \n예산 : \n내용 : \n";
+//   }else if(num == 7){
+//     txt += "희망지원사업 : \n목적 : \n내용 : \n";
+//   }else if(num == 8){
+//     txt += "제품명 : \n내용 : \n";
+//   }
   
-  $("#contact_cont").val(txt);
-}
+//   $("#contact_cont").val(txt);
+// }
 
 
 // 문의에 입력된 데이터를 기존 폼에 세팅 후 전송
@@ -521,8 +497,7 @@ function setContactFormData(num){
   let tel3 = $("input[name=tel3]").val();
   let uemail = $("input[name=contact_email]").val();
   let ucomp = $("input[name=contact_comp").val();
-  // let uboon = $("#contact_boon").val();
-  let chk1 = "N";
+  // let chk1 = "N";
   let cont = $("#contact_cont").val();
 
   
@@ -553,41 +528,20 @@ function setContactFormData(num){
     $(window).scrollTop($("#contact_comp").offset().top);
     return false;
   }
-
-
-  // if( !tel1 ){
-  //   alert("연락처를 입력 해 주세요.");
-  //   $("#tel1").focus();
-  //   $(window).scrollTop($("#contact_comp").offset().top);
-  //   return false;
-  // }
-  // if( !tel2 ){
-  //   alert("연락처를 입력 해 주세요.");
-  //   $("#tel2").focus();
-  //   $(window).scrollTop($("#contact_comp").offset().top);
-  //   return false;
-  // }
-  // if( !tel3 ){
-  //   alert("연락처를 입력 해 주세요.");
-  //   $("#tel3").focus();
-  //   $(window).scrollTop($("#contact_comp").offset().top);
-  //   return false;
-  // }
   
 
   // 체크 된 값을 원래 폼의 체크박스에 체크하기
   // 유형
-  $("input[name=radio_1k2T3sr7E3]").each(function(index){
-      if($(this).is(":checked")){
-        chk1 = "Y";
-        console.log("체크한게 있음!");
-      }
-  })
+  // $("input[name=radio_1k2T3sr7E3]").each(function(index){
+  //     if($(this).is(":checked")){
+  //       chk1 = "Y";
+  //     }
+  // })
   
-  if(chk1 == "N"){
-    alert("문의 유형을 선택 해 주세요.");
-    return false;
-  }
+  // if(chk1 == "N"){
+  //   alert("문의 유형을 선택 해 주세요.");
+  //   return false;
+  // }
   
   if(!$("#privacy").prop("checked")){
     alert("개인정보 수집/이용에 동의 해 주세요.");
@@ -698,179 +652,22 @@ function regNewsletter(){
     return false;
   }
   
-  let chkval = $("#mktok").prop("checked");
-  if(!chkval){
-    alert("마케팅 활용 동의를 해 주세요.");
-    return false;
-  }
+  // let chkval = $("#mktok").prop("checked");
+  // if(!chkval){
+  //   alert("마케팅 활용 동의를 해 주세요.");
+  //   return false;
+  // }
 
   
   // 원래 폼에 값 세팅.
   $("#input_email_1f1a2545c2f24").val(input_email);
-  if(chkval){
-    $("input[name='checkbox_b25a25bfc43a6[]'").prop("checked",true);
-  }
+  // if(chkval){
+  //   $("input[name='checkbox_b25a25bfc43a6[]'").prop("checked",true);
+  // }
   
   SITE_FORM.confirmInputForm('w20230831e970237b02466','N');
 }
 
-function moveWaku(jud){
-  
-  // 이동은 1~3까지. 4가 되었다면 1로 변경
-  if(jud == 4) jud = 1; 
-  
-  // 포커스 글자의 너비
-  let wkw = $("#visual_s20230817569ed54963a8f .txt"+jud).width() + 40;
-  
-  // 다음 이동대상의 너비를 알기위해 다음 번호를 지정.
-  let judp = jud + 1;
-  
-  // 애니메이션 효과 부여
-  $("#visual_s20230817569ed54963a8f .txt_waku").css("animation-name","move"+jud);
-  
-  // 만약, 마지막 4번째라면 다음은 첫번째 블럭을 지정하기 위한 설정.
-  if(jud == 3) judp= 1;
-  let wkw2 = $("#visual_s20230817569ed54963a8f .txt"+judp).width() + 40;
-  let cha = 0;
-
-  
-  // 다음 블럭의 너비와 비교해 어느쪽이 더 넒은지에 따라 계산법 적용 후 너비 적용.
-  if(wkw > wkw2){
-    cha = wkw - wkw2;
-    
-    // 움직임에 맞춰 글자 이동.
-    if(jud == 1){
-      $("#visual_s20230817569ed54963a8f .txt3").animate({
-        "margin-left": "20px",
-      },2000);
-      $("#visual_s20230817569ed54963a8f .txt1").css("animation-name","nogradient");
-      $("#visual_s20230817569ed54963a8f .txt2").css("animation-name","gradient");
-      
-      
-      $("#visual_s20230817569ed54963a8f .sec_link").animate({
-        "margin-left" : "25px"
-      },3000);
-    }else if(jud == 3){
-      
-      $("#visual_s20230817569ed54963a8f .txt3").css("animation-name","nogradient");
-      $("#visual_s20230817569ed54963a8f .txt1").css("animation-name","gradient");
-      
-      $("#visual_s20230817569ed54963a8f .txt3").animate({
-        "margin-left": "0px"
-      },2000);
-      $("#visual_s20230817569ed54963a8f .sec_link").animate({
-        "margin-left" : "0px"
-      },3000);
-
-    }
-
-    $("#visual_s20230817569ed54963a8f .txt_waku").animate({
-      "width": wkw-cha+"px"
-    },2000);
-  }else{
-    cha = wkw2 - wkw;
-    
-    // 움직임에 맞춰 글자 이동.
-    if(jud == 2){
-
-    }
-    $("#visual_s20230817569ed54963a8f .txt2").css("animation-name","nogradient");
-    $("#visual_s20230817569ed54963a8f .txt3").css("animation-name","gradient");
-    $("#visual_s20230817569ed54963a8f .txt_waku").animate({
-      "width": wkw+cha+"px"
-    },2000);
-  }
-  
-  // 하단 서브텍스트 동작
-  setTimeout(function(){
-    $("#visual_s20230817569ed54963a8f .st1").hide();  
-    $("#visual_s20230817569ed54963a8f .st2").hide();  
-    $("#visual_s20230817569ed54963a8f .st3").hide();  
-    $("#visual_s20230817569ed54963a8f .st4").hide();  
-    $("#visual_s20230817569ed54963a8f .st"+judp).fadeIn();
-  },500)
-  
-
-  return jud;
-}
-
-function moveWakuMobi(jud){
-  // 이동은 1~3까지. 4가 되었다면 1로 변경
-  if(jud == 4) jud = 1; 
-  
-  // 포커스 글자의 너비
-  let wkw = $("#visual_s20230817569ed54963a8f .txt"+jud).width() + 20;
-
-  // 애니메이션 효과 부여
-  $("#visual_s20230817569ed54963a8f .txt_waku").css("animation-name","mmove"+jud);
-  
-  // 다음 이동대상의 너비를 알기위해 다음 번호를 지정.
-  let judp = jud + 1;
-  
-  // 만약, 마지막 4번째라면 다음은 첫번째 블럭을 지정하기 위한 설정.
-  if(jud == 3) judp= 1;
-  let wkw2 = $("#visual_s20230817569ed54963a8f .txt"+judp).width() + 24;
-  let cha = 0;
-  
-  // 다음 블럭의 너비와 비교해 어느쪽이 더 넒은지에 따라 계산법 적용 후 너비 적용.
-  if(wkw > wkw2){
-    cha = wkw - wkw2;
-    
-    // 움직임에 맞춰 글자 이동.
-    if(jud == 1){
-      $("#visual_s20230817569ed54963a8f .txt3").animate({
-        "margin-left": "0px"
-      },2000);
-      $("#visual_s20230817569ed54963a8f .txt1").css("animation-name","nogradient");
-      $("#visual_s20230817569ed54963a8f .txt2").css("animation-name","gradient");
-
-      
-      $("#visual_s20230817569ed54963a8f .sec_link").animate({
-        "margin-left" : "15px"
-      },3000);
-
-    }else if(jud == 3){
-      $("#visual_s20230817569ed54963a8f .txt3").animate({
-        "margin-left": "-10px"
-      },2000);
-      $("#visual_s20230817569ed54963a8f .txt3").css("animation-name","nogradient");
-      $("#visual_s20230817569ed54963a8f .txt1").css("animation-name","gradient");
-
-      
-      $("#visual_s20230817569ed54963a8f .sec_link").animate({
-        "margin-left" : "0px"
-      },3000);
-    }
-
-    $("#visual_s20230817569ed54963a8f .txt_waku").animate({
-      "width": wkw-cha+"px"
-    },2000);
-  }else{
-    cha = wkw2 - wkw;
-    
-    // 움직임에 맞춰 글자 이동.
-    if(jud == 2){
-    }
-    $("#visual_s20230817569ed54963a8f .txt2").css("animation-name","nogradient");
-    $("#visual_s20230817569ed54963a8f .txt3").css("animation-name","gradient");
-
-    $("#visual_s20230817569ed54963a8f .txt_waku").animate({
-      "width": wkw+cha+"px"
-    },2000);
-  }
-    
-  // 하단 서브텍스트 동작
-  setTimeout(function(){
-    $("#visual_s20230817569ed54963a8f .st1").hide();  
-    $("#visual_s20230817569ed54963a8f .st2").hide();  
-    $("#visual_s20230817569ed54963a8f .st3").hide();  
-    $("#visual_s20230817569ed54963a8f .st4").hide();  
-    $("#visual_s20230817569ed54963a8f .st"+judp).fadeIn();
-  },500)
-  
-
-  return jud;
-}
 
 function setSizeIframe(){
   window.addEventListener('message', function(e){
@@ -940,40 +737,5 @@ function chkMobile(){
 }
 
 
-// 물흐르듯 로고 흘려버리는 jquery 
-function setFlowBanner(){
-  let wrap = $("#home_client");
-  let list = $(".client_cont");
-  let wrapWidth = wrap.width();
-  let listWidth = list.width();
-  let speed = 92;
-  
-  let clone = list.clone();
-  wrap.append(clone);
-  flowBannerAct();
-  
-  function flowBannerAct(){
-    if(listWidth < wrapWidth){
-      const listCount = Math.ceil(wrapWidth * 2 / listWidth);
-      for(let i = 2;i < listCount; i++){
-        clone = clone.clone();
-        wrap.append(clone);
-      }
-    }
-    let sp = listWidth / speed;
-    wrap.find(".client_cont").css({
-      'animation': sp+"s linear infinite flowRolling"
-    })
-  }
-  // 마우스가 요소 위로 진입했을 때 일시정지
-  wrap.on('mouseenter', function () {
-    wrap.find('.client_cont').css('animation-play-state', 'paused');
-  });
-
-  // 마우스가 요소에서 빠져나갈 때 재생
-  wrap.on('mouseleave', function () {
-      wrap.find('.client_cont').css('animation-play-state', 'running');
-  });
-}
 
 
