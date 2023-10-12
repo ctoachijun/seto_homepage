@@ -38,22 +38,33 @@ $(function () {
           765:{
             slidesPerView:2,
             spaceBetween:30,
+          },
+          991:{
+            slidesPerView:3,
+            spaceBetween:10,
           }
         }
       });
       
       // service 호버시 동작
       $(".service_div").on("mouseenter", function(index){
-        console.log("엔터!");
-        console.log($(this).find('.txt_cont').html());
         $(this).append("<div class='backblack'></div>");
         $(this).find(".txt_cont").toggle();
-        
       });
       $(".service_div").on("mouseleave", function(){
         $(".service_div .backblack").remove();
         $(this).find(".txt_cont").toggle();
       })
+      $(".etc_div").on("mouseenter", function(index){
+        $(this).append("<div class='backblack'></div>");
+        $(this).find(".txt_cont").toggle();
+      });
+      $(".etc_div").on("mouseleave", function(){
+        $(".etc_div .backblack").remove();
+        $(this).find(".txt_cont").toggle();
+      })
+
+      
 
       // 파트너스 클릭처리
       if(chkMobile()){
@@ -71,8 +82,8 @@ $(function () {
         });
       }
       
-      
     }
+    setFlowBanner();
 
     // 스크롤시 한번만 동작하기위한 변수
     let any = jum1 = false;
@@ -121,6 +132,8 @@ $(function () {
         }
       }
       
+
+      
       // 상단 바로가기
       if(bottom_of_window > 3500){
         $("#w20230825d156046a1b84d").css("opacity","1");
@@ -149,10 +162,6 @@ $(function () {
           $("#about_div .right_div").css("animation-name","right-move");
         }
       }
-      
-      
-      
-      
     });
 
     // HOME 뉴스룸 게시판 클릭시 무효화
@@ -415,7 +424,10 @@ $(function () {
       })
     }
 
-    
+    // 입력폼 약관보기
+    $(".viewgree").click(function(){
+      $(".chkbox .privacy_agree").toggle(500);
+    })
     
     
    
@@ -503,29 +515,44 @@ function setContactFormData(num){
   
   
   // 필수 체크
-  if(!ucomp){
-    alert("회사명을 입력 해 주세요.");
-    $("#contact_comp").focus();
-    $(window).scrollTop($("#contact_comp").offset().top);
-    return false;
-  }
-  if(!uname){
-    alert("이름을 입력 해 주세요.");
-    $("#contact_name").focus();
-    $(window).scrollTop($("#contact_comp").offset().top);
-    return false;
-  }
+  // if(!ucomp){
+  //   alert("회사명을 입력 해 주세요.");
+  //   $("#contact_comp").focus();
+  //   $(window).scrollTop($("#contact_comp").offset().top);
+  //   return false;
+  // }
   if(!uemail){
     alert("이메일을 입력 해 주세요.");
     $("#contact_email").focus();
-    $(window).scrollTop($("#contact_comp").offset().top);
+    // $(window).scrollTop($("#contact_comp").offset().top);
     return false;
   }
   let re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
   if (!re.test(uemail)) {
     alert("이메일 형식을 확인 해 주세요.");
     $("#contact_email").focus();
-    $(window).scrollTop($("#contact_comp").offset().top);
+    // $(window).scrollTop($("#contact_comp").offset().top);
+    return false;
+  }
+  if(!tel1){
+    alert("연락처를 입력 해 주세요.");
+    $("#tel1").focus();
+    return false;
+  }
+  if(!tel2){
+    alert("연락처를 입력 해 주세요.");
+    $("#tel2").focus();
+    return false;
+  }
+  if(!tel3){
+    alert("연락처를 입력 해 주세요.");
+    $("#tel3").focus();
+    return false;
+  }
+  if(!uname){
+    alert("이름을 입력 해 주세요.");
+    $("#contact_name").focus();
+    // $(window).scrollTop($("#contact_comp").offset().top);
     return false;
   }
   
@@ -542,13 +569,14 @@ function setContactFormData(num){
   //   alert("문의 유형을 선택 해 주세요.");
   //   return false;
   // }
-  
-  if(!$("#privacy").prop("checked")){
+
+
+  if(!$("#cprivacy").is(":checked")){
     alert("개인정보 수집/이용에 동의 해 주세요.");
-    $("input[name='checkbox_A1Q8az4o3f[]']").prop("checked",false);
+    $(".checkbox.checkbox-styled input[type='checkbox']").prop("checked",false);
     return false;
   }else{
-    $("input[name='checkbox_A1Q8az4o3f[]']").prop("checked",true);
+    $(".checkbox.checkbox-styled input[type='checkbox']").prop("checked",true);
   }
   
   if(!$("#marketing").prop("checked")){
@@ -569,10 +597,13 @@ function setContactFormData(num){
   $("#input_text_area_820380Ls56").val(cont);
   
   
+  
+  console.log(num);
+    
   if(num == 1){
-    SITE_FORM.confirmInputForm('w20230922d39e998c04ab7','N');
-  }else if(num == 2){
     SITE_FORM.confirmInputForm('w20231006357cc284b6fb4','N');    
+  }else if(num == 2){
+    SITE_FORM.confirmInputForm('w20230922d39e998c04ab7','N');
   }
   
 }
@@ -643,27 +674,29 @@ function regNewsletter(){
   let input_email = $("input[name=homemail").val();
   if(!input_email){
     alert("이메일 주소를 입력 해 주세요.");
+    $("#newsmail").focus();
     return false;
   }
   
   let re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
   if (!re.test(input_email)) {
     alert("이메일 주소 형식을 확인 해 주세요.");
+    $("#newsmail").focus();
     return false;
   }
   
-  // let chkval = $("#mktok").prop("checked");
-  // if(!chkval){
-  //   alert("마케팅 활용 동의를 해 주세요.");
-  //   return false;
-  // }
+  let chkval = $("#mktok").prop("checked");
+  if(!chkval){
+    alert("마케팅 활용 동의를 해 주세요.");
+    return false;
+  }
 
   
   // 원래 폼에 값 세팅.
   $("#input_email_1f1a2545c2f24").val(input_email);
-  // if(chkval){
-  //   $("input[name='checkbox_b25a25bfc43a6[]'").prop("checked",true);
-  // }
+  if(chkval){
+    $("input[name='checkbox_b25a25bfc43a6[]'").prop("checked",true);
+  }
   
   SITE_FORM.confirmInputForm('w20230831e970237b02466','N');
 }
@@ -737,5 +770,49 @@ function chkMobile(){
 }
 
 
+// 물흐르듯 로고 흘려버리는 jquery 
+function setFlowBanner(){
+  let wrap = $("#home_client");
+  let list = $(".client_cont");
+  let wrapWidth = wrap.width();
+  let listWidth = list.width();
+  let speed = 92;
+  
+  let clone = list.clone();
+  wrap.append(clone);
+  flowBannerAct();
+  
+  function flowBannerAct(){
+    if(listWidth < wrapWidth){
+      const listCount = Math.ceil(wrapWidth * 2 / listWidth);
+      for(let i = 2;i < listCount; i++){
+        clone = clone.clone();
+        wrap.append(clone);
+      }
+    }
+    let sp = listWidth / speed;
+    wrap.find(".client_cont").css({
+      'animation': sp+"s linear infinite flowRolling"
+    })
+  }
+  // 마우스가 요소 위로 진입했을 때 일시정지
+  wrap.on('mouseenter', function () {
+    wrap.find('.client_cont').css('animation-play-state', 'paused');
+  });
 
+  // 마우스가 요소에서 빠져나갈 때 재생
+  wrap.on('mouseleave', function () {
+      wrap.find('.client_cont').css('animation-play-state', 'running');
+  });
+}
 
+// WORK 동영상 클릭시 이동
+function work_move(num){
+  if(num == 1){
+    location.href="/ourwork/?q=YToxOntzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&bmode=view&idx=16274609&t=board";
+  }else if(num == 2){
+    location.href="/ourwork/?q=YToxOntzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&bmode=view&idx=16568642&t=board";
+  }else if(num == 3){
+    location.href="/ourwork/?q=YToxOntzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&bmode=view&idx=16341971&t=board";
+  }
+}
