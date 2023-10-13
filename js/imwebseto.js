@@ -65,6 +65,32 @@ $(function () {
       })
 
       
+      // review 스와이퍼
+      let rswiper = new Swiper(".review_wrap", {
+        slidesPerView:2,
+        centeredSlides: false,
+        spaceBetween:30,
+        loop:false,
+        navigation:{
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        breakpoints: {
+          280:{
+            slidesPerView:1,
+            spaceBetween:10
+          },
+          765:{
+            slidesPerView:2,
+            spaceBetween:30,
+          },
+          992:{
+            slidesPerView:2,
+            spaceBetween:10,
+          }
+        }
+      });
+      
 
       // 파트너스 클릭처리
       if(chkMobile()){
@@ -82,6 +108,10 @@ $(function () {
         });
       }
       
+    }else{
+      // HOME 이외의 페이지에서 언어버튼 테두리
+      $("#w202310137f45776f25e91").css("border","1px solid #222222");
+
     }
     setFlowBanner();
 
@@ -146,22 +176,18 @@ $(function () {
       
       
       // ABOUT 애니메이션 스타트
-      let about_top = $("#s202309210bb5ee44410ad").offset().top;
-      // console.log(bottom_of_window);
-      // console.log(about_top);
-      // console.log("-----------------");
-
-      if(about_top <= bottom_of_window){
-        if($(window).width() < 600){
-          // ABOUT 애니메이션
-          $("#about_div .left_div").css("animation-name","mleft-move");
-          $("#about_div .right_div").css("animation-name","mright-move");
-        }else{
-          // ABOUT 애니메이션
-          $("#about_div .center_div").css("animation-name","center-move");
-          $("#about_div .right_div").css("animation-name","right-move");
-        }
-      }
+      // let about_top = $("#s202309210bb5ee44410ad").offset().top;
+      // if(about_top <= bottom_of_window){
+      //   if($(window).width() < 600){
+      //     // ABOUT 애니메이션
+      //     $("#about_div .left_div").css("animation-name","mleft-move");
+      //     $("#about_div .right_div").css("animation-name","mright-move");
+      //   }else{
+      //     // ABOUT 애니메이션
+      //     $("#about_div .center_div").css("animation-name","center-move");
+      //     $("#about_div .right_div").css("animation-name","right-move");
+      //   }
+      // }
     });
 
     // HOME 뉴스룸 게시판 클릭시 무효화
@@ -292,6 +318,9 @@ $(function () {
           $(".hover_overlay").css({
             "opacity" : "0"
           });
+          $(".hover_img").css({
+            "opacity" : "0"
+          });
           $(".hover_txt").css({
             "z-index" : "1",
             "opacity" : "0"
@@ -310,7 +339,13 @@ $(function () {
           $(this).children(".hover_txt").css({
             "z-index" : "10",
             "opacity" : "1"
-          })
+          });
+          
+          // 호버시 이미지 표시
+          $(this).children(".hover_img").css({
+            "opacity" : "1"
+          });
+
         }
         
       })
