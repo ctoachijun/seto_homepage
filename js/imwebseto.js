@@ -1,20 +1,12 @@
 $(function () {
     
-
-    // nav바 배경
-    // 메인 영역 호버시 배경,색상 변경
-    // $("#w2023090533b016edb5f36").mouseenter(function(){
-    //     $("#s2023080800e57504dc655 .section_bg_color").css("backgroundColor","rgba(0,0,0,0.4)");
-    //     $("#w2023090533b016edb5f36 .plain_name").css("color","#fff");
-    //     $("#dropdown_w2023090533b016edb5f36 .plain_name").css("color","#fff");
-    // })
+    // 모바일인 경우, 메뉴 하단에 SNS 버튼 추가
+    if(chkMobile()){
+      // let snsbtn = "<a href='https://blog.naver.com/globalfunding'>BLOG</a>&middot;<a href='https://www.facebook.com/setoworks'>FACEBOOK</a>";
+       let snsbtn = "<div class='sns_div'><a href='https://blog.naver.com/globalfunding'>BLOG</a>&middot;<a href='https://www.facebook.com/setoworks'>FACEBOOK</a></div>";
+      $("#mobile_slide_menu ul .viewport-nav.mobile").append("<li class='depth-01'>"+snsbtn+"</li>");      
+    }
     
-    // // 메인 영역에서 이탈시 배경,색상 복원
-    // $("#w2023090533b016edb5f36").mouseleave(function(){
-    //     $("#s2023080800e57504dc655 .section_bg_color").css("backgroundColor","");
-    //     $("#w2023090533b016edb5f36 .plain_name").css("color","");
-    //     $("#dropdown_w2023090533b016edb5f36 .plain_name").css("color","");
-    // })
 
     
     // HOME일때 실행
@@ -70,7 +62,19 @@ $(function () {
         slidesPerView:2,
         centeredSlides: false,
         spaceBetween:30,
-        loop:false,
+        loop:true,
+        loopAdditionalSlides : 1,
+        autoplay:{
+          delay: 3000,
+          disableOnInteraction:false,
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+          renderBullet: function (index, className) {
+            return '<span class="' + className + '">' + (index + 1) + "</span>";
+          },
+        },
         navigation:{
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev",
@@ -91,26 +95,33 @@ $(function () {
         }
       });
       
-
+      // 섹션 자체가 없어진듯. 확인 후 삭제 처리.
       // 파트너스 클릭처리
-      if(chkMobile()){
-        $("#s202309062f95dfb0d65e7 .img_wrap").click(function(){
-          $("#s202309062f95dfb0d65e7 .img_wrap img").css("opacity","1");
-          $("#s202309062f95dfb0d65e7 .img_wrap .hover_img").css("opacity","0");
-          $(this).children("img").css("opacity","0");
-          $(this).children(".hover_img").css("opacity","1");
-        });
-        $("#s20230926bea3aa6cc25a8 .img_wrap").click(function(){
-          $("#s20230926bea3aa6cc25a8 .img_wrap img").css("opacity","1");
-          $("#s20230926bea3aa6cc25a8 .img_wrap .hover_img").css("opacity","0");
-          $(this).children("img").css("opacity","0");
-          $(this).children(".hover_img").css("opacity","1");
-        });
-      }
+      // if(chkMobile()){
+      //   $("#s202309062f95dfb0d65e7 .img_wrap").click(function(){
+      //     $("#s202309062f95dfb0d65e7 .img_wrap img").css("opacity","1");
+      //     $("#s202309062f95dfb0d65e7 .img_wrap .hover_img").css("opacity","0");
+      //     $(this).children("img").css("opacity","0");
+      //     $(this).children(".hover_img").css("opacity","1");
+      //   });
+      //   $("#s20230926bea3aa6cc25a8 .img_wrap").click(function(){
+      //     $("#s20230926bea3aa6cc25a8 .img_wrap img").css("opacity","1");
+      //     $("#s20230926bea3aa6cc25a8 .img_wrap .hover_img").css("opacity","0");
+      //     $(this).children("img").css("opacity","0");
+      //     $(this).children(".hover_img").css("opacity","1");
+      //   });
+      // }
       
     }else{
       // HOME 이외의 페이지에서 언어버튼 테두리
-      $("#w202310137f45776f25e91").css("border","1px solid #222222");
+      // $("#w202310137f45776f25e91").css("border","1px solid #222222");
+      $("#w202310137f45776f25e91 .widget.inline_widget a i").css("border-top-color","#222222");
+      $("#w202310137f45776f25e91 .widget.inline_widget a").mouseenter(function(){
+        $("#w202310137f45776f25e91 .widget.inline_widget a i").css("border-top-color","#ff003b");
+      })
+      $("#w202310137f45776f25e91 .widget.inline_widget a").mouseleave(function(){
+        $("#w202310137f45776f25e91 .widget.inline_widget a i").css("border-top-color","#222222");
+      })
 
     }
     setFlowBanner();
@@ -173,21 +184,7 @@ $(function () {
         $("#w20230825d156046a1b84d").css("opacity","0");
         $("#w20230914dc538db5a14fa").css("opacity","0");
       }
-      
-      
-      // ABOUT 애니메이션 스타트
-      // let about_top = $("#s202309210bb5ee44410ad").offset().top;
-      // if(about_top <= bottom_of_window){
-      //   if($(window).width() < 600){
-      //     // ABOUT 애니메이션
-      //     $("#about_div .left_div").css("animation-name","mleft-move");
-      //     $("#about_div .right_div").css("animation-name","mright-move");
-      //   }else{
-      //     // ABOUT 애니메이션
-      //     $("#about_div .center_div").css("animation-name","center-move");
-      //     $("#about_div .right_div").css("animation-name","right-move");
-      //   }
-      // }
+
     });
 
     // HOME 뉴스룸 게시판 클릭시 무효화
@@ -206,44 +203,34 @@ $(function () {
     if($("#w20231005dafb1b8885a94").html()){
       for(let i=1; i<=2; i++){
         garo_sum += $("#w20231005dafb1b8885a94 > div > div > div > div:nth-child("+i+")").width();
-        console.log(i+"번째 "+$("#w20231005dafb1b8885a94 > div > div > div > div:nth-child("+i+")").width());
       }
-      console.log("sum = "+garo_sum);
       $("#w20231005dafb1b8885a94").scrollLeft(garo_sum);
     }
     if($("#w202310053a8927cd30a6e").html()){
       for(let i=1; i<=3; i++){
         garo_sum += $("#w202310053a8927cd30a6e > div > div > div > div:nth-child("+i+")").width();
-        console.log(i+"번째 "+$("#w202310053a8927cd30a6e > div > div > div > div:nth-child("+i+")").width());
       }
-      console.log("sum = "+garo_sum);
 
       $("#w202310053a8927cd30a6e").scrollLeft(garo_sum);
     }
     if($("#w202310053fd982aa0756f").html()){
       for(let i=1; i<=4; i++){
         garo_sum += $("#w202310053fd982aa0756f > div > div > div > div:nth-child("+i+")").width();
-        console.log(i+"번째 "+$("#w202310053fd982aa0756f > div > div > div > div:nth-child("+i+")").width());
       }
-      console.log("sum = "+garo_sum);
 
       $("#w202310053fd982aa0756f").scrollLeft(garo_sum);
     }
     if($("#w20231005c0c327c28fc53").html()){
       for(let i=1; i<=5; i++){
         garo_sum += $("#w20231005c0c327c28fc53 > div > div > div > div:nth-child("+i+")").width();
-        console.log(i+"번째 "+$("#w20231005c0c327c28fc53 > div > div > div > div:nth-child("+i+")").width());
       }
-      console.log("sum = "+garo_sum);
 
       $("#w20231005c0c327c28fc53").scrollLeft(garo_sum);
     }
     if($("#w202310055922395b48388").html()){
       for(let i=1; i<=6; i++){
         garo_sum += $("#w202310055922395b48388 > div > div > div > div:nth-child("+i+")").width();
-        console.log(i+"번째 "+$("#w202310055922395b48388 > div > div > div > div:nth-child("+i+")").width());
       }
-      console.log("sum = "+garo_sum);
 
       $("#w202310055922395b48388").scrollLeft(garo_sum);
     }
@@ -401,8 +388,24 @@ $(function () {
     // WORK에서만 동작
     if($("#s2023090616fb3cf432729").html()){
       
+     
+      // 제목 띄어쓰기 세팅
+      // 양쪽에 공백 추가 - 단어 추가시에는 , 구분으로 ""로 감싸서 단어를 입력하면 됩니다.
+      let both_txt = new Array(
+        // "-","킥스타터","인디고고","젝젝","와디즈","마쿠아케","팝업스토어"
+      )
+      // 왼쪽에 공백 추가
+      let left_txt = new Array(
+        // "팝업스토어","킥스타터"
+      )
+      // 오른쪽에 공백 추가
+      let right_txt = new Array(
+        // "킥스타터","인디고고","젝젝","와디즈","마쿠아케"
+      )
+        
+      
       // 호버시가 아닌 그냥 있을때에도 정보 표시      
-      $("#w2023090778a70f63ea705 .card").each(function(){
+      $("#w2023090778a70f63ea705 .card").each(function(index){
         
         // 카테고리 이름 세팅
         let cate_name = $(this).find(".title > span > em").html();
@@ -423,45 +426,86 @@ $(function () {
           let first_line = $(this).find(".text.text-block span").text();
           let first_box = first_line.split("-");
           let plf = first_box[0].replace(/[^ㄱ-ㅎ가-힣]/g,"");
-          amount = first_box[1];
-          // console.log(plf+"/"+amount);
+          // amount = first_box[1];
           
           if(plf == "킥스타터"){
-            img_name = "https://cdn.imweb.me/thumbnail/20230914/091cbc71c1929.png";
+            img_name = "https://cdn.imweb.me/thumbnail/20231016/3252fbc9ceabc.png";
           }else if(plf == "인디고고"){
-            img_name = "https://cdn.imweb.me/thumbnail/20230914/70e1212b39e13.png";
+            img_name = "https://cdn.imweb.me/thumbnail/20231016/e98fb9d7d2171.png";
           }else if(plf == "젝젝"){
-            img_name = "";
+            img_name = "https://cdn.imweb.me/thumbnail/20231016/935e0e65fd362.png";
           }else if(plf == "모디안"){
             img_name = "";
           }else if(plf == "마쿠아케"){
-            img_name = "https://cdn.imweb.me/thumbnail/20230914/477cee78eefdf.png";
+            img_name = "https://cdn.imweb.me/thumbnail/20231016/69e35c9f92191.png";
           }else if(plf == "모디안"){
             img_name = "";
           }else if(plf == "포지블"){
             img_name = "";
           }else if(plf == "와디즈"){
-            img_name = "";
+            img_name = "https://cdn.imweb.me/thumbnail/20231016/11a01657056f9.png";
           }
         }else if(cate_name == "글로벌 프리오더"){
-          img_name = "";
+          img_name = "https://cdn.imweb.me/thumbnail/20231016/c823c3a939a44.png";
         }else if(cate_name == "글로벌 컨텐츠 마케팅"){
-          img_name = "";
+          img_name = "https://cdn.imweb.me/thumbnail/20231016/32e2e5b0b5346.png";
         }else if(cate_name == "글로벌 디지털 마케팅"){
-          img_name = "";
+          img_name = "https://cdn.imweb.me/thumbnail/20231016/b3e9e67ae8ec2.png";
         }else if(cate_name == "글로벌 커머스"){
-          img_name = "https://cdn.imweb.me/thumbnail/20230914/269d4323c01c4.png";
+          img_name = "https://cdn.imweb.me/thumbnail/20231016/6bbc0e0d27f3e.png";
         }else if(cate_name == "전시회 / 팝업스토어"){
-          img_name = "https://cdn.imweb.me/thumbnail/20230914/1f3aa556e4287.png";
+          img_name = "https://cdn.imweb.me/thumbnail/20231016/38ba266d3d2d7.png";
+        }else if(cate_name == "정부지원사업"){
+          img_name = "https://cdn.imweb.me/thumbnail/20231016/3bf45e59e35fb.png";
+        }else if(cate_name == "아마존"){
+          img_name = "https://cdn.imweb.me/thumbnail/20231016/dcf938728b56d.png";
+        }else{
+          
         }
+        
         $(this).find(".post_link_wrap").append("<div class='title_div'><div class='img_row'><div class='title_img'><img src='"+img_name+"' alt=''></div><div class='amount'>"+amount+"</div></div><div class='title_name'>"+title_name+"</div></div>");
+        
+        
+        
+        // 제목 띄어쓰기 세팅
+        let tval = $(this).find(".title_div .title_name").text();
+        let chgtxt;
+
+        // 양쪽 공백 추가 처리
+        both_txt.forEach(function(word){
+          // console.log(tval.indexOf(word));
+          chgtxt = " "+word+" ";
+          if(tval.indexOf(word) > -1){
+            tval = tval.replace(word,chgtxt);
+          }
+        })
+        
+        // 왼쪽 공백 추가 처리
+        left_txt.forEach(function(word){
+          // console.log(tval.indexOf(word));
+          chgtxt = " "+word;
+          if(tval.indexOf(word) > -1){
+            tval = tval.replace(word,chgtxt);
+          }
+        })
+
+        // 오른쪽 공백 추가 처리
+        right_txt.forEach(function(word){
+          // console.log(tval.indexOf(word));
+          chgtxt = word+" ";
+          if(tval.indexOf(word) > -1){
+            tval = tval.replace(word,chgtxt);
+          }
+        })
+        $(this).find(".title_div .title_name").text(tval);
         
       })
     }
 
     // 입력폼 약관보기
     $(".viewgree").click(function(){
-      $(".chkbox .privacy_agree").toggle(500);
+      // $(".chkbox .privacy_agree").toggle(500);
+      SITE.openModalMenu('m20231016145073248d228', 'm202308173ce08e97ed747')
     })
     
     
@@ -469,6 +513,14 @@ $(function () {
     
 })
 // load 끝
+
+
+// num번째 글자 뒤에 공백 추가.
+function addSpace(value,num){
+  value = value.substring(0,num) + " " + value.substring(num);
+  return value;
+}
+
 
 const counter = ($counter, max) => {
   // console.log(max);
