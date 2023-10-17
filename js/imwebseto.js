@@ -122,6 +122,9 @@ $(function () {
       $("#w202310137f45776f25e91 .widget.inline_widget a").mouseleave(function(){
         $("#w202310137f45776f25e91 .widget.inline_widget a i").css("border-top-color","#222222");
       })
+      
+      // HOME 이외의 페이지에서 햄버거 버튼 색상
+      // $("#inline_menu_alarm_badge").css("color","#222222");
 
     }
     setFlowBanner();
@@ -147,14 +150,17 @@ $(function () {
   
             // HOME - 숫자 증가 
             const $mcounter = document.querySelector(".crow_money");
-            const $pcounter = document.querySelector(".crow_fan");
+            const $pcounter = document.querySelector(".crow_cst");
             const $ucounter = document.querySelector(".crow_unit");
-            let mmax = 240;
+            const $bcounter = document.querySelector(".crow_byr");
+            let mmax = 250;
             let fmax = 27;
-            let umax = 600;
+            let umax = 700;
+            let bmax = 20;
             setTimeout(() => counter($mcounter, mmax), 50);
             setTimeout(() => counter($pcounter, fmax), 50);
             setTimeout(() => counter($ucounter, umax), 50);
+            setTimeout(() => counter($bcounter, bmax), 50);
         }
       }  
       
@@ -754,7 +760,11 @@ function chkbox_chk(){
 }
 
 function openModal(){
-  SITE.openModalMenu('m20230817ba9b448f069b6', 'm20230817674de0a084d43');
+  // 회사소개서 모달
+  // SITE.openModalMenu('m20230817ba9b448f069b6', 'm20230817674de0a084d43');
+  
+  // 뉴스레터 모달
+  SITE.openModalMenu('m20231017f3dc96f77f736', 'm202308173ce08e97ed747');
 }
 
 function regNewsletter(){
@@ -785,7 +795,7 @@ function regNewsletter(){
     $("input[name='checkbox_b25a25bfc43a6[]'").prop("checked",true);
   }
   
-  SITE_FORM.confirmInputForm('w20230831e970237b02466','N');
+  SITE_FORM.confirmInputForm('w202310176fa15aa295810','N');
 }
 
 
