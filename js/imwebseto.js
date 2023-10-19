@@ -7,7 +7,6 @@ $(function () {
       $("#mobile_slide_menu ul .viewport-nav.mobile").append("<li class='depth-01'>"+snsbtn+"</li>");      
     }
     
-
     
     // HOME일때 실행
     if($("#s20230817569ed54963a8f #visual_s20230817569ed54963a8f").html()){
@@ -38,23 +37,26 @@ $(function () {
         }
       });
       
-      // service 호버시 동작
-      $(".service_div").on("mouseenter", function(index){
-        $(this).append("<div class='backblack'></div>");
-        $(this).find(".txt_cont").toggle();
-      });
-      $(".service_div").on("mouseleave", function(){
-        $(".service_div .backblack").remove();
-        $(this).find(".txt_cont").toggle();
-      })
-      $(".etc_div").on("mouseenter", function(index){
-        $(this).append("<div class='backblack'></div>");
-        $(this).find(".txt_cont").toggle();
-      });
-      $(".etc_div").on("mouseleave", function(){
-        $(".etc_div .backblack").remove();
-        $(this).find(".txt_cont").toggle();
-      })
+      // service 호버시 동작 (415 이상에서만)
+      if(!chkMobile()){
+        console.log("djfkld");
+        $(".service_div").on("mouseenter", function(index){
+          // $(this).append("<div class='backblack'></div>");
+          $(this).find(".txt_cont").toggle();
+        });
+        $(".service_div").on("mouseleave", function(){
+          // $(".service_div .backblack").remove();
+          $(this).find(".txt_cont").toggle();
+        })
+        $(".etc_div").on("mouseenter", function(index){
+          // $(this).append("<div class='backblack'></div>");
+          $(this).find(".txt_cont").toggle();
+        });
+        $(".etc_div").on("mouseleave", function(){
+          // $(".etc_div .backblack").remove();
+          $(this).find(".txt_cont").toggle();
+        })
+      }
 
       
       // review 스와이퍼
@@ -140,11 +142,10 @@ $(function () {
       if($("#s20230906862a64f70b718").html()){
         // 카운트 시작점을 위한 좌표구하기
         let count_top = $("#s20230906862a64f70b718").offset().top + $("#s20230906862a64f70b718").outerHeight() - 200;    
-        // console.log(bottom_of_window);
-        // console.log(count_top);
-        // console.log("-----------------");
-  
         
+        // 모바일에서는 조금 더 일찍 시작하게..
+        if($(window).width() <= 415) count_top -= 500;
+
         if(bottom_of_window > count_top && any === false){
             any = true;
   
@@ -195,7 +196,11 @@ $(function () {
 
     // HOME 뉴스룸 게시판 클릭시 무효화
     $("#w2023091254e53d77f1943 .post_link_wrap").click(function(){
-      location.href="/about?#w2023091229ebe142df7ae";
+      let param = $(this).attr("href");
+      let box = param.split('/');
+      param = box[box.length-1];
+      location.href="/news"+param;
+      
       return false;
     })
 
@@ -394,19 +399,22 @@ $(function () {
     // WORK에서만 동작
     if($("#s2023090616fb3cf432729").html()){
       
-     
+      // 상세페이지에서는 상단 동영상 미노출 처리
+      chkWorkParam();
+      
+      
       // 제목 띄어쓰기 세팅
       // 양쪽에 공백 추가 - 단어 추가시에는 , 구분으로 ""로 감싸서 단어를 입력하면 됩니다.
       let both_txt = new Array(
-        "-"
+        "-","컨텐츠"
       )
       // 왼쪽에 공백 추가
       let left_txt = new Array(
-        // "팝업스토어","킥스타터"
+        "팝업스토어","커머스"
       )
       // 오른쪽에 공백 추가
       let right_txt = new Array(
-        "킥스타터","인디고고","젝젝","와디즈","마쿠아케"
+        "킥스타터","인디고고","젝젝","와디즈","마쿠아케","대만"
       )
         
       
@@ -428,29 +436,45 @@ $(function () {
         let img_name = amount = "";
         
         if(cate_name == "글로벌 크라우드 펀딩"){
-          // let first_line = $(this).find(".text.text-block span").text().replace(/[^ㄱ-ㅎ가-힣]/g,"");
-          let first_line = $(this).find(".text.text-block span").text();
-          let first_box = first_line.split("-");
-          let plf = first_box[0].replace(/[^ㄱ-ㅎ가-힣]/g,"");
-          // amount = first_box[1];
+          // let first_line = $(this).find(".text.text-block span").text();
+          // let first_box = first_line.split("-");
+          // let plf = first_box[0].replace(/[^ㄱ-ㅎ가-힣]/g,"");
+          // let amount = first_box[1];
           
-          if(plf == "킥스타터"){
-            img_name = "https://cdn.imweb.me/thumbnail/20231016/3252fbc9ceabc.png";
-          }else if(plf == "인디고고"){
-            img_name = "https://cdn.imweb.me/thumbnail/20231016/e98fb9d7d2171.png";
-          }else if(plf == "젝젝"){
-            img_name = "https://cdn.imweb.me/thumbnail/20231016/935e0e65fd362.png";
-          }else if(plf == "모디안"){
-            img_name = "";
-          }else if(plf == "마쿠아케"){
-            img_name = "https://cdn.imweb.me/thumbnail/20231016/69e35c9f92191.png";
-          }else if(plf == "모디안"){
-            img_name = "";
-          }else if(plf == "포지블"){
-            img_name = "";
-          }else if(plf == "와디즈"){
-            img_name = "https://cdn.imweb.me/thumbnail/20231016/11a01657056f9.png";
-          }
+          // 첫줄없이 제목에서 단어 매칭
+          // plf_arr에 들어가는 펀딩사이트 이름 순서와 img_arr에 들어가는 이미지 순서가 동일해야 합니다.
+          let plf_arr = new Array("킥스타터", "인디고고", "젝젝", "와디즈", "마쿠아케");
+          let img_arr = new Array(
+            "https://cdn.imweb.me/thumbnail/20231016/3252fbc9ceabc.png",
+            "https://cdn.imweb.me/thumbnail/20231016/e98fb9d7d2171.png",
+            "https://cdn.imweb.me/thumbnail/20231016/935e0e65fd362.png",
+            "https://cdn.imweb.me/thumbnail/20231016/11a01657056f9.png",
+            "https://cdn.imweb.me/thumbnail/20231016/69e35c9f92191.png"
+          )
+          plf_arr.forEach(function(name, index){
+            if(title_name.indexOf(name) > -1){
+              img_name = img_arr[index];  
+              return false;
+            }
+          })
+          
+          // if(plf == "킥스타터"){
+          //   img_name = "https://cdn.imweb.me/thumbnail/20231016/3252fbc9ceabc.png";
+          // }else if(plf == "인디고고"){
+          //   img_name = "https://cdn.imweb.me/thumbnail/20231016/e98fb9d7d2171.png";
+          // }else if(plf == "젝젝"){
+          //   img_name = "https://cdn.imweb.me/thumbnail/20231016/935e0e65fd362.png";
+          // }else if(plf == "모디안"){
+          //   img_name = "";
+          // }else if(plf == "마쿠아케"){
+          //   img_name = "https://cdn.imweb.me/thumbnail/20231016/69e35c9f92191.png";
+          // }else if(plf == "모디안"){
+          //   img_name = "";
+          // }else if(plf == "포지블"){
+          //   img_name = "";
+          // }else if(plf == "와디즈"){
+          //   img_name = "https://cdn.imweb.me/thumbnail/20231016/11a01657056f9.png";
+          // }
         }else if(cate_name == "글로벌 프리오더"){
           img_name = "https://cdn.imweb.me/thumbnail/20231016/c823c3a939a44.png";
         }else if(cate_name == "글로벌 컨텐츠 마케팅"){
@@ -474,15 +498,14 @@ $(function () {
         
         
         // 제목 띄어쓰기 세팅
-        let tval = $(this).find(".title_div .title_name").text();
         let chgtxt;
 
         // 양쪽 공백 추가 처리
         both_txt.forEach(function(word){
           // console.log(tval.indexOf(word));
           chgtxt = " "+word+" ";
-          if(tval.indexOf(word) > -1){
-            tval = tval.replace(word,chgtxt);
+          if(title_name.indexOf(word) > -1){
+            title_name = title_name.replace(word,chgtxt);
           }
         })
         
@@ -490,8 +513,8 @@ $(function () {
         left_txt.forEach(function(word){
           // console.log(tval.indexOf(word));
           chgtxt = " "+word;
-          if(tval.indexOf(word) > -1){
-            tval = tval.replace(word,chgtxt);
+          if(title_name.indexOf(word) > -1){
+            title_name = title_name.replace(word,chgtxt);
           }
         })
 
@@ -499,11 +522,11 @@ $(function () {
         right_txt.forEach(function(word){
           // console.log(tval.indexOf(word));
           chgtxt = word+" ";
-          if(tval.indexOf(word) > -1){
-            tval = tval.replace(word,chgtxt);
+          if(title_name.indexOf(word) > -1){
+            title_name = title_name.replace(word,chgtxt);
           }
         })
-        $(this).find(".title_div .title_name").text(tval);
+        $(this).find(".title_div .title_name").text(title_name);
         
       })
     }
@@ -718,14 +741,17 @@ function onlyNum(obj){
 function downDoc(){
   let uname = $("#input_txt_3a5f3c9c46b4e").val();
   let uemail = $("#input_email_585cb3dbe09ab").val();
+  let re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
   let chk = chkbox_chk();
+
+  if(uname && uemail && chk && re.test(uemail)){
+    $(".down-btn").attr("disabled",true);
+  }
   
-  $(".down-btn").attr("disabled",true);
   setTimeout(function(){
     SITE_FORM.confirmInputForm('w20230831f65b974c1a11c','N');
   },1000);
   if(uname && uemail){
-    let re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
 
     if (re.test(uemail) && chk) {
       setTimeout(function(){
@@ -913,3 +939,20 @@ function work_move(num){
     location.href="/ourwork/?q=YToxOntzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&bmode=view&idx=16341971&t=board";
   }
 }
+
+// WORK 포트폴리오 상세페이지에서는 헤드동영상 미노출처리
+function chkWorkParam(){
+  let url = new URL(location.href);
+  let param = url.searchParams;
+  let bidx = param.get('idx');  
+  
+  if(bidx){
+    $("#w20230926451f3d05e9e94").css("display","none");
+  }else{
+    $("#w20230926451f3d05e9e94").css("display","block");
+  }
+}
+
+
+
+
