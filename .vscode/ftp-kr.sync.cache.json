@@ -26,8 +26,8 @@
       "css": {
         "imwebseto.css": {
           "type": "-",
-          "size": 107769,
-          "lmtime": 1697631209652.3416,
+          "size": 113375,
+          "lmtime": 1697706918090.7327,
           "modified": false
         },
         "seto.css": {
@@ -39,6 +39,26 @@
         "webapp.css": {
           "type": "-",
           "size": 6228,
+          "lmtime": 0,
+          "modified": false
+        }
+      },
+      "js": {
+        "imwebseto.js": {
+          "type": "-",
+          "size": 32201,
+          "lmtime": 1697707384593.6216,
+          "modified": false
+        },
+        "seto.js": {
+          "type": "-",
+          "size": 0,
+          "lmtime": 0,
+          "modified": false
+        },
+        "webapp.js": {
+          "type": "-",
+          "size": 3882,
           "lmtime": 0,
           "modified": false
         }

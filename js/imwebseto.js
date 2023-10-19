@@ -948,8 +948,12 @@ function chkWorkParam(){
   
   if(bidx){
     $("#w20230926451f3d05e9e94").css("display","none");
+    $("#w202310184c93d352f78a0").css("display","none");
+    $("#w2023101998e333c387ebb").css("display","none");
   }else{
     $("#w20230926451f3d05e9e94").css("display","block");
+    $("#w202310184c93d352f78a0").css("display","block");
+    $("#w2023101998e333c387ebb").css("display","block");
   }
 }
 
