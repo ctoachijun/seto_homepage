@@ -39,21 +39,24 @@ $(function () {
       
       // service 호버시 동작 (415 이상에서만)
       if(!chkMobile()){
-        console.log("djfkld");
         $(".service_div").on("mouseenter", function(index){
           // $(this).append("<div class='backblack'></div>");
+          $(this).find(".backblack").toggle();
           $(this).find(".txt_cont").toggle();
         });
         $(".service_div").on("mouseleave", function(){
           // $(".service_div .backblack").remove();
+          $(this).find(".backblack").toggle();
           $(this).find(".txt_cont").toggle();
         })
         $(".etc_div").on("mouseenter", function(index){
           // $(this).append("<div class='backblack'></div>");
+          $(this).find(".backblack").toggle();
           $(this).find(".txt_cont").toggle();
         });
         $(".etc_div").on("mouseleave", function(){
           // $(".etc_div .backblack").remove();
+          $(this).find(".backblack").toggle();
           $(this).find(".txt_cont").toggle();
         })
       }
@@ -153,15 +156,12 @@ $(function () {
             const $mcounter = document.querySelector(".crow_money");
             const $pcounter = document.querySelector(".crow_cst");
             const $ucounter = document.querySelector(".crow_unit");
-            const $bcounter = document.querySelector(".crow_byr");
             let mmax = 250;
             let fmax = 27;
             let umax = 700;
-            let bmax = 20;
             setTimeout(() => counter($mcounter, mmax), 50);
             setTimeout(() => counter($pcounter, fmax), 50);
             setTimeout(() => counter($ucounter, umax), 50);
-            setTimeout(() => counter($bcounter, bmax), 50);
         }
       }  
       
@@ -432,7 +432,7 @@ $(function () {
         let box2 = box.split("]");
         title_name = box2[1];
         
-        // 각 이미지 세팅. 크라우드 펀딩일 경우 첫줄로 이미지를 판단.
+        // 각 이미지 세팅. 크라우드 펀딩일 경우 첫줄로 이미지를 판단. (에서 제목에서 단어 매칭으로 변경)
         let img_name = amount = "";
         
         if(cate_name == "글로벌 크라우드 펀딩"){
@@ -445,11 +445,11 @@ $(function () {
           // plf_arr에 들어가는 펀딩사이트 이름 순서와 img_arr에 들어가는 이미지 순서가 동일해야 합니다.
           let plf_arr = new Array("킥스타터", "인디고고", "젝젝", "와디즈", "마쿠아케");
           let img_arr = new Array(
-            "https://cdn.imweb.me/thumbnail/20231016/3252fbc9ceabc.png",
-            "https://cdn.imweb.me/thumbnail/20231016/e98fb9d7d2171.png",
-            "https://cdn.imweb.me/thumbnail/20231016/935e0e65fd362.png",
-            "https://cdn.imweb.me/thumbnail/20231016/11a01657056f9.png",
-            "https://cdn.imweb.me/thumbnail/20231016/69e35c9f92191.png"
+            "https://setoworks.com/common/img/image_WorkBadge_Kickstarter.svg",
+            "https://setoworks.com/common/img/image_WorkBadge_Indiegogo.svg",
+            "https://setoworks.com/common/img/image_WorkBadge_Zeczec.svg",
+            "https://setoworks.com/common/img/image_WorkBadge_Wadiz.svg",
+            "https://setoworks.com/common/img/image_WorkBadge_Makuake.svg"
           )
           plf_arr.forEach(function(name, index){
             if(title_name.indexOf(name) > -1){
@@ -476,19 +476,19 @@ $(function () {
           //   img_name = "https://cdn.imweb.me/thumbnail/20231016/11a01657056f9.png";
           // }
         }else if(cate_name == "글로벌 프리오더"){
-          img_name = "https://cdn.imweb.me/thumbnail/20231016/c823c3a939a44.png";
+          img_name = "https://setoworks.com/common/img/image_WorkBadge_PreOrder.svg";
         }else if(cate_name == "글로벌 컨텐츠 마케팅"){
-          img_name = "https://cdn.imweb.me/thumbnail/20231016/32e2e5b0b5346.png";
+          img_name = "https://setoworks.com/common/img/image_WorkBadge_ContentsMarketing.svg";
         }else if(cate_name == "글로벌 디지털 마케팅"){
-          img_name = "https://cdn.imweb.me/thumbnail/20231016/b3e9e67ae8ec2.png";
+          img_name = "https://setoworks.com/common/img/image_WorkBadge_DigitalMarketing.svg";
         }else if(cate_name == "글로벌 커머스"){
-          img_name = "https://cdn.imweb.me/thumbnail/20231016/6bbc0e0d27f3e.png";
+          img_name = "https://setoworks.com/common/img/image_WorkBadge_GlobalCommerce.svg";
         }else if(cate_name == "전시회 / 팝업스토어"){
-          img_name = "https://cdn.imweb.me/thumbnail/20231016/38ba266d3d2d7.png";
+          img_name = "https://setoworks.com/common/img/image_WorkBadge_PopupStore.svg";
         }else if(cate_name == "정부지원사업"){
-          img_name = "https://cdn.imweb.me/thumbnail/20231016/3bf45e59e35fb.png";
+          img_name = "https://setoworks.com/common/img/image_WorkBadge_ExportVoucher.svg";
         }else if(cate_name == "아마존"){
-          img_name = "https://cdn.imweb.me/thumbnail/20231016/dcf938728b56d.png";
+          img_name = "https://setoworks.com/common/img/image_WorkBadge_Amazon.svg";
         }else{
           
         }
@@ -793,7 +793,7 @@ function openModal(){
   SITE.openModalMenu('m20231017f3dc96f77f736', 'm202308173ce08e97ed747');
 }
 
-function regNewsletter(){
+function regNewsletter(num){
   let input_email = $("input[name=homemail").val();
   if(!input_email){
     alert("이메일 주소를 입력 해 주세요.");
@@ -814,6 +814,7 @@ function regNewsletter(){
     return false;
   }
 
+  console.log("세팅 전 : "+num);
   
   // 원래 폼에 값 세팅.
   $("#input_email_1f1a2545c2f24").val(input_email);
@@ -821,7 +822,12 @@ function regNewsletter(){
     $("input[name='checkbox_b25a25bfc43a6[]'").prop("checked",true);
   }
   
-  SITE_FORM.confirmInputForm('w202310176fa15aa295810','N');
+  console.log(num);
+  if(num == 1){
+    SITE_FORM.confirmInputForm('w202310176fa15aa295810','N');
+  }else{
+    SITE_FORM.confirmInputForm('w202310206db720428954d','N');
+  }
 }
 
 
@@ -950,10 +956,12 @@ function chkWorkParam(){
     $("#w20230926451f3d05e9e94").css("display","none");
     $("#w202310184c93d352f78a0").css("display","none");
     $("#w2023101998e333c387ebb").css("display","none");
+    $("#w20231019b63136f636b6c").css("display","none");
   }else{
     $("#w20230926451f3d05e9e94").css("display","block");
     $("#w202310184c93d352f78a0").css("display","block");
     $("#w2023101998e333c387ebb").css("display","block");
+    $("#w20231019b63136f636b6c").css("display","block");
   }
 }
 
