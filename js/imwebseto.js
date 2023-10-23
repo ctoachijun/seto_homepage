@@ -7,6 +7,7 @@ $(function () {
       $("#mobile_slide_menu ul .viewport-nav.mobile").append("<li class='depth-01'>"+snsbtn+"</li>");      
     }
     
+    // alert($(window).width());
     
     // HOME일때 실행
     if($("#s20230817569ed54963a8f #visual_s20230817569ed54963a8f").html()){
@@ -140,6 +141,8 @@ $(function () {
     // 스크롤시 이미지 등장
     $(window).scroll(function () {
       var bottom_of_window = $(window).scrollTop() + $(window).height();
+      console.log(bottom_of_window);
+      
       
       // 카운트 섹션의 html이 있는 경우에만 작업. offset top 때문에 에러나서 about 애니메이션이 동작 안함.
       if($("#s20230906862a64f70b718").html()){
@@ -156,29 +159,37 @@ $(function () {
             const $mcounter = document.querySelector(".crow_money");
             const $pcounter = document.querySelector(".crow_cst");
             const $ucounter = document.querySelector(".crow_unit");
-            let mmax = 250;
+            let mmax = 260;
             let fmax = 27;
-            let umax = 700;
+            let umax = 650;
             setTimeout(() => counter($mcounter, mmax), 50);
             setTimeout(() => counter($pcounter, fmax), 50);
             setTimeout(() => counter($ucounter, umax), 50);
         }
+        
+        // HOME 화면이니 메일 다운 버튼 보이도록 처리
+        if(bottom_of_window > 1100){
+          $("#main_down").css("opacity","1");
+          $("#main_down").css("background","rgba(100,100,100,0.6)");
+        }else{
+          $("#main_down").css("opacity","0");
+        }
       }  
       
       // 회사소개서 버튼 투명처리 및 복원처리(가로폭 별 별도지정)
-      if($(window).width() > 991){
-        if(bottom_of_window > 1000){
-          $("#main_down").css("background","rgba(100,100,100,0.6)");
-        }else{
-          $("#main_down").css("background","#060000");
-        }
-      }else if($(window).width() < 992){
-        if(bottom_of_window > 850){
-          $("#main_down").css("background","rgba(100,100,100,0.6)");
-        }else{
-          $("#main_down").css("background","#060000");
-        }
-      }
+      // if($(window).width() > 991){
+      //   if(bottom_of_window > 1000){
+      //     $("#main_down").css("background","rgba(100,100,100,0.6)");
+      //   }else{
+      //     $("#main_down").css("background","#060000");
+      //   }
+      // }else if($(window).width() < 992){
+      //   if(bottom_of_window > 850){
+      //     $("#main_down").css("background","rgba(100,100,100,0.6)");
+      //   }else{
+      //     $("#main_down").css("background","#060000");
+      //   }
+      // }
       
 
       
@@ -755,7 +766,7 @@ function downDoc(){
 
     if (re.test(uemail) && chk) {
       setTimeout(function(){
-        window.open('about:blank').location.href="https://drive.google.com/file/d/1BcRJp_H3Uhu_dngur48j0LYFiJQQVpi7/view?usp=drive_link";
+        window.open('about:blank').location.href="https://drive.google.com/file/d/1OVF4B17p8wNMNHxebYA3SrLRol_rSmTe/view?usp=sharing";
       },2000);
     }
   }

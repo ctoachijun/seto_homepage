@@ -23,11 +23,31 @@
     "test": {},
     "webapp": {},
     "www": {
+      "css": {
+        "imwebseto.css": {
+          "type": "-",
+          "size": 116478,
+          "lmtime": 1697791405353.9387,
+          "modified": false
+        },
+        "seto.css": {
+          "type": "-",
+          "size": 0,
+          "lmtime": 0,
+          "modified": false
+        },
+        "webapp.css": {
+          "type": "-",
+          "size": 6228,
+          "lmtime": 0,
+          "modified": false
+        }
+      },
       "js": {
         "imwebseto.js": {
           "type": "-",
-          "size": 32316,
-          "lmtime": 1697707679569.727,
+          "size": 32715,
+          "lmtime": 1697784958414.3494,
           "modified": false
         },
         "seto.js": {
