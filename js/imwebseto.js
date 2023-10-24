@@ -141,7 +141,6 @@ $(function () {
     // 스크롤시 이미지 등장
     $(window).scroll(function () {
       var bottom_of_window = $(window).scrollTop() + $(window).height();
-      console.log(bottom_of_window);
       
       
       // 카운트 섹션의 html이 있는 경우에만 작업. offset top 때문에 에러나서 about 애니메이션이 동작 안함.
@@ -287,7 +286,7 @@ $(function () {
           })
         }
       })
-      
+
       // 프리오더 PROCESS
       $("#s20230921cc07d9d02f270 .img_wrap").click(function(){
         if($(this).children(".txt._txt_wrap").css("display") == "none"){
@@ -319,9 +318,61 @@ $(function () {
       })
     }
     
+          
+    // 크라우드펀딩 페이지 - 성공사례 클릭 시 이동처리
+    // $("#w20231023da89eb360b0c8 .img_wrap").click(function(){
+    //   location.href="/ourproject/?q=YToxOntzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&bmode=view&idx=16562642&t=board";
+    // })
+    // $("#w202310234183caa13dbb3 .img_wrap").click(function(){
+    //   location.href="/ourproject/?q=YToxOntzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&bmode=view&idx=16562642&t=board";
+    // })
+    // $("#w20231023c0ff7baff2706 .img_wrap").click(function(){
+    //   location.href="/ourproject/?q=YToxOntzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&bmode=view&idx=16562642&t=board";
+    // })
+      
+    
+    
     // 피플 모바일에서 클릭시 호버효과 나오게
     if($(window).width() < 991){
       $("#s20230913d2cba4c85dfe6 .img_wrap").click(function(){
+        if($(this).children(".txt._txt_wrap").css("display") == "none"){
+          $(".txt._txt_wrap").css("display","block");
+          $(".hover_overlay").css({
+            "opacity" : "0"
+          });
+          $(".hover_img").css({
+            "opacity" : "0"
+          });
+          $(".hover_txt").css({
+            "z-index" : "1",
+            "opacity" : "0"
+          })
+        }else{
+          $(".txt._txt_wrap").css("display","block");
+          // 기존 nametag 부분 숨기기
+          $(this).children(".txt._txt_wrap").css("display","none");
+    
+          // 호버시 배경 검은색
+          $(this).children(".hover_overlay").css({
+            "opacity" : "1"
+          });
+    
+          //호버시 나오는 설명글
+          $(this).children(".hover_txt").css({
+            "z-index" : "10",
+            "opacity" : "1"
+          });
+          
+          // 호버시 이미지 표시
+          $(this).children(".hover_img").css({
+            "opacity" : "1"
+          });
+
+        }
+        
+      })
+      
+      $("#s20231024dc18910da3959 .img_wrap").click(function(){
         if($(this).children(".txt._txt_wrap").css("display") == "none"){
           $(".txt._txt_wrap").css("display","block");
           $(".hover_overlay").css({
@@ -407,7 +458,7 @@ $(function () {
     
     
 
-    // WORK에서만 동작
+    // PROJECT 에서만 동작
     if($("#s2023090616fb3cf432729").html()){
       
       // 상세페이지에서는 상단 동영상 미노출 처리
@@ -548,8 +599,25 @@ $(function () {
       SITE.openModalMenu('m20231016145073248d228', 'm202308173ce08e97ed747')
     })
     
+  
+
+
+    // NEWS 일때
+    if($('#s202310192ed7990241096').html()){
+      
+      // 제목 3줄 안가게 말줄임표 처리
+      let title,txt,box;
+      $("#w2023101957f883f44d589 .type_grid.grid_02 .title").each(function(index){
+        txt = $(this).text().replace(/\t/g,'');
+        box = txt.split('\n');
+        title = box[5];
+        if(title.length > 42){
+          title = title.substr(0,42)+'...';
+        }
+        $(this).html(title);
+      })
+    }
     
-   
     
 })
 // load 끝
