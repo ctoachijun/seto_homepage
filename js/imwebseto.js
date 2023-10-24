@@ -367,7 +367,6 @@ $(function () {
           $(this).children(".hover_img").css({
             "opacity" : "1"
           });
-
         }
         
       })
@@ -392,7 +391,8 @@ $(function () {
     
           // 호버시 배경 검은색
           $(this).children(".hover_overlay").css({
-            "opacity" : "1"
+            "background" : "#000",
+            "opacity" : "0.4"
           });
     
           //호버시 나오는 설명글
@@ -405,7 +405,6 @@ $(function () {
           $(this).children(".hover_img").css({
             "opacity" : "1"
           });
-
         }
         
       })
