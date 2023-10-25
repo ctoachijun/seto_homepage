@@ -5,12 +5,9 @@ $(function () {
        let snsbtn = "<div class='sns_div'><a href='https://blog.naver.com/globalfunding'>BLOG</a>&middot;<a href='https://www.facebook.com/setoworks'>FACEBOOK</a></div>";
       $("#mobile_slide_menu ul .viewport-nav.mobile").append("<li class='depth-01'>"+snsbtn+"</li>");      
     }
-  
-    // alert($(window).width());
-    
     
     // HOME일때 실행
-    if($("#s20230817569ed54963a8f #visual_s20230817569ed54963a8f").html()){
+    if($("#s2023102586f5b670f22f9 #visual_s2023102586f5b670f22f9").html()){
      
       // service 슬라이드
       let sswiper = new Swiper(".sslide_cont", {
@@ -97,14 +94,27 @@ $(function () {
         }
       });
       
+      // HOME 뉴스룸 제목
+      let htitle,htxt,hbox;
+      $("#w2023102533b1f750e412f .type_grid.grid_02 .title").each(function(index){
+        htxt = $(this).text().replace(/\t/g,'');
+        hbox = htxt.split('\n');
+        htitle = hbox[5];
+        if(htitle.length > 42){
+          htitle = htitle.substr(0,42)+'...';
+        }
+        $(this).html(htitle);
+      })
+      
+      
     }else{
       // HOME 이외의 페이지에서 언어버튼 테두리
-      $("#w202310137f45776f25e91 .widget.inline_widget a i").css("border-top-color","#222222");
-      $("#w202310137f45776f25e91 .widget.inline_widget a").mouseenter(function(){
-        $("#w202310137f45776f25e91 .widget.inline_widget a i").css("border-top-color","#ff003b");
+      $("#w20231025ba44bac0d7ff7 .widget.inline_widget a i").css("border-top-color","#222222");
+      $("#w20231025ba44bac0d7ff7 .widget.inline_widget a").mouseenter(function(){
+        $("#w20231025ba44bac0d7ff7 .widget.inline_widget a i").css("border-top-color","#ff003b");
       })
-      $("#w202310137f45776f25e91 .widget.inline_widget a").mouseleave(function(){
-        $("#w202310137f45776f25e91 .widget.inline_widget a i").css("border-top-color","#222222");
+      $("#w20231025ba44bac0d7ff7 .widget.inline_widget a").mouseleave(function(){
+        $("#w20231025ba44bac0d7ff7 .widget.inline_widget a i").css("border-top-color","#222222");
       })
     }
     setFlowBanner();
@@ -117,10 +127,10 @@ $(function () {
       var bottom_of_window = $(window).scrollTop() + $(window).height();
       
       // 카운트 섹션의 html이 있는 경우에만 작업. offset top 때문에 에러나서 about 애니메이션이 동작 안함.
-      if($("#s20230906862a64f70b718").html()){
+      if($("#s20231025008690a79ca62").html()){
 
         // 카운트 시작점을 위한 좌표구하기
-        let count_top = $("#s20230906862a64f70b718").offset().top + $("#s20230906862a64f70b718").outerHeight() - 200;    
+        let count_top = $("#s20231025008690a79ca62").offset().top + $("#s20231025008690a79ca62").outerHeight() - 200;    
         
         // 모바일에서는 조금 더 일찍 시작하게..
         if($(window).width() <= 415) count_top -= 500;
@@ -132,10 +142,10 @@ $(function () {
             const $mcounter = document.querySelector(".crow_money");
             const $pcounter = document.querySelector(".crow_cst");
             const $ucounter = document.querySelector(".crow_unit");
-            let mmax = 260;
+            let mmax = 19250500;
             let fmax = 27;
             let umax = 650;
-            setTimeout(() => counter($mcounter, mmax), 50);
+            setTimeout(() => counter2($mcounter, mmax), 50);
             setTimeout(() => counter($pcounter, fmax), 50);
             setTimeout(() => counter($ucounter, umax), 50);
         }
@@ -151,12 +161,12 @@ $(function () {
       
       // 상단 바로가기
       if(bottom_of_window > 3500){
-        $("#w20230825d156046a1b84d").css("opacity","1");
-        $("#w20230914dc538db5a14fa").css("opacity","1");
+        $("#w20231025d9239d2887c26").css("opacity","1");
+        $("#w20231025b621a4cd0dc1e").css("opacity","1");
         
       }else{
-        $("#w20230825d156046a1b84d").css("opacity","0");
-        $("#w20230914dc538db5a14fa").css("opacity","0");
+        $("#w20231025d9239d2887c26").css("opacity","0");
+        $("#w20231025b621a4cd0dc1e").css("opacity","0");
       }
 
     });
@@ -176,49 +186,49 @@ $(function () {
     let garo_sum = 0;
     
     // 각 화면에서 내비 버튼이 왼쪽으로 붙어 나오게 처리
-    if($("#w20231005a2428ce56e89b").html()){
-        garo_sum += $("#w20231005a2428ce56e89b > div > div > div > div:nth-child(1)").width();
-      $("#w20231005a2428ce56e89b").scrollLeft(garo_sum);
+    if($("#w20231025dc63b2ed56f8e").html()){
+        garo_sum += $("#w20231025dc63b2ed56f8e > div > div > div > div:nth-child(1)").width();
+      $("#w20231025dc63b2ed56f8e").scrollLeft(garo_sum);
     }
-    if($("#w20231005dafb1b8885a94").html()){
+    if($("#w202310257dd782fffbeed").html()){
       for(let i=1; i<=2; i++){
-        garo_sum += $("#w20231005dafb1b8885a94 > div > div > div > div:nth-child("+i+")").width();
+        garo_sum += $("#w202310257dd782fffbeed > div > div > div > div:nth-child("+i+")").width();
       }
-      $("#w20231005dafb1b8885a94").scrollLeft(garo_sum);
+      $("#w202310257dd782fffbeed").scrollLeft(garo_sum);
     }
-    if($("#w202310053a8927cd30a6e").html()){
+    if($("#w202310256c4b6495e4955").html()){
       for(let i=1; i<=3; i++){
-        garo_sum += $("#w202310053a8927cd30a6e > div > div > div > div:nth-child("+i+")").width();
+        garo_sum += $("#w202310256c4b6495e4955 > div > div > div > div:nth-child("+i+")").width();
       }
 
-      $("#w202310053a8927cd30a6e").scrollLeft(garo_sum);
+      $("#w202310256c4b6495e4955").scrollLeft(garo_sum);
     }
-    if($("#w202310053fd982aa0756f").html()){
+    if($("#w20231025fad4a842410ed").html()){
       for(let i=1; i<=4; i++){
-        garo_sum += $("#w202310053fd982aa0756f > div > div > div > div:nth-child("+i+")").width();
+        garo_sum += $("#w20231025fad4a842410ed > div > div > div > div:nth-child("+i+")").width();
       }
 
-      $("#w202310053fd982aa0756f").scrollLeft(garo_sum);
+      $("#w20231025fad4a842410ed").scrollLeft(garo_sum);
     }
-    if($("#w20231005c0c327c28fc53").html()){
+    if($("#w20231025bbec94cbaf136").html()){
       for(let i=1; i<=5; i++){
-        garo_sum += $("#w20231005c0c327c28fc53 > div > div > div > div:nth-child("+i+")").width();
+        garo_sum += $("#w20231025bbec94cbaf136 > div > div > div > div:nth-child("+i+")").width();
       }
 
-      $("#w20231005c0c327c28fc53").scrollLeft(garo_sum);
+      $("#w20231025bbec94cbaf136").scrollLeft(garo_sum);
     }
-    if($("#w202310055922395b48388").html()){
+    if($("#w20231025fda424cec561f").html()){
       for(let i=1; i<=6; i++){
-        garo_sum += $("#w202310055922395b48388 > div > div > div > div:nth-child("+i+")").width();
+        garo_sum += $("#w20231025fda424cec561f > div > div > div > div:nth-child("+i+")").width();
       }
 
-      $("#w202310055922395b48388").scrollLeft(garo_sum);
+      $("#w20231025fda424cec561f").scrollLeft(garo_sum);
     }
     
     // SERVICE - 펀딩 PROCESS
     // 펀딩 모바일에서 클릭시 호버효과 나오게
     if($(window).width() < 991){
-      $("#s20230921030b17bf29cb1 .img_wrap").click(function(){
+      $("#s20231025e7922cb68e97e .img_wrap").click(function(){
         if($(this).children(".txt._txt_wrap").css("display") == "none"){
           $(".txt._txt_wrap").css("display","block");
           $(".hover_overlay").css({
@@ -247,7 +257,7 @@ $(function () {
       })
 
       // 프리오더 PROCESS
-      $("#s20230921cc07d9d02f270 .img_wrap").click(function(){
+      $("#s202310259500281c26ada .img_wrap").click(function(){
         if($(this).children(".txt._txt_wrap").css("display") == "none"){
           $(".txt._txt_wrap").css("display","block");
           $(".hover_overlay").css({
@@ -293,7 +303,7 @@ $(function () {
     
     // 피플 모바일에서 클릭시 호버효과 나오게
     if($(window).width() <= 991){
-      $("#s20230913d2cba4c85dfe6 .img_wrap").click(function(){
+      $("#s20231025a668c469c1d88 .img_wrap").click(function(){
         if($(this).children(".txt._txt_wrap").css("display") == "none"){
           $(".txt._txt_wrap").css("display","block");
           $(".hover_overlay").css({
@@ -330,7 +340,7 @@ $(function () {
         
       })
       
-      $("#s20231024dc18910da3959 .img_wrap").click(function(){
+      $("#s202310256c6aa898372c1 .img_wrap").click(function(){
         if($(this).children(".txt._txt_wrap").css("display") == "none"){
           $(".txt._txt_wrap").css("display","block");
           $(".hover_overlay").css({
@@ -371,7 +381,7 @@ $(function () {
     
 
     // PROJECT 에서만 동작
-    if($("#s2023090616fb3cf432729").html()){
+    if($("#s20231025c651b16ab0fb7").html()){
       
       // 상세페이지에서는 상단 동영상 미노출 처리
       chkWorkParam();
@@ -393,7 +403,7 @@ $(function () {
         
       
       // 호버시가 아닌 그냥 있을때에도 정보 표시      
-      $("#w2023090778a70f63ea705 .card").each(function(index){
+      $("#w202310253283a6e9fe5ff .card").each(function(index){
         
         // 카테고리 이름 세팅
         let cate_name = $(this).find(".title > span > em").html();
@@ -409,7 +419,7 @@ $(function () {
         // 각 이미지 세팅. 크라우드 펀딩일 경우 첫줄로 이미지를 판단. (에서 제목에서 단어 매칭으로 변경)
         let img_name = amount = "";
         
-        if(cate_name == "글로벌 크라우드 펀딩"){
+        if(cate_name == "Global CrowdFunding"){
           
           // 첫줄없이 제목에서 단어 매칭
           // plf_arr에 들어가는 펀딩사이트 이름 순서와 img_arr에 들어가는 이미지 순서가 동일해야 합니다.
@@ -428,17 +438,17 @@ $(function () {
             }
           })
           
-        }else if(cate_name == "글로벌 프리오더"){
+        }else if(cate_name == "Global PreOrder"){
           img_name = "https://setoworks.com/common/img/image_WorkBadge_PreOrder.svg";
-        }else if(cate_name == "글로벌 컨텐츠 마케팅"){
+        }else if(cate_name == "Global ContentsMarketing"){
           img_name = "https://setoworks.com/common/img/image_WorkBadge_ContentsMarketing.svg";
-        }else if(cate_name == "글로벌 디지털 마케팅"){
+        }else if(cate_name == "Global DigitalMarketing"){
           img_name = "https://setoworks.com/common/img/image_WorkBadge_DigitalMarketing.svg";
-        }else if(cate_name == "글로벌 커머스"){
+        }else if(cate_name == "Global Commerce"){
           img_name = "https://setoworks.com/common/img/image_WorkBadge_GlobalCommerce.svg";
-        }else if(cate_name == "전시회 / 팝업스토어"){
+        }else if(cate_name == "Exhibition / PopupStore"){
           img_name = "https://setoworks.com/common/img/image_WorkBadge_PopupStore.svg";
-        }else if(cate_name == "정부지원사업"){
+        }else if(cate_name == "Government-funded projects"){
           img_name = "https://setoworks.com/common/img/image_WorkBadge_ExportVoucher.svg";
         }else if(cate_name == "아마존"){
           img_name = "https://setoworks.com/common/img/image_WorkBadge_Amazon.svg";
@@ -488,11 +498,11 @@ $(function () {
     
   
     // NEWS 일때
-    if($('#s202310192ed7990241096').html()){
+    if($('#s2023102524d4cc803f62b').html()){
       
       // 제목 3줄 안가게 말줄임표 처리
       let title,txt,box;
-      $("#w2023101957f883f44d589 .type_grid.grid_02 .title").each(function(index){
+      $("#w20231025a19c16524f39a .type_grid.grid_02 .title").each(function(index){
         txt = $(this).text().replace(/\t/g,'');
         box = txt.split('\n');
         title = box[5];
@@ -501,6 +511,7 @@ $(function () {
         }
         $(this).html(title);
       })
+      
     }
     
     
@@ -524,6 +535,27 @@ const counter = ($counter, max) => {
     // 값을 적용시키면서 다음 차례에 영향을 끼침
     now -= step;
   }, 50);
+}
+const counter2 = ($counter, max) => {
+  // console.log(max);
+  let now = max;
+  const handle = setInterval(() => {
+    // $counter.innerHTML = Math.ceil(max - now);
+    let box = String(Math.ceil(max - now));
+    box = box.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    $counter.innerHTML = box;
+      
+    // 목표수치에 도달하면 정지
+    if (now < 1) {
+      clearInterval(handle);
+    }
+    
+    // 증가되는 값이 계속하여 작아짐
+    const step = now / 10;
+    
+    // 값을 적용시키면서 다음 차례에 영향을 끼침
+    now -= step;
+  }, 20);
 }
 
 
@@ -641,9 +673,10 @@ function setContactFormData(num){
   $("#input_text_area_820380Ls56").val(cont);
   
   if(num == 1){
-    SITE_FORM.confirmInputForm('w20231006357cc284b6fb4','N');    
+    // 문의하기 위젯 ID 입니다.
+    SITE_FORM.confirmInputForm('w20231025df6737e6370b7','N');    
   }else if(num == 2){
-    SITE_FORM.confirmInputForm('w20230922d39e998c04ab7','N');
+    SITE_FORM.confirmInputForm('w2023102570d3c6d1f809f','N');
   }
   
 }
@@ -673,7 +706,7 @@ function downDoc(){
   }
   
   setTimeout(function(){
-    SITE_FORM.confirmInputForm('w20230831f65b974c1a11c','N');
+    SITE_FORM.confirmInputForm('w202310254514996dfbdd4','N');
   },1000);
   if(uname && uemail){
 
@@ -710,11 +743,8 @@ function chkbox_chk(){
 }
 
 function openModal(){
-  // 회사소개서 모달
-  // SITE.openModalMenu('m20230817ba9b448f069b6', 'm20230817674de0a084d43');
-  
   // 뉴스레터 모달
-  SITE.openModalMenu('m20231017f3dc96f77f736', 'm202308173ce08e97ed747');
+  SITE.openModalMenu('m20231025e9796fdf471b5', 'm20231025fd2b6c025f098');
 }
 
 function regNewsletter(num){
@@ -746,9 +776,9 @@ function regNewsletter(num){
   
   console.log(num);
   if(num == 1){
-    SITE_FORM.confirmInputForm('w202310176fa15aa295810','N');
+    SITE_FORM.confirmInputForm('w202310255302af070b9bc','N');
   }else{
-    SITE_FORM.confirmInputForm('w202310206db720428954d','N');
+    SITE_FORM.confirmInputForm('w2023102598cc5aaa28d58','N');
   }
 }
 
