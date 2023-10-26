@@ -5,12 +5,9 @@ $(function () {
        let snsbtn = "<div class='sns_div'><a href='https://blog.naver.com/globalfunding'>BLOG</a>&middot;<a href='https://www.facebook.com/setoworks'>FACEBOOK</a></div>";
       $("#mobile_slide_menu ul .viewport-nav.mobile").append("<li class='depth-01'>"+snsbtn+"</li>");      
     }
-  
-    // alert($(window).width());
-    
     
     // HOME일때 실행
-    if($("#s20230817569ed54963a8f #visual_s20230817569ed54963a8f").html()){
+    if($("#s2023102685590dd055daa #visual_s2023102685590dd055daa").html()){
      
       // service 슬라이드
       let sswiper = new Swiper(".sslide_cont", {
@@ -97,14 +94,26 @@ $(function () {
         }
       });
       
+      // HOME 뉴스룸 제목
+      let htitle,htxt,hbox;
+      $("#w20231026f51d8a7d23816 .type_grid.grid_02 .title").each(function(index){
+        htxt = $(this).text().replace(/\t/g,'');
+        hbox = htxt.split('\n');
+        htitle = hbox[5];
+        if(htitle.length > 42){
+          htitle = htitle.substr(0,42)+'...';
+        }
+        $(this).html(htitle);
+      })
+      
     }else{
       // HOME 이외의 페이지에서 언어버튼 테두리
-      $("#w202310137f45776f25e91 .widget.inline_widget a i").css("border-top-color","#222222");
-      $("#w202310137f45776f25e91 .widget.inline_widget a").mouseenter(function(){
-        $("#w202310137f45776f25e91 .widget.inline_widget a i").css("border-top-color","#ff003b");
+      $("#s202310267be0bdc420ae0 .widget.inline_widget a i").css("border-top-color","#222222");
+      $("#s202310267be0bdc420ae0 .widget.inline_widget a").mouseenter(function(){
+        $("#s202310267be0bdc420ae0 .widget.inline_widget a i").css("border-top-color","#ff003b");
       })
-      $("#w202310137f45776f25e91 .widget.inline_widget a").mouseleave(function(){
-        $("#w202310137f45776f25e91 .widget.inline_widget a i").css("border-top-color","#222222");
+      $("#s202310267be0bdc420ae0 .widget.inline_widget a").mouseleave(function(){
+        $("#s202310267be0bdc420ae0 .widget.inline_widget a i").css("border-top-color","#222222");
       })
     }
     setFlowBanner();
@@ -117,13 +126,13 @@ $(function () {
       var bottom_of_window = $(window).scrollTop() + $(window).height();
       
       // 카운트 섹션의 html이 있는 경우에만 작업. offset top 때문에 에러나서 about 애니메이션이 동작 안함.
-      if($("#s20230906862a64f70b718").html()){
+      if($("#s20231026c267c2b6a1e4c").html()){
 
         // 카운트 시작점을 위한 좌표구하기
-        let count_top = $("#s20230906862a64f70b718").offset().top + $("#s20230906862a64f70b718").outerHeight() - 200;    
+        let count_top = $("#s20231026c267c2b6a1e4c").offset().top + $("#s20231026c267c2b6a1e4c").outerHeight() - 200;    
         
         // 모바일에서는 조금 더 일찍 시작하게..
-        if($(window).width() <= 430) count_top -= 500;
+        if($(window).width() <= 415) count_top -= 500;
 
         if(bottom_of_window > count_top && any === false){
             any = true;
@@ -132,11 +141,11 @@ $(function () {
             const $mcounter = document.querySelector(".crow_money");
             const $pcounter = document.querySelector(".crow_cst");
             const $ucounter = document.querySelector(".crow_unit");
-            let mmax = 260;
-            let fmax = 27;
+            let mmax = 19250;
+            let fmax = 270;
             let umax = 650;
-            setTimeout(() => counter($mcounter, mmax), 50);
-            setTimeout(() => counter($pcounter, fmax), 50);
+            setTimeout(() => counter2($mcounter, mmax), 50);
+            setTimeout(() => counter3($pcounter, fmax), 50);
             setTimeout(() => counter($ucounter, umax), 50);
         }
         
@@ -151,18 +160,18 @@ $(function () {
       
       // 상단 바로가기
       if(bottom_of_window > 3500){
-        $("#w20230825d156046a1b84d").css("opacity","1");
-        $("#w20230914dc538db5a14fa").css("opacity","1");
+        $("#w202310266d41ff652f9c2").css("opacity","1");
+        $("#w202310264ee4aa7f81fd3").css("opacity","1");
         
       }else{
-        $("#w20230825d156046a1b84d").css("opacity","0");
-        $("#w20230914dc538db5a14fa").css("opacity","0");
+        $("#w202310266d41ff652f9c2").css("opacity","0");
+        $("#w202310264ee4aa7f81fd3").css("opacity","0");
       }
 
     });
 
     // HOME 뉴스룸 게시판 클릭시 NEWS 메뉴의 상세로 연결하기
-    $("#w2023091254e53d77f1943 .post_link_wrap").click(function(){
+    $("#w20231026f51d8a7d23816 .post_link_wrap").click(function(){
       let param = $(this).attr("href");
       let box = param.split('/');
       param = box[box.length-1];
@@ -176,49 +185,49 @@ $(function () {
     let garo_sum = 0;
     
     // 각 화면에서 내비 버튼이 왼쪽으로 붙어 나오게 처리
-    if($("#w20231005a2428ce56e89b").html()){
-        garo_sum += $("#w20231005a2428ce56e89b > div > div > div > div:nth-child(1)").width();
-      $("#w20231005a2428ce56e89b").scrollLeft(garo_sum);
+    if($("#w20231026a7673b8430dc9").html()){
+        garo_sum += $("#w20231026a7673b8430dc9 > div > div > div > div:nth-child(1)").width();
+      $("#w20231026a7673b8430dc9").scrollLeft(garo_sum);
     }
-    if($("#w20231005dafb1b8885a94").html()){
+    if($("#w202310264826af54ae47f").html()){
       for(let i=1; i<=2; i++){
-        garo_sum += $("#w20231005dafb1b8885a94 > div > div > div > div:nth-child("+i+")").width();
+        garo_sum += $("#w202310264826af54ae47f > div > div > div > div:nth-child("+i+")").width();
       }
-      $("#w20231005dafb1b8885a94").scrollLeft(garo_sum);
+      $("#w202310264826af54ae47f").scrollLeft(garo_sum);
     }
-    if($("#w202310053a8927cd30a6e").html()){
+    if($("#w20231026f62c4015ecb3e").html()){
       for(let i=1; i<=3; i++){
-        garo_sum += $("#w202310053a8927cd30a6e > div > div > div > div:nth-child("+i+")").width();
+        garo_sum += $("#w20231026f62c4015ecb3e > div > div > div > div:nth-child("+i+")").width();
       }
 
-      $("#w202310053a8927cd30a6e").scrollLeft(garo_sum);
+      $("#w20231026f62c4015ecb3e").scrollLeft(garo_sum);
     }
-    if($("#w202310053fd982aa0756f").html()){
+    if($("#w2023102692c5a574d68b1").html()){
       for(let i=1; i<=4; i++){
-        garo_sum += $("#w202310053fd982aa0756f > div > div > div > div:nth-child("+i+")").width();
+        garo_sum += $("#w2023102692c5a574d68b1 > div > div > div > div:nth-child("+i+")").width();
       }
 
-      $("#w202310053fd982aa0756f").scrollLeft(garo_sum);
+      $("#w2023102692c5a574d68b1").scrollLeft(garo_sum);
     }
-    if($("#w20231005c0c327c28fc53").html()){
+    if($("#w20231026025947ddf7fc3").html()){
       for(let i=1; i<=5; i++){
-        garo_sum += $("#w20231005c0c327c28fc53 > div > div > div > div:nth-child("+i+")").width();
+        garo_sum += $("#w20231026025947ddf7fc3 > div > div > div > div:nth-child("+i+")").width();
       }
 
-      $("#w20231005c0c327c28fc53").scrollLeft(garo_sum);
+      $("#w20231026025947ddf7fc3").scrollLeft(garo_sum);
     }
-    if($("#w202310055922395b48388").html()){
+    if($("#w20231026cb602ab778714").html()){
       for(let i=1; i<=6; i++){
-        garo_sum += $("#w202310055922395b48388 > div > div > div > div:nth-child("+i+")").width();
+        garo_sum += $("#w20231026cb602ab778714 > div > div > div > div:nth-child("+i+")").width();
       }
 
-      $("#w202310055922395b48388").scrollLeft(garo_sum);
+      $("#w20231026cb602ab778714").scrollLeft(garo_sum);
     }
     
     // SERVICE - 펀딩 PROCESS
     // 펀딩 모바일에서 클릭시 호버효과 나오게
     if($(window).width() < 991){
-      $("#s20230921030b17bf29cb1 .img_wrap").click(function(){
+      $("#s202310265dc38a24c9271 .img_wrap").click(function(){
         if($(this).children(".txt._txt_wrap").css("display") == "none"){
           $(".txt._txt_wrap").css("display","block");
           $(".hover_overlay").css({
@@ -229,11 +238,7 @@ $(function () {
             "opacity" : "0"
           })
         }else{
-          $(".txt._txt_wrap").css({
-            "display":"block",
-            "visibility":"visible",
-            "opacity":"1"
-          });
+          $(".txt._txt_wrap").css("display","block");
           // 기존 nametag 부분 숨기기
           $(this).children(".txt._txt_wrap").css("display","none");
     
@@ -251,7 +256,7 @@ $(function () {
       })
 
       // 프리오더 PROCESS
-      $("#s20230921cc07d9d02f270 .img_wrap").click(function(){
+      $("#s20231026c433a1d49f492 .img_wrap").click(function(){
         if($(this).children(".txt._txt_wrap").css("display") == "none"){
           $(".txt._txt_wrap").css("display","block");
           $(".hover_overlay").css({
@@ -297,7 +302,7 @@ $(function () {
     
     // 피플 모바일에서 클릭시 호버효과 나오게
     if($(window).width() <= 991){
-      $("#s20230913d2cba4c85dfe6 .img_wrap").click(function(){
+      $("#s20231026de4e42311740a .img_wrap").click(function(){
         if($(this).children(".txt._txt_wrap").css("display") == "none"){
           $(".txt._txt_wrap").css("display","block");
           $(".hover_overlay").css({
@@ -334,7 +339,7 @@ $(function () {
         
       })
       
-      $("#s20231024dc18910da3959 .img_wrap").click(function(){
+      $("#s202310266939e0cb1a86d .img_wrap").click(function(){
         if($(this).children(".txt._txt_wrap").css("display") == "none"){
           $(".txt._txt_wrap").css("display","block");
           $(".hover_overlay").css({
@@ -348,7 +353,11 @@ $(function () {
             "opacity" : "0"
           })
         }else{
-          $(".txt._txt_wrap").css("display","block");
+          $(".txt._txt_wrap").css({
+            "display":"block",
+            "visibility":"visible",
+            "opacity":"1"
+          });
           // 기존 nametag 부분 숨기기
           $(this).children(".txt._txt_wrap").css("display","none");
     
@@ -375,10 +384,10 @@ $(function () {
     
 
     // PROJECT 에서만 동작
-    if($("#s2023090616fb3cf432729").html()){
+    if($("#s2023102667c2ed4ff2a59").html()){
       
       // 상세페이지에서는 상단 동영상 미노출 처리
-      chkWorkParam();
+      chkProjectParam();
       
       
       // 제목 띄어쓰기 세팅
@@ -397,7 +406,7 @@ $(function () {
         
       
       // 호버시가 아닌 그냥 있을때에도 정보 표시      
-      $("#w2023090778a70f63ea705 .card").each(function(index){
+      $("#w20231026a86fd4b64aabe .card").each(function(index){
         
         // 카테고리 이름 세팅
         let cate_name = $(this).find(".title > span > em").html();
@@ -432,17 +441,17 @@ $(function () {
             }
           })
           
-        }else if(cate_name == "글로벌 프리오더"){
+        }else if(cate_name == "Global PreOrder"){
           img_name = "https://setoworks.com/common/img/image_WorkBadge_PreOrder.svg";
-        }else if(cate_name == "글로벌 컨텐츠 마케팅"){
+        }else if(cate_name == "Global ContentsMarketing"){
           img_name = "https://setoworks.com/common/img/image_WorkBadge_ContentsMarketing.svg";
-        }else if(cate_name == "글로벌 디지털 마케팅"){
+        }else if(cate_name == "Global DigitalMarketing"){
           img_name = "https://setoworks.com/common/img/image_WorkBadge_DigitalMarketing.svg";
-        }else if(cate_name == "글로벌 커머스"){
+        }else if(cate_name == "Global Commerce"){
           img_name = "https://setoworks.com/common/img/image_WorkBadge_GlobalCommerce.svg";
-        }else if(cate_name == "전시회 / 팝업스토어"){
+        }else if(cate_name == "Exhibition / PopupStore"){
           img_name = "https://setoworks.com/common/img/image_WorkBadge_PopupStore.svg";
-        }else if(cate_name == "정부지원사업"){
+        }else if(cate_name == "Government-funded projects"){
           img_name = "https://setoworks.com/common/img/image_WorkBadge_ExportVoucher.svg";
         }else if(cate_name == "아마존"){
           img_name = "https://setoworks.com/common/img/image_WorkBadge_Amazon.svg";
@@ -490,16 +499,16 @@ $(function () {
       SITE.openModalMenu('m20231016145073248d228', 'm202308173ce08e97ed747')
     })
     
-  
+    
     // NEWS 일때
-    if($('#s202310192ed7990241096').html()){
-
+    if($('#s202310262b8695359af9b').html()){
+      
       // 상단배너, 본문, 내비버튼, 여백하나 숨김  
       chkNewsParam();
       
       // 제목 3줄 안가게 말줄임표 처리
       let title,txt,box;
-      $("#w2023101957f883f44d589 .type_grid.grid_02 .title").each(function(index){
+      $("#w202310265240bf77458ec .type_grid.grid_02 .title").each(function(index){
         txt = $(this).text().replace(/\t/g,'');
         box = txt.split('\n');
         title = box[5];
@@ -508,6 +517,7 @@ $(function () {
         }
         $(this).html(title);
       })
+      
     }
     
     
@@ -532,6 +542,50 @@ const counter = ($counter, max) => {
     now -= step;
   }, 50);
 }
+const counter2 = ($counter, max) => {
+  // console.log(max);
+  let now = max;
+  const handle = setInterval(() => {
+    // $counter.innerHTML = Math.ceil(max - now);
+    let box = String(Math.ceil(max - now));
+    box = box.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    $counter.innerHTML = box;
+      
+    // 목표수치에 도달하면 정지
+    if (now < 1) {
+      clearInterval(handle);
+    }
+    
+    // 증가되는 값이 계속하여 작아짐
+    const step = now / 10;
+    
+    // 값을 적용시키면서 다음 차례에 영향을 끼침
+    now -= step;
+  }, 20);
+}
+const counter3 = ($counter, max) => {
+  // console.log(max);
+  let now = max;
+  const handle = setInterval(() => {
+    // $counter.innerHTML = Math.ceil(max - now);
+    let box = String(Math.ceil(max - now));
+    box = box.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    $counter.innerHTML = box;
+      
+    // 목표수치에 도달하면 정지
+    if (now < 1) {
+      clearInterval(handle);
+    }
+    
+    // 증가되는 값이 계속하여 작아짐
+    const step = now / 10;
+    
+    // 값을 적용시키면서 다음 차례에 영향을 끼침
+    now -= step;
+  }, 35);
+}
+
+
 
 
 // 문의하기 입력폼 처리
@@ -648,9 +702,10 @@ function setContactFormData(num){
   $("#input_text_area_820380Ls56").val(cont);
   
   if(num == 1){
-    SITE_FORM.confirmInputForm('w20231006357cc284b6fb4','N');    
+    // 문의하기 위젯 ID 입니다.
+    SITE_FORM.confirmInputForm('w2023102630387deaba539','N');    
   }else if(num == 2){
-    SITE_FORM.confirmInputForm('w20230922d39e998c04ab7','N');
+    SITE_FORM.confirmInputForm('w202310265b66e2f0f9476','N');
   }
   
 }
@@ -680,7 +735,7 @@ function downDoc(){
   }
   
   setTimeout(function(){
-    SITE_FORM.confirmInputForm('w20230831f65b974c1a11c','N');
+    SITE_FORM.confirmInputForm('w202310266ae216cf8d5c9','N');
   },1000);
   if(uname && uemail){
 
@@ -717,11 +772,8 @@ function chkbox_chk(){
 }
 
 function openModal(){
-  // 회사소개서 모달
-  // SITE.openModalMenu('m20230817ba9b448f069b6', 'm20230817674de0a084d43');
-  
   // 뉴스레터 모달
-  SITE.openModalMenu('m20231017f3dc96f77f736', 'm202308173ce08e97ed747');
+  SITE.openModalMenu('m20231026862f9f364a23e', 'm202310268b80b947f8dc3')
 }
 
 function regNewsletter(num){
@@ -750,12 +802,13 @@ function regNewsletter(num){
   if(chkval){
     $("input[name='checkbox_b25a25bfc43a6[]'").prop("checked",true);
   }
+  $(".sendbtn").prop("disabled",true);
   
-  console.log(num);
+  // console.log(num);
   if(num == 1){
-    SITE_FORM.confirmInputForm('w202310176fa15aa295810','N');
+    SITE_FORM.confirmInputForm('w202310267acd2be84ef51','N');
   }else{
-    SITE_FORM.confirmInputForm('w202310206db720428954d','N');
+    SITE_FORM.confirmInputForm('w20231026b99d3aac170a8','N');
   }
 }
 
@@ -807,7 +860,7 @@ function setFlowBanner(){
   });
 }
 
-// WORK 동영상 클릭시 이동
+// PROJECT 동영상 클릭시 이동
 function work_move(num){
   if(num == 1){
     location.href="/ourwork/?q=YToxOntzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&bmode=view&idx=16274609&t=board";
@@ -819,53 +872,50 @@ function work_move(num){
 }
 
 // PROJECT 포트폴리오 상세페이지에서는 헤드동영상 미노출처리
-function chkWorkParam(){
+function chkProjectParam(){
   let url = new URL(location.href);
   let param = url.searchParams;
   let bidx = param.get('idx');  
   
   if(bidx){
-    $("#w20230926451f3d05e9e94").css("display","none");
-    $("#w202310184c93d352f78a0").css("display","none");
-    $("#w2023101998e333c387ebb").css("display","none");
-    $("#w20231019b63136f636b6c").css("display","none");
+    $("#w202310260c58f9ab9afae").css("display","none");
+    $("#w20231026749e2475ad2a2").css("display","none");
     
     // 모바일
     if(chkMobile()){
-      $("#s2023101871137ca2eb1ef").css("display","none");
+      $("#s2023102647a6670a31574").css("display","none");
     }
-
     
   }else{
-    $("#w20230926451f3d05e9e94").css("display","block");
-    $("#w202310184c93d352f78a0").css("display","block");
-    $("#w2023101998e333c387ebb").css("display","block");
-    $("#w20231019b63136f636b6c").css("display","block");
-
+    $("#w202310260c58f9ab9afae").css("display","block");
+    $("#w20231026749e2475ad2a2").css("display","block");
+    
     // 모바일
     if(chkMobile()){
-      $("#s2023101871137ca2eb1ef").css("display","block");
+      $("#s202310250635fc354b3c8").css("display","block");
     }
+
+    
   }
 }
 
-// PROJECT 상세페이지에서는 헤드동영상 미노출처리
+// 뉴스룸 상세페이지에서는 헤드동영상 미노출처리
 function chkNewsParam(){
   let url = new URL(location.href);
   let param = url.searchParams;
   let bidx = param.get('idx');  
   
   if(bidx){
-    $("#s202310192ed7990241096").css("display","none");
-    $("#w2023101907eadadd05bb9").css("display","none");
-    $("#w20231019a4377bd5092fb").css("display","none");
+    $("#w202310267efae631586d4").css("display","none");
+    $("#w20231026642910da77e83").css("display","none");
+    $("#w20231026685857b012ac7").css("display","none");
     // 상단여백
-    $("#w20231019aa661f1b80fdd").css("display","none");
+    $("#w202310256f59fa22b1cd0").css("display","none");
   }else{
-    $("#s202310192ed7990241096").css("display","block");
-    $("#w2023101907eadadd05bb9").css("display","block");
-    $("#w20231019a4377bd5092fb").css("display","block");
+    $("#w202310267efae631586d4").css("display","block");
+    $("#w20231026642910da77e83").css("display","block");
+    $("#w20231026685857b012ac7").css("display","block");
     // 상단여백
-    $("#w20231019aa661f1b80fdd").css("display","block");
+    $("#w202310256f59fa22b1cd0").css("display","block");
   }
 }

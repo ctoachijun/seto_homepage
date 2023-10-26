@@ -143,10 +143,10 @@ $(function () {
             const $pcounter = document.querySelector(".crow_cst");
             const $ucounter = document.querySelector(".crow_unit");
             let mmax = 19250500;
-            let fmax = 27;
+            let fmax = 27000;
             let umax = 650;
             setTimeout(() => counter2($mcounter, mmax), 50);
-            setTimeout(() => counter($pcounter, fmax), 50);
+            setTimeout(() => counter3($pcounter, fmax), 50);
             setTimeout(() => counter($ucounter, umax), 50);
         }
         
@@ -172,7 +172,7 @@ $(function () {
     });
 
     // HOME 뉴스룸 게시판 클릭시 NEWS 메뉴의 상세로 연결하기
-    $("#w2023091254e53d77f1943 .post_link_wrap").click(function(){
+    $("#w2023102533b1f750e412f .post_link_wrap").click(function(){
       let param = $(this).attr("href");
       let box = param.split('/');
       param = box[box.length-1];
@@ -268,7 +268,11 @@ $(function () {
             "opacity" : "0"
           })
         }else{
-          $(".txt._txt_wrap").css("display","block");
+          $(".txt._txt_wrap").css({
+            "display":"block",
+            "visibility":"visible",
+            "opacity":"1"
+          });
           // 기존 nametag 부분 숨기기
           $(this).children(".txt._txt_wrap").css("display","none");
     
@@ -493,12 +497,15 @@ $(function () {
     // 입력폼 약관보기
     $(".viewgree").click(function(){
       // $(".chkbox .privacy_agree").toggle(500);
-      SITE.openModalMenu('m20231016145073248d228', 'm202308173ce08e97ed747')
+      SITE.openModalMenu('m202310252051ac6297397', 'm20231025fd2b6c025f098');
     })
     
-  
+    
     // NEWS 일때
     if($('#s2023102524d4cc803f62b').html()){
+      
+      // 상단배너, 본문, 내비버튼, 여백하나 숨김  
+      chkNewsParam();
       
       // 제목 3줄 안가게 말줄임표 처리
       let title,txt,box;
@@ -557,6 +564,29 @@ const counter2 = ($counter, max) => {
     now -= step;
   }, 20);
 }
+const counter3 = ($counter, max) => {
+  // console.log(max);
+  let now = max;
+  const handle = setInterval(() => {
+    // $counter.innerHTML = Math.ceil(max - now);
+    let box = String(Math.ceil(max - now));
+    box = box.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    $counter.innerHTML = box;
+      
+    // 목표수치에 도달하면 정지
+    if (now < 1) {
+      clearInterval(handle);
+    }
+    
+    // 증가되는 값이 계속하여 작아짐
+    const step = now / 10;
+    
+    // 값을 적용시키면서 다음 차례에 영향을 끼침
+    now -= step;
+  }, 35);
+}
+
+
 
 
 // 문의하기 입력폼 처리
@@ -830,7 +860,7 @@ function setFlowBanner(){
   });
 }
 
-// WORK 동영상 클릭시 이동
+// PROJECT 동영상 클릭시 이동
 function work_move(num){
   if(num == 1){
     location.href="/ourwork/?q=YToxOntzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&bmode=view&idx=16274609&t=board";
@@ -841,21 +871,48 @@ function work_move(num){
   }
 }
 
-// WORK 포트폴리오 상세페이지에서는 헤드동영상 미노출처리
+// PROJECT 포트폴리오 상세페이지에서는 헤드동영상 미노출처리
 function chkWorkParam(){
   let url = new URL(location.href);
   let param = url.searchParams;
   let bidx = param.get('idx');  
   
   if(bidx){
-    $("#w20230926451f3d05e9e94").css("display","none");
-    $("#w202310184c93d352f78a0").css("display","none");
-    $("#w2023101998e333c387ebb").css("display","none");
-    $("#w20231019b63136f636b6c").css("display","none");
+    $("#w2023102597fd709331df1").css("display","none");
+    
+    // 모바일
+    if(chkMobile()){
+      $("#s202310250635fc354b3c8").css("display","none");
+    }
+    
   }else{
-    $("#w20230926451f3d05e9e94").css("display","block");
-    $("#w202310184c93d352f78a0").css("display","block");
-    $("#w2023101998e333c387ebb").css("display","block");
-    $("#w20231019b63136f636b6c").css("display","block");
+    $("#w2023102597fd709331df1").css("display","block");
+    
+    // 모바일
+    if(chkMobile()){
+      $("#s202310250635fc354b3c8").css("display","block");
+    }
+    
+  }
+}
+
+// 뉴스룸 상세페이지에서는 헤드동영상 미노출처리
+function chkNewsParam(){
+  let url = new URL(location.href);
+  let param = url.searchParams;
+  let bidx = param.get('idx');  
+  
+  if(bidx){
+    $("#s2023102524d4cc803f62b").css("display","none");
+    $("#w2023102514e25eca1d4bc").css("display","none");
+    $("#w20231025ee354dc4777d4").css("display","none");
+    // 상단여백
+    $("#w202310256f59fa22b1cd0").css("display","none");
+  }else{
+    $("#s2023102524d4cc803f62b").css("display","block");
+    $("#w2023102514e25eca1d4bc").css("display","block");
+    $("#w20231025ee354dc4777d4").css("display","block");
+    // 상단여백
+    $("#w202310256f59fa22b1cd0").css("display","block");
   }
 }
