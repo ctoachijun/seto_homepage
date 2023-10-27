@@ -415,10 +415,22 @@ $(function () {
         cate_name = cate_name.replace("]","");
         $(this).find(".post_link_wrap").prepend("<div class='category_name'>"+cate_name+"</div>");
         
-        let title_name = $(this).find(".title").text();
-        let box = title_name.replace(/\s/g,"");
-        let box2 = box.split("]");
-        title_name = box2[1];
+        // let title_name = $(this).find(".title").text();
+        // let box = title_name.replace(/\s/g,"");
+        // let box2 = box.split("]");
+        // title_name = box2[1];
+        
+        let title_name = $(this).find(".title").html();
+        let box = title_name.split("span");
+        let box2 = box[2].replace(/\s/g,"");
+        title_name = box2.replace(/<.*$|>/g,"");
+        
+        
+        // console.log("title_name : " + title_name);
+        // console.log("box : " + box);
+        // console.log("box2 : " + box2);
+        // console.log("box3 : " + box3);
+        // console.log("title_name : " + title_name);
         
         // 각 이미지 세팅. 크라우드 펀딩일 경우 첫줄로 이미지를 판단. (에서 제목에서 단어 매칭으로 변경)
         let img_name = amount = "";
@@ -427,7 +439,7 @@ $(function () {
           
           // 첫줄없이 제목에서 단어 매칭
           // plf_arr에 들어가는 펀딩사이트 이름 순서와 img_arr에 들어가는 이미지 순서가 동일해야 합니다.
-          let plf_arr = new Array("킥스타터", "인디고고", "젝젝", "와디즈", "마쿠아케");
+          let plf_arr = new Array("Kickstarter", "Indiegogo", "Zeczec", "Wadiz", "Makuake");
           let img_arr = new Array(
             "https://setoworks.com/common/img/image_WorkBadge_Kickstarter.svg",
             "https://setoworks.com/common/img/image_WorkBadge_Indiegogo.svg",
@@ -454,7 +466,7 @@ $(function () {
           img_name = "https://setoworks.com/common/img/image_WorkBadge_PopupStore.svg";
         }else if(cate_name == "Government-funded projects"){
           img_name = "https://setoworks.com/common/img/image_WorkBadge_ExportVoucher.svg";
-        }else if(cate_name == "아마존"){
+        }else if(cate_name == "Amazon"){
           img_name = "https://setoworks.com/common/img/image_WorkBadge_Amazon.svg";
         }else{
           
@@ -629,35 +641,35 @@ function setContactFormData(num){
   //   return false;
   // }
   if(!uemail){
-    alert("이메일을 입력 해 주세요.");
+    alert("Please Input Email Address");
     $("#contact_email").focus();
     // $(window).scrollTop($("#contact_comp").offset().top);
     return false;
   }
   let re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
   if (!re.test(uemail)) {
-    alert("이메일 형식을 확인 해 주세요.");
+    alert("Please Confirm Email Address");
     $("#contact_email").focus();
     // $(window).scrollTop($("#contact_comp").offset().top);
     return false;
   }
   if(!tel1){
-    alert("연락처를 입력 해 주세요.");
+    alert("Please Input Contact Number");
     $("#tel1").focus();
     return false;
   }
   if(!tel2){
-    alert("연락처를 입력 해 주세요.");
+    alert("Please Input Contact Number");
     $("#tel2").focus();
     return false;
   }
   if(!tel3){
-    alert("연락처를 입력 해 주세요.");
+    alert("Please Input Contact Number");
     $("#tel3").focus();
     return false;
   }
   if(!uname){
-    alert("이름을 입력 해 주세요.");
+    alert("Please Input Name");
     $("#contact_name").focus();
     // $(window).scrollTop($("#contact_comp").offset().top);
     return false;
@@ -679,7 +691,7 @@ function setContactFormData(num){
 
 
   if(!$("#cprivacy").is(":checked")){
-    alert("개인정보 수집/이용에 동의 해 주세요.");
+    alert("Please agree to the collection and use of personal information");
     $(".checkbox.checkbox-styled input[type='checkbox']").prop("checked",false);
     return false;
   }else{
@@ -780,21 +792,21 @@ function openModal(){
 function regNewsletter(num){
   let input_email = $("input[name=homemail").val();
   if(!input_email){
-    alert("이메일 주소를 입력 해 주세요.");
+    alert("Please Input Email Address");
     $("#newsmail").focus();
     return false;
   }
   
   let re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
   if (!re.test(input_email)) {
-    alert("이메일 주소 형식을 확인 해 주세요.");
+    alert("Please Confirm Email Address");
     $("#newsmail").focus();
     return false;
   }
   
   let chkval = $("#mktok").prop("checked");
   if(!chkval){
-    alert("마케팅 활용 동의를 해 주세요.");
+    alert("Please agree to participation in marketing activities");
     return false;
   }
 

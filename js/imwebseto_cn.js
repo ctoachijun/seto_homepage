@@ -185,49 +185,42 @@ $(function () {
     let garo_sum = 0;
     
     // 각 화면에서 내비 버튼이 왼쪽으로 붙어 나오게 처리
-    if($("#w20231026a7673b8430dc9").html()){
-        garo_sum += $("#w20231026a7673b8430dc9 > div > div > div > div:nth-child(1)").width();
-      $("#w20231026a7673b8430dc9").scrollLeft(garo_sum);
+    if($("#w20231026bcb4ef818f7ac").html()){
+        garo_sum += $("#w20231026bcb4ef818f7ac > div > div > div > div:nth-child(1)").width();
+      $("#w20231026bcb4ef818f7ac").scrollLeft(garo_sum);
     }
-    if($("#w202310264826af54ae47f").html()){
+    if($("#w20231026f2c104dd344a5").html()){
       for(let i=1; i<=2; i++){
-        garo_sum += $("#w202310264826af54ae47f > div > div > div > div:nth-child("+i+")").width();
+        garo_sum += $("#w20231026f2c104dd344a5 > div > div > div > div:nth-child("+i+")").width();
       }
-      $("#w202310264826af54ae47f").scrollLeft(garo_sum);
+      $("#w20231026f2c104dd344a5").scrollLeft(garo_sum);
     }
-    if($("#w20231026f62c4015ecb3e").html()){
+    if($("#w202310265e6f50fb715d9").html()){
       for(let i=1; i<=3; i++){
-        garo_sum += $("#w20231026f62c4015ecb3e > div > div > div > div:nth-child("+i+")").width();
+        garo_sum += $("#w202310265e6f50fb715d9 > div > div > div > div:nth-child("+i+")").width();
       }
 
-      $("#w20231026f62c4015ecb3e").scrollLeft(garo_sum);
+      $("#w202310265e6f50fb715d9").scrollLeft(garo_sum);
     }
-    if($("#w2023102692c5a574d68b1").html()){
+    if($("#w20231026eba75706ded9b").html()){
       for(let i=1; i<=4; i++){
-        garo_sum += $("#w2023102692c5a574d68b1 > div > div > div > div:nth-child("+i+")").width();
+        garo_sum += $("#w20231026eba75706ded9b > div > div > div > div:nth-child("+i+")").width();
       }
 
-      $("#w2023102692c5a574d68b1").scrollLeft(garo_sum);
+      $("#w20231026eba75706ded9b").scrollLeft(garo_sum);
     }
-    if($("#w20231026025947ddf7fc3").html()){
+    if($("#w202310263ecc267ef903e").html()){
       for(let i=1; i<=5; i++){
-        garo_sum += $("#w20231026025947ddf7fc3 > div > div > div > div:nth-child("+i+")").width();
+        garo_sum += $("#w202310263ecc267ef903e > div > div > div > div:nth-child("+i+")").width();
       }
 
-      $("#w20231026025947ddf7fc3").scrollLeft(garo_sum);
-    }
-    if($("#w20231026cb602ab778714").html()){
-      for(let i=1; i<=6; i++){
-        garo_sum += $("#w20231026cb602ab778714 > div > div > div > div:nth-child("+i+")").width();
-      }
-
-      $("#w20231026cb602ab778714").scrollLeft(garo_sum);
+      $("#w202310263ecc267ef903e").scrollLeft(garo_sum);
     }
     
     // SERVICE - 펀딩 PROCESS
     // 펀딩 모바일에서 클릭시 호버효과 나오게
-    if($(window).width() < 991){
-      $("#s202310265dc38a24c9271 .img_wrap").click(function(){
+    if($(window).width() <= 991){
+      $("#s20231026d32dea4d64d6b .img_wrap").click(function(){
         if($(this).children(".txt._txt_wrap").css("display") == "none"){
           $(".txt._txt_wrap").css("display","block");
           $(".hover_overlay").css({
@@ -256,7 +249,7 @@ $(function () {
       })
 
       // 프리오더 PROCESS
-      $("#s20231026c433a1d49f492 .img_wrap").click(function(){
+      $("#s202310262c97ff2e902c5 .img_wrap").click(function(){
         if($(this).children(".txt._txt_wrap").css("display") == "none"){
           $(".txt._txt_wrap").css("display","block");
           $(".hover_overlay").css({
@@ -302,7 +295,7 @@ $(function () {
     
     // 피플 모바일에서 클릭시 호버효과 나오게
     if($(window).width() <= 991){
-      $("#s20231026de4e42311740a .img_wrap").click(function(){
+      $("#s20231026168c49dc0a087 .img_wrap").click(function(){
         if($(this).children(".txt._txt_wrap").css("display") == "none"){
           $(".txt._txt_wrap").css("display","block");
           $(".hover_overlay").css({
@@ -339,7 +332,7 @@ $(function () {
         
       })
       
-      $("#s202310266939e0cb1a86d .img_wrap").click(function(){
+      $("#s202310267494e94bf6c3c .img_wrap").click(function(){
         if($(this).children(".txt._txt_wrap").css("display") == "none"){
           $(".txt._txt_wrap").css("display","block");
           $(".hover_overlay").css({
@@ -384,7 +377,7 @@ $(function () {
     
 
     // PROJECT 에서만 동작
-    if($("#s2023102667c2ed4ff2a59").html()){
+    if($("#s20231026476ebc505215f").html()){
       
       // 상세페이지에서는 상단 동영상 미노출 처리
       chkProjectParam();
@@ -406,7 +399,7 @@ $(function () {
         
       
       // 호버시가 아닌 그냥 있을때에도 정보 표시      
-      $("#w20231026a86fd4b64aabe .card").each(function(index){
+      $("#w20231026dc032da957628 .card").each(function(index){
         
         // 카테고리 이름 세팅
         let cate_name = $(this).find(".title > span > em").html();
@@ -414,10 +407,10 @@ $(function () {
         cate_name = cate_name.replace("]","");
         $(this).find(".post_link_wrap").prepend("<div class='category_name'>"+cate_name+"</div>");
         
-        let title_name = $(this).find(".title").text();
-        let box = title_name.replace(/\s/g,"");
-        let box2 = box.split("]");
-        title_name = box2[1];
+        let title_name = $(this).find(".title").html();
+        let box = title_name.split("span");
+        let box2 = box[2].replace(/\s/g,"");
+        title_name = box2.replace(/<.*$|>/g,"");
         
         // 각 이미지 세팅. 크라우드 펀딩일 경우 첫줄로 이미지를 판단. (에서 제목에서 단어 매칭으로 변경)
         let img_name = amount = "";
@@ -496,19 +489,19 @@ $(function () {
     // 입력폼 약관보기
     $(".viewgree").click(function(){
       // $(".chkbox .privacy_agree").toggle(500);
-      SITE.openModalMenu('m20231016145073248d228', 'm202308173ce08e97ed747')
+      SITE.openModalMenu('m20231026b7adaa098479e', 'm202310268b80b947f8dc3')
     })
     
     
     // NEWS 일때
-    if($('#s202310262b8695359af9b').html()){
+    if($('#s2023102699c25f255dcb8').html()){
       
       // 상단배너, 본문, 내비버튼, 여백하나 숨김  
       chkNewsParam();
       
       // 제목 3줄 안가게 말줄임표 처리
       let title,txt,box;
-      $("#w202310265240bf77458ec .type_grid.grid_02 .title").each(function(index){
+      $("#w2023102673adb7870f5e2 .type_grid.grid_02 .title").each(function(index){
         txt = $(this).text().replace(/\t/g,'');
         box = txt.split('\n');
         title = box[5];
@@ -735,7 +728,7 @@ function downDoc(){
   }
   
   setTimeout(function(){
-    SITE_FORM.confirmInputForm('w202310266ae216cf8d5c9','N');
+    SITE_FORM.confirmInputForm('w202310265a8b6edde29f3','N');
   },1000);
   if(uname && uemail){
 
@@ -806,9 +799,9 @@ function regNewsletter(num){
   
   // console.log(num);
   if(num == 1){
-    SITE_FORM.confirmInputForm('w202310267acd2be84ef51','N');
+    SITE_FORM.confirmInputForm('w202310267931afb669101','N');
   }else{
-    SITE_FORM.confirmInputForm('w20231026b99d3aac170a8','N');
+    SITE_FORM.confirmInputForm('w20231026205cca803299f','N');
   }
 }
 
@@ -878,21 +871,21 @@ function chkProjectParam(){
   let bidx = param.get('idx');  
   
   if(bidx){
-    $("#w202310260c58f9ab9afae").css("display","none");
-    $("#w20231026749e2475ad2a2").css("display","none");
+    $("#w2023102684ccbeaf166cd").css("display","none");
+    $("#w20231026edfa3ea6db94f").css("display","none");
     
     // 모바일
     if(chkMobile()){
-      $("#s2023102647a6670a31574").css("display","none");
+      $("#s20231026411f58237df11").css("display","none");
     }
     
   }else{
-    $("#w202310260c58f9ab9afae").css("display","block");
-    $("#w20231026749e2475ad2a2").css("display","block");
+    $("#w2023102684ccbeaf166cd").css("display","block");
+    $("#w20231026edfa3ea6db94f").css("display","block");
     
     // 모바일
     if(chkMobile()){
-      $("#s202310250635fc354b3c8").css("display","block");
+      $("#s20231026411f58237df11").css("display","block");
     }
 
     
@@ -906,16 +899,16 @@ function chkNewsParam(){
   let bidx = param.get('idx');  
   
   if(bidx){
-    $("#w202310267efae631586d4").css("display","none");
-    $("#w20231026642910da77e83").css("display","none");
-    $("#w20231026685857b012ac7").css("display","none");
+    $("#w202310261ca80d65c0365").css("display","none");
+    $("#w202310266eb4b3596fcb2").css("display","none");
+    $("#w202310267f073f632f535").css("display","none");
     // 상단여백
-    $("#w202310256f59fa22b1cd0").css("display","none");
+    $("#w20231026e67d2b8296afe").css("display","none");
   }else{
-    $("#w202310267efae631586d4").css("display","block");
-    $("#w20231026642910da77e83").css("display","block");
-    $("#w20231026685857b012ac7").css("display","block");
+    $("#w202310261ca80d65c0365").css("display","block");
+    $("#w202310266eb4b3596fcb2").css("display","block");
+    $("#w202310267f073f632f535").css("display","block");
     // 상단여백
-    $("#w202310256f59fa22b1cd0").css("display","block");
+    $("#w20231026e67d2b8296afe").css("display","block");
   }
 }

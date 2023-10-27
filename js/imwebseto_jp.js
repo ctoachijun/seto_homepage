@@ -414,10 +414,11 @@ $(function () {
         cate_name = cate_name.replace("]","");
         $(this).find(".post_link_wrap").prepend("<div class='category_name'>"+cate_name+"</div>");
         
-        let title_name = $(this).find(".title").text();
-        let box = title_name.replace(/\s/g,"");
-        let box2 = box.split("]");
-        title_name = box2[1];
+        let title_name = $(this).find(".title").html();
+        let box = title_name.split("span");
+        let box2 = box[2].replace(/\s/g,"");
+        title_name = box2.replace(/<.*$|>/g,"");
+                
         
         // 각 이미지 세팅. 크라우드 펀딩일 경우 첫줄로 이미지를 판단. (에서 제목에서 단어 매칭으로 변경)
         let img_name = amount = "";
